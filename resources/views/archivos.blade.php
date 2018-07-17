@@ -1,404 +1,220 @@
 @extends('voyager::master')
 
-@section('page_title', __('voyager::generic.media'))
-
 @section('content')
-    <div class="page-content container-fluid">
-        @include('voyager::alerts')
-        <div class="row">
-            <div class="col-md-12">
 
-                <div class="admin-section-title">
-                    <h3><i class="voyager-images"></i> {{ __('voyager::generic.media') }}</h3>
+
+<head>
+ 
+  <title>{{ trans('laravel-filemanager::lfm.title-page') }}</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('vendor/laravel-filemanager/img/folder.png') }}">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/cropper.min.css') }}">
+  <style>{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/css/lfm.css')) !!}</style>
+  {{-- Use the line below instead of the above if you need to cache the css. --}}
+  {{-- <link rel="stylesheet" href="{{ asset('/vendor/laravel-filemanager/css/lfm.css') }}"> --}}
+  <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/mfb.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/dropzone.min.css') }}">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css">
+</head>
+<body>
+  
+
+<div class="col-sm-12">
+  
+  <div class="admin-section-title">
+                    <h3><i class="voyager-images"></i> Medios</h3>
                 </div>
-                <div class="clear"></div>
 
-                <div id="filemanager">
+  <div class="container-fluid" id="wrapper">
+    <div class="panel panel-primary hidden-xs">
 
-                    <div id="toolbar">
-                        <div class="btn-group offset-right">
-                            <button type="button" class="btn btn-primary" id="upload"><i class="voyager-upload"></i>
-                                {{ __('voyager::generic.upload') }}
-                            </button>
-                            <button type="button" class="btn btn-primary" id="new_folder"
-                                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="voyager-folder"></i>
-                                {{ __('voyager::generic.add_folder') }}
-                            </button>
-                        </div>
-                        <button type="button" class="btn btn-default" id="refresh"><i class="voyager-refresh"></i>
-                        </button>
-                        <div class="btn-group offset-right">
-                            <button type="button" class="btn btn-default" id="move"><i class="voyager-move"></i> {{ __('voyager::generic.move') }}
-                            </button>
-                            <button type="button" class="btn btn-default" id="rename"><i class="voyager-character"></i>
-                                {{ __('voyager::generic.rename') }}
-                            </button>
-                            <button type="button" class="btn btn-default" id="delete"><i class="voyager-trash"></i>
-                                {{ __('voyager::generic.delete') }}
-                            </button>
-							<button v-show="selectedFileIs('image')" type="button" class="btn btn-default" id="crop"><i class="voyager-crop"></i>
-                                {{ __('voyager::media.crop') }}
-                            </button>
-                        </div>
-                    </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 hidden-xs">
+        <div id="tree"></div>
+      </div>
 
-                    <div id="uploadPreview" style="display:none;"></div>
+      <div class="col-sm-10 col-xs-12" id="main">
+        <nav class="navbar navbar-default" id="nav">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-buttons">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand clickable hide" id="to-previous">
+              <i class="fa fa-arrow-left"></i>
+              <span class="hidden-xs">{{ trans('laravel-filemanager::lfm.nav-back') }}</span>
+            </a>
+            <a class="navbar-brand visible-xs" href="#">{{ trans('laravel-filemanager::lfm.title-panel') }}</a>
+          </div>
+          <div class="collapse navbar-collapse" id="nav-buttons">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a class="clickable" id="thumbnail-display">
+                  <i class="fa fa-th-large"></i>
+                  <span>{{ trans('laravel-filemanager::lfm.nav-thumbnails') }}</span>
+                </a>
+              </li>
+              <li>
+                <a class="clickable" id="list-display">
+                  <i class="fa fa-list"></i>
+                  <span>{{ trans('laravel-filemanager::lfm.nav-list') }}</span>
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  {{ trans('laravel-filemanager::lfm.nav-sort') }} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#" id="list-sort-alphabetic">
+                      <i class="fa fa-sort-alpha-asc"></i> {{ trans('laravel-filemanager::lfm.nav-sort-alphabetic') }}
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="list-sort-time">
+                      <i class="fa fa-sort-amount-asc"></i> {{ trans('laravel-filemanager::lfm.nav-sort-time') }}
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="visible-xs" id="current_dir" style="padding: 5px 15px;background-color: #f8f8f8;color: #5e5e5e;"></div>
 
-                    <div id="uploadProgress" class="progress active progress-striped">
-                        <div class="progress-bar progress-bar-success" style="width: 0"></div>
-                    </div>
+        <div id="alerts"></div>
 
-                    <div id="content">
+        <div id="content"></div>
+      </div>
 
+      <ul id="fab">
+        <li>
+          <a href="#"></a>
+          <ul class="hide">
+            <li>
+              <a href="#" id="add-folder" data-mfb-label="{{ trans('laravel-filemanager::lfm.nav-new') }}">
+                <i class="fa fa-folder"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" id="upload" data-mfb-label="{{ trans('laravel-filemanager::lfm.nav-upload') }}">
+                <i class="fa fa-upload"></i>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-                        <div class="breadcrumb-container">
-                            <ol class="breadcrumb filemanager">
-                                <li class="media_breadcrumb" data-folder="/" data-index="0"><span class="arrow"></span><strong>{{ __('voyager::media.library') }}</strong></li>
-                                <template v-for="(folder, index) in folders">
-                                    <li v-bind:data-folder="folder" v-bind:data-index="index+1"
-									v-bind:class="{media_breadcrumb: index !== folders.length - 1}"><span
-                                                class="arrow"></span>@{{ folder }}</li>
+  <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aia-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{ trans('laravel-filemanager::lfm.title-upload') }}</h4>
+        </div>
+        <div class="modal-body">
+          <form action="{{ route('unisharp.lfm.upload') }}" role='form' id='uploadForm' name='uploadForm' method='post' enctype='multipart/form-data' class="dropzone">
+            <div class="form-group" id="attachment">
 
-                                </template>
-                            </ol>
-
-                            <div class="toggle"><span>{{ __('voyager::generic.close') }}</span><i class="voyager-double-right"></i></div>
-                        </div>
-                        <div class="flex">
-
-                            <div id="left">
-
-                                <ul id="files">
-
-                                    <li v-for="(file,index) in files.items">
-                                        <div class="file_link" :data-folder="file.name" :data-index="index">
-                                            <div class="link_icon">
-                                                <template v-if="file.type.includes('image')">
-                                                    <div class="img_icon" :style="imgIcon(file.path)"></div>
-                                                </template>
-                                                <template v-if="file.type.includes('video')">
-                                                    <i class="icon voyager-video"></i>
-                                                </template>
-                                                <template v-if="file.type.includes('audio')">
-                                                    <i class="icon voyager-music"></i>
-                                                </template>
-												<template v-if="file.type.includes('zip')">
-                                                    <i class="icon voyager-archive"></i>
-                                                </template>
-                                                <template v-if="file.type == 'folder'">
-                                                    <i class="icon voyager-folder"></i>
-                                                </template>
-                                                <template
-                                                        v-if="file.type != 'folder' && !file.type.includes('image') && !file.type.includes('video') && !file.type.includes('audio') && !file.type.includes('zip')">
-                                                    <i class="icon voyager-file-text"></i>
-                                                </template>
-
-                                            </div>
-                                            <div class="details" :data-type="file.type">
-                                                <div :class="file.type">
-                                                    <h4>@{{ file.name }}</h4>
-                                                    <small>
-                                                        <template v-if="file.type == 'folder'">
-                                                        <!--span class="num_items">@{{ file.items }} file(s)</span-->
-                                                        </template>
-                                                        <template v-else>
-                                                            <span class="file_size">@{{ file.size }}</span>
-                                                        </template>
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                </ul>
-
-                                <div id="file_loader">
-                                    <?php $admin_loader_img = Voyager::setting('admin.loader', ''); ?>
-                                    @if($admin_loader_img == '')
-                                        <img src="{{ voyager_asset('images/logo-icon.png') }}" alt="Voyager Loader">
-                                    @else
-                                        <img src="{{ Voyager::image($admin_loader_img) }}" alt="Voyager Loader">
-                                    @endif
-                                    <p>{{ __('voyager::media.loading') }}</p>
-                                </div>
-
-                                <div id="no_files">
-                                    <h3><i class="voyager-meh"></i> {{ __('voyager::media.no_files_in_folder') }}</h3>
-                                </div>
-
-                            </div>
-
-                            <div id="right">
-                                <div class="right_none_selected">
-                                    <i class="voyager-cursor"></i>
-                                    <p>{{ __('voyager::media.nothing_selected') }}</p>
-                                </div>
-                                <div class="right_details">
-                                    <div class="detail_img">
-                                        <div :class="selected_file.type">
-                                            <template v-if="selectedFileIs('image')">
-                                                <img :src="selected_file.path"/>
-                                            </template>
-                                            <template v-if="selectedFileIs('video')">
-                                                <video width="100%" height="auto" controls>
-                                                    <source :src="selected_file.path" type="video/mp4">
-                                                    <source :src="selected_file.path" type="video/ogg">
-                                                    <source :src="selected_file.path" type="video/webm">
-                                                    {{ __('voyager::media.browser_video_support') }}
-                                                </video>
-                                            </template>
-                                            <template v-if="selectedFileIs('audio')">
-												<i class="voyager-music"></i>
-                                                <audio controls style="width:100%; margin-top:5px;">
-                                                    <source :src="selected_file.path" type="audio/ogg">
-                                                    <source :src="selected_file.path" type="audio/mpeg">
-                                                    {{ __('voyager::media.browser_audio_support') }}
-                                                </audio>
-                                            </template>
-											<template v-if="selectedFileIs('zip')">
-                                                <i class="voyager-archive"></i>
-                                            </template>
-                                            <template v-if="selected_file.type == 'folder'">
-                                                <i class="voyager-folder"></i>
-                                            </template>
-                                            <!--template
-                                                    v-if="selected_file.type != 'folder' && !selectedFileIs('audio') && !selectedFileIs('video') && !selectedFileIs('image')">
-                                                <i class="voyager-file-text-o"></i>
-                                            </template>-->
-                                        </div>
-
-                                    </div>
-                                    <div class="detail_info">
-                                        <div :class="selected_file.type">
-                                            <span><h4>{{ __('voyager::media.title') }}:</h4>
-    							            <p>@{{selected_file.name}}</p></span>
-                                            <span><h4>{{ __('voyager::media.type') }}:</h4>
-    							            <p>@{{selected_file.type}}</p></span>
-
-                                            <template v-if="selected_file.type != 'folder'">
-    								            <span><h4>{{ __('voyager::media.size') }}:</h4>
-    								            <p><span class="selected_file_count">@{{ selected_file.items }} item(s)</span><span
-                                                    class="selected_file_size">@{{selected_file.size}}</span></p></span>
-                                                <span><h4>{{ __('voyager::media.public_url') }}:</h4>
-    								            <p><a :href="selected_file.path" target="_blank">Click Here</a></p></span>
-                                                <span><h4>{{ __('voyager::media.last_modified') }}:</h4>
-    								            <p>@{{ dateFilter(selected_file.last_modified) }}</p></span>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div><!-- #right -->
-
-                        </div>
-
-                        <div class="nothingfound">
-                            <div class="nofiles"></div>
-                            <span>{{ __('voyager::media.no_files_here') }}</span>
-                        </div>
-
-                    </div>
-
-                    <!-- Move File Modal -->
-                    <div class="modal fade modal-warning" id="move_file_modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-move"></i> {{ __('voyager::media.move_file_folder') }}</h4>
-                                </div>
-
-                                <div class="modal-body">
-                                    <h4>{{ __('voyager::media.destination_folder') }}</h4>
-                                    <select id="move_folder_dropdown">
-                                        <template v-if="folders.length">
-                                            <option value="/../">../</option>
-                                        </template>
-                                        <template v-for="dir in directories">
-                                            <option :value="dir">@{{ dir }}</option>
-                                        </template>
-                                    </select>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                                    <button type="button" class="btn btn-warning" id="move_btn">{{ __('voyager::generic.move') }}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Move File Modal -->
-
-                    <!-- Rename File Modal -->
-                    <div class="modal fade modal-warning" id="rename_file_modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-character"></i> {{ __('voyager::media.rename_file_folder') }}</h4>
-                                </div>
-
-                                <div class="modal-body">
-                                    <h4>{{ __('voyager::media.new_file_folder') }}</h4>
-                                    <input id="new_filename" class="form-control" type="text"
-                                           :value="selected_file.name">
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                                    <button type="button" class="btn btn-warning" id="rename_btn">{{ __('voyager::generic.rename') }}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Move File Modal -->
-
-					<!-- Image Modal -->
-					<div class="modal fade" id="imagemodal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-								<div class="modal-body">
-									<img :src="selected_file.path" class="img img-responsive" style="margin: 0 auto;">
-								</div>
-
-								<div class="modal-footer text-left">
-									<small class="image-title">@{{ selected_file.name }}</small>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<!-- End Image Modal -->
-
-					<!-- Crop Image Modal -->
-                    <div class="modal fade modal-warning" id="confirm_crop_modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::media.crop_image') }}</h4>
-                                </div>
-
-                                <div class="modal-body">
-                                    <div class="crop-container">
-                                        <img v-if="selectedFileIs('image')" id="cropping-image" class="img img-responsive" :src="selected_file.path + '?' + selected_file.last_modified"/>
-                                    </div>
-                                    <div class="new-image-info">
-                                        {{ __('voyager::media.width') }} <span id="new-image-width"></span>, {{ __('voyager::media.height') }}<span id="new-image-height"></span>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                                    <button type="button" class="btn btn-warning" id="crop_btn" data-confirm="{{ __('voyager::media.crop_override_confirm') }}">{{ __('voyager::media.crop') }}</button>
-                                    <button type="button" class="btn btn-warning" id="crop_and_create_btn">{{ __('voyager::media.crop_and_create') }}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Crop Image Modal -->
-
-
-                </div><!-- #filemanager -->
-
-                <!-- New Folder Modal -->
-                <div class="modal fade modal-info" id="new_folder_modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-folder"></i> {{ __('voyager::media.add_new_folder') }}</h4>
-                            </div>
-
-                            <div class="modal-body">
-                                <input name="new_folder_name" id="new_folder_name" placeholder="{{ __('voyager::media.new_folder_name') }}"
-                                       class="form-control" value=""/>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                                <button type="button" class="btn btn-info" id="new_folder_submit">{{ __('voyager::media.create_new_folder') }}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+              <div class="controls text-center">
+                <div class="input-group" style="width: 100%">
+                  <a class="btn btn-primary" id="upload-button">{{ trans('laravel-filemanager::lfm.message-choose') }}</a>
                 </div>
-                <!-- End New Folder Modal -->
+              </div>
+            </div>
+            <input type='hidden' name='working_dir' id='working_dir'>
+            <input type='hidden' name='type' id='type' value='{{ request("type") }}'>
+            <input type='hidden' name='_token' value='{{csrf_token()}}'>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('laravel-filemanager::lfm.btn-close') }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-                <!-- Delete File Modal -->
-                <div class="modal fade modal-danger" id="confirm_delete_modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+  <div id="lfm-loader">
+    <img src="{{asset('vendor/laravel-filemanager/img/loader.svg')}}">
+  </div>
+  
+  
 
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
-                            </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="{{ asset('vendor/laravel-filemanager/js/cropper.min.js') }}"></script>
+  <script src="{{ asset('vendor/laravel-filemanager/js/jquery.form.min.js') }}"></script>
+  <script src="{{ asset('vendor/laravel-filemanager/js/dropzone.min.js') }}"></script>
+  <script>
+    var route_prefix = "{{ url('/') }}";
+    var lfm_route = "{{ url(config('lfm.url_prefix', config('lfm.prefix'))) }}";
+    var lang = {!! json_encode(trans('laravel-filemanager::lfm')) !!};
+  </script>
+  <script>{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/script.js')) !!}</script>
+  {{-- Use the line below instead of the above if you need to cache the script. --}}
+  {{-- <script src="{{ asset('vendor/laravel-filemanager/js/script.js') }}"></script> --}}
+  <script>
+    $.fn.fab = function () {
+      var menu = this;
+      menu.addClass('mfb-component--br mfb-zoomin').attr('data-mfb-toggle', 'hover');
+      var wrapper = menu.children('li');
+      wrapper.addClass('mfb-component__wrap');
+      var parent_button = wrapper.children('a');
+      parent_button.addClass('mfb-component__button--main')
+        .append($('<i>').addClass('mfb-component__main-icon--resting fa fa-plus'))
+        .append($('<i>').addClass('mfb-component__main-icon--active fa fa-times'));
+      var children_list = wrapper.children('ul');
+      children_list.find('a').addClass('mfb-component__button--child');
+      children_list.find('i').addClass('mfb-component__child-icon');
+      children_list.addClass('mfb-component__list').removeClass('hide');
+    };
+    $('#fab').fab({
+      buttons: [
+        {
+          icon: 'fa fa-folder',
+          label: "{{ trans('laravel-filemanager::lfm.nav-new') }}",
+          attrs: {id: 'add-folder'}
+        },
+        {
+          icon: 'fa fa-upload',
+          label: "{{ trans('laravel-filemanager::lfm.nav-upload') }}",
+          attrs: {id: 'upload'}
+        }
+      ]
+    });
 
-                            <div class="modal-body">
-                                <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
-                                <h5 class="folder_warning"><i class="voyager-warning"></i> {{ __('voyager::media.delete_folder_question') }}</h5>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                                <button type="button" class="btn btn-danger" id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Delete File Modal -->
-
-                <div id="dropzone"></div>
-                <!-- Delete File Modal -->
-                <div class="modal fade" id="upload_files_modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::media.drag_drop_info') }}</h4>
-                            </div>
-
-                            <div class="modal-body">
-
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">{{ __('voyager::generic.all_done') }}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Delete File Modal -->
+    Dropzone.options.uploadForm = {
+      paramName: "upload[]", // The name that will be used to transfer the file
+      uploadMultiple: false,
+      parallelUploads: 5,
+      clickable: '#upload-button',
+      dictDefaultMessage: 'Arrastra los archivos para subirlos',
+      init: function() {
+        var _this = this; // For the closure
+        this.on('success', function(file, response) {
+          if (response == 'OK') {
+            refreshFoldersAndItems('OK');
+          } else {
+            this.defaultOptions.error(file, response.join('\n'));
+          }
+      });
+      },
+      acceptedFiles: "{{ lcfirst(str_singular(request('type') ?: '')) == 'image' ? implode(',', config('lfm.valid_image_mimetypes')) : implode(',', config('lfm.valid_file_mimetypes')) }}",
+      maxFilesize: ({{ lcfirst(str_singular(request('type') ?: '')) == 'image' ? config('lfm.max_image_size') : config('lfm.max_file_size') }} / 1000)
+    }
+  </script>
+</body>
 
 
-            </div><!-- .row -->
-        </div><!-- .col-md-12 -->
-    </div><!-- .page-content container-fluid -->
-
-    <input type="hidden" id="storage_path" value="{{ storage_path() }}">
-    <input type="hidden" id="base_url" value="{{ route('voyager.dashboard') }}">
 
 @stop
 
-@section('javascript')
-
-    <script>
-        MediaManager();
-    </script>
-
-@endsection

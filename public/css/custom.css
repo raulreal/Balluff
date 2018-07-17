@@ -1,0 +1,77 @@
+.panel.widget.center.bgimage {
+    display: none !important;
+}
+
+.side-menu.sidebar-inverse {
+    background: #2B2E36;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top.navbar-top {
+    background: #7AC7DC;
+}
+
+.logo-icon-container img {
+    width: 210px !important;
+  height:auto !important;
+     margin-left: 26px;
+}
+
+.big {
+    font-size: 25px;
+    color: #528C9E;
+}
+
+li.navicon {
+    margin-top: 12px;
+}
+
+.btn-success {
+    background: #2ecc71 !important;
+}
+
+.voyager .btn.btn-danger {
+    background: #528C9E !important;
+}
+
+.site-footer-right {
+    display: none !important;
+}
+.medios{ 
+  width:95%; 
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
+-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
+box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
+}
+
+i.fa.fa-crop.fa-fw {
+    display: none;
+}
+
+i.fa.fa-edit.fa-fw {
+    display: none;
+}
+
+i.fa.fa-arrows.fa-fw {
+    display: none;
+}
+
+.logo-title-container {
+    display: none;
+}
+
+body.login .login-sidebar {
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.90) !important;
+    border-top: 5px solid #22A7F0;
+    border-radius: 0;
+}
+
+.analytics-container {
+    display: none;
+}
