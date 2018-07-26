@@ -2,76 +2,146 @@
     display: none !important;
 }
 
-.side-menu.sidebar-inverse {
-    background: #2B2E36;
+.voyager .navbar .navbar-header .navbar-brand, .voyager .navbar.navbar-default .navbar-header .navbar-brand {
+    color: #FFF !important;
+    height: 80px !important;
 }
 
 nav.navbar.navbar-default.navbar-fixed-top.navbar-top {
-    background: #7AC7DC;
+    background: #BABABD;
+    height: 80px;
 }
 
 .logo-icon-container img {
     width: 210px !important;
   height:auto !important;
-     margin-left: 26px;
+     margin-left: 20px;
+  margin-top:20px;
 }
 
 .big {
     font-size: 25px;
-    color: #528C9E;
+    color: #5D5F64;
 }
 
 li.navicon {
-    margin-top: 12px;
+    margin-top: 20px;
+}
+li.navicon2 {
+    margin-top: 10px;
+}
+.voyager .side-menu.sidebar-inverse {
+    background: #5D5F64;
+    background: linear-gradient(45deg,#5D5F64 0,#5D5F64 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5D5F64', endColorstr='#5D5F64', GradientType=1 );
+    overflow-x: hidden;
+    transition: width .5s cubic-bezier(.19,1,.22,1);
 }
 
-.btn-success {
-    background: #2ecc71 !important;
+.voyager .btn.btn-success {
+    background: #FFF;
+    color: #000;
+    border: solid 1px #f2f2f2;
+    border-radius: 3px;
+    opacity: .9;
 }
-
 .voyager .btn.btn-danger {
-    background: #528C9E !important;
+    background: #FFF;
+    color: #D91E18;
+    border: solid 1px #f2f2f2;
+    border-radius: 3px;
+    opacity: .9;
+}
+
+.voyager .btn.btn-danger:hover {
+    background: red;
+  color:#fff;
+}
+
+.voyager .btn.btn-success:hover {
+    background: #BABABD;
+  color:#fff;
+}
+
+.btn.btn-primary {
+    color: #fff;
+    opacity: .9;
+    background: #BABABD;
+    border: 0;
+    border-radius: 3px;
+}
+
+.voyager .btn.btn-warning {
+    background: #5D5F64;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    opacity: .9;
+}
+.voyager .breadcrumb a {
+    color: #999 !important;
+}
+
+button.hamburger.btn-link.is-active.no-animation {
+    display: none;
+}
+
+.breadcrumb {
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #f2f2f2;
+    font-size: 12px;
+    margin-top: 20px;
+    margin-left: 30px;
 }
 
 .site-footer-right {
+    display: color: #999 !important;
+}
+
+.voyager .pagination .active span, .voyager .pagination .active>a, .voyager .pagination .active>a:focus, .voyager .pagination .active>a:hover, .voyager .pagination .active>span:focus, .voyager .pagination .active>span:hover {
+    z-index: 3;
+    color: darkgray;
+    cursor: default;
+    background-color: #F0F0F0;
+    border-color: #F0F0F0;
+    outline: 0;
+}
+
+.login-logo{
+  padding:25px;
+  float:right;
+  
+}
+
+.voyager .side-menu.sidebar-inverse .navbar li>a {
+    color: #f0f0f0;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+body.login .faded-bg {
+    background: transparent !important;
+    background: transparent !important;
+}  
+
+body.login .login-button {
+    color: #ccc;
+    border: solid 1px lightgray;
+}
+
+.login-logo {
+    padding: 45px 85px 0 0;
+    float: right;
+    margin-top: 5%;
+}
+.voyager .app-footer {
     display: none !important;
 }
-.medios{ 
-  width:95%; 
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
--moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
+.login-container h4 {
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 0;
 }
-
-i.fa.fa-crop.fa-fw {
-    display: none;
-}
-
-i.fa.fa-edit.fa-fw {
-    display: none;
-}
-
-i.fa.fa-arrows.fa-fw {
-    display: none;
-}
-
-.logo-title-container {
-    display: none;
-}
-
-body.login .login-sidebar {
-    min-height: 100vh;
-    position: relative;
-    z-index: 2;
-    padding: 0;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.90) !important;
-    border-top: 5px solid #22A7F0;
-    border-radius: 0;
-}
-
-.analytics-container {
-    display: none;
-}
+    
