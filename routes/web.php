@@ -19,6 +19,10 @@ Route::get('/a', function () {
     return view('archivos');
 });
 
+Route::get('/b', function () {
+    return view('repositorio');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
