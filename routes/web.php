@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    Voyager::routes();
 });
 
-Route::get('/a', function () {
+Route::get('/archivos', function () {
     return view('archivos');
 });
 
