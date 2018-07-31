@@ -19,7 +19,7 @@ return [
     'title-upload'      => 'Subir Archivo',
     'title-view'        => 'Ver Archivo',
     'title-root'        => 'Archivos',
-    'title-shares'      => 'Archivos Compartidos',
+    'title-shares'      => 'Repositorio Balluff',
     'title-item'        => 'Item',
     'title-size'        => 'Tamaño',
     'title-type'        => 'Tipo',
