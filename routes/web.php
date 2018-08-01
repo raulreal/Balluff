@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    Voyager::routes();
-});
-
 Route::get('/archivos', function () {
     return view('archivos');
 });
@@ -25,4 +21,8 @@ Route::get('/b', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+Route::get('/', function () {
+    return redirect('admin');
 });
