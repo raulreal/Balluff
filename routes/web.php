@@ -15,6 +15,11 @@ Route::get('/archivos', function () {
     return view('archivos');
 });
 
+Route::get('/extensiones', function () {
+    return view('extensiones');
+});
+
+
 Route::get('/b', function () {
     return view('repositorio');
 });

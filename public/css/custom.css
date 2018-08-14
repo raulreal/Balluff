@@ -144,4 +144,8 @@ body.login .login-button {
     font-size: 14px;
     margin-bottom: 0;
 }
-    
+
+.table img {
+    max-height: 100px !important;
+    width: auto !important;
+}
