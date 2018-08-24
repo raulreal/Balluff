@@ -11,8 +11,22 @@
 |
 */
 
-Route::get('/archivos', function () {
+
+Route::get('/calidad', function () {
     return view('archivos');
+});
+
+Route::get('/marketing', function () {
+    return view('archivos2');
+});
+
+Route::get('/escritorio', function () {
+    $posts = App\Post::all();
+    return view('escritorio', compact('posts'));
+});
+
+Route::get('/test', function () {
+    return view('test');
 });
 
 Route::get('/extensiones', function () {
@@ -29,5 +43,9 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/', function () {
-    return redirect('admin');
+    return redirect('/admin');
 });
+
+
+Route::get('events', 'EventController@index')->name('events.index');
+Route::post('events', 'EventController@addEvent')->name('events.add');

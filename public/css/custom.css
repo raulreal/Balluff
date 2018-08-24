@@ -149,3 +149,83 @@ body.login .login-button {
     max-height: 100px !important;
     width: auto !important;
 }
+
+.voyager .panel.panel-primary .panel-heading {
+    background-color: #f8fafc !important;
+    border-bottom: solid 4px #e9e9e9 !important;
+    color: #76838f !important;
+    margin-bottom: 10px !important;
+}
+
+.fc-time-grid-container {
+    height: auto !important;
+}
+
+.fc-button {
+    background: white !important;
+    border-radius: 2px !important;
+    border-bottom: solid 2px lightgray !important;
+    color: #999 !important;
+}
+
+.fc-day-grid {
+    display: none !important;
+}
+
+.col1 img, .col2 img, .col3 img {
+    max-width: 100%;
+    height: auto;
+}
+
+.col1, .col2, .col3 {
+    padding: 30px 100px 30px 100px;
+}
+
+.noticias {
+    padding: 30px;
+    margin: 0px 35px 45px 45px;
+}
+
+.avisos {
+    margin-top: 25px;
+    background-color: #eee;
+    padding: 10px 30px 20px 30px;
+  width:95%;
+  height:280px;
+}
+
+.noticias {
+    margin: 25px 45px 25px 45px;
+}
+
+.avisos h2 {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.avisos {
+    margin-left: 15px;
+    max-width: 320px;
+    margin-bottom: 25px;
+}
+
+.links {
+    margin-top: 50px;
+}
+
+.not-active {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color:red;
+}
+
+a {
+    color: gray; !important;
+    text-decoration: none !important;
+}
+
+.clickable:hover {
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
