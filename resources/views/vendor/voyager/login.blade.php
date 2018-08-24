@@ -83,6 +83,14 @@
               </form>
 
               <div style="clear:both"></div>
+              
+              <div class="links">
+                
+              {{menu('Ligas','bootstrap')}}
+              
+              </div>
+                
+              </div>
 
               @if(!$errors->isEmpty())
               <div class="alert alert-red">

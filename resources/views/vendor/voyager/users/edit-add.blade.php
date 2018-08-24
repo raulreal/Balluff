@@ -63,6 +63,17 @@
                                        value="@if(isset($dataTypeContent->ext)){{ $dataTypeContent->ext }}@endif">
                             </div>
                           
+                          <div class="form-group">
+                                <label for="movil">Teléfono Movil</label>
+                                <input type="text" class="form-control" id="movil" name="movil" placeholder="Teléfono Movil"
+                                       value="@if(isset($dataTypeContent->movil)){{ $dataTypeContent->movil }}@endif">
+                            </div>
+                          
+                           <div class="form-group">
+                                <label for="puesto">Puesto</label>
+                                <input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto"
+                                       value="@if(isset($dataTypeContent->puesto)){{ $dataTypeContent->puesto }}@endif">
+                            </div>
                           
                             <div class="form-group">
                                 <label for="password">{{ __('voyager::generic.password') }}</label>

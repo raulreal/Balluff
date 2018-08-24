@@ -1,5 +1,5 @@
 <?php
-
+ 
 return [
     /*
     |--------------------------------------------------------------------------
@@ -9,6 +9,7 @@ return [
 
     // Include to pre-defined routes from package or not. Middlewares
     'use_package_routes' => true,
+    'defer' => true,
 
     // Middlewares which should be applied to all package routes.
     // For laravel 5.1 and before, remove 'web' from the array.
@@ -48,7 +49,9 @@ return [
     'images_folder_name' => 'photos',
     'files_folder_name'  => 'files',
 
-    'shared_folder_name' => 'shares',
+  
+  
+    'shared_folder_name' => null,
     'thumb_folder_name'  => 'thumbs',
 
     /*
@@ -59,8 +62,8 @@ return [
 
     // The default display type for items.
     // Supported: "grid", "list"
-    'images_startup_view' => 'grid',
-    'files_startup_view' => 'grid',
+    'images_startup_view' => 'list',
+    'files_startup_view' => 'list',
 
     /*
     |--------------------------------------------------------------------------
@@ -117,6 +120,8 @@ return [
     // available since v1.3.0
     // only when '/laravel-filemanager?type=Files'
     'valid_file_mimetypes' => [
+    	'application/doc',
+        'application/docx',
         'image/jpeg',
         'image/pjpeg',
         'image/png',
@@ -124,6 +129,19 @@ return [
         'image/svg+xml',
         'application/pdf',
         'text/plain',
+        'video/mpeg',
+        'video/mpg',
+        'video/mp4',
+        'video/m4v',
+        'text/csv',
+        'image/jpeg',
+        'application/zip',
+        'application/docx',
+        'text/plain',
+        'image/vnd.microsoft.icon',
+        'image/x-icon',
+        'application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/docx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+
     ],
 
     /*
