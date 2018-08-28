@@ -122,6 +122,7 @@ return [
     'valid_file_mimetypes' => [
     	'application/doc',
         'application/docx',
+      'application/zip',
         'image/jpeg',
         'image/pjpeg',
         'image/png',

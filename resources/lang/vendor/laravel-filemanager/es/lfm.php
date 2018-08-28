@@ -28,8 +28,8 @@ return [
 
     'type-folder'       => 'Carpeta',
 
-    'message-empty'     => 'Carpeta está vacía.',
-    'message-choose'    => 'Sleccione Archivo',
+    'message-empty'     => 'La carpeta está vacía.',
+    'message-choose'    => 'Sleccione Archivos',
     'message-delete'    => '¿Está seguro que desea eliminar este item?',
     'message-name'      => 'Nombre de Carpeta:',
     'message-rename'    => 'Renombrar a:',

@@ -225,7 +225,16 @@ a {
     text-decoration: none !important;
 }
 
-.clickable:hover {
-    cursor: pointer !important;
-    text-decoration: none !important;
+
+.cont_arch {
+      background-repeat: no-repeat;
+    background-size: cover;
+  background-image:url('https://balluff-rrrogero643043.codeanyapp.com/storage/settings/August2018/5eDhnTR0hB5kEkh6xUNM.png') !important;
 }
+
+
+.clickable {
+    cursor: pointer;
+    color: black;
+}
+

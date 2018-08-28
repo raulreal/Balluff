@@ -126,9 +126,9 @@ function setOpenFolders() {
   for (var i = folders.length - 1; i >= 0; i--) {
     // close folders that are not parent
     if (! dir_starts_with($(folders[i]).data('id'))) {
-      $(folders[i]).children('i').removeClass('fa-folder-open').addClass('fa-folder');
+      $(folders[i]).children('li').removeClass('folder-ab').addClass('folder-ce');
     } else {
-      $(folders[i]).children('i').removeClass('fa-folder').addClass('fa-folder-open');
+      $(folders[i]).children('li').removeClass('fa-folder').addClass('folder-ab');
     }
   }
 }

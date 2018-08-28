@@ -34,7 +34,7 @@
  
                       <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            {!! Form::label('event_name','Identificador de Reunion:') !!}
+                            {!! Form::label('event_name','Nombre de reunion:') !!}
                             <div class="">
                             {!! Form::text('event_name', null, ['class' => 'form-control']) !!}
                             {!! $errors->first('event_name', '<p class="alert alert-danger">:message</p>') !!}

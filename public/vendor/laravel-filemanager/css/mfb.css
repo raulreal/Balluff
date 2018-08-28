@@ -669,3 +669,22 @@
  */
 
 /*# sourceMappingURL=mfb.css.map */
+
+/*------------------------------------*\
+    #DEVELOPMENT | customs rrr
+\*------------------------------------*/
+
+.mfb-component__button--main, .mfb-component__button--child {
+    background-color: #e73345 !important;
+    display: inline-block;
+    position: relative;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    position: relative;
+    -webkit-user-drag: none;
+    color: white;
+}
