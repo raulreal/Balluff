@@ -53,6 +53,27 @@ Route::group(['middleware' => 'auth'], function () {
 
           Route::get('events', 'EventController@index')->name('events.index');
           Route::post('events', 'EventController@addEvent')->name('events.add');
+  
+  
+  
+          Route::get('frida', 'EventController@indexf')->name('frida.index');
+          Route::post('frida', 'EventController@addEventf')->name('frida.add');
+  
+          Route::get('neza', 'EventController@indexn')->name('neza.index');
+          Route::post('neza', 'EventController@addEventn')->name('neza.add');
+  
+          Route::get('paz', 'EventController@indexp')->name('paz.index');
+          Route::post('paz', 'EventController@addEventp')->name('paz.add');
+  
+          Route::get('molina', 'EventController@indexm')->name('molina.index');
+          Route::post('molina', 'EventController@addEventm')->name('molina.add');
+  
+          Route::get('rolf', 'EventController@indexro')->name('rolf.index');
+          Route::post('rolf', 'EventController@addEventro')->name('rolf.add');
+  
+          Route::get('refugio', 'EventController@indexr')->name('refugio.index');
+          Route::post('refugio', 'EventController@addEventr')->name('refugio.add');
+  
 
 
 });

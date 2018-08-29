@@ -4,7 +4,7 @@
 @section('page_header')
     <h1 class="page-title">
        <i class="voyager-calendar"></i>
-       Reservar Sala 
+       Reservar Sala Nezahualcóyotl
     </h1>
 @stop
 
@@ -17,11 +17,11 @@
  
             <div class="panel panel-primary">
  
-             <div class="panel-heading">Reservar Sala de juntas</div>
+             <div class="panel-heading">Reservar Sala de juntas Frida Nezahualcóyotl</div>
  
               <div class="panel-body">    
  
-                   {!! Form::open(array('route' => 'events.add','method'=>'POST','files'=>'true')) !!}
+                   {!! Form::open(array('route' => 'neza.add','method'=>'POST','files'=>'true')) !!}
                     <div class="row">
                        <div class="col-xs-12 col-sm-12 col-md-12">
                           @if (Session::has('success'))
