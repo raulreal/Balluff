@@ -249,6 +249,7 @@ a {
   margin-top:25px;
   padding: 0;
       border: solid 2px #eee;
+  min-height: 300px;
 }
 .cabecera{
   border-bottom:solid 1px lightgray;
