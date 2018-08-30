@@ -29,10 +29,14 @@ Route::group(['middleware' => 'auth'], function () {
               return view('archivos2');
           });
 
-          Route::get('/escritorio', function () {
-              $posts = App\Post::all();
-              return view('escritorio', compact('posts'));
-          });
+  
+  Route::get('escritorio', 'PostController@index')->name('home.index');
+  
+        Route::get('post/{slug}', function($slug){
+        $post = App\Post::where('slug', '=', $slug)->firstOrFail();
+        return view('post', compact('post'));
+      });
+  
 
           Route::get('/test', function () {
               return view('test');
@@ -73,6 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
   
           Route::get('refugio', 'EventController@indexr')->name('refugio.index');
           Route::post('refugio', 'EventController@addEventr')->name('refugio.add');
+  
+  
   
 
 

@@ -10,20 +10,22 @@
 
 @section('content')
 
-<div class="col-md-12">
-   <div class="panel panel-bordered">
-     <div class="panel-body">
-       <div class="table-responsive">
-          <div class="row">
-              <div class="col-sm-12"></div>
-              <div class="col-sm-4"></div>
-              <div class="col-sm-4"></div>
-              <div class="col-sm-4"></div>
-          </div>
-         
-      </div>
-   </div>
-</div>
+
+	<div class="container">
+		<br><br>
+		<div class="row">
+		@foreach($posts as $post)
+			<div class="col-md-3">
+				<a href="/post/{{ $post->slug }}">
+					<img src="{{ Voyager::image( $post->image ) }}" style="width:100%">
+					<span>{{ $post->title }}</span>
+				</a>
+			</div>
+		@endforeach
+		</div>
+	</div>
+
+
 
 
 @endsection

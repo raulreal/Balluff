@@ -229,7 +229,7 @@ a {
 .cont_arch {
       background-repeat: no-repeat;
     background-size: cover;
-  background-image:url('https://balluff-rrrogero643043.codeanyapp.com/storage/settings/August2018/5eDhnTR0hB5kEkh6xUNM.png') !important;
+  background-image:url('storage/settings/August2018/5eDhnTR0hB5kEkh6xUNM.png') !important;
 }
 
 
@@ -238,3 +238,105 @@ a {
     color: black;
 }
 
+.bann {
+    background: #ecf0f1;
+  padding: 10px;
+}
+
+.linteres {
+    background: #ecf0f1;
+  margin-top:25px;
+  padding: 0;
+}
+.cabecera{
+  border-bottom:solid 1px lightgray;
+}
+
+
+.cabecera h1 {
+    display: inline-block;
+    font-size: 18px;
+    color: #555;
+    font-weight: 700;
+}
+
+.linteres ul {
+    margin-top: 20px;
+}
+
+.linteres  li:before {
+  content: "\f054"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+}
+
+.linteres li {
+    padding: 10px 0;
+    list-style: none;
+    color: lightgray;
+  border-bottom: solid 1px whitesmoke;
+}
+
+.linteres li:hover {
+    margin-left:1px;
+  background:whitesmoke;
+  
+}
+
+.linteres a {
+    color: #666;
+    font-weight: 600;
+}
+
+.voyager .alert.alert-info {
+    background-color: whitesmoke;
+    color: #e73345;
+    font-weight: 600;
+}
+.destacada {
+    background: #e73345;
+    color: white;
+    margin-top: -40px;
+    z-index: 9999;
+    height: 40px;
+    position: absolute;
+    padding: 10px 25px 20px 25px;
+    font-weight: 600;
+}
+
+.canv {
+  background:whitesmoke;
+  padding:12px;
+  margin-left: 17px;
+  border-left:solid lightgray 4px;
+}
+.canv h1 {
+    font-size: 25px;
+    font-weight: 600;
+}
+.canv_des a{
+  color:#999;
+}
+.canv2 {
+  background:transparent;
+  padding:12px;
+}
+
+.secu{margin-bottom:25px;}
+
+.secu h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+a {
+    color: #444 !important;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #000 !important;
+    text-decoration: none;
+}
