@@ -249,7 +249,7 @@ a {
   margin-top:25px;
   padding: 0;
       border: solid 2px #eee;
-  min-height: 300px;
+  min-height: 300px !important;
 }
 .cabecera{
   border-bottom:solid 1px lightgray;
@@ -336,12 +336,12 @@ a {
     font-weight: 600;
 }
 
-a {
+.secu a {
     color: #444 !important;
     text-decoration: none;
 }
 
-a:hover{
+.secu a:hover{
     color: #000 !important;
     text-decoration: none;
 }

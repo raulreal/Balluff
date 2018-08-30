@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
           });
 
   
-  Route::get('escritorio', 'PostController@index')->name('home.index');
+  Route::get('admin/escritorio', 'PostController@index')->name('home.index');
   
         Route::get('post/{slug}', function($slug){
         $post = App\Post::where('slug', '=', $slug)->firstOrFail();
@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
           });
 
           Route::get('/', function () {
-              return redirect('/admin');
+              return redirect('admin/escritorio');
           });
 
           Route::get('events', 'EventController@index')->name('events.index');
