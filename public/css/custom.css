@@ -241,12 +241,14 @@ a {
 .bann {
     background: #ecf0f1;
   padding: 10px;
+      border: solid 2px #eee;
 }
 
 .linteres {
     background: #ecf0f1;
   margin-top:25px;
   padding: 0;
+      border: solid 2px #eee;
 }
 .cabecera{
   border-bottom:solid 1px lightgray;
@@ -310,6 +312,8 @@ a {
   background:whitesmoke;
   padding:12px;
   margin-left: 17px;
+  height: 700px;
+      border: solid 2px #eee;
   border-left:solid lightgray 4px;
 }
 .canv h1 {

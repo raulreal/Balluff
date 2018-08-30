@@ -1,15 +1,7 @@
 @extends('voyager::master')
 
 @section('page_header')
-    <h1 class="page-title">
-       <i class="voyager-window-list"></i>
-       Escritorio
-    </h1>
-@stop
-
-@section('content')
-
-
+<br/>
 <div class="container-fluid">
         <div class="alerts">
     </div>
@@ -17,6 +9,9 @@
             <strong>Aviso:</strong> {{setting('noticias.flash')}}
         </div>
             </div>
+@stop
+
+@section('content')
 
     <div class="row">
       
