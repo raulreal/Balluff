@@ -66,7 +66,7 @@
                       <div class="col-xs-1 col-sm-1 col-md-1 text-center"> &nbsp;<br/>
                       {!! Form::submit('Reservar Sala',['class'=>'btn btn-primary']) !!}
                         
-                        <a href="http://balluff-rrrogero643043.codeanyapp.com/admin/events" class="btn btn-primary btn-sm edit">
+                        <a href="admin/events" class="btn btn-primary btn-sm edit">
                                     <i class="voyager-edit"></i> Editar Reservaciones
                                 </a>
                       </div>
