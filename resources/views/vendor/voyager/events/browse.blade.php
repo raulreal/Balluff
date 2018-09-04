@@ -27,6 +27,7 @@
 @stop
 
 @section('content')
+
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
         <div class="row">
@@ -38,6 +39,8 @@
                                 <div id="search-input">
                                     <select id="search_key" name="key">
                                         @foreach($searchable as $key)
+
+                                      
                                                 <option value="{{ $key }}" @if($search->key == $key){{ 'selected' }}@endif>{{ ucwords(str_replace('_', ' ', $key)) }}</option>
                                         @endforeach
                                     </select>

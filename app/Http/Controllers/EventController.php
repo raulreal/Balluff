@@ -90,7 +90,7 @@ class EventController extends Controller
  
   
    public function indexf() {
-      
+      $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'frida')->get();
     	$event_list = [];
     	foreach ($events as $key => $event) {
@@ -104,8 +104,10 @@ class EventController extends Controller
             );
     	}
     	$calendar_details = Calendar::addEvents($event_list); 
- 
-        return view('/frida', compact('calendar_details') );
+     
+     $meventos=$events->where('usuario', $usuario )->all();
+
+        return view('/frida', compact('calendar_details','meventos') );
     }
   
  public function addEventf(Request $request)
@@ -373,4 +375,6 @@ class EventController extends Controller
         \Session::flash('success','Sala reservada exitosamente.');
         return Redirect::to('refugio');
     }
+  
+  
 }

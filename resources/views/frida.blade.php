@@ -66,13 +66,53 @@
                       <div class="col-xs-1 col-sm-1 col-md-1 text-center"> &nbsp;<br/>
                       {!! Form::submit('Reservar Sala',['class'=>'btn btn-primary']) !!}
                         
-                        <a href="admin/events" class="btn btn-primary btn-sm edit">
-                                    <i class="voyager-edit"></i> Editar Reservaciones
-                                </a>
+                        
                       </div>
                     </div>
                    {!! Form::close() !!}
- 
+                
+                @if( $meventos  )
+ <div class="panel panel-primary">
+                        <div class="panel-heading">Mis reuniones programadas</div>
+                        <div class="panel-body" >
+
+                          <table class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                          <td>Nombre de reunion</td>
+                          <td>Fecha y Hora de inicio</td>
+                          <td>Fecha y hora de finalizacion</td>
+                        <td>Edicion</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+              @foreach($meventos as $value)
+                  <tr>
+                      <td>{{ $value->event_name }}</td>
+                      <td>{{ $value->start_date }}</td>
+                      <td>{{ $value->end_date }}</td>
+
+                    <td>
+                      
+                      
+                      
+                    <a href="{{ URL::to('admin/events/' . $value->id ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
+
+                      </td>
+                  </tr>
+              @endforeach
+              </tbody>
+          </table>
+
+           </div>
+  </div>
+                @else
+                
+                
+             @endif   
+                
+                
+                
              </div>
  
             </div>
