@@ -71,8 +71,8 @@
                     </div>
                    {!! Form::close() !!}
                 
-                @if( $meventos  )
- <div class="panel panel-primary">
+                @if( $meventos )
+                 <div class="panel panel-primary">
                         <div class="panel-heading">Mis reuniones programadas</div>
                         <div class="panel-body" >
 
@@ -87,19 +87,25 @@
                   </thead>
                   <tbody>
               @foreach($meventos as $value)
-                  <tr>
-                      <td>{{ $value->event_name }}</td>
+                    @if($value->end_date > $hoy )
+                                      <tr>
+                      <td>{{ $value->event_name }} <h1>
+                        </h1></td>
                       <td>{{ $value->start_date }}</td>
                       <td>{{ $value->end_date }}</td>
 
                     <td>
                       
                       
-                      
                     <a href="{{ URL::to('admin/events/' . $value->id ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
 
                       </td>
                   </tr>
+                    
+                    
+                    @endif
+                    
+
               @endforeach
               </tbody>
           </table>

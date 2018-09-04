@@ -2,13 +2,20 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="side-menu-container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ route('voyager.dashboard') }}">
-                    <div class="logo-icon-container">
-                      <img src="{{ voyager::image(setting('admin.logo')) }}">
+                <a class="navbar-brand" href="/admin/escritorio">
+                    <div id my_image class="logo-icon-container">
+                      <img id="my_image" src=""/>
                         </div>
                 </a>
             </div><!-- .navbar-header -->
+          
+          <div id="tst">
+            
+            <img id="my_image" src=""/>
 
+          
+          </div>
+          
             <div class="panel widget center bgimage"
                  style="background-image:url({{ Voyager::image( Voyager::setting('admin.bg_image'), voyager_asset('images/bg.jpg') ) }}); background-size: cover; background-position: 0px;">
                 <div class="dimmer"></div>
@@ -27,3 +34,32 @@
         {!! menu('admin', 'admin_menu') !!}
     </nav>
 </div>
+
+
+<script>
+  
+  $("document").ready(function(){
+    if ($("#balluff").hasClass('expanded') ) {
+        console.log("logo grande");
+      $("#my_image").attr("src","{{ voyager::image(setting('admin.logo')) }}");
+    }   
+    else {
+        console.log("logo pequeño");
+       $("#my_image").attr("src","{{ voyager::image(setting('site.logosm')) }}");
+
+    }      
+});
+
+$( "#balluff" ).click(function() {            
+    if ($(this).hasClass('expanded') ) {
+        console.log("logo grande");
+      $("#my_image").attr("src","{{ voyager::image(setting('admin.logo')) }}");
+    }   
+    else {
+        console.log("logo pequeño");
+       $("#my_image").attr("src","{{ voyager::image(setting('site.logosm')) }}");
+    }      
+});
+ 
+  
+</script>

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Validator;
 use App\Event;
- 
+use Carbon\Carbon;
 use Calendar;
  
 class EventController extends Controller
@@ -18,28 +18,38 @@ class EventController extends Controller
          $sala = $sala2;
          $startDate = $startDate2;
          $endDate = $endDate2;
-         $taken = false;   
-      
+         $taken = false;
+         $response = [$taken, ""];
+     
          $events = Event::where('sala', $sala)->where([ ['start_date','<=',$startDate], ['end_date', '>=', $startDate] ])
-                     ->count();
-         $events2 = Event::where('sala', $sala)->where([ ['start_date','<=',$endDate], ['end_date', '>=', $endDate] ])
-                     ->count();
-         $events3 = Event::where('sala', $sala)
+                     ->with('reservador')->first();
+         $events1 = Event::where('sala', $sala)->where([ ['start_date','<=',$endDate], ['end_date', '>=', $endDate] ])
+                     ->with('reservador')->first();
+         $events2 = Event::where('sala', $sala)
                      ->whereBetween('start_date', [$startDate, $endDate])
-                     ->count();
-         $events4 = Event::where('sala', $sala)
+                     ->with('reservador')->first();
+         $events3 = Event::where('sala', $sala)
                      ->whereBetween('end_date', [$startDate, $endDate])
-                     ->count();
-      
-         if($events || $events2 || $events3 || $events4){
-             $taken = true;  
+                     ->with('reservador')->first();
+
+         if($events && !$taken) {
+             $taken = true;
+             $response = [$taken, $events->reservador->name];
+         }
+         if($events1 && !$taken) {
+             $taken = true;
+             $response = [$taken, $events1->reservador->name];
+         }
+         if($events2 && !$taken) {
+             $taken = true;
+             $response = [$taken, $events2->reservador->name];
+         }
+         if($events3 && !$taken) {
+             $taken = true;
+             $response = [$taken, $events3->reservador->name];
          }
          
-      return $taken;
-          
-     
-     
-    
+      return $response;
     }
   
   
@@ -106,8 +116,9 @@ class EventController extends Controller
     	$calendar_details = Calendar::addEvents($event_list); 
      
      $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
 
-        return view('/frida', compact('calendar_details','meventos') );
+        return view('/frida', compact('calendar_details','meventos','hoy') );
     }
   
  public function addEventf(Request $request)
@@ -122,8 +133,9 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/frida')->withInput()->withErrors($validator);
         }
-        if($this->dateValidation('frida', $request->start_date, $request->end_date)){
-          \Session::flash('warnning','La sala ya esta ocupada, ingresa una fecha y hora disponible');
+        $validarFecha = $this->dateValidation('frida', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/frida')->withInput()->withErrors($validator);
         }
    
@@ -140,6 +152,7 @@ class EventController extends Controller
         return Redirect::to('frida');
     }
     public function indexn(){
+      $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'neza')->get();
     	$event_list = [];
     	foreach ($events as $key => $event) {
@@ -153,8 +166,11 @@ class EventController extends Controller
             );
     	}
     	$calendar_details = Calendar::addEvents($event_list); 
+      
+           $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
  
-        return view('/neza', compact('calendar_details') );
+        return view('/neza', compact('calendar_details','meventos','hoy') );
     }
   
  public function addEventn(Request $request)
@@ -169,9 +185,10 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/neza')->withInput()->withErrors($validator);
         }
-        if($this->dateValidation('neza', $request->start_date, $request->end_date)){
-          \Session::flash('warnning','La sala ya esta ocupada, ingresa una fecha y hora disponible');
-            return Redirect::to('/neza')->withInput()->withErrors($validator);
+        $validarFecha = $this->dateValidation('neza', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          return Redirect::to('/neza')->withInput()->withErrors($validator);
         }
  
         $event = new Event;
@@ -186,6 +203,7 @@ class EventController extends Controller
         return Redirect::to('neza');
     }
   public function indexp(){
+    $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'paz')->get();
     	$event_list = [];
     	foreach ($events as $key => $event) {
@@ -199,8 +217,10 @@ class EventController extends Controller
             );
     	}
     	$calendar_details = Calendar::addEvents($event_list); 
+         $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
  
-        return view('/paz', compact('calendar_details') );
+        return view('/paz', compact('calendar_details','meventos','hoy') );
     }
   
  public function addEventp(Request $request)
@@ -215,8 +235,9 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/paz')->withInput()->withErrors($validator);
         }
-        if($this->dateValidation('paz', $request->start_date, $request->end_date)){
-          \Session::flash('warnning','La sala ya esta ocupada, ingresa una fecha y hora disponible');
+        $validarFecha = $this->dateValidation('paz', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/paz')->withInput()->withErrors($validator);
         }
  
@@ -232,6 +253,7 @@ class EventController extends Controller
         return Redirect::to('paz');
     }
     public function indexm(){
+      $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'molina')->get();
     	$event_list = [];
     	foreach ($events as $key => $event) {
@@ -245,8 +267,10 @@ class EventController extends Controller
             );
     	}
     	$calendar_details = Calendar::addEvents($event_list); 
+           $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
  
-        return view('/molina', compact('calendar_details') );
+        return view('/molina', compact('calendar_details','meventos','hoy') );
     }
   
  public function addEventm(Request $request)
@@ -261,8 +285,9 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/molina')->withInput()->withErrors($validator);
         }
-        if($this->dateValidation('molina', $request->start_date, $request->end_date)){
-          \Session::flash('warnning','La sala ya esta ocupada, ingresa una fecha y hora disponible');
+        $validarFecha = $this->dateValidation('molina', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/molina')->withInput()->withErrors($validator);
         }
  
@@ -278,6 +303,7 @@ class EventController extends Controller
         return Redirect::to('molina');
     }
       public function indexro(){
+        $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'rolf')->get();
     	$event_list = [];
     	foreach ($events as $key => $event) {
@@ -291,8 +317,10 @@ class EventController extends Controller
             );
     	}
     	$calendar_details = Calendar::addEvents($event_list); 
+             $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
  
-        return view('/rolf', compact('calendar_details') );
+        return view('/rolf', compact('calendar_details','meventos','hoy') );
     }
   
  public function addEventro(Request $request)
@@ -307,8 +335,9 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/rolf')->withInput()->withErrors($validator);
         }
-       if($this->dateValidation('rolf', $request->start_date, $request->end_date)){
-          \Session::flash('warnning','La sala ya esta ocupada, ingresa una fecha y hora disponible');
+        $validarFecha = $this->dateValidation('rolf', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/rolf')->withInput()->withErrors($validator);
         }
  
@@ -325,6 +354,7 @@ class EventController extends Controller
     }
   
     public function indexr(){
+      $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'refugio')->get();
       
     	$event_list = [];
@@ -343,8 +373,10 @@ class EventController extends Controller
                 );
     	}
     	$calendar_details = Calendar::addEvents($event_list); 
+           $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
  
-        return view('/refugio', compact('calendar_details') );
+        return view('/refugio', compact('calendar_details','meventos','hoy') );
     }
   
  public function addEventr(Request $request)
@@ -359,9 +391,10 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/refugio')->withInput()->withErrors($validator);
         }
-        if($this->dateValidation('refugio', $request->start_date, $request->end_date)){
-          \Session::flash('warnning','La sala ya esta ocupada, ingresa una fecha y hora disponible');
-            return Redirect::to('/refugio')->withInput()->withErrors($validator);
+        $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          return Redirect::to('/refugio')->withInput()->withErrors($validator);
         }
  
         $event = new Event;

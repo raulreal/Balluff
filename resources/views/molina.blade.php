@@ -72,6 +72,46 @@
                       </div>
                     </div>
                    {!! Form::close() !!}
+                
+                                @if( $meventos )
+                 <div class="panel panel-primary">
+                        <div class="panel-heading">Mis reuniones programadas</div>
+                        <div class="panel-body" >
+
+                          <table class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                          <td>Nombre de reunion</td>
+                          <td>Fecha y Hora de inicio</td>
+                          <td>Fecha y hora de finalizacion</td>
+                        <td>Edicion</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+              @foreach($meventos as $value)
+                    @if($value->end_date > $hoy )
+                                      <tr>
+                      <td>{{ $value->event_name }} <h1>
+                        </h1></td>
+                      <td>{{ $value->start_date }}</td>
+                      <td>{{ $value->end_date }}</td>
+                    <td>
+                    <a href="{{ URL::to('admin/events/' . $value->id ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
+                      </td>
+                  </tr>
+
+                    @endif
+
+              @endforeach
+              </tbody>
+          </table>
+
+           </div>
+  </div>
+                @else
+                
+                
+             @endif   
  
              </div>
  
