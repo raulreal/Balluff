@@ -17,7 +17,7 @@
  
             <div class="panel panel-primary">
  
-             <div class="panel-heading">Reservar Sala de juntas Frida Kahlo</div>
+             <div class="panel-heading">Reservar Sala de juntas Frida Kahlo </div>
  
               <div class="panel-body">    
  
@@ -93,18 +93,12 @@
                         </h1></td>
                       <td>{{ $value->start_date }}</td>
                       <td>{{ $value->end_date }}</td>
-
                     <td>
-                      
-                      
                     <a href="{{ URL::to('admin/events/' . $value->id ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
-
                       </td>
                   </tr>
-                    
-                    
+
                     @endif
-                    
 
               @endforeach
               </tbody>
