@@ -56,6 +56,10 @@ Route::group(['middleware' => 'auth'], function () {
           Route::get('/b', function () {
               return view('repositorio');
           });
+ 
+          Route::get('/construccion', function () {
+              return view('construccion');
+          });
 
           Route::get('/', function () {
               return redirect('admin/escritorio');
