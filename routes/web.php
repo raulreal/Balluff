@@ -16,6 +16,12 @@
               return view('vendor/voyager/login');
           })->name('login');
 
+// Password Reset Routes...
+        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 
 Route::group(['middleware' => 'auth'], function () {
   
@@ -58,8 +64,6 @@ Route::group(['middleware' => 'auth'], function () {
           Route::get('events', 'EventController@index')->name('events.index');
           Route::post('events', 'EventController@addEvent')->name('events.add');
   
-  
-  
           Route::get('frida', 'EventController@indexf')->name('frida.index');
           Route::post('frida', 'EventController@addEventf')->name('frida.add');
   
@@ -77,7 +81,9 @@ Route::group(['middleware' => 'auth'], function () {
   
           Route::get('refugio', 'EventController@indexr')->name('refugio.index');
           Route::post('refugio', 'EventController@addEventr')->name('refugio.add');
-  
+          
+          //Editar fechas
+          Route::get('events/{id}/editar', 'EventController@editar')->name('refugio.editar');
   
   
 

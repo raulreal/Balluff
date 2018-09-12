@@ -46,7 +46,7 @@
                         <div class="form-group">
                           {!! Form::label('start_date','Fecha y Hora de inicio:') !!}
                           <div class="">
-                          {!! Form::text('start_date', null, ['class' => 'timepicker form-control']) !!}
+                          {!! Form::text('start_date', null, ['class' => 'timepicker form-control', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}
                                            
                           {!! $errors->first('start_date', '<p class="alert alert-danger">:message</p>') !!}
                           </div>
@@ -57,16 +57,17 @@
                         <div class="form-group">
                           {!! Form::label('end_date','Fecha y hora de finalizacion:') !!}
                           <div class="">
-                          {!! Form::text('end_date', null, ['class' => 'timepicker form-control']) !!}
+                          {!! Form::text('end_date', null, ['class' => 'timepicker form-control', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}
                           {!! $errors->first('end_date', '<p class="alert alert-danger">:message</p>') !!}
                           </div>
                         </div>
                       </div>
  
                       <div class="col-xs-1 col-sm-1 col-md-1 text-center"> &nbsp;<br/>
-                      {!! Form::submit('Reservar Sala',['class'=>'btn btn-primary']) !!}
-                        
-                        
+                          {!! Form::submit('Reservar Sala',['class'=>'btn btn-primary']) !!}
+                          <a href="admin/events" class="btn btn-primary btn-sm edit">
+                              <i class="voyager-edit"></i> Editar Reservaciones
+                          </a>
                       </div>
                     </div>
                    {!! Form::close() !!}
@@ -94,7 +95,7 @@
                       <td>{{ $value->start_date }}</td>
                       <td>{{ $value->end_date }}</td>
                     <td>
-                    <a href="{{ URL::to('admin/events/' . $value->id ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
+                    <a href="{{ URL::to('/events/'.$value->id.'/editar' ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
                       </td>
                   </tr>
 
@@ -128,17 +129,20 @@
    </div>
 </div>
 
- 
-
 <script type="text/javascript">
-    $('.timepicker').datetimepicker({
-      format: 'YYYY-MM-DD HH:mm:ss',
-    }); 
+  $('.timepicker').each(function () {
+      $(this).datetimepicker({
+          format: 'YYYY-MM-DD HH:mm:ss',
+          enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+          daysOfWeekDisabled: [0, 6],
+          useCurrent: false
+      });
+  });
 </script>  
-
 
 @endsection
 
 @section('javascript')
     {!! $calendar_details->script() !!}
 @stop
+

@@ -1,14 +1,19 @@
 @extends('voyager::master')
 
 @section('page_header')
-<br/>
-<div class="container-fluid">
-        <div class="alerts">
-    </div>
-                <div class="alert alert-info">
-            <strong>Aviso:</strong> {{setting('noticias.flash')}}
-        </div>
-            </div>
+  <br/>
+  <div class="container-fluid">
+      <div class="alerts">
+      </div>
+      <div class="alert alert-info">
+          <strong>Aviso:</strong> {{setting('noticias.flash')}}
+      </div>
+  </div>
+
+  <h1 class="page-title">
+      <i class="voyager-calendar"></i>
+      Noticias
+  </h1>
 @stop
 
 @section('content')

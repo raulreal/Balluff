@@ -347,3 +347,12 @@ img#my_image {
     height: 30px !important;
     margin-left: 3px !important;
 }
+
+
+
+a#bulk_delete_btn {
+    display: none !important;
+}
+div#search-input:nth-child(4) {
+    display: none !important;
+}
