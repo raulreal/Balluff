@@ -195,7 +195,7 @@ class EventController extends Controller
         $event->event_name = $request['event_name'];
         $event->start_date = $request['start_date'];
         $event->end_date = $request['end_date'];
-        $event->usuario = '1';
+        $event->usuario = Auth::user()->id;
         $event->sala = 'neza';
         $event->save();
  
@@ -245,7 +245,7 @@ class EventController extends Controller
         $event->event_name = $request['event_name'];
         $event->start_date = $request['start_date'];
         $event->end_date = $request['end_date'];
-        $event->usuario = '1';
+        $event->usuario = Auth::user()->id;
         $event->sala = 'paz';
         $event->save();
  
@@ -407,6 +407,47 @@ class EventController extends Controller
  
         \Session::flash('success','Sala reservada exitosamente.');
         return Redirect::to('refugio');
+    }
+  
+  public function editar($id) {
+        $event = Event::find($id);
+        if($event) {
+          return view('editarEvento', compact('event') );
+        }        
+  }
+  
+   public function actualizar(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'event_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+ 
+        if ($validator->fails()) {
+        	\Session::flash('warnning','Revisa la informacíon');
+            return Redirect::to('/refugio')->withInput()->withErrors($validator);
+        }
+        $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          return Redirect::to('/refugio')->withInput()->withErrors($validator);
+        }
+        
+        $idEvento = $request->id_evento;
+        $event = Event::find($idEvento);
+     
+        if($event) {
+            $event->event_name = $request->event_name;
+            $event->start_date = $request->start_date;
+            $event->end_date = $request->end_date;
+            $event->save();
+
+            \Session::flash('success','La reservación se actualizó correctamente.');
+            return Redirect::to($event->sala);  
+        }
+     
+        
     }
   
   

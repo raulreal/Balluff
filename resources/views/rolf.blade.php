@@ -96,7 +96,7 @@
                       <td>{{ $value->start_date }}</td>
                       <td>{{ $value->end_date }}</td>
                     <td>
-                    <a href="{{ URL::to('admin/events/' . $value->id ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
+                    <a href="{{ URL::to('/events/'.$value->id.'/editar' ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
                       </td>
                   </tr>
 
@@ -130,14 +130,19 @@
 
  
 <script type="text/javascript">
-  $('.timepicker').each(function () {
+    $('.timepicker').each(function () {
       $(this).datetimepicker({
           format: 'YYYY-MM-DD HH:mm:ss',
           enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
           daysOfWeekDisabled: [0, 6],
-          useCurrent: false
+          useCurrent: false,
+          minDate: truncateDate(new Date())
       });
   });
+  
+  function truncateDate(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
 </script>  
 
 @endsection

@@ -83,7 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
           Route::post('refugio', 'EventController@addEventr')->name('refugio.add');
           
           //Editar fechas
-          Route::get('events/{id}/editar', 'EventController@editar')->name('refugio.editar');
+          Route::get('events/{id}/editar', 'EventController@editar')->name('events.editar');
+          Route::post('events/actualizar', 'EventController@actualizar')->name('events.actualizar');
   
   
 
