@@ -14,8 +14,13 @@
 @stop
 
 @section('content')
+
+<?php  $settings = TCG\Voyager\Models\Setting::first(); ?>
+      
+
+
     <div class="page-content container-fluid">
-        <form class="form-edit-add" role="form"
+        <form class="form-edit-add" role="form" id="show" 
               action="{{ (isset($dataTypeContent->id)) ? route('voyager.'.$dataType->slug.'.update', $dataTypeContent->id) : route('voyager.'.$dataType->slug.'.store') }}"
               method="POST" enctype="multipart/form-data" autocomplete="off">
             <!-- PUT Method if we are editing -->
@@ -71,7 +76,7 @@
                           
                            <div class="form-group">
                                 <label for="puesto">Puesto</label>
-                                <input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto"
+                                <input type="text" disabled class="form-control" id="puesto" name="puesto" placeholder="Puesto"
                                        value="@if(isset($dataTypeContent->puesto)){{ $dataTypeContent->puesto }}@endif">
                             </div>
                           
@@ -95,8 +100,6 @@
                                     @endphp
                                     @include('voyager::formfields.relationship')
                                 </div>
-                          
-                          <!--
                           
                                 <div class="form-group">
                                     <label for="additional_roles">{{ __('voyager::profile.roles_additional') }}</label>
@@ -124,7 +127,7 @@
                                     @endforeach
                                 </select>
                             </div>
--->
+
                         </div>
                     </div>
                 </div>
@@ -162,5 +165,15 @@
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
         });
+      
+      @can('edit', $settings)
+        console.log("permiso ok");
+      @else
+          $(document).ready(function() {
+            $('#show select').attr('disabled', true);
+            $('#show input').attr('readonly', true);
+            $('#show input#password').attr('readonly', false);
+          });
+      @endcan
     </script>
 @stop
