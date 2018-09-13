@@ -1,5 +1,7 @@
 <ul class="nav navbar-nav">
-{!! menu('Prueba Balluff', 'bootstrap'); !!}
+
+      <?php $roleId = Auth::user()->role_id; ?>
+  
 @php
     if (Voyager::translatable($items)) {
         $items = $items->load('translations');
@@ -55,7 +57,8 @@
             }
         }
     @endphp
-
+    
+@if( $transItem->title != 'Admin' || $roleId == 1 )  
     <li class="{{ implode(" ", $listItemClass) }}">
       
         <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">
@@ -72,6 +75,8 @@
             </div>
         @endif
     </li>
+@endif
+
 @endforeach
 
 </ul>
