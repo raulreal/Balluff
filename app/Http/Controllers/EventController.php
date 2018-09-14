@@ -34,25 +34,25 @@ class EventController extends Controller
 
          if($events && !$taken) {
              $taken = true;
-             $response = [$taken, $events->reservador->name];
+             $response = [$taken, $events->reservador->name, $events->reservador->apellido];
          }
          if($events1 && !$taken) {
              $taken = true;
-             $response = [$taken, $events1->reservador->name];
+             $response = [$taken, $events1->reservador->name, $events->reservador->apellido];
          }
          if($events2 && !$taken) {
              $taken = true;
-             $response = [$taken, $events2->reservador->name];
+             $response = [$taken, $events2->reservador->name, $events->reservador->apellido];
          }
          if($events3 && !$taken) {
              $taken = true;
-             $response = [$taken, $events3->reservador->name];
+             $response = [$taken, $events3->reservador->name, $events->reservador->apellido];
          }
-         
+      
       return $response;
     }
   
-  
+
     public function index(){
       $events = Event::where('sala', 'juntas')->get();
     	$event_list = [];
@@ -135,7 +135,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('frida', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/frida')->withInput()->withErrors($validator);
         }
    
