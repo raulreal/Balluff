@@ -187,7 +187,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('neza', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
           return Redirect::to('/neza')->withInput()->withErrors($validator);
         }
  
@@ -237,7 +237,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('paz', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/paz')->withInput()->withErrors($validator);
         }
  
@@ -287,7 +287,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('molina', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/molina')->withInput()->withErrors($validator);
         }
  
@@ -337,7 +337,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('rolf', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
             return Redirect::to('/rolf')->withInput()->withErrors($validator);
         }
  
@@ -393,7 +393,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
           return Redirect::to('/refugio')->withInput()->withErrors($validator);
         }
  
@@ -430,7 +430,7 @@ class EventController extends Controller
         }
         $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].'. Por favor ingresa una fecha y hora disponible');
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
           return Redirect::to('/refugio')->withInput()->withErrors($validator);
         }
         
