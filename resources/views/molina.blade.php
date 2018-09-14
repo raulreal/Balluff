@@ -97,8 +97,13 @@
                       <td>{{ $value->start_date }}</td>
                       <td>{{ $value->end_date }}</td>
                     <td>
-                    <a href="{{ URL::to('/events/'.$value->id.'/editar' ) }}" class="btn btn-primary btn-sm edit"><i class="voyager-edit"></i> Editar Reservacion</a>
-                      </td>
+                        <a href="{{ URL::to('/events/'.$value->id.'/editar' ) }}" class="btn btn-primary btn-sm edit">
+                            <i class="voyager-edit"></i> Editar Reservacion
+                        </a>
+                      <a href="javascript:;" title="Borrar" class="btn btn-sm btn-danger delete" data-id="{{$value->id}}" id="delete-{{$value->id}}">
+                            <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Borrar</span>
+                        </a>
+                    </td>
                   </tr>
 
                     @endif
@@ -129,8 +134,35 @@
    </div>
 </div>
 
+    {{-- Single delete modal --}}
+    <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><i class="voyager-trash"></i> Estás seguro que quieres eliminar esta reservación?</h4>
+                </div>
+                <div class="modal-footer">
+                    <form action="#" id="delete_form" method="POST">
+                        {{ method_field("DELETE") }}
+                        {{ csrf_field() }}
+                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="{{ __('voyager::generic.delete_confirm') }}">
+                    </form>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
  
 <script type="text/javascript">
+    
+    var deleteFormAction;
+    $('td').on('click', '.delete', function (e) {
+        $('#delete_form')[0].action = '{{ route('events.eliminar', ['id' => '__id']) }}'.replace('__id', $(this).data('id'));
+        $('#delete_modal').modal('show');
+    });
+  
     $('.timepicker').each(function () {
       $(this).datetimepicker({
           format: 'YYYY-MM-DD HH:mm:ss',

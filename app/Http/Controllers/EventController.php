@@ -446,9 +446,26 @@ class EventController extends Controller
             \Session::flash('success','La reservación se actualizó correctamente.');
             return Redirect::to($event->sala);  
         }
-     
-        
     }
+  
+  
+  public function eliminar($id) {
+      
+      $evento = Event::find($id);
+      if($evento) {
+          $retorno = $evento->sala;
+          $evento->delete();
+        
+          \Session::flash('success','La reservación se eliminó correctamente.');
+          return Redirect::to($retorno);
+      }
+     
+     \Session::flash('error','No se encontro la reservación seleccionada.');
+     return Redirect::back();
+  }
+  
+  
+  
   
   
 }

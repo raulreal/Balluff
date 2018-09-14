@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
           });
 
           Route::get('/marketing', function () {
+              
               return view('archivos2');
           });
 
@@ -55,10 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
 
           Route::get('/b', function () {
               return view('repositorio');
-          });
- 
-          Route::get('/construccion', function () {
-              return view('construccion');
           });
 
           Route::get('/', function () {
@@ -90,9 +87,9 @@ Route::group(['middleware' => 'auth'], function () {
           Route::get('events/{id}/editar', 'EventController@editar')->name('events.editar');
           Route::post('events/actualizar', 'EventController@actualizar')->name('events.actualizar');
   
+          //Eliminar evento
+          Route::delete('event/eliminar/{id}', 'EventController@eliminar')->name('events.eliminar');
   
-
-
 });
 
 
