@@ -21,32 +21,34 @@ class EventController extends Controller
          $taken = false;
          $response = [$taken, ""];
      
-         $events = Event::where('sala', $sala)->where([ ['start_date','<=',$startDate], ['end_date', '>=', $startDate] ])
+         $events = Event::where('sala', $sala)->where([ ['start_date','<=',$startDate], ['end_date', '>', $startDate] ])
                      ->with('reservador')->first();
-         $events1 = Event::where('sala', $sala)->where([ ['start_date','<=',$endDate], ['end_date', '>=', $endDate] ])
+         $events1 = Event::where('sala', $sala)->where([ ['start_date','<',$endDate], ['end_date', '>=', $endDate] ])
                      ->with('reservador')->first();
          $events2 = Event::where('sala', $sala)
+                     ->where('start_date','!=',$endDate)
                      ->whereBetween('start_date', [$startDate, $endDate])
                      ->with('reservador')->first();
          $events3 = Event::where('sala', $sala)
+                     ->where('end_date', '!=', $startDate)
                      ->whereBetween('end_date', [$startDate, $endDate])
                      ->with('reservador')->first();
-
+      
          if($events && !$taken) {
              $taken = true;
              $response = [$taken, $events->reservador->name, $events->reservador->apellido];
          }
          if($events1 && !$taken) {
              $taken = true;
-             $response = [$taken, $events1->reservador->name, $events->reservador->apellido];
+             $response = [$taken, $events1->reservador->name, $events1->reservador->apellido];
          }
          if($events2 && !$taken) {
              $taken = true;
-             $response = [$taken, $events2->reservador->name, $events->reservador->apellido];
+             $response = [$taken, $events2->reservador->name, $events2->reservador->apellido];
          }
          if($events3 && !$taken) {
              $taken = true;
-             $response = [$taken, $events3->reservador->name, $events->reservador->apellido];
+             $response = [$taken, $events3->reservador->name, $events3->reservador->apellido];
          }
       
       return $response;
