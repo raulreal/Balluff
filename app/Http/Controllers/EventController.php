@@ -51,7 +51,11 @@ class EventController extends Controller
       
       return $response;
     }
-  
+    
+    public function permisoReservarSala($usuario, $sala) {
+      $permisoSala = $usuario->roles->pluck('name')->toArray();
+      return in_array($sala, $permisoSala);
+    }
 
     public function index(){
       $events = Event::where('sala', 'juntas')->get();
@@ -101,7 +105,7 @@ class EventController extends Controller
   
    public function indexf() {
       $usuario = Auth::user()->id;
-    	$events = Event::where('sala', 'frida')->get();
+      $events = Event::where('sala', 'frida')->get();
     	$event_list = [];
     	foreach ($events as $key => $event) {
     		$event_list[] = Calendar::event(
@@ -304,23 +308,24 @@ class EventController extends Controller
     }
       public function indexro(){
         $usuario = Auth::user()->id;
-    	$events = Event::where('sala', 'rolf')->get();
-    	$event_list = [];
-    	foreach ($events as $key => $event) {
-    		$event_list[] = Calendar::event(
-               
-            $event->event_name,
-                false,
-                new \DateTime($event->start_date),
-                new \DateTime($event->end_date),
-          $event->id
-            );
-    	}
-    	$calendar_details = Calendar::addEvents($event_list); 
-             $meventos=$events->where('usuario', $usuario )->all();
-     $hoy = Carbon::now();
+    	  $events = Event::where('sala', 'rolf')->get();
+        $permisoReserva = $this->permisoReservarSala(Auth::user(), 'rolf');
+    	  $event_list = [];
+        foreach ($events as $key => $event) {
+          $event_list[] = Calendar::event(
+
+              $event->event_name,
+                  false,
+                  new \DateTime($event->start_date),
+                  new \DateTime($event->end_date),
+            $event->id
+              );
+        }
+        $calendar_details = Calendar::addEvents($event_list); 
+               $meventos=$events->where('usuario', $usuario )->all();
+       $hoy = Carbon::now();
  
-        return view('/rolf', compact('calendar_details','meventos','hoy') );
+        return view('/rolf', compact('calendar_details','meventos','hoy', 'permisoReserva') );
     }
   
  public function addEventro(Request $request)
@@ -356,7 +361,7 @@ class EventController extends Controller
     public function indexr(){
       $usuario = Auth::user()->id;
     	$events = Event::where('sala', 'refugio')->get();
-      
+      $permisoReserva = $this->permisoReservarSala(Auth::user(), 'refugio');
     	$event_list = [];
     	foreach ($events as $key => $event) {
     		$event_list[] = Calendar::event(
@@ -376,7 +381,7 @@ class EventController extends Controller
            $meventos=$events->where('usuario', $usuario )->all();
      $hoy = Carbon::now();
  
-        return view('/refugio', compact('calendar_details','meventos','hoy') );
+        return view('/refugio', compact('calendar_details','meventos','hoy', 'permisoReserva') );
     }
   
  public function addEventr(Request $request)

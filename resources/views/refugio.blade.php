@@ -18,8 +18,8 @@
             <div class="panel panel-primary">
  
              <div class="panel-heading">Reservar Sala de juntas Casa Refugio</div>
- 
-              <div class="panel-body">    
+               @if($permisoReserva)
+                <div class="panel-body">    
  
                    {!! Form::open(array('route' => 'refugio.add','method'=>'POST','files'=>'true')) !!}
                     <div class="row">
@@ -117,8 +117,13 @@
                 
              @endif   
  
-             </div>
- 
+             </div>              
+               @else
+                <div class="panel-body">
+                  <p>No tienes permiso para reservar esta sala.</p>
+                </div>
+               @endif
+              
             </div>
  
             <div class="panel panel-primary">

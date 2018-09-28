@@ -18,7 +18,7 @@
             <div class="panel panel-primary">
  
              <div class="panel-heading">Reservar Sala de juntas Rolf Hermle</div>
- 
+              @if($permisoReserva)
               <div class="panel-body">    
  
                    {!! Form::open(array('route' => 'rolf.add','method'=>'POST','files'=>'true')) !!}
@@ -119,7 +119,11 @@
              @endif   
  
              </div>
- 
+              @else
+                <div class="panel-body">
+                  <p>No tienes permiso para reservar esta sala.</p>
+                </div> 
+              @endif
             </div>
  
             <div class="panel panel-primary">
