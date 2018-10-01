@@ -61,6 +61,10 @@ Route::group(['middleware' => 'auth'], function () {
           Route::get('/', function () {
               return redirect('admin/escritorio');
           });
+  
+          Route::get('/construccion', function () {
+              return view('construccion');
+          });
 
           Route::get('events', 'EventController@index')->name('events.index');
           Route::post('events', 'EventController@addEvent')->name('events.add');
