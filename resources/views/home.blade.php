@@ -19,9 +19,7 @@
 @section('content')
 
     <div class="row">
-      
-
-
+     
         <div class="col-sm-6">
           <div class="col-md-12 canv">
     @if($principal)
@@ -38,11 +36,15 @@
                           </div>
           </div>
      @else
-          
-          <div class ="canv_des">
-                            <h1>
-                  Sin publicaciones destacadas
-            </h1>
+         
+            </a>
+            
+            <div class ="canv_des">
+              <h1> Sin publicaciones destacadas </h1>
+               </div>
+          </div>
+      
+        
             
           @endif
       </div>
