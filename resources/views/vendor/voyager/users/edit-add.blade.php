@@ -91,7 +91,7 @@
 
                             @can('editRoles', $dataTypeContent)
                                 <div class="form-group">
-                                    <label for="default_role">{{ __('voyager::profile.role_default') }}</label>
+                                    <label for="default_role">Rol principal</label>
                                     @php
                                         $dataTypeRows = $dataType->{(isset($dataTypeContent->id) ? 'editRows' : 'addRows' )};
 
@@ -102,7 +102,7 @@
                                 </div>
                           
                                 <div class="form-group">
-                                    <label for="additional_roles">{{ __('voyager::profile.roles_additional') }}</label>
+                                    <label for="additional_roles">Roles adicionales</label>
                                     @php
                                         $row     = $dataTypeRows->where('field', 'user_belongstomany_role_relationship')->first();
                                         $options = json_decode($row->details);
@@ -118,15 +118,7 @@
                             }
 
                             @endphp
-                            <div class="form-group">
-                                <label for="locale">{{ __('voyager::generic.locale') }}</label>
-                                <select class="form-control select2" id="locale" name="locale">
-                                    @foreach (Voyager::getLocales() as $locale)
-                                    <option value="{{ $locale }}"
-                                    {{ ($locale == $selected_locale ? 'selected' : '') }}>{{ $locale }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+
 
                         </div>
                     </div>

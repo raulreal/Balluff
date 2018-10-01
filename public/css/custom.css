@@ -344,10 +344,15 @@ a {
 
 img#my_image {
     width: auto !important;
+    height: 34px !important;
+    margin-left: 19px !important;
+}
+
+.expanded img#my_image {
+    width: auto !important;
     height: 30px !important;
     margin-left: 3px !important;
 }
-
 
 
 a#bulk_delete_btn {

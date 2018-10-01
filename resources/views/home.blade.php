@@ -24,8 +24,12 @@
 
         <div class="col-sm-6">
           <div class="col-md-12 canv">
+    @if($principal)
+            <a href="/post/{{ $principal->slug }}">
               <img src="{{ Voyager::image( $principal->image ) }}" style="width:100%">
+            </a>
             <div class ="destacada">Destacada</div>
+
             <div class ="canv_des">
             <a href="/post/{{ $principal->slug }}">
               <h1> {{ $principal->title }} </h1>
@@ -33,20 +37,39 @@
             <span>{{ $principal->excerpt}}</span>
                           </div>
           </div>
+     @else
+          
+          <div class ="canv_des">
+                            <h1>
+                  Sin publicaciones destacadas
+            </h1>
+            
+          @endif
       </div>
       
         <div class="col-sm-3 canv2">
           
+          
+          
+          @if($posts)
           		@foreach($posts as $post)
               <div class="col-md-12 secu">
                 <a href="/post/{{ $post->slug }}">
                   <img src="{{ Voyager::image( $post->image ) }}" style="width:100%">
                   <h2>{{ $post->title }}</h2>
-                 {{ mb_strimwidth( $principal->excerpt, 0, 70, '...') }}
+                 {{ mb_strimwidth( $post->excerpt, 0, 70, '...') }}
    
                 </a>
               </div>
             @endforeach
+          {{ $posts->links() }}
+          @else
+          <div class="col-md-12 secu">
+                <h1>
+                  Sin publicaciones nuevas
+            </h1>
+              </div>
+          @endif
       </div>
       
         <div class="col-sm-3">

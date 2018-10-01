@@ -15,8 +15,8 @@ class PostController extends Controller
   
   
   public function index(){
-     $posts = \App\Post::all()->take(2);
-
+    
+    $posts = \App\Post::paginate(2);
     $principal = \App\Post::where('featured', '1')->first();
               return view('home', compact('posts','principal'));     
         }
