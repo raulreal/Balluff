@@ -14,12 +14,12 @@
 @section('content')
 
 <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div class="panel-body cont_arch">
-                        <div class="table-responsive">
-                          <iframe src="/laravel-filemanager/repo" style="width: 100%; height: 800px; overflow: hidden; border: none;"></iframe>
-                      </div>
-                  </div>
+  <div class="panel panel-bordered">
+    <div class="panel-body cont_arch">
+        <div class="table-responsive">
+          <iframe src="/laravel-filemanager/repo" style="width: 100%; height: 800px; overflow: hidden; border: none;"></iframe>
+        </div>
+    </div>
   </div>
 </div>
 
