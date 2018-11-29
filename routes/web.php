@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
               return view('extensiones');
           });
 
+ 
 
           Route::get('/b', function () {
               return view('repositorio');
@@ -93,7 +94,15 @@ Route::group(['middleware' => 'auth'], function () {
   
           //Eliminar evento
           Route::delete('event/eliminar/{id}', 'EventController@eliminar')->name('events.eliminar');
+ 
+         //Asistencia y puntualidad
   
+         Route::get('asistencia', 'AsistenciaController@index')->name('asistencia.index');
+         Route::post('asistencia', 'AsistenciaController@addEvent')->name('asistencia.add');
+          Route::get('events/{id}/editar', 'AsistenciaController@editar')->name('asistencia.editar');
+          Route::post('events/actualizar', 'AsistenciaController@actualizar')->name('asistencia.actualizar');
+  
+
 });
 
 
