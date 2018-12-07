@@ -13,13 +13,12 @@ use App\Asistencia;
 use DateTime;
 
 
+
 class AsistenciaController extends Controller
 {
   
    public function index(){
-     
      $usuario = Auth::user();
-
      $actual = Carbon::now();   
      $activa = Asistencia::where('user_id', $usuario->id )
         ->where('abierto', '1')

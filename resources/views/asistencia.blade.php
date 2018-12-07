@@ -48,18 +48,17 @@
                                   {{ Form::close() }}
 
                                 </div>
-                            @endif
+                            @endif                            
                             
-                            
-  
 
                            </div>
                 </div>
                 <div class="col-sm-6"> 
                   <div class="col-sm-3 imgperf"><img src="/storage/{{ $usuario->avatar }}" alight ="right" class="profile-img sm"></div>
-                  <div class="col-sm-9"> <h3 > {{$usuario->name}} {{$usuario->apellido}}</h3> <br/> {{$usuario->puesto}}{{$activa->user}}</div>
+                  <div class="col-sm-9"> <h3 > {{$usuario->name}} {{$usuario->apellido}}</h3> <br/> {{$usuario->puesto}}</div>
+                  
                  
-                
+                {{$usuario->rol}}
                 </div>
      </div>
   </div>
