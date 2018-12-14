@@ -401,3 +401,33 @@ input.btn.reloj:hover {
 }
 
 .imgperf img{max-width:120px;}
+
+.datos {
+    background: #f5f6fa;
+    height: 400px;
+    padding: 5% 0 0 10%;
+}
+.inferior{ margin-top 50px !important;}
+
+select {
+    border-radius: 3px;
+    width: 26%;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    height: 42px;
+    border: solid 2px gray;
+    font-size: 14px;
+    color: gray;
+    background: whitesmoke;
+}
+
+input.btn.receso {
+    width: 90%;
+}
+
+a.btn.btn-dark {
+    color: white !important;
+    text-transform: lowercase !important;
+    font-size: .8em;
+    max-height: 40px;
+}

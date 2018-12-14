@@ -96,11 +96,18 @@ Route::group(['middleware' => 'auth'], function () {
           Route::delete('event/eliminar/{id}', 'EventController@eliminar')->name('events.eliminar');
  
          //Asistencia y puntualidad
+         Route::get('reportes', function () {
+                    return redirect('reportes');
+                });
+  
   
          Route::get('asistencia', 'AsistenciaController@index')->name('asistencia.index');
          Route::post('asistencia', 'AsistenciaController@addEvent')->name('asistencia.add');
           Route::get('events/{id}/editar', 'AsistenciaController@editar')->name('asistencia.editar');
           Route::post('events/actualizar', 'AsistenciaController@actualizar')->name('asistencia.actualizar');
+  
+  
+        Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   
 
 });

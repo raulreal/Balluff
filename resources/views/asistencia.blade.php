@@ -44,7 +44,8 @@
                             @else
                                 <div class="row">
                                   {!! Form::open(array('route' => 'asistencia.actualizar','method'=>'POST','files'=>'true')) !!}
-                                   {!! Form::submit('Terminar',['class'=>'btn reloj']) !!}
+                                  {!! Form::submit('Receso',['class'=>'btn receso']) !!}
+                                  {!! Form::submit('Terminar',['class'=>'btn reloj']) !!}
                                   {{ Form::close() }}
 
                                 </div>
