@@ -416,6 +416,179 @@ class EventController extends Controller
         return Redirect::to('refugio');
     }
   
+  
+  
+     public function indexr1(){
+      $usuario = Auth::user()->id;
+    	$events = Event::where('sala', 'refugio1')->get();
+      $permisoReserva = $this->permisoReservarSala(Auth::user(), 'refugio');
+    	$event_list = [];
+    	foreach ($events as $key => $event) {
+    		$event_list[] = Calendar::event(
+               
+            $event->event_name,
+                false,
+                new \DateTime($event->start_date),
+                new \DateTime($event->end_date),
+             $event->id,
+                        [
+                          'color' => 'black',
+                          'slotEventOverlap' =>  false,
+                        ]
+                );
+    	}
+    	$calendar_details = Calendar::addEvents($event_list); 
+           $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
+ 
+        return view('/refugio1', compact('calendar_details','meventos','hoy', 'permisoReserva') );
+    }
+  
+ public function addEventr1(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'event_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+ 
+        if ($validator->fails()) {
+        	\Session::flash('warnning','Revisa la informacíon');
+            return Redirect::to('/refugio1')->withInput()->withErrors($validator);
+        }
+        $validarFecha = $this->dateValidation('refugio1', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
+          return Redirect::to('/refugio1')->withInput()->withErrors($validator);
+        }
+ 
+        $event = new Event;
+        $event->event_name = $request['event_name'];
+        $event->start_date = $request['start_date'];
+        $event->end_date = $request['end_date'];
+        $event->usuario = Auth::user()->id;
+        $event->sala = 'refugio1';
+        $event->save();
+ 
+        \Session::flash('success','Sala reservada exitosamente.');
+        return Redirect::to('refugio1');
+    }
+  
+  
+       public function indexr2(){
+      $usuario = Auth::user()->id;
+    	$events = Event::where('sala', 'refugio2')->get();
+      $permisoReserva = $this->permisoReservarSala(Auth::user(), 'refugio');
+    	$event_list = [];
+    	foreach ($events as $key => $event) {
+    		$event_list[] = Calendar::event(
+               
+            $event->event_name,
+                false,
+                new \DateTime($event->start_date),
+                new \DateTime($event->end_date),
+             $event->id,
+                        [
+                          'color' => 'black',
+                          'slotEventOverlap' =>  false,
+                        ]
+                );
+    	}
+    	$calendar_details = Calendar::addEvents($event_list); 
+           $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
+ 
+        return view('/refugio2', compact('calendar_details','meventos','hoy', 'permisoReserva') );
+    }
+  
+ public function addEventr2(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'event_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+ 
+        if ($validator->fails()) {
+        	\Session::flash('warnning','Revisa la informacíon');
+            return Redirect::to('/refugio2')->withInput()->withErrors($validator);
+        }
+        $validarFecha = $this->dateValidation('refugio2', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
+          return Redirect::to('/refugio2')->withInput()->withErrors($validator);
+        }
+ 
+        $event = new Event;
+        $event->event_name = $request['event_name'];
+        $event->start_date = $request['start_date'];
+        $event->end_date = $request['end_date'];
+        $event->usuario = Auth::user()->id;
+        $event->sala = 'refugio2';
+        $event->save();
+ 
+        \Session::flash('success','Sala reservada exitosamente.');
+        return Redirect::to('refugio2');
+    }
+  
+  
+       public function indexr3(){
+      $usuario = Auth::user()->id;
+    	$events = Event::where('sala', 'refugio3')->get();
+      $permisoReserva = $this->permisoReservarSala(Auth::user(), 'refugio');
+    	$event_list = [];
+    	foreach ($events as $key => $event) {
+    		$event_list[] = Calendar::event(
+               
+            $event->event_name,
+                false,
+                new \DateTime($event->start_date),
+                new \DateTime($event->end_date),
+             $event->id,
+                        [
+                          'color' => 'black',
+                          'slotEventOverlap' =>  false,
+                        ]
+                );
+    	}
+    	$calendar_details = Calendar::addEvents($event_list); 
+           $meventos=$events->where('usuario', $usuario )->all();
+     $hoy = Carbon::now();
+ 
+        return view('/refugio3', compact('calendar_details','meventos','hoy', 'permisoReserva') );
+    }
+  
+ public function addEventr3(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'event_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+ 
+        if ($validator->fails()) {
+        	\Session::flash('warnning','Revisa la informacíon');
+            return Redirect::to('/refugio3')->withInput()->withErrors($validator);
+        }
+        $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
+        if($validarFecha[0]){
+          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
+          return Redirect::to('/refugio3')->withInput()->withErrors($validator);
+        }
+ 
+        $event = new Event;
+        $event->event_name = $request['event_name'];
+        $event->start_date = $request['start_date'];
+        $event->end_date = $request['end_date'];
+        $event->usuario = Auth::user()->id;
+        $event->sala = 'refugio3';
+        $event->save();
+ 
+        \Session::flash('success','Sala reservada exitosamente.');
+        return Redirect::to('refugio3');
+    }
+  
+  
   public function editar($id) {
         $event = Event::find($id);
         if($event) {

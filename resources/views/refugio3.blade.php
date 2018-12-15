@@ -4,7 +4,7 @@
 @section('page_header')
     <h1 class="page-title">
        <i class="voyager-calendar"></i>
-       Reservar Sala Casa Refugio 00
+       Reservar Sala Casa Refugio 03
     </h1>
 @stop
 

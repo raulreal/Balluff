@@ -87,6 +87,15 @@ Route::group(['middleware' => 'auth'], function () {
   
           Route::get('refugio', 'EventController@indexr')->name('refugio.index');
           Route::post('refugio', 'EventController@addEventr')->name('refugio.add');
+  
+            Route::get('refugio1', 'EventController@indexr1')->name('refugio1.index');
+          Route::post('refugio1', 'EventController@addEventr1')->name('refugio1.add');
+  
+            Route::get('refugio2', 'EventController@indexr2')->name('refugio2.index');
+          Route::post('refugio2', 'EventController@addEventr2')->name('refugio2.add');
+  
+            Route::get('refugio3', 'EventController@indexr3')->name('refugio3.index');
+          Route::post('refugio3', 'EventController@addEventr3')->name('refugio3.add');
           
           //Editar fechas
           Route::get('events/{id}/editar', 'EventController@editar')->name('events.editar');
