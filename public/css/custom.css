@@ -431,3 +431,9 @@ a.btn.btn-dark {
     font-size: .8em;
     max-height: 40px;
 }
+
+.salasbt {
+    width: 90%;
+    height: 200px;
+    margin: 25px;
+}

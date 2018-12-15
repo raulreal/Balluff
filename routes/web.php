@@ -66,6 +66,10 @@ Route::group(['middleware' => 'auth'], function () {
           Route::get('/construccion', function () {
               return view('construccion');
           });
+  
+        Route::get('/salas_refugio', function () {
+              return view('refugio0');
+          });
 
           Route::get('events', 'EventController@index')->name('events.index');
           Route::post('events', 'EventController@addEvent')->name('events.add');
