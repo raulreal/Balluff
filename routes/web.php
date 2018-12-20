@@ -110,6 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
  
          //Asistencia y puntualidad
         Route::get('reportes', 'AsistenciaController@reportes')->name('asistencia.reportes');
+        Route::get('reportes/{id}', 'AsistenciaController@reportes')->name('asistencia.reportes');
   
          Route::get('asistencia', 'AsistenciaController@index')->name('asistencia.index');
          Route::post('asistencia', 'AsistenciaController@addEvent')->name('asistencia.add');

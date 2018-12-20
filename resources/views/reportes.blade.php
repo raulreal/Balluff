@@ -11,10 +11,6 @@
 
 @section('content')
 
-<h1>
-
-  {{ $usuario->id }} {{ $puntuales->count() }}
-</h1>
 
 <div class="col-sm-6"><div id="chart-div2"></div>
   

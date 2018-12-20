@@ -76,15 +76,16 @@ class AsistenciaController extends Controller
      
     $idEvento = $receso->id;
     $event = Receso::find($idEvento);
-    $inicio = new DateTime($receso->start_date);
-    $final = new DateTime($actual);
-
-    $diff = $inicio->diff($final);
+   
+      // tiempos de trabajo y descanso
+          $date1Timestamp = strtotime($activa->start_date);
+          $date2Timestamp = strtotime($actual);
+          $difference = $date2Timestamp - $date1Timestamp;
      
         if($event) {
             $event->end_date = $actual;
             $event->status = '0';
-            $event->descanso = $diff->i ;
+            $event->descanso = $difference/60 ;
             $event->save();
           
             return Redirect::to('asistencia'); 
@@ -101,15 +102,18 @@ class AsistenciaController extends Controller
     
     $idEvento = $activa->id;
     $event = Asistencia::find($idEvento);
-    $inicio = new DateTime($activa->start_date);
-    $final = new DateTime($actual);
+    
+            // tiempos de trabajo y descanso
+          $date1Timestamp = strtotime($activa->start_date);
+          $date2Timestamp = strtotime($actual);
+          $difference = $date2Timestamp - $date1Timestamp;
 
-    $diff = $inicio->diff($final);
+
      
         if($event) {
             $event->end_date = $actual;
             $event->abierto = '0';
-            $event->trabajadas = $diff->i ;
+            $event->trabajadas = $difference/60 ;
             $event->save();
 
             \Session::flash('success','La reservación se actualizó correctamente.');
@@ -118,10 +122,11 @@ class AsistenciaController extends Controller
     }
   
   
-    public function reportes(){
-     $usuario = Auth::user();
+    public function reportes($id){
      $actual = Carbon::now();
-     $registros = Asistencia::whereMonth('created_at', '12');
+     $registros = Asistencia::where('user_id', $id)->whereMonth('created_at', '12');
+
+     
      $datos= $registros->get();
      $puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
       
@@ -146,7 +151,6 @@ class AsistenciaController extends Controller
       
       //Grafica puntualidad
             $impu = $datos->count() - $puntuales->count();
-
             $puntualidad = \Lava::DataTable();
             $puntualidad->addStringColumn('Reasons')
                     ->addNumberColumn('Percent')
@@ -157,12 +161,12 @@ class AsistenciaController extends Controller
             Lava::DonutChart('GP', $puntualidad, [
                 'title' => 'Porcentaje de puntualidad en el periodo',
                  'is3D'   => false,
-                 'colors'=> [ '#b1d3e6', '#d7e8f3','#333333',],
+                 'colors'=> [ '#b1d3e6','#333333',],
                   'fontName'          => 'helvetica',
                    'height'            => 400,
             ]);
 
-        return view('reportes', compact('actual','usuario','registros','asistencia','puntualidad','puntuales') );
+        return view('reportes', compact('actual','registros','asistencia','puntualidad','puntuales') );
     }
   
        
