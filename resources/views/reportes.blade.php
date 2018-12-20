@@ -12,9 +12,18 @@
 @section('content')
 
 <h1>
-  {{ $actual }}
-  {{ $usuario->id }}
+
+  {{ $usuario->id }} {{ $puntuales->count() }}
 </h1>
+
+<div class="col-sm-6"><div id="chart-div2"></div>
+  
+  <div class="col-sm-6"><div id="chart-div"></div>
+     
+
+
+@donutchart('GA', 'chart-div2')
+@donutchart('GP', 'chart-div')
 
 
 @endsection

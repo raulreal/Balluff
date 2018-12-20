@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use Khill\Lavacharts\Laravel\LavachartsFacade as Lava;
 use Carbon\Carbon;
 use Auth;
 use Validator;
 use App\Asistencia;
 use App\Receso;
 use DateTime;
-
 class AsistenciaController extends Controller
 {
   
@@ -121,12 +121,50 @@ class AsistenciaController extends Controller
     public function reportes(){
      $usuario = Auth::user();
      $actual = Carbon::now();
+     $registros = Asistencia::whereMonth('created_at', '12');
+     $datos= $registros->get();
+     $puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
+      
+      //Grafica inasistencias
+      $asistencia = \Lava::DataTable();
+      $ina = 22 - $datos->count();
+      $asistencia ->addStringColumn('Asistencias')
+              ->addNumberColumn('Inasistencias')
+              ->addRow(['Asistencias', $datos->count()])
+              ->addRow(['Inasistencias', $ina]);
 
-     $products = Asistencia::whereMonth('created_at', '12')
-            ->get();
-     dd($products->trabajadas);
 
-        return view('reportes', compact('actual','usuario') );
+      Lava::DonutChart('GA', $asistencia, [
+          'title' => 'Porcentaje de Asistencias en el periodo',
+           'is3D'   => false,
+           'colors'=> [ '#b1d3e6','#333333',],
+            'fontName'          => 'helvetica',
+             'height'            => 400,
+      ]);
+      
+      
+      
+      //Grafica puntualidad
+            $impu = $datos->count() - $puntuales->count();
+
+            $puntualidad = \Lava::DataTable();
+            $puntualidad->addStringColumn('Reasons')
+                    ->addNumberColumn('Percent')
+                    ->addRow(['Inicios Puntuales.', $puntuales->count()])
+                    ->addRow(['Retraso.', $impu]);
+
+
+            Lava::DonutChart('GP', $puntualidad, [
+                'title' => 'Porcentaje de puntualidad en el periodo',
+                 'is3D'   => false,
+                 'colors'=> [ '#b1d3e6', '#d7e8f3','#333333',],
+                  'fontName'          => 'helvetica',
+                   'height'            => 400,
+            ]);
+
+        return view('reportes', compact('actual','usuario','registros','asistencia','puntualidad','puntuales') );
     }
+  
+       
   
 }
