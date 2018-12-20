@@ -22,7 +22,6 @@
             <div class="panel panel-primary">
  
               <div class="panel-heading">Registro entradas y salidas</div>
- 
               <div class="panel-body"> 
 <div class="col-sm-6">
                           <div class="row marco">
@@ -42,13 +41,34 @@
 
                                 </div>
                             @else
-                                <div class="row">
-                                  {!! Form::open(array('route' => 'asistencia.actualizar','method'=>'POST','files'=>'true')) !!}
-                                  {!! Form::submit('Receso',['class'=>'btn receso']) !!}
-                                  {!! Form::submit('Terminar',['class'=>'btn reloj']) !!}
+                            
+                                          @if (is_null($receso))
+                                               <div class="row">
+                                                {!! Form::open(array('route' => 'asistencia.receso','method'=>'POST','files'=>'true')) !!}
+                                                {!! Form::submit('Receso',['class'=>'btn receso']) !!}
+                                                {{ Form::close() }}
+                                              </div>
+                            
+                                 <div class="row">
+                                  {!! Form::open(array('route' => 'asistencia.cerrar','method'=>'POST','files'=>'true')) !!}
+                                  {!! Form::submit('Terminar Sesion',['class'=>'btn reloj']) !!}
                                   {{ Form::close() }}
-
                                 </div>
+                                          @else
+
+                                          <div class="row">
+                                                {!! Form::open(array('route' => 'asistencia.recesocls','method'=>'POST','files'=>'true')) !!}
+                                                {!! Form::submit('Terminar Receso',['class'=>'btn receso']) !!}
+                                                {{ Form::close() }}
+                                              </div>
+                            
+                                                             <div class="row">
+                                                              {!! Form::open(array('route' => 'asistencia.cerrar','method'=>'POST','files'=>'true')) !!}
+                                                              {!! Form::submit('Terminar Sesion',['class'=>'btn reloj','disabled' ]) !!}
+                                                              {{ Form::close() }}
+                                                            </div>
+                                          @endif     
+
                             @endif                            
                             
 

@@ -9,4 +9,10 @@ class Asistencia extends Model
     protected $fillable = [
         'start_date', 'abierto'
     ];
+  
+  public function recesos()
+    {
+        return $this->hasMany('App\Receso');
+    }
+  
 }
