@@ -12,7 +12,9 @@ use Auth;
 use Validator;
 use App\Asistencia;
 use App\Receso;
+use App\User;
 use DateTime;
+
 class AsistenciaController extends Controller
 {
   
@@ -124,11 +126,41 @@ class AsistenciaController extends Controller
   
     public function reportes($id){
      $actual = Carbon::now();
+     $usuario = Auth::user();
+     $prueba = User::find($id);
      $registros = Asistencia::where('user_id', $id)->whereMonth('created_at', '12');
-
-     
      $datos= $registros->get();
      $puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
+     $trabajadas = $datos->sum('trabajadas');
+     $cart = array();
+      
+foreach ($datos as $dato) {
+    
+    $sr = $dato->trabajadas;
+    $rr =  $dato->recesos->sum('descanso');
+    $trabajadasok = $sr - $rr;
+    $cart[] = array( $dato->start_date, ($dato->trabajadas - $dato->recesos->sum('descanso'))/60 );
+
+}
+      
+
+     //Grafica asistencia
+      
+$finances = Lava::DataTable();
+                
+$finances->addDateColumn('Fecha')
+         ->addNumberColumn('Horas Trabajadas')
+         ->addRows($cart);
+      
+                    
+
+
+Lava::ColumnChart('Finances', $finances, [
+    'title' => 'Horas Trabajadas en el periodo',
+    'colors'=> [ '#b5bcbd', '#d7e8f3','#333333',],
+    'height'            => 400,
+]);
+     
       
       //Grafica inasistencias
       $asistencia = \Lava::DataTable();
@@ -165,8 +197,8 @@ class AsistenciaController extends Controller
                   'fontName'          => 'helvetica',
                    'height'            => 400,
             ]);
-
-        return view('reportes', compact('actual','registros','asistencia','puntualidad','puntuales') );
+      
+        return view('reportes', compact('actual','registros','asistencia','puntualidad','puntuales','datos','finances','usuario') );
     }
   
        

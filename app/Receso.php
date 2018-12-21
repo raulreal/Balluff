@@ -11,9 +11,9 @@ class Receso extends Model
         'asistencia_id', 'start_date', 'end_date' ,'status','descanso'
     ];
   
-  public function post()
+  public function asistencia()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo('App\Asistencia');
     }
     
 }
