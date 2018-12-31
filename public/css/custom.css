@@ -437,3 +437,38 @@ a.btn.btn-dark {
     height: 200px;
     margin: 25px;
 }
+
+.row.datososc {
+    background: #222f3e;
+    padding: 25px;
+    color: lightgrey;
+    margin: 15px;
+    border-radius: 2px;
+}
+
+.input-sm {
+    height: 30px !important;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    border-radius: .5px !important;
+    background: #f1f2f6 !important;
+    box-shadow: none !important;
+    color: gray !important;
+  
+}
+
+.table>tbody>tr>td{
+    padding: 0px !important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.objetivos_tab{
+  padding:10px 40px;
+}
+.tabla1{
+  padding:0 10px;
+  
+}

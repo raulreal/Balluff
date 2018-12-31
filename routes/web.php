@@ -118,7 +118,9 @@ Route::group(['middleware' => 'auth'], function () {
          Route::post('asistencia/receso', 'AsistenciaController@receso')->name('asistencia.receso');
          Route::post('asistencia/recesocls', 'AsistenciaController@recesocls')->name('asistencia.recesocls');
  
-
+ // Evaluacion de Desempeño
+          
+        Route::resource('desenpeno', 'DesenpenoController');
   
   
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
