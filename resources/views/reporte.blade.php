@@ -40,7 +40,10 @@
                 <td>{{ $registro->departamento_id }}</td>
                 <td>{{ $registro->puesto }}</td>
                 <td>2 años 8 meses</td>
-                <td><a class="btn btn-primary btn-xs" href=reportes/{{ $registro->id }} ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td>
+                <a href=reportes/{{ $registro->id }} title="Ver" class="btn btn-sm btn-warning view">
+               <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
+        </a></td>
                </tr>
                @endforeach 
                @else

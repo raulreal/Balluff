@@ -31,7 +31,7 @@
                         <h2>
                           Datos del Colaborador
                         </h2>
-                        <strong>888Nombre del Colaborador:</strong> {{$usuario->name}} {{ $usuario->apellido }} <br/>
+                        <strong>Nombre del Colaborador:</strong> {{$usuario->name}} {{ $usuario->apellido }} <br/>
                         <strong>Email:</strong> {{$usuario->email}}<br/>
                         <strong>Puesto:</strong> {{ $usuario->puesto }}<br/>
 
