@@ -36,12 +36,21 @@ class AsistenciaController extends Controller
   
   public function addEvent(){
         $actual = Carbon::now();
+        $usuario = Auth::user();
     
         $event = new Asistencia;
         $event->start_date = $actual;
         $event->user_id = Auth::user()->id;
         $event->abierto = '1';
         $event->save();
+    
+    $status = User::find($usuario->id);
+    if($status){
+      $status->sesion = 1;
+      $status->save(); 
+    };
+    
+    
         \Session::flash('success','Sesion iniciada.');
         return Redirect::to('/');
     }
@@ -102,6 +111,12 @@ class AsistenciaController extends Controller
         ->where('abierto', '1')
         ->first();
     
+    $status = User::find($usuario->id);
+    if($status){
+      $status->sesion = 0;
+      $status->save(); 
+    }
+    
     $idEvento = $activa->id;
     $event = Asistencia::find($idEvento);
     
@@ -109,8 +124,6 @@ class AsistenciaController extends Controller
           $date1Timestamp = strtotime($activa->start_date);
           $date2Timestamp = strtotime($actual);
           $difference = $date2Timestamp - $date1Timestamp;
-
-
      
         if($event) {
             $event->end_date = $actual;

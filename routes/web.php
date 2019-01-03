@@ -122,7 +122,6 @@ Route::group(['middleware' => 'auth'], function () {
           
         Route::resource('desenpeno', 'DesenpenoController');
   
-  
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   
 

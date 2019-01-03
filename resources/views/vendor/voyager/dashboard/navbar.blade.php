@@ -34,8 +34,12 @@
         <ul class="nav navbar-nav @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
           
          <li class="profile navicon2">
-           
-           <a class="btn btn-dark" href="/asistencia">Sesion de trabajo iniciada</a>
+           @if (Auth::user()->sesion == 1)
+                 <a class="btn btn-dark btngrn" href="/asistencia">Sesión de trabajo iniciada</a>
+            @else
+                 <a class="btn btn-dark" href="/asistencia">Iniciar sesión de trabajo</a>
+            @endif
+          
 
            
           </li>

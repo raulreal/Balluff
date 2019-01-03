@@ -46,7 +46,6 @@
               @if($registros->count())  
               @foreach($registros as $registro)  
               <tr>
-                <td>{{ $registro->user->id }}</td>
                 <td>Raul Real Rojero</td>
                 <td>Tecnología de la información</td>
                 <td>Asistente de Gerencía</td>

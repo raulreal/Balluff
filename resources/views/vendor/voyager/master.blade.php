@@ -17,15 +17,9 @@
   <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/cropper.min.css') }}">
   <style>{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/css/lfm.css')) !!}</style>
   <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/mfb.css') }}">
-
-    <!-- App CSS -->
+  
+      <!-- App CSS -->
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
-  
-
-  
-  
-
-
     @yield('css')
     @if(config('voyager.multilingual.rtl'))
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css">
@@ -72,6 +66,7 @@
   
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>  
+
   
 </head>
 
@@ -180,5 +175,42 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
   });
 </script>
 
+              
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+   <script>
+    $(document).ready(function () {
+    $('#form').validate({ // initialize the plugin
+        rules: {
+             peso1: {
+                required: false,
+                range: [0, 100]
+                     },
+          peso2: {
+                required: true,
+                range: [0, 100]
+                
+                 },
+          total1: {
+                required: false,
+                range: [0, 100]
+                 },
+           total2: {
+                required: false,
+                range: [0, 100]
+                
+                  },
+              total3: {
+                required: false,
+                range: [0, 100]
+                  },
+        },
+      messages: {
+              total1: "La suma de cada % deberá dar un total de 100%",
+            }
+    });
+});
+</script>           
+  
 </body>
 </html>

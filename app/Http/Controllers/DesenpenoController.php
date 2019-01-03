@@ -21,8 +21,9 @@ class DesenpenoController extends Controller
     public function index()
     {
         //
-        $registros = Desenpeno::orderBy('id','DESC')->paginate(3);
+        $registros = Desenpeno::orderBy('id','DESC')->get();
         return view('desenpeno.index',compact('registros')); 
+
     }
  
     /**
@@ -103,4 +104,6 @@ class DesenpenoController extends Controller
          Desempeno::find($id)->delete();
         return redirect()->route('desenpeno.index')->with('success','Registro eliminado satisfactoriamente');
     }
+  
+  
 }
