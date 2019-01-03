@@ -4,8 +4,8 @@
   <br/>
 
   <h1 class="page-title">
-      <i class="voyager-dashboard"></i>
-      Evaluacion de Desempeño
+      <i class="voyager-alarm-clock"></i>
+      Evaluaciones de Desempeño
   </h1>
 @stop
 
@@ -22,14 +22,7 @@
             <div class="panel panel-primary">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="pull-left"><h3>Evaluaciones Disponibles</h3></div>
-          <div class="pull-right">
-
-            <div class="btn-group">
-              <a href="{{ route('desenpeno.create') }}" class="btn btn-info" >Añadir Evaluación</a>
-            </div>
- 
-          </div>
+          <div class="pull-left"><h3>Reportes de asistencia y puntualidad</h3></div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
@@ -37,25 +30,17 @@
                 <th>Departamento o área</th>
                 <th>Puesto</th>
                  <th>Antiguedad</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Ver Reporte</th>
              </thead>
              <tbody>
               @if($registros->count())  
               @foreach($registros as $registro)  
               <tr>
-                <td>{{ $registro->user->id }}</td>
-                <td>Tecnología de la información</td>
-                <td>Asistente de Gerencía</td>
+                <td>{{ $registro->name }} {{ $registro->apellido }}</td>
+                <td>{{ $registro->departamento_id }}</td>
+                <td>{{ $registro->puesto }}</td>
                 <td>2 años 8 meses</td>
-                <td><a class="btn btn-primary btn-xs" href="{{action('DesenpenoController@edit', $registro->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
-                <td>
-                  <form action="{{action('DesenpenoController@destroy', $registro->id)}}" method="post">
-                   {{csrf_field()}}
-                   <input name="_method" type="hidden" value="DELETE">
- 
-                   <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                 </td>
+                <td><a class="btn btn-primary btn-xs" href=reportes/{{ $registro->id }} ><span class="glyphicon glyphicon-pencil"></span></a></td>
                </tr>
                @endforeach 
                @else

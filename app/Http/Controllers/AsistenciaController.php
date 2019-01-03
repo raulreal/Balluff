@@ -103,7 +103,6 @@ class AsistenciaController extends Controller
         }
     }
   
-  
   public function cerrar(Request $request) {        
     $actual = Carbon::now();
     $usuario = Auth::user();
@@ -116,7 +115,6 @@ class AsistenciaController extends Controller
       $status->sesion = 0;
       $status->save(); 
     }
-    
     $idEvento = $activa->id;
     $event = Asistencia::find($idEvento);
     
@@ -137,37 +135,36 @@ class AsistenciaController extends Controller
     }
   
   
-    public function reportes($id){
+public function reporte()
+    {
+        //
+      $registros = User::orderBy('id','DESC')->paginate(10);
+        return view('reporte',compact('registros')); 
+    }
+  
+public function reportes($id){
      $actual = Carbon::now();
-     $usuario = Auth::user();
-     $prueba = User::find($id);
+     $usuario = User::find($id);
      $registros = Asistencia::where('user_id', $id)->whereMonth('created_at', '12');
      $datos= $registros->get();
      $puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
      $trabajadas = $datos->sum('trabajadas');
      $cart = array();
       
-foreach ($datos as $dato) {
-    
+foreach ($datos as $dato) {   
     $sr = $dato->trabajadas;
     $rr =  $dato->recesos->sum('descanso');
     $trabajadasok = $sr - $rr;
     $cart[] = array( $dato->start_date, ($dato->trabajadas - $dato->recesos->sum('descanso'))/60 );
+}     
 
-}
+//Grafica asistencia
       
-
-     //Grafica asistencia
-      
-$finances = Lava::DataTable();
-                
+$finances = Lava::DataTable();              
 $finances->addDateColumn('Fecha')
          ->addNumberColumn('Horas Trabajadas')
          ->addRows($cart);
       
-                    
-
-
 Lava::ColumnChart('Finances', $finances, [
     'title' => 'Horas Trabajadas en el periodo',
     'colors'=> [ '#b5bcbd', '#d7e8f3','#333333',],
@@ -191,7 +188,6 @@ Lava::ColumnChart('Finances', $finances, [
             'fontName'          => 'helvetica',
              'height'            => 400,
       ]);
-      
       
       
       //Grafica puntualidad

@@ -21,7 +21,7 @@ class DesenpenoController extends Controller
     public function index()
     {
         //
-        $registros = Desenpeno::orderBy('id','DESC')->get();
+        $registros = Desenpeno::orderBy('id','DESC')->paginate(3);
         return view('desenpeno.index',compact('registros')); 
 
     }

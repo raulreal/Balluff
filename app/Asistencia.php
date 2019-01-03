@@ -15,4 +15,10 @@ class Asistencia extends Model
         return $this->hasMany('App\Receso');
     }
   
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    
+    }
+  
 }

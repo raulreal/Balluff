@@ -31,7 +31,7 @@
                         <h2>
                           Datos del Colaborador
                         </h2>
-                        <strong>Nombre del Colaborador:</strong> {{$usuario->name}} {{ $usuario->apellido }}<br/>
+                        <strong>888Nombre del Colaborador:</strong> {{$usuario->name}} {{ $usuario->apellido }} <br/>
                         <strong>Email:</strong> {{$usuario->email}}<br/>
                         <strong>Puesto:</strong> {{ $usuario->puesto }}<br/>
 
@@ -42,9 +42,9 @@
                       <div class="col-sm-6"><div id="chart-div"></div> </div>
                       <div class="col-sm-6"><div id="chart-div2"></div> </div>
                   </div>
-@columnchart('Finances', 'perf_div')
-@donutchart('GA', 'chart-div')
- @donutchart('GP', 'chart-div2')
+                      @columnchart('Finances', 'perf_div')
+                      @donutchart('GA', 'chart-div')
+                      @donutchart('GP', 'chart-div2')
               </div>
          </div>
        </div>

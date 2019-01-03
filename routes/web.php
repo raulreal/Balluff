@@ -109,7 +109,8 @@ Route::group(['middleware' => 'auth'], function () {
           Route::delete('event/eliminar/{id}', 'EventController@eliminar')->name('events.eliminar');
  
          //Asistencia y puntualidad
-        Route::get('reportes', 'AsistenciaController@reportes')->name('asistencia.reportes');
+
+        Route::get('reporte', 'AsistenciaController@reporte')->name('asistencia.reportes');
         Route::get('reportes/{id}', 'AsistenciaController@reportes')->name('asistencia.reportes');
   
          Route::get('asistencia', 'AsistenciaController@index')->name('asistencia.index');
@@ -121,7 +122,6 @@ Route::group(['middleware' => 'auth'], function () {
  // Evaluacion de Desempeño
           
         Route::resource('desenpeno', 'DesenpenoController');
-  
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   
 
