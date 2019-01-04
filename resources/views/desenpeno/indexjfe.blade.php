@@ -23,12 +23,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="pull-left"><h3>Evaluaciones Disponibles</h3></div>
-          <div class="pull-right">
-
-            <div class="btn-group">
-              <a href="{{ route('desenpeno.create') }}" class="btn btn-info" >Añadir Evaluación</a>
-            </div>
- 
+          <div class="pull-right"> 
           </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
@@ -48,12 +43,19 @@
                 <td>{{ $registro->departamento->nombre }}</td>
                 <td>{{ $registro->puesto }}</td>
                 <td>2 años 8 meses</td>
-                <td><a class="btn btn-primary btn-xs" href="{{action('DesenpenoController@edit', $registro->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <div class="btn-group">
-                    <a href="{{ route('desenpeno.create',  ['user_id' => $registro->id ] ) }}" class="btn btn-info" >Añadir Evaluación</a>
-                  </div>
-                 </td>
+                  @if ( !empty($registro->desenpeno->id) )
+                        <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
+                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
+                        </a>
+    
+                  @else
+                  <a href="{{ route('desenpeno.create',  ['user_id' => $registro->id ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
+                      <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Evaluación</span>
+                  </a>
+                  @endif
+                </td>
+
                </tr>
                @endforeach 
                @else
