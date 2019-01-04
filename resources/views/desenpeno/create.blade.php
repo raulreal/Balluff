@@ -56,7 +56,7 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">Objetivos CSP ó Individuales</div>  
-      <input type="hidden" name="user_id" id="user_id" value="12" >
+      <input type="hidden" name="user_id" id="user_id" value={{ $usuario->id }}   >
                 <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
