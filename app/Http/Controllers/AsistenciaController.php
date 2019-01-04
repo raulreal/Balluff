@@ -18,6 +18,12 @@ use DateTime;
 class AsistenciaController extends Controller
 {
   
+  public function permisoReservarSala($usuario, $sala) {
+    $permisoSala = $usuario->roles->pluck('name')->toArray();
+    return in_array($sala, $permisoSala);
+  }
+  
+  
    public function index(){
      $usuario = Auth::user();
      $actual = Carbon::now();   
@@ -137,12 +143,22 @@ class AsistenciaController extends Controller
   
 public function reporte()
     {
-        //
+       $permisoRh = $this->permisoReservarSala(Auth::user(), 'rh');
+       if(!$permisoRh) {
+           return redirect()->back()->with('message', 'No tienes permiso.');
+       }
+  
       $registros = User::orderBy('id','DESC')->paginate(10);
         return view('reporte',compact('registros')); 
     }
   
-public function reportes($id){
+public function reportes($id) {
+     
+     $permisoRh = $this->permisoReservarSala(Auth::user(), 'rh');
+       if(!$permisoRh) {
+           return redirect()->back()->with('message', 'No tienes permiso.');
+       }
+  
      $actual = Carbon::now();
      $usuario = User::find($id);
      $registros = Asistencia::where('user_id', $id)->whereMonth('created_at', '12');

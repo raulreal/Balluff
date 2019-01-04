@@ -122,6 +122,8 @@ Route::group(['middleware' => 'auth'], function () {
  // Evaluacion de Desempeño
           
         Route::resource('desenpeno', 'DesenpenoController');
+        Route::get('desempeno', 'DesenpenoController@indexjfe')->name('desenpeno.indexjfe');
+  //tmp
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   
 

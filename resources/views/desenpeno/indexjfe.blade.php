@@ -44,9 +44,9 @@
               @if($registros->count())  
               @foreach($registros as $registro)  
               <tr>
-                <td>{{ $registro->user->name }} {{ $registro->user->apellido }}</td>
-                <td>{{ $registro->user->departamento->nombre }}</td>
-                <td>{{ $registro->user->puesto}}</td>
+                <td>{{ $registro->name }} {{ $registro->apellido }}</td>
+                <td>{{ $registro->departamento->nombre }}</td>
+                <td>{{ $registro->puesto }}</td>
                 <td>2 años 8 meses</td>
                 <td><a class="btn btn-primary btn-xs" href="{{action('DesenpenoController@edit', $registro->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
@@ -68,7 +68,7 @@
           </table>
         </div>
       </div>
-      {{ $registros->links() }}
+ 
     </div>
   </div>
 

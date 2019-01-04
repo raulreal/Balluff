@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Carbon\Carbon;
 use Validator;
+use App\User;
 use App\Desenpeno;
 
  
@@ -21,8 +22,15 @@ class DesenpenoController extends Controller
     public function index()
     {
         //
-        $registros = Desenpeno::orderBy('id','DESC')->paginate(3);
+        $registros = Desenpeno::orderBy('id','DESC')->paginate(12);
         return view('desenpeno.index',compact('registros')); 
+
+    }
+  
+  public function indexjfe()
+    {
+        $registros = User::where('jefe_id', Auth::user()->id)->get();
+        return view('desenpeno.indexjfe',compact('registros','usuarios')); 
 
     }
  

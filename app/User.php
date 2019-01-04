@@ -37,6 +37,11 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany('App\Asistencia');
     }
+
+   public function departamento()
+    {
+        return $this->belongsTo('App\Departamento');
+    }
 }
 
 
