@@ -37,8 +37,8 @@
                 <th>Departamento o área</th>
                 <th>Puesto</th>
                  <th>Antiguedad</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Añadir/Edita</th>
+                <th></th>
              </thead>
              <tbody>
               @if($registros->count())  
@@ -50,11 +50,9 @@
                 <td>2 años 8 meses</td>
                 <td><a class="btn btn-primary btn-xs" href="{{action('DesenpenoController@edit', $registro->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('DesenpenoController@destroy', $registro->id)}}" method="post">
-                   {{csrf_field()}}
-                   <input name="_method" type="hidden" value="DELETE">
- 
-                   <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                  <div class="btn-group">
+                    <a href="{{ route('desenpeno.create',  ['user_id' => $registro->id ] ) }}" class="btn btn-info" >Añadir Evaluación</a>
+                  </div>
                  </td>
                </tr>
                @endforeach 

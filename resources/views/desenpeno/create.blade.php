@@ -28,6 +28,26 @@
 			</div>
 			@endif
 </div>
+
+             <div class="panel panel-bordered">
+               <div class="panel-body">
+                 <div class="table-responsive">
+
+                      <div class="panel panel-primary">
+                        
+                    <div class="row datososc">
+                      <div class="col-sm-12"><center><h3>
+                        DATOS PERSONALES
+                        </h3></center></div>
+                      <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/>        {{$usuario->name}}        {{$usuario->apellido}}</div>
+                      <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>         {{$usuario->jefe_id}} </div>
+                      <div class="col-sm-2"><strong>Puesto:</strong><br/>         {{$usuario->puesto}}</div>
+                      <div class="col-sm-2"><strong>Año: </strong><br/> 2019</div>
+                      <div class="col-sm-2"><strong>Departamento o área: </strong><br/>        {{$usuario->departamento->nombre}}</div>
+                      <div class="col-sm-2"><strong>Antiguedad: </strong><br/> 2 años 8 meses</div>
+                  </div>
+                        
+                        
 						<form method="POST" action="{{ route('desenpeno.store') }}"  role="form" id="form">
               <form method="post" action="{{url('forms')}}" id="form">
 							{{ csrf_field() }}
@@ -35,7 +55,8 @@
 <div class="col-md-12 objetivos_tab">
 
     <div class="panel panel-default">
-      <div class="panel-heading">Objetivos CSP ó Individuales</div>               
+      <div class="panel-heading">Objetivos CSP ó Individuales</div>  
+      <input type="hidden" name="user_id" id="user_id" value="12" >
                 <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>

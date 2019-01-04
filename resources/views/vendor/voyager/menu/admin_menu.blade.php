@@ -1,6 +1,13 @@
 <ul class="nav navbar-nav">
 
-      <?php $roleId = Auth::user()->role_id; ?>
+  <?php 
+        $usuario = Auth::user();
+  
+        $roleId = $usuario->role_id; 
+        $permisosUsuario = $usuario->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+        $permisoJefe = $usuario->misEmpleados->count();
+  ?>
   
 @php
     if (Voyager::translatable($items)) {
@@ -64,8 +71,34 @@
         <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">
                                                                    
           <span class="icon lateral {{ $item->icon_class }}"lateral ></span>
-          <span class="title">{{ $transItem->title }}</span>
-              
+          <span class="title">{{ $transItem->title }}
+          
+          @if($transItem->title == 'Recursos Humanos')
+             @php
+                
+                $menu = array();
+                
+                //Lo ven todos
+                $todos = $item->children->last();
+                
+                //Lo ve solo rh
+                if($permisoRh) {
+                   $menu[] = $item->children->firstWhere('title', "Reporte A.P.");
+                   $menu[] = $item->children->firstWhere('title', 'Reporte de Ev de Desempeño');
+                }
+                
+                //Lo ve solo el que tiene empleados
+                if($permisoJefe){
+                   $menu[] = $item->children->firstWhere('title', 'Evaluaciones de Desempeño');
+                }
+                
+                $menu[] = $todos;
+                $item->children = $menu;
+            @endphp
+            
+          @endif
+      
+      </span>
         </a>
         @if($hasChildren)
             <div id="{{ $transItem->id }}-dropdown-element" class="panel-collapse collapse {{ (in_array('active', $listItemClass) ? 'in' : '') }}">

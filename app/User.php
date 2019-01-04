@@ -29,7 +29,7 @@ class User extends \TCG\Voyager\Models\User
   
   public function desenpeno()
     {
-        return $this->belongsTo('App\Desenpeno');
+        return $this->hasOne('App\Desenpeno');
     
     }
   
@@ -42,6 +42,12 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->belongsTo('App\Departamento');
     }
+  
+  public function misEmpleados()
+    {
+        return $this->hasMany('App\User', 'jefe_id');
+    }
+  
 }
 
 

@@ -60,7 +60,7 @@
                @endforeach 
                @else
                <tr>
-                <td colspan="8">No hay registro !!</td>
+                <td colspan="8">No hay registros</td>
               </tr>
               @endif
             </tbody>

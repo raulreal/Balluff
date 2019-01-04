@@ -37,7 +37,7 @@
               @foreach($registros as $registro)  
               <tr>
                 <td>{{ $registro->name }} {{ $registro->apellido }}</td>
-                <td>{{ $registro->departamento_id }}</td>
+                <td>{{ $registro->departamento->nombre }}</td>
                 <td>{{ $registro->puesto }}</td>
                 <td>2 años 8 meses</td>
                 <td>

@@ -123,6 +123,8 @@ Route::group(['middleware' => 'auth'], function () {
           
         Route::resource('desenpeno', 'DesenpenoController');
         Route::get('desempeno', 'DesenpenoController@indexjfe')->name('desenpeno.indexjfe');
+        Route::get('mi-evaluacion', 'DesenpenoController@mievaluacion')->name('desenpeno.mievaluacion');
+
   //tmp
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   

@@ -19,6 +19,11 @@ class DesenpenoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function mievaluacion()
+    {
+        $registros=Auth::user()->desenpeno; 
+        return view('desenpeno.mievaluacion',compact('registros'));
+    }
     public function index()
     {
         //
@@ -39,10 +44,10 @@ class DesenpenoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-        return view('desenpeno.create');
+      $usuario = User::find($request->user_id); 
+        return view('desenpeno.create',compact('usuario'));
     }
  
     /**

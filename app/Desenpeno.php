@@ -12,6 +12,6 @@ class Desenpeno extends Model
 
   public function user()
     {
-        return $this->hasOne('App\User','desenpeno_id');
+        return $this->belongsTo('App\User');
     }
 }
