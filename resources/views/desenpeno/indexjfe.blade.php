@@ -46,7 +46,7 @@
                 <td>
                   @if ( !empty($registro->desenpeno->id) )
                         <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
-                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
+                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Revisión</span>
                         </a>
     
                   @else

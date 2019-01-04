@@ -101,7 +101,7 @@ class DesenpenoController extends Controller
         $this->validate($request,[ 'objetivo1'=>'required' ]);
  
         Desenpeno::find($id)->update($request->all());
-        return redirect()->route('desenpeno.index')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('desenpeno.indexjfe')->with('success','Registro actualizado satisfactoriamente');
  
     }
  
@@ -115,7 +115,7 @@ class DesenpenoController extends Controller
     {
         //
          Desempeno::find($id)->delete();
-        return redirect()->route('desenpeno.index')->with('success','Registro eliminado satisfactoriamente');
+        return redirect()->route('desenpeno.indexjfe')->with('success','Registro eliminado satisfactoriamente');
     }
   
   

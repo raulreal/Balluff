@@ -5,7 +5,7 @@
 
   <h1 class="page-title">
       <i class="voyager-alarm-clock"></i>
-      Evaluaciones de Desempeño
+      Reportes de asistencia y puntualidad
   </h1>
 @stop
 
