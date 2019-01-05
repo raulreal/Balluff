@@ -700,29 +700,37 @@
                 
          
 	</section>
-<script type="text/javascript">
-  
-    var deleteFormAction;
-    $('td').on('click', '.delete', function (e) {
-        $('#delete_form')[0].action = '{{ route('events.eliminar', ['id' => '__id']) }}'.replace('__id', $(this).data('id'));
-        $('#delete_modal').modal('show');
-    });
-  
-  $('.timepicker').each(function () {
-      $('.timepicker').each(function () {
-        $(this).datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            daysOfWeekDisabled: [0, 6],
-            useCurrent: false,
-            minDate: truncateDate(new Date())
-        });
-     });
-  });
-  
-  function truncateDate(date) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  }
-</script> 
+ 
 
 @endsection
+                        
+                        
+@section('javascript')
+
+  <script type="text/javascript">
+  
+      var deleteFormAction;
+      $('td').on('click', '.delete', function (e) {
+          $('#delete_form')[0].action = '{{ route('events.eliminar', ['id' => '__id']) }}'.replace('__id', $(this).data('id'));
+          $('#delete_modal').modal('show');
+      });
+
+      $('.timepicker').each(function () {
+          $('.timepicker').each(function () {
+            $(this).datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss',
+                enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+                daysOfWeekDisabled: [0, 6],
+                useCurrent: false,
+                minDate: truncateDate(new Date())
+            });
+         });
+      });
+
+      function truncateDate(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      }
+  </script>
+                        
+@endsection
+

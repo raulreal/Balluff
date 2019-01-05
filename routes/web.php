@@ -121,8 +121,11 @@ Route::group(['middleware' => 'auth'], function () {
  
  // Evaluacion de Desempeño
           
-        Route::resource('desenpeno', 'DesenpenoController');
-        Route::get('desempeno', 'DesenpenoController@indexjfe')->name('desenpeno.indexjfe');
+        Route::resource('evaluaciones', 'DesenpenoController');
+        Route::get('evaluacion', 'DesenpenoController@indexjfe')->name('evaluacion.indexjfe');
+        Route::get('evaluacion/firmar', 'DesenpenoController@firma')->name('evaluacion.firma');
+        Route::get('evaluacion/firmar1', 'DesenpenoController@firma1')->name('evaluacion.firma1');
+        Route::get('evaluacion/firmar2', 'DesenpenoController@firma2')->name('evaluacion.firma2');
         Route::get('mi-evaluacion', 'DesenpenoController@mievaluacion')->name('desenpeno.mievaluacion');
 
   //tmp

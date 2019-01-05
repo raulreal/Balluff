@@ -475,3 +475,11 @@ a.btn.btn-dark {
 .btngrn {
     background: #d33440 !important;
 }
+
+.firmas {
+    text-align: center;
+}
+
+a.btn.firma {
+    width: 30%;
+}

@@ -175,42 +175,5 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
   });
 </script>
 
-              
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-   <script>
-    $(document).ready(function () {
-    $('#form').validate({ // initialize the plugin
-        rules: {
-             peso1: {
-                required: false,
-                range: [0, 100]
-                     },
-          peso2: {
-                required: true,
-                range: [0, 100]
-                
-                 },
-          total1: {
-                required: false,
-                range: [0, 100]
-                 },
-           total2: {
-                required: false,
-                range: [0, 100]
-                
-                  },
-              total3: {
-                required: false,
-                range: [0, 100]
-                  },
-        },
-      messages: {
-              total1: "La suma de cada % deberá dar un total de 100%",
-            }
-    });
-});
-</script>           
-  
 </body>
 </html>

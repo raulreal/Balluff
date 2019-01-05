@@ -48,6 +48,12 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasMany('App\User', 'jefe_id');
     }
   
+  public function miJefe()
+    {
+        return $this->belongsTo('App\User', 'jefe_id');
+    }
+  
+  
 }
 
 

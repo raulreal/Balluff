@@ -43,16 +43,24 @@
                         DATOS PERSONALES
                         </h3></center></div>
                       <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/> {{ $registros->user->name }} {{ $registros->user->apellido }}</div>
-                      <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  {{ $registros->jefe_id }} </div>
-                      <div class="col-sm-2"><strong>Puesto:</strong><br/>  {{ $registros->user->puesto }}</div>
+                      <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  
+                        @if($registros->user->miJefe)
+                          <td> {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}</td>
+                        @else
+                          <td> Sin jefe </td>
+                        @endif
+                      </div>
+                      <div class="col-sm-2"><strong>Puesto:</strong><br/>  {{ $registros->user->puesto }} <h1>
+
+                        </h1></div>
                       <div class="col-sm-2"><strong>Año: </strong><br/> 2019</div>
                       <div class="col-sm-2"><strong>Departamento o área: </strong><br/> {{ $registros->user->departamento->nombre }}</div>
-                      <div class="col-sm-2"><strong>Antiguedad: </strong><br/> 2 años 8 meses</div>
+                      <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $registros->user->fecha_ingreso }}</div>
                   </div>
                         
         <div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('desenpeno.update',$registros->id) }}"  role="form">
+						<form method="POST" action="{{ route('evaluaciones.update',$registros->id) }}"  role="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
               <div class="panel-heading">Objetivos CSP ó Individuales</div>               
@@ -67,6 +75,7 @@
                 <th style="width: 10%">Estatus</th>
                 <th style="width: 5%">Peso</th>
                 <th style="width: 5%">Meta alcanzada</th>
+               <th style="width: 10%">Ponderación</th>
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
              <tbody>
@@ -82,24 +91,25 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso1" id="peso1" class="form-control input-sm objetivos" value="{{$registros->peso1}}" readonly></td>
-                  <td><input type="text" name="alcanzada1" id="alcanzada1" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios1" id="comentarios1" class="form-control input-sm objetivos" value="{{$registros->comentarios1}}"></td>
+                  <td><input type="text" name="alcanzada1" id="alcanzada1" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada1}}" readonly></td>  
+                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion1   }}" readonly></td>
+                  <td><input type="text" name="comentarios1" id="comentarios1" class="form-control input-sm objetivos" value="{{$registros->comentarios1}}" readonly></td>
                </tr>
-               
-                               <tr>
+ <tr>
                   <td><input type="text" name="objetivo2" id="objetivo2" class="form-control input-sm objetivos" value="{{$registros->objetivo2}}" readonly></td>
                   <td><input type="text" name="meta2" id="meta2" class="form-control input-sm objetivos" value="{{$registros->meta2}}" readonly></td>
                   <td><input type="text" name="medida2" id="medida2" class="form-control input-sm objetivos" value="{{$registros->medida2}}" readonly></td>
                   <td><input type="text" name="fecha2" id="fecha2" class="form-control input-sm objetivos" value="{{$registros->fecha2}}" readonly></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status2" id="status2">
+                  <td><select class="form-control form-control-sm input-sm" name="status2" id="status2" readonly>
                         <option>En proceso</option>
                         <option>Postergado</option>
                         <option>Completado</option>
                       </select>
                   </td>
                   <td><input type="text" name="peso2" id="peso2" class="form-control input-sm objetivos" value="{{$registros->peso2}}" readonly></td>
-                  <td><input type="text" name="alcanzada2" id="alcanzada2" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios2" id="comentarios2" class="form-control input-sm objetivos" value="{{$registros->comentarios2}}"></td>
+                  <td><input type="text" name="alcanzada2" id="alcanzada2" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada2}}" readonly></td>  
+                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion2   }}" readonly></td>
+                  <td><input type="text" name="comentarios2" id="comentarios2" class="form-control input-sm objetivos" value="{{$registros->comentarios2}}" readonly></td>
                </tr>
                
                                <tr>
@@ -107,15 +117,16 @@
                   <td><input type="text" name="meta3" id="meta3" class="form-control input-sm objetivos" value="{{$registros->meta3}}" readonly></td>
                   <td><input type="text" name="medida3" id="medida3" class="form-control input-sm objetivos" value="{{$registros->medida3}}" readonly></td>
                   <td><input type="text" name="fecha3" id="fecha3" class="form-control input-sm objetivos" value="{{$registros->fecha3}}" readonly></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status3" id="status3">
+                  <td><select class="form-control form-control-sm input-sm" name="status3" id="status3" readonly>
                           <option>En proceso</option>
                           <option>Postergado</option>
                         <option>Completado</option>
                       </select>
                   </td>
                   <td><input type="text" name="peso3" id="peso3" class="form-control input-sm objetivos" value="{{$registros->peso3}}" readonly></td>
-                  <td><input type="text" name="alcanzada3" id="alcanzada3" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios3" id="comentarios3" class="form-control input-sm objetivos" value="{{$registros->comentarios3}}"></td>
+                  <td><input type="text" name="alcanzada3" id="alcanzada3" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada3}}" readonly></td> 
+                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion3   }}" readonly></td>
+                  <td><input type="text" name="comentarios3" id="comentarios3" class="form-control input-sm objetivos" value="{{$registros->comentarios3}}" readonly></td>
                </tr>
                
                                <tr>
@@ -130,8 +141,9 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso1" id="peso4" class="form-control input-sm objetivos" value="{{$registros->peso4}}" readonly></td>
-                  <td><input type="text" name="alcanzada1" id="alcanzada4" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios1" id="comentarios4" class="form-control input-sm objetivos" value="{{$registros->comentarios4}}"></td>
+                  <td><input type="text" name="alcanzada1" id="alcanzada4" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada4}}" readonly></td>  
+                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion4   }}" readonly></td>
+                  <td><input type="text" name="comentarios1" id="comentarios4" class="form-control input-sm objetivos" value="{{$registros->comentarios4}}" readonly></td>
                </tr>
                
                                <tr>
@@ -146,8 +158,14 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso5" id="peso5" class="form-control input-sm objetivos" value="{{$registros->peso5}}" readonly></td>
-                  <td><input type="text" name="alcanzada5" id="alcanzada5" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" value="{{$registros->comentarios5}}"></td>
+                  <td><input type="text" name="alcanzada5" id="alcanzada5" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada5}}" readonly></td>  
+                   <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion5   }}" readonly></td>
+                  <td><input type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" value="{{$registros->comentarios5}}" readonly></td>
+               </tr>
+                <tr>
+                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff">Total objetivos  individuales</td>
+                 <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$registros->total1}}" readonly > </td>
+                 <td></td>
                </tr>
         
             </tbody>
@@ -156,7 +174,7 @@
               </div>
               
               
-            <div class="panel-heading">Objetivos Administrativos  </div>               
+            <div class="panel-heading">Objetivos Administrativos </div>               
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">
@@ -168,6 +186,7 @@
                 <th style="width: 10%">Estatus</th>
                 <th style="width: 5%">Peso</th>
                 <th style="width: 5%">Meta alcanzada</th>
+               <th style="width: 10%">Ponderación</th>
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
              <tbody>
@@ -183,12 +202,13 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso6" id="peso6" class="form-control input-sm objetivos" value="{{$registros->peso6}}" readonly></td>
-                  <td><input type="text" name="alcanzada6" id="alcanzada6" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" value="{{$registros->comentarios6}}"></td>
+                  <td><input type="text" name="alcanzada6" id="alcanzada6" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada6}}" readonly></td>  
+                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion6   }}" readonly></td>
+                  <td><input type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" value="{{$registros->comentarios6}}" readonly></td>
                </tr>
                
                                <tr>
-                  <td><input type="text" name="objetivo7" id="objetivo7" class="form-control input-sm objetivos" value="{{$registros->objetivo2}}" readonly></td>
+                  <td><input type="text" name="objetivo7" id="objetivo7" class="form-control input-sm objetivos" value="{{$registros->objetivo7}}" readonly></td>
                   <td><input type="text" name="meta7" id="meta7" class="form-control input-sm objetivos" value="{{$registros->meta7}}" readonly></td>
                   <td><input type="text" name="medida7" id="medida7" class="form-control input-sm objetivos" value="{{$registros->medida7}}" readonly></td>
                   <td><input type="text" name="fecha7" id="fecha7" class="form-control input-sm objetivos" value="{{$registros->fecha7}}" readonly></td>
@@ -199,7 +219,8 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso2" id="peso7" class="form-control input-sm objetivos" value="{{$registros->peso7}}" readonly></td>
-                  <td><input type="text" name="alcanzada7" id="alcanzada7" class="form-control input-sm objetivos" placeholder="%"></td>  
+                  <td><input type="text" name="alcanzada7" id="alcanzada7" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada7}}" readonly></td> 
+                                 <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion7   }}" readonly></td>
                   <td><input type="text" name="comentarios7" id="comentarios7" class="form-control input-sm objetivos" value="{{$registros->comentarios7}}"></td>
                </tr>
                
@@ -215,8 +236,9 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso3" id="peso8" class="form-control input-sm objetivos" value="{{$registros->peso8}}" readonly></td>
-                  <td><input type="text" name="alcanzada8" id="alcanzada8" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" value="{{$registros->comentarios8}}"></td>
+                  <td><input type="text" name="alcanzada8" id="alcanzada8" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada8}}"></td>  
+                                 <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion8   }}" readonly></td>
+                  <td><input type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" value="{{$registros->comentarios8}}" readonly></td>
                </tr>
                
                                <tr>
@@ -231,7 +253,8 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso1" id="peso9" class="form-control input-sm objetivos" value="{{$registros->peso9}}" readonly></td>
-                  <td><input type="text" name="alcanzada9" id="alcanzada9" class="form-control input-sm objetivos" placeholder="%"></td>  
+                  <td><input type="text" name="alcanzada9" id="alcanzada9" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada9}}"></td> 
+                                 <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion9   }}" readonly></td>
                   <td><input type="text" name="comentarios9" id="comentarios9" class="form-control input-sm objetivos" value="{{$registros->comentarios9}}"></td>
                </tr>
                
@@ -247,10 +270,16 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso10" id="peso10" class="form-control input-sm objetivos" value="{{$registros->peso10}}" readonly></td>
-                  <td><input type="text" name="alcanzada10" id="alcanzada10" class="form-control input-sm objetivos" placeholder="%"></td>  
-                  <td><input type="text" name="comentarios10" id="comentarios10" class="form-control input-sm objetivos" value="{{$registros->comentarios10}}"></td>
+                  <td><input type="text" name="alcanzada10" id="alcanzada10" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada10}}" readonly></td>  
+                                 <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion10  }}" readonly></td>
+                  <td><input type="text" name="comentarios10" id="comentarios10" class="form-control input-sm objetivos" value="{{$registros->comentarios10}}" readonly></td>
+                      
                </tr>
-        
+                               <tr>
+                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff">Total objetivos  administrativos</td>
+                 <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$registros->total2}}" readonly > </td>
+                 <td></td>
+               </tr>
             </tbody>
                 </div>
           </table>
@@ -268,6 +297,7 @@
                 <th style="width: 10%">Estatus</th>
                 <th style="width: 5%">Peso</th>
                 <th style="width: 5%">Meta alcanzada</th>
+               <th style="width: 10%">Ponderación</th>
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
              <tbody>
@@ -283,7 +313,8 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso11" id="peso11" class="form-control input-sm objetivos" value="{{$registros->peso11}}" readonly></td>
-                  <td><input type="text" name="alcanzada11" id="alcanzada11" class="form-control input-sm objetivos" placeholder="%"></td>  
+                  <td><input type="text" name="alcanzada11" id="alcanzada11" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada11}}"></td> 
+                                                 <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion11   }}" readonly></td>
                   <td><input type="text" name="comentarios11" id="comentarios11" class="form-control input-sm objetivos" value="{{$registros->comentarios11}}"></td>
                </tr>
                
@@ -299,7 +330,8 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso12" id="peso12" class="form-control input-sm objetivos" value="{{$registros->peso12}}" readonly></td>
-                  <td><input type="text" name="alcanzada12" id="alcanzada12" class="form-control input-sm objetivos" placeholder="%"></td>  
+                  <td><input type="text" name="alcanzada12" id="alcanzada12" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada12}}"></td>  
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion12  }}" readonly></td>
                   <td><input type="text" name="comentarios12" id="comentarios12" class="form-control input-sm objetivos" value="{{$registros->comentarios12}}"></td>
                </tr>
                
@@ -315,91 +347,52 @@
                       </select>
                   </td>
                   <td><input type="text" name="peso13" id="peso10" class="form-control input-sm objetivos" value="{{$registros->peso13}}" readonly></td>
-                  <td><input type="text" name="alcanzada13" id="alcanzada13" class="form-control input-sm objetivos" placeholder="%"></td>  
+                  <td><input type="text" name="alcanzada13" id="alcanzada13" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada13}}"></td>  
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion13   }}" readonly></td>
                   <td><input type="text" name="comentarios13" id="comentarios13" class="form-control input-sm objetivos" value="{{$registros->comentarios13}}"></td>
                </tr>
-
-
+                               <tr>
+                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff">Total Objetivos de cultura organizacional</td>
+                 <td><input type="text" name="total3" id="total3" class="form-control input-sm objetivos" value="{{$registros->total3}}" readonly > </td>
+                 <td></td>
+               </tr>
             </tbody>
                 </div>
           </table>
-              </div>
-              
-              								<div class="col-xs-12 col-sm-12 col-md-12 botoneslrg">
-									<input type="submit"  value="Actualizar" class="btn btn-success btn-block">
-									<a href="{{ route('desenpeno.index') }}" class="btn btn-info btn-block" >Atrás</a>
-								</div>	
-
-
             </form>
-          </div>
-
+          </div>  
+            
+            <div class="row datososc">
+                      <div class="col-sm-12"><center><h3>
+                        RESULTADOS
+                        </h3></center></div>
+                      <div class="col-sm-3"><strong>Total objetivos individuales</strong><br/> {{$registros->total1 * .6 }}</div>
+                      <div class="col-sm-3"><strong>Total objetivos administrativos</strong><br/> {{$registros->total2 * .2 }} </div>
+                      <div class="col-sm-3"><strong>Total Objetivos de cultura organizacional</strong><br/>  {{$registros->total3 * .2 }}</div>
+                      <div class="col-sm-3"><strong>Evaluación Final</strong><br/><strong>{{$registros->e_final}} </strong></div>
+            </div>
+              <div class="firmas">
+              @if ($registros->user->id === $usr)
+                        <a href="{{ route('evaluacion.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
+                        </a>
+              @endif
+              
+               @if ( $registros->user->miJefe->id === $usr)
+                        <a href="{{ route('evaluacion.firma1',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
+                        </a>
+              @endif
+              
+               @if ( $registros->user->miJefe->id === $usr)
+                        <a href="{{ route('evaluacion.firma2',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
+                        </a>
+              @endif
                 
-         
+              </div>
+
+            
 	</section>
-<script type="text/javascript">
-  
-    var deleteFormAction;
-    $('td').on('click', '.delete', function (e) {
-        $('#delete_form')[0].action = '{{ route('events.eliminar', ['id' => '__id']) }}'.replace('__id', $(this).data('id'));
-        $('#delete_modal').modal('show');
-    });
-  
-  $('.timepicker').each(function () {
-      $('.timepicker').each(function () {
-        $(this).datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            daysOfWeekDisabled: [0, 6],
-            useCurrent: false,
-            minDate: truncateDate(new Date())
-        });
-     });
-  });
-  
-  function truncateDate(date) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  }
-  
-  
-  /* Sumar dos números. */
-function sumar() {
-  var total = 0;
-  $(".monto").each(function() {
-    if (isNaN(parseFloat($(this).val()))) {
-      total += 0;
-    } else {
-      total += parseFloat($(this).val());
-    }
-  });
-  //alert(total);
-  document.getElementById('spTotal1').value = total;
-}
-  function sumar2() {
-  var total = 0;
-  $(".monto2").each(function() {
-    if (isNaN(parseFloat($(this).val()))) {
-      total += 0;
-    } else {
-      total += parseFloat($(this).val());
-    }
-  });
-  //alert(total);
-  document.getElementById('spTotal2').value = total;
-}
-  
-    function sumar3() {
-  var total = 0;
-  $(".monto3").each(function() {
-    if (isNaN(parseFloat($(this).val()))) {
-      total += 0;
-    } else {
-      total += parseFloat($(this).val());
-    }
-  });
-  //alert(total);
-  document.getElementById('spTotal3').value = total;
-}
-</script> 
 
 @endsection

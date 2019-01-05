@@ -148,7 +148,7 @@ public function reporte()
            return redirect()->back()->with('message', 'No tienes permiso.');
        }
   
-      $registros = User::orderBy('id','DESC')->paginate(10);
+      $registros = User::orderBy('name')->paginate(10);
         return view('reporte',compact('registros')); 
     }
   

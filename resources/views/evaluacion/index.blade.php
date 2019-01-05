@@ -31,8 +31,9 @@
                <th>Colaborador</th>
                 <th>Departamento o área</th>
                 <th>Puesto</th>
-                 <th>Antiguedad</th>
-                <th>Añadir/Edita</th>
+                 <th>Jefe inmediato</th>
+                 <th>Fecha de Ingreso</th>
+                <th>Revisar Evaluación</th>
                 <th></th>
              </thead>
              <tbody>
@@ -42,17 +43,25 @@
                 <td>{{ $registro->name }} {{ $registro->apellido }}</td>
                 <td>{{ $registro->departamento->nombre }}</td>
                 <td>{{ $registro->puesto }}</td>
-                <td>2 años 8 meses</td>
+                @if($registro->miJefe)
+                  <td> {{ $registro->miJefe->name }} {{ $registro->miJefe->apellido }}</td>
+                @else
+                  <td> Sin jefe </td>
+                @endif
+                <td> {{ $registro->fecha_ingreso }} </td>
                 <td>
                   @if ( !empty($registro->desenpeno->id) )
-                        <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
-                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Revisión</span>
+                  
+                   <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
+                            <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver Evaluación</span>
                         </a>
     
                   @else
-                  <a href="{{ route('desenpeno.create',  ['user_id' => $registro->id ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
-                      <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Evaluación</span>
-                  </a>
+                  <p>
+                   <div class="alert alert-warning" role="alert">
+                      Usuario sin evaluación
+                    </div>
+                  </p>
                   @endif
                 </td>
 
@@ -68,9 +77,8 @@
           </table>
         </div>
       </div>
- 
     </div>
   </div>
-
+ {{ $registros->links() }}
 
 @endsection

@@ -74,7 +74,7 @@
                            </div>
                 </div>
                 <div class="col-sm-6"> 
-                  <div class="col-sm-3></div>
+                  <div class="col-sm-3"></div>
                   <div class="col-sm-3 imgperf"><img src="/storage/{{ $usuario->avatar }}" alight ="right" class="profile-img sm"></div>
                   <div class="col-sm-6"> <h3 > {{$usuario->name}} {{$usuario->apellido}}</h3> <br/> {{$usuario->puesto}}{{$usuario->id}} </div>
                   

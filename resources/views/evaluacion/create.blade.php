@@ -40,15 +40,21 @@
                         DATOS PERSONALES
                         </h3></center></div>
                       <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/>        {{$usuario->name}}        {{$usuario->apellido}}</div>
-                      <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>         {{$usuario->jefe_id}} </div>
+                      <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  
+                        @if($usuario->miJefe)
+                          <td> {{ $usuario->miJefe->name }} {{ $usuario->miJefe->apellido }}</td>
+                        @else
+                          <td> Sin jefe </td>
+                        @endif
+                      </div>
                       <div class="col-sm-2"><strong>Puesto:</strong><br/>         {{$usuario->puesto}}</div>
                       <div class="col-sm-2"><strong>Año: </strong><br/> 2019</div>
                       <div class="col-sm-2"><strong>Departamento o área: </strong><br/>        {{$usuario->departamento->nombre}}</div>
-                      <div class="col-sm-2"><strong>Antiguedad: </strong><br/> 2 años 8 meses</div>
+                      <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $usuario->fecha_ingreso }}</div>
                   </div>
                         
                         
-						<form method="POST" action="{{ route('desenpeno.store') }}"  role="form" id="form">
+						<form method="POST" action="{{ route('evaluaciones.store') }}"  role="form" id="form">
               <form method="post" action="{{url('forms')}}" id="form">
 							{{ csrf_field() }}
               
@@ -266,7 +272,7 @@
 
  <div class="col-xs-12 col-sm-12 col-md-12 botoneslrg">
 	<input type="submit"  value="Guardar" class="btn btn-success btn-block">
-		<a href="{{ route('desenpeno.index') }}" class="btn btn-info btn-block" >Atrás</a>
+		<a href="{{ route('evaluacion.indexjfe') }}" class="btn btn-info btn-block" >Atrás</a>
 		</div>	
 </form>
                
