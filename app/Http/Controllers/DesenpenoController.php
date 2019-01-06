@@ -65,7 +65,7 @@ class DesenpenoController extends Controller
      */
     public function show($id)
     {
-        $usr = Auth::id();
+        $usr = Auth::user();
         $registros = Desenpeno::find($id);
         return  view('evaluacion.show',compact('registros','usr'));
     }
