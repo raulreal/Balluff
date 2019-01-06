@@ -161,7 +161,8 @@ public function reportes($id) {
   
      $actual = Carbon::now();
      $usuario = User::find($id);
-     $registros = Asistencia::where('user_id', $id)->whereMonth('created_at', '12');
+     $mes_consulta = 12;
+     $registros = Asistencia::where('user_id', $id)->whereMonth('created_at', $actual->month);
      $datos= $registros->get();
      $puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
      $trabajadas = $datos->sum('trabajadas');
