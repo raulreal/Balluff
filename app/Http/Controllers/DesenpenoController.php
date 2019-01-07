@@ -178,11 +178,11 @@ class DesenpenoController extends Controller
  public function mievaluacion()
     {
    
-    $usr = Auth::id();
+    $usr = Auth::user();
    
    if ( !empty($usr->desenpeno) ) {
-        return redirect()->route('evaluaciones.show', $usr);
-     } else { 
+        return redirect()->route('evaluaciones.show', $usr->desenpeno->id);
+     } else {
        return redirect()->back()->with('message', 'No cuentas con evaluaciones de desempeño.');
    }}
 }
