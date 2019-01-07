@@ -295,16 +295,16 @@
                  },
           total1: {
                 required: false,
-                range: [100]
+                range: [100, 100]
                  },
            total2: {
                 required: false,
-                range: [100]
+                range: [100, 100]
                 
                   },
               total3: {
                 required: false,
-                range: [100]
+                range: [100, 100]
                   },
         },
       messages: {
