@@ -67,7 +67,10 @@ class DesenpenoController extends Controller
     {
         $usr = Auth::user();
         $registros = Desenpeno::find($id);
-        return  view('evaluacion.show',compact('registros','usr'));
+        $permisosUsuario = $usr->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+        
+        return  view('evaluacion.show',compact('registros', 'usr', 'permisoRh'));
     }
  
     /**
