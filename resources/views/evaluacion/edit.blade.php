@@ -136,7 +136,7 @@
                   </td>
                   <td><input type="text" name="peso4" id="peso4" class="form-control input-sm objetivos" value="{{$registros->peso4}}" readonly></td>
                   <td><input type="text" name="alcanzada4" id="alcanzada4" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada4}}"></td>  
-                  <td><input type="text" name="comentarios1" id="comentarios4" class="form-control input-sm objetivos" value="{{$registros->comentarios4}}"></td>
+                  <td><input type="text" name="comentarios4" id="comentarios4" class="form-control input-sm objetivos" value="{{$registros->comentarios4}}"></td>
                </tr>
                
                                <tr>
@@ -203,7 +203,7 @@
                         <option>Completado</option>
                       </select>
                   </td>
-                  <td><input type="text" name="peso2" id="peso7" class="form-control input-sm objetivos" value="{{$registros->peso7}}" readonly></td>
+                  <td><input type="text" name="peso7" id="peso7" class="form-control input-sm objetivos" value="{{$registros->peso7}}" readonly></td>
                   <td><input type="text" name="alcanzada7" id="alcanzada7" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada7}}"></td>  
                   <td><input type="text" name="comentarios7" id="comentarios7" class="form-control input-sm objetivos" value="{{$registros->comentarios7}}"></td>
                </tr>
@@ -219,7 +219,7 @@
                         <option>Completado</option>
                       </select>
                   </td>
-                  <td><input type="text" name="peso3" id="peso8" class="form-control input-sm objetivos" value="{{$registros->peso8}}" readonly></td>
+                  <td><input type="text" name="peso8" id="peso8" class="form-control input-sm objetivos" value="{{$registros->peso8}}" readonly></td>
                   <td><input type="text" name="alcanzada8" id="alcanzada8" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada8}}"></td>  
                   <td><input type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" value="{{$registros->comentarios8}}"></td>
                </tr>
@@ -229,13 +229,13 @@
                   <td><input type="text" name="meta9" id="meta9" class="form-control input-sm objetivos" value="{{$registros->meta9}}" readonly></td>
                   <td><input type="text" name="medida9" id="medida9" class="form-control input-sm objetivos" value="{{$registros->medida9}}" readonly></td>
                   <td><input type="text" name="fecha9" id="fecha9" class="form-control input-sm objetivos" value="{{$registros->fecha9}}" readonly></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status4" id="status9">
+                  <td><select class="form-control form-control-sm input-sm" name="status9" id="status9">
                         <option>En proceso</option>
                         <option>Postergado</option>
                         <option>Completado</option>
                       </select>
                   </td>
-                  <td><input type="text" name="peso1" id="peso9" class="form-control input-sm objetivos" value="{{$registros->peso9}}" readonly></td>
+                  <td><input type="text" name="peso9" id="peso9" class="form-control input-sm objetivos" value="{{$registros->peso9}}" readonly></td>
                   <td><input type="text" name="alcanzada9" id="alcanzada9" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada9}}"></td>  
                   <td><input type="text" name="comentarios9" id="comentarios9" class="form-control input-sm objetivos" value="{{$registros->comentarios9}}"></td>
                </tr>
@@ -339,7 +339,43 @@
             </form>
           </div>
 
-                
-         
 	</section>
 @endsection
+
+@section('javascript')
+   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+   <script>
+    $(document).ready(function () {
+        $('#form').validate({ // initialize the plugin
+            rules: {
+                 peso1: {
+                    required: false,
+                    range: [0, 100]
+                         },
+              peso2: {
+                    required: true,
+                    range: [0, 100]
+
+                     },
+              total1: {
+                    required: false,
+                    range: [100]
+                     },
+               total2: {
+                    required: false,
+                    range: [100]
+
+                      },
+                  total3: {
+                    required: false,
+                    range: [100]
+                      },
+            },
+          messages: {
+                  total1: "La suma de cada % deberá dar un total de 100%",
+                }
+        });
+    });
+  </script> 
+@endsection   

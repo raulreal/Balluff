@@ -98,6 +98,7 @@ class DesenpenoController extends Controller
         $this->validate($request,[ 'objetivo1'=>'required' ]);
          Desenpeno::find($id)->update($request->all());
         $ponderacion = Desenpeno::find($id);
+      
           if($ponderacion){
             $ponderacion->ponderacion1 = $request->alcanzada1 * ($ponderacion->peso1 / 100);
             $ponderacion->ponderacion2 = $request->alcanzada2 * ($ponderacion->peso2 / 100);

@@ -11,9 +11,6 @@
 
 @section('content')
 
-
-@section('content')
-
 <div class="col-md-12">
    <div class="panel panel-bordered">
      <div class="panel-body">
@@ -46,22 +43,22 @@
                 <td>{{ $registro->puesto }}</td>
                 
                 <td>
-                  @if ( !empty($registro->desenpeno->total1) )
-                    {{ $registro->desenpeno->total1 }} %
+                  @if ( !empty($registro->desenpeno->ponderacion1) )
+                    {{ $registro->desenpeno->ponderacion1 }} %
                   @else
                   --
                   @endif
                 </td>
                <td>
-                  @if ( !empty($registro->desenpeno->total2) )
-                    {{ $registro->desenpeno->total2 }} %
+                  @if ( !empty($registro->desenpeno->ponderacion2) )
+                    {{ $registro->desenpeno->ponderacion2 }} %
                   @else
                   --
                   @endif
                 </td>
                                <td>
-                  @if ( !empty($registro->desenpeno->total3) )
-                    {{ $registro->desenpeno->total3 }} %
+                  @if ( !empty($registro->desenpeno->ponderacion3) )
+                    {{ $registro->desenpeno->ponderacion }} %
                   @else
                   --
                   @endif
