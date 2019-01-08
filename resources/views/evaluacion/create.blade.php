@@ -61,7 +61,7 @@
 <div class="col-md-12 objetivos_tab">
 
     <div class="panel panel-default">
-      <div class="panel-heading"><span>Objetivos CSP ó Individuales | Peso:</span> <input type="text" name="peso_oindividuales" id="peso_oindividuales" class="form-control input-sm objetivos" style="display: inline-block; width: 40px;"><span> %</span></div>  
+      <div class="panel-heading"><span>Objetivos CSP ó Individuales | Peso:</span> <input type="number" name="peso_oindividuales" id="ponderacion1" class="form-control input-sm objetivos peso_monto1" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span></div>  
       <input type="hidden" name="user_id" id="user_id" value={{ $usuario->id }}   >
                 <div class="table-responsive tabla1">
                   <table class="table">
@@ -127,7 +127,7 @@
                    <td></td>
                    <td></td>
                    <td></td>
-                   <td><strong>Total  Objetivos individuales: </strong></td>
+                   <td><strong>Total Objetivos individuales: </strong></td>
                    <td><input type="text"  id="spTotal1" value="" name="total1" class="form-control input-sm objetivos" placeholder=" % " readonly ></td>
                    <td></td>
                     </tbody>
@@ -136,7 +136,7 @@
       </div>
   <hr />
     <div class="panel panel-default">
-    <div class="panel-heading"><span style="display: inline-block">Objetivos Administrativos | Peso:</span> <input type="text" name="peso_oadmon" id="peso_oadmon" class="form-control input-sm objetivos" style="display: inline-block; width: 40px;"><span> %</span></div>               
+    <div class="panel-heading"><span style="display: inline-block">Objetivos Administrativos | Peso:</span> <input type="number" name="peso_oadmon" id="ponderacion2" class="form-control input-sm objetivos peso_monto2" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span></div>               
                 <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
@@ -213,7 +213,7 @@
       </div>
 <hr />
     <div class="panel panel-default">
-    <div class="panel-heading"><span>Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="peso_ocultura" class="form-control input-sm objetivos" style="display: inline-block; width: 40px;"><span> %</span></div>               
+    <div class="panel-heading"><span>Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="ponderacion3" class="form-control input-sm objetivos peso_monto3" style="display: inline-block; width: 55px;" onkeyup="sumar4();"><span> %</span></div>               
                 <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
@@ -266,6 +266,11 @@
                     </tbody>
                     </div>
                   </table>
+      <table>
+        <td><strong style="padding-right:5px;">Total de Objetivos:  </strong></td>
+        <td><input type="text"  id="peso_total" value="" name="peso_total" class="form-control input-sm objetivos peso_monto" style="width:50px" readonly ></td>
+        <td> %</td>
+      </table>
       </div>
          <hr />     
 </div>
@@ -275,50 +280,12 @@
 		<a href="{{ route('evaluacion.indexjfe') }}" class="btn btn-info btn-block" >Atrás</a>
 		</div>	
 </form>
-@endsection
-         
-@section('javascript')
-  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-   <script>
-    $(document).ready(function () {
-    $('#form').validate({ // initialize the plugin
-        rules: {
-             peso1: {
-                required: false,
-                range: [0, 100]
-                     },
-          peso2: {
-                required: true,
-                range: [0, 100]
-                
-                 },
-          total1: {
-                required: false,
-                range: [100, 100]
-                 },
-           total2: {
-                required: false,
-                range: [100, 100]
-                
-                  },
-              total3: {
-                required: false,
-                range: [100, 100]
-                  },
-        },
-      messages: {
-              total1: "La suma de cada % deberá dar un total de 100%",
-            }
-    });
-});
-</script> 
               
  <script type="text/javascript">
   $('.timepicker').each(function () {
       $('.timepicker').each(function () {
         $(this).datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'YYYY-MM-DD',
             enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
             daysOfWeekDisabled: [0, 6],
             useCurrent: false,
@@ -370,6 +337,85 @@ function sumar() {
   //alert(total);
   document.getElementById('spTotal3').value = total;
 }
+   
+ function sumar4() {
+  var total = 0;
+   
+  var ponderacion1 = parseFloat(document.getElementById('ponderacion1').value)||0
+  var ponderacion2 = parseFloat(document.getElementById('ponderacion2').value)||0
+  var ponderacion3 = parseFloat(document.getElementById('ponderacion3').value)||0
+   
+  total = ponderacion1 + ponderacion2 + ponderacion3
+ 
+  document.getElementById('peso_total').value = total;
+}
+</script>
+              
+@endsection
+         
+@section('javascript')
+  
+              
+
+              
+              <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+   <script>
+    $(document).ready(function () {
+    $('#form').validate({ // initialize the plugin
+        rules: {
+             peso1: {
+                required: false,
+                range: [0, 100]
+                     },
+          peso2: {
+                required: true,
+                range: [0, 100]
+                
+                 },
+          spTotal1: {
+                required: false,
+                range: [100, 100]
+                 },
+           total2: {
+                required: false,
+                range: [100, 100]
+                
+                  },
+           total3: {
+                required: false,
+                range: [100, 100]
+                  },
+          peso_total: {
+                required: false,
+                range: [100,100]
+          }
+        },
+      messages: {
+              spTotal1: "La suma de cada % deberá dar un total de 100%",
+            },
+      messages: {
+              total2: "La suma de cada % deberá dar un total de 100%",
+            },
+      messages: {
+              total3: "La suma de cada % deberá dar un total de 100%",
+            },
+      messages: {
+              peso_total: "La suma de cada % deberá dar un total de 100%",
+            },
+      messages: {
+              peso1: "Este campo es requerido",
+            },      
+      messages: {
+              peso2: "Este campo es requerido",
+            },
+    });
+});
+
+
+
+
 </script> 
+              
 @endsection                   
                         
