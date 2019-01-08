@@ -9,6 +9,7 @@
   </h1>
 @stop
 
+
 @section('content')
 
 <div class="col-md-12">
@@ -28,9 +29,8 @@
                <th>Colaborador</th>
                 <th>Departamento o área</th>
                 <th>Puesto</th>
-               <th>Objetivos individuales</th>
-               <th>Objetivos administrativos</th>
-               <th>Objetivos de cultura</th>
+               <th>Fecha de ingreso</th>
+               <th>Evaluación Final</th>
                 <th>Añadir/Edita</th>
                 <th></th>
              </thead>
@@ -41,24 +41,10 @@
                 <td>{{ $registro->name }} {{ $registro->apellido }}</td>
                 <td>{{ $registro->departamento->nombre }}</td>
                 <td>{{ $registro->puesto }}</td>
-                
-                <td>
-                  @if ( !empty($registro->desenpeno->ponderacion1) )
-                    {{ $registro->desenpeno->ponderacion1 }} %
-                  @else
-                  --
-                  @endif
-                </td>
+                <td>{{ $registro->fecha_ingreso }}</td>
                <td>
-                  @if ( !empty($registro->desenpeno->ponderacion2) )
-                    {{ $registro->desenpeno->ponderacion2 }} %
-                  @else
-                  --
-                  @endif
-                </td>
-                               <td>
-                  @if ( !empty($registro->desenpeno->ponderacion3) )
-                    {{ $registro->desenpeno->ponderacion }} %
+                  @if ( !empty($registro->desenpeno->e_final) )
+                    {{ $registro->desenpeno->e_final }}
                   @else
                   --
                   @endif
