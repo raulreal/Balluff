@@ -61,7 +61,7 @@
 <div class="col-md-12 objetivos_tab">
 
     <div class="panel panel-default">
-      <div class="panel-heading">Objetivos CSP ó Individuales</div>  
+      <div class="panel-heading"><span>Objetivos CSP ó Individuales | Peso:</span> <input type="text" name="peso_oindividuales" id="peso_oindividuales" class="form-control input-sm objetivos" style="display: inline-block; width: 40px;"><span> %</span></div>  
       <input type="hidden" name="user_id" id="user_id" value={{ $usuario->id }}   >
                 <div class="table-responsive tabla1">
                   <table class="table">
@@ -136,7 +136,7 @@
       </div>
   <hr />
     <div class="panel panel-default">
-    <div class="panel-heading">Objetivos Administrativos</div>               
+    <div class="panel-heading"><span style="display: inline-block">Objetivos Administrativos | Peso:</span> <input type="text" name="peso_oadmon" id="peso_oadmon" class="form-control input-sm objetivos" style="display: inline-block; width: 40px;"><span> %</span></div>               
                 <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
@@ -213,7 +213,7 @@
       </div>
 <hr />
     <div class="panel panel-default">
-    <div class="panel-heading">Objetivos Cultura Organizacional</div>               
+    <div class="panel-heading"><span>Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="peso_ocultura" class="form-control input-sm objetivos" style="display: inline-block; width: 40px;"><span> %</span></div>               
                 <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>

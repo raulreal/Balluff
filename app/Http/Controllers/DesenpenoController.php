@@ -52,7 +52,7 @@ class DesenpenoController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,[ 'objetivo1'=>'required']);
+        $this->validate($request,[ 'objetivo1'=>'required', 'peso_oindividuales'=>'required','peso_oadmon'=>'required','peso_ocultura'=>'required']);
         Desenpeno::create($request->all());
         return redirect()->route('evaluacion.indexjfe')->with('success','Registro creado satisfactoriamente');
     }

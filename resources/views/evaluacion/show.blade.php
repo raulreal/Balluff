@@ -163,7 +163,7 @@
                   <td><input type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" value="{{$registros->comentarios5}}" readonly></td>
                </tr>
                 <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff">Total objetivos  individuales</td>
+                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos individuales:    </td>
                  <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$registros->total1}}" readonly > </td>
                  <td></td>
                </tr>
@@ -276,7 +276,7 @@
                       
                </tr>
                                <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff">Total objetivos  administrativos</td>
+                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos  administrativos:    </td>
                  <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$registros->total2}}" readonly > </td>
                  <td></td>
                </tr>
@@ -352,7 +352,7 @@
                   <td><input type="text" name="comentarios13" id="comentarios13" class="form-control input-sm objetivos" value="{{$registros->comentarios13}}"></td>
                </tr>
                                <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff">Total Objetivos de cultura organizacional</td>
+                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos de cultura organizacional:    </td>
                  <td><input type="text" name="total3" id="total3" class="form-control input-sm objetivos" value="{{$registros->total3}}" readonly > </td>
                  <td></td>
                </tr>
@@ -366,9 +366,27 @@
                       <div class="col-sm-12"><center><h3>
                         RESULTADOS
                         </h3></center></div>
-                      <div class="col-sm-3"><strong>Total objetivos individuales</strong><br/> {{$registros->total1 * .6 }}</div>
-                      <div class="col-sm-3"><strong>Total objetivos administrativos</strong><br/> {{$registros->total2 * .2 }} </div>
-                      <div class="col-sm-3"><strong>Total Objetivos de cultura organizacional</strong><br/>  {{$registros->total3 * .2 }}</div>
+                      <div class="col-sm-3"><strong>Total objetivos individuales</strong><br/> 
+                        @if ($registros->e_final)
+                          {{$registros->total1 * ($registros->peso_oindividuales/100) }}
+                        @else
+                          0
+                        @endif
+                      </div>
+                      <div class="col-sm-3"><strong>Total objetivos administrativos</strong><br/> 
+                        @if ($registros->e_final)  
+                          {{$registros->total2 * ($registros->peso_oadmon/100) }} 
+                        @else
+                          0
+                        @endif
+                      </div>
+                      <div class="col-sm-3"><strong>Total Objetivos de cultura organizacional</strong><br/>  
+                         @if ($registros->e_final)  
+                          {{$registros->total3 * ($registros->peso_ocultura/100) }}
+                        @else
+                          0
+                        @endif
+                      </div>
                       <div class="col-sm-3"><strong>Evaluación Final</strong><br/><strong>{{$registros->e_final}} </strong></div>
             </div>
               <div class="firmas">
