@@ -40,7 +40,8 @@ class DesenpenoController extends Controller
     public function create(Request $request)
     {
       $usuario = User::find($request->user_id); 
-        return view('evaluacion.create',compact('usuario'));
+      $fecha = Carbon::now();
+        return view('evaluacion.create',compact('usuario','fecha'));
     }
  
     /**
