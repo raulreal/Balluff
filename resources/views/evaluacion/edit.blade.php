@@ -58,7 +58,7 @@
                         
         <div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('evaluaciones.update',$registros->id) }}"  role="form">
+						<form method="POST" action="{{ route('evaluaciones.update',$registros->id) }}"  role="form" id="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
               <div class="panel-heading">Objetivos CSP ó Individuales</div>               
@@ -343,37 +343,79 @@
 @endsection
 
 @section('javascript')
-   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
    <script>
     $(document).ready(function () {
-        $('#form').validate({ // initialize the plugin
-            rules: {
-                 peso1: {
-                    required: false,
-                    range: [0, 100]
-                         },
-              peso2: {
-                    required: true,
-                    range: [0, 100]
-
+    $('#form').validate({ // initialize the plugin
+        rules: {
+          alcanzada1: {
+                digits: true,
+                range: [0, 100]
                      },
-              total1: {
-                    required: false,
-                    range: [100, 100]
+           alcanzada2: {
+                digits: true,
+                range: [0, 100]
                      },
-               total2: {
-                    required: false,
-                    range: [100, 100]
-
-                      },
-                  total3: {
-                    required: false,
-                    range: [100, 100]
-                      },
-            },
-          messages: {
-                  total1: "La suma de cada % deberá dar un total de 100%",
+           alcanzada3: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada4: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada5: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada6: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada7: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada8: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada9: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada10: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada11: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada12: {
+                digits: true,
+                range: [0, 100]
+                     },
+           alcanzada13: {
+                digits: true,
+                range: [0, 100]
+                     },
+        },
+                   messages: {
+                     alcanzada1: " El valor debe ser menor a 100 ",
+                     alcanzada2: " El valor debe ser menor a 100 ",
+                     alcanzada3: " El valor debe ser menor a 100 ",
+                     alcanzada4: " El valor debe ser menor a 100 ",
+                     alcanzada5: " El valor debe ser menor a 100 ",
+                     alcanzada6: " El valor debe ser menor a 100 ",
+                     alcanzada7: " El valor debe ser menor a 100 ",
+                     alcanzada8: " El valor debe ser menor a 100 ",
+                     alcanzada9: " El valor debe ser menor a 100 ",
+                     alcanzada10: " El valor debe ser menor a 100 ",
+                     alcanzada11: " El valor debe ser menor a 100 ",
+                     alcanzada12: " El valor debe ser menor a 100 ",
+                     alcanzada13: " El valor debe ser menor a 100 ",
                 }
         });
     });

@@ -483,3 +483,10 @@ a.btn.btn-dark {
 a.btn.firma {
     width: 30%;
 }
+
+.error {
+    font-size: 12px;
+    font-family: arial;
+    font-weight: 400;
+    color: gray;
+}

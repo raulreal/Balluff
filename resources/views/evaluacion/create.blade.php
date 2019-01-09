@@ -364,58 +364,129 @@ function sumar() {
     $(document).ready(function () {
     $('#form').validate({ // initialize the plugin
         rules: {
-             peso1: {
-                required: false,
+          objetivo1: {
+                required: true
+                     },
+          objetivo2: {
+                required: true
+                     },
+           objetivo3: {
+                required: true
+                     },
+          peso1: {
+                digits: true,
                 range: [0, 100]
                      },
           peso2: {
-                required: true,
+                digits: true,
                 range: [0, 100]
-                
-                 },
-          spTotal1: {
-                required: false,
+                     },
+          peso3: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso4: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso5: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso6: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso7: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso8: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso9: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso10: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso11: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso12: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso13: {
+                digits: true,
+                range: [0, 100]
+                     },
+          peso_oindividuales:{
+                required: true,
+                digits: true,
+                range: [0, 100]
+          },
+                    peso_oadmon:{
+                required: true,
+                digits: true,
+                range: [0, 100]
+          },
+                    peso_ocultura:{
+                required: true,
+                digits: true,
+                range: [0, 100]
+          },
+          peso_total:{
+                required: true,
+                digits: true,
                 range: [100, 100]
-                 },
-           total2: {
-                required: false,
+          },
+                    total1:{
+                required: true,
+                digits: true,
                 range: [100, 100]
-                
-                  },
-           total3: {
-                required: false,
+          },
+                    total2:{
+                required: true,
+                digits: true,
                 range: [100, 100]
-                  },
-          peso_total: {
-                required: false,
-                range: [100,100]
-          }
+          },
+                    total3:{
+                required: true,
+                digits: true,
+                range: [100, 100]
+          },
         },
-      messages: {
-              spTotal1: "La suma de cada % deberá dar un total de 100%",
-            },
-      messages: {
-              total2: "La suma de cada % deberá dar un total de 100%",
-            },
-      messages: {
-              total3: "La suma de cada % deberá dar un total de 100%",
-            },
-      messages: {
-              peso_total: "La suma de cada % deberá dar un total de 100%",
-            },
-      messages: {
-              peso1: "Este campo es requerido",
-            },      
-      messages: {
-              peso2: "Este campo es requerido",
-            },
+                   messages: {
+                  total1: "La suma de cada % deberá dar un total de 100%",
+                     total2: "La suma de cada % deberá dar un total de 100%",
+                     total3: "La suma de cada % deberá dar un total de 100%",
+                     peso_total: "La suma de cada % deberá dar un total de 100%",
+                  peso1: "El valor debe ser menor a 100 ",
+                     peso2: " El valor debe ser menor a 100 ",
+                     peso3: " El valor debe ser menor a 100 ",
+                     peso5: " El valor debe ser menor a 100 ",
+                     peso6: " El valor debe ser menor a 100 ",
+                     peso7: " El valor debe ser menor a 100 ",
+                     peso8: " El valor debe ser menor a 100 ",
+                     peso9: " El valor debe ser menor a 100 ",
+                     peso10: " El valor debe ser menor a 100 ",
+                     peso11: " El valor debe ser menor a 100 ",
+                     peso12: " El valor debe ser menor a 100 ",
+                     peso_oindividuales: "El valor debe ser menor a 100 ",
+                     peso_oadmon: "El valor debe ser menor a 100 ",
+                     peso_ocultura: "El valor debe ser menor a 100 ",
+                     objetivo1: " Al menos debes registrar 3 objetivos ",
+                     objetivo2: " Al menos debes registrar 3 objetivos ",
+                     objetivo3: " Al menos debes registrar 3 objetivos ",
+                }
+        });
     });
-});
-
-
-
-
-</script> 
+  </script> 
               
 @endsection                   
                         
