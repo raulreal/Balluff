@@ -60,8 +60,6 @@
       <div class="float-right">
                 <img src="{{ asset('storage/settings/icono3.png') }}" height="35">
         </div>
-        
-        
       </div>  
       <input type="hidden" name="user_id" id="user_id" value={{ $usuario->id }}   >
                 <div class="table-responsive tabla1">
@@ -137,10 +135,12 @@
       </div>
   <hr />
     <div class="panel panel-default">
-    <div class="panel-heading"><span style="display: inline-block">Objetivos Administrativos | Peso:</span> <input type="number" name="peso_oadmon" id="ponderacion2" class="form-control input-sm objetivos peso_monto2" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span></div>               
+    <div class="panel-heading"><span style="display: inline-block">Objetivos Administrativos | Peso:</span> <input type="number" name="peso_oadmon" id="ponderacion2" class="form-control input-sm objetivos peso_monto2" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span>            
                      <div class="float-right">
                 <img src="{{ asset('storage/settings/icono2.png') }}" height="35">
         </div>
+      </div>   
+      
       
       <div class="table-responsive tabla1">
                   <table class="table">
@@ -218,10 +218,11 @@
       </div>
 <hr />
     <div class="panel panel-default">
-    <div class="panel-heading"><span>Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="ponderacion3" class="form-control input-sm objetivos peso_monto3" style="display: inline-block; width: 55px;" onkeyup="sumar4();"><span> %</span></div>               
+    <div class="panel-heading"><span>Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="ponderacion3" class="form-control input-sm objetivos peso_monto3" style="display: inline-block; width: 55px;" onkeyup="sumar4();"><span> %</span>             
                      <div class="float-right">
                 <img src="{{ asset('storage/settings/icono1.png') }}" height="35">
         </div>
+      </div>   
       <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
