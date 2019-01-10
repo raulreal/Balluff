@@ -7,6 +7,10 @@
       <i class="voyager-dashboard"></i>
       Evaluacion de Desempeño
   </h1>
+      <div class="float-right camino">
+                <img src="{{ asset('storage/settings/camino.png') }}" height="70px">
+        </div>
+
 @stop
 
 @section('content')
@@ -28,6 +32,7 @@
 			</div>
 			@endif
 </div>
+
              <div class="panel panel-bordered">
                <div class="panel-body">
                  <div class="table-responsive">

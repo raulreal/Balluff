@@ -7,10 +7,10 @@
       <i class="voyager-alarm-clock"></i>
       Evaluacion de Desempeño
   </h1>
+      <div class="float-right camino">
+                <img src="{{ asset('storage/settings/camino.png') }}" height="70px">
+        </div>
 @stop
-
-@section('content')
-
 
 @section('content')
 

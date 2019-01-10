@@ -8,9 +8,9 @@
       Evaluacion de Desempeño
   </h1>
 @stop
-
-@section('content')
-
+      <div class="float-right camino">
+                <img src="{{ asset('storage/settings/camino.png') }}" height="70px">
+        </div>
 
 @section('content')
 
