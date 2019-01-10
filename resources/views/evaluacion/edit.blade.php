@@ -61,7 +61,10 @@
 						<form method="POST" action="{{ route('evaluaciones.update',$registros->id) }}"  role="form" id="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
-              <div class="panel-heading">Objetivos CSP ó Individuales</div>               
+              <div class="panel-heading">Objetivos CSP ó Individuales</div>   
+                    <div class="float-right">
+                <img src="{{ asset('storage/settings/icono3.png') }}" height="35">
+        </div>
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">
@@ -161,7 +164,10 @@
               </div>
               
               
-            <div class="panel-heading">Objetivos Administrativos  </div>               
+            <div class="panel-heading">Objetivos Administrativos  </div>   
+                    <div class="float-right">
+                <img src="{{ asset('storage/settings/icono2.png') }}" height="35">
+        </div>
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">
@@ -261,7 +267,10 @@
           </table>
               </div>
               
-                                          <div class="panel-heading">Objetivos Cultura</div>               
+                                          <div class="panel-heading">Objetivos Cultura</div>   
+                    <div class="float-right">
+                <img src="{{ asset('storage/settings/icono1.png') }}" height="35">
+        </div>
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">

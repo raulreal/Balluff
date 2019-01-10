@@ -28,13 +28,10 @@
 			</div>
 			@endif
 </div>
-
              <div class="panel panel-bordered">
                <div class="panel-body">
                  <div class="table-responsive">
-
                       <div class="panel panel-primary">
-                        
                     <div class="row datososc">
                       <div class="col-sm-12"><center><h3>
                         DATOS PERSONALES
@@ -52,16 +49,20 @@
                       <div class="col-sm-2"><strong>Departamento o área: </strong><br/>        {{$usuario->departamento->nombre}}</div>
                       <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $usuario->fecha_ingreso }}</div>
                   </div>
-                        
-                        
 						<form method="POST" action="{{ route('evaluaciones.store') }}"  role="form" id="form">
-              <form method="post" action="{{url('forms')}}" id="form">
+            <form method="post" action="{{url('forms')}}" id="form" >
 							{{ csrf_field() }}
               
 <div class="col-md-12 objetivos_tab">
 
     <div class="panel panel-default">
-      <div class="panel-heading"><span>Objetivos CSP ó Individuales | Peso:</span> <input type="number" name="peso_oindividuales" id="ponderacion1" class="form-control input-sm objetivos peso_monto1" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span></div>  
+      <div class="panel-heading"><span>Objetivos CSP ó Individuales | Peso:</span> <input type="number" name="peso_oindividuales" id="ponderacion1" class="form-control input-sm objetivos peso_monto1" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span>
+      <div class="float-right">
+                <img src="{{ asset('storage/settings/icono3.png') }}" height="35">
+        </div>
+        
+        
+      </div>  
       <input type="hidden" name="user_id" id="user_id" value={{ $usuario->id }}   >
                 <div class="table-responsive tabla1">
                   <table class="table">
@@ -137,7 +138,11 @@
   <hr />
     <div class="panel panel-default">
     <div class="panel-heading"><span style="display: inline-block">Objetivos Administrativos | Peso:</span> <input type="number" name="peso_oadmon" id="ponderacion2" class="form-control input-sm objetivos peso_monto2" onkeyup="sumar4();" style="display: inline-block; width: 55px;"><span> %</span></div>               
-                <div class="table-responsive tabla1">
+                     <div class="float-right">
+                <img src="{{ asset('storage/settings/icono2.png') }}" height="35">
+        </div>
+      
+      <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
                    <th style="width: 20%">Objetivos</th>
@@ -214,7 +219,10 @@
 <hr />
     <div class="panel panel-default">
     <div class="panel-heading"><span>Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="ponderacion3" class="form-control input-sm objetivos peso_monto3" style="display: inline-block; width: 55px;" onkeyup="sumar4();"><span> %</span></div>               
-                <div class="table-responsive tabla1">
+                     <div class="float-right">
+                <img src="{{ asset('storage/settings/icono1.png') }}" height="35">
+        </div>
+      <div class="table-responsive tabla1">
                   <table class="table">
                  <thead>
                    <th style="width: 20%">Objetivos</th>
