@@ -21,7 +21,7 @@
                @if($permisoReserva)
                 <div class="panel-body">    
  
-                   {!! Form::open(array('route' => 'refugio.add','method'=>'POST','files'=>'true')) !!}
+                   {!! Form::open(array('route' => 'refugio3.add','method'=>'POST','files'=>'true')) !!}
                     <div class="row">
                        <div class="col-xs-12 col-sm-12 col-md-12">
                           @if (Session::has('success'))
