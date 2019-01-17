@@ -354,8 +354,7 @@
       $('.timepicker').each(function () {
         $(this).datetimepicker({
             format: 'YYYY-MM-DD',
-            enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            daysOfWeekDisabled: [0, 6],
+            viewMode: 'months',
             useCurrent: false,
             minDate: truncateDate(new Date())
         });

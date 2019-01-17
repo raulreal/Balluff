@@ -448,7 +448,7 @@ a.btn.btn-dark {
 }
 
 .input-sm {
-    height: 30px !important;
+    height: 40px !important;
     padding: 5px 10px !important;
     font-size: 12px !important;
     line-height: 1.5 !important;
@@ -493,4 +493,8 @@ a.btn.firma {
 
 .camino {
     margin-top: 15px;
+}
+
+textarea {
+  resize: none;
 }
