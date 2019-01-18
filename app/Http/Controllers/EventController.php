@@ -570,7 +570,7 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/refugio3')->withInput()->withErrors($validator);
         }
-        $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
+        $validarFecha = $this->dateValidation('refugio3', $request->start_date, $request->end_date);
         if($validarFecha[0]){
           \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
           return Redirect::to('/refugio3')->withInput()->withErrors($validator);
