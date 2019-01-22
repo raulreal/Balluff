@@ -597,21 +597,17 @@ class EventController extends Controller
   }
   
    public function actualizar(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'event_name' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required'
-        ]);
- 
-        if ($validator->fails()) {
-        	\Session::flash('warnning','Revisa la informacíon');
-            return Redirect::to('/refugio')->withInput()->withErrors($validator);
-        }
-        $validarFecha = $this->dateValidation('refugio', $request->start_date, $request->end_date);
+   {
+       $this->validate($request, [ 
+          'event_name' => 'required',
+          'start_date' => 'required',
+          'end_date' => 'required'
+       ]);
+     
+        $validarFecha = $this->dateValidation( $request->sala , $request->start_date, $request->end_date);
         if($validarFecha[0]){
-          \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
-          return Redirect::to('/refugio')->withInput()->withErrors($validator);
+          \Session::flash('warnning', 'La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible.');
+          return back()->withInput();
         }
         
         $idEvento = $request->id_evento;

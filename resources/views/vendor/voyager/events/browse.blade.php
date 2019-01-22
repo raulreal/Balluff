@@ -70,20 +70,9 @@
                                         @endcan
                                         @foreach($dataType->browseRows as $row)
                                         <th>
-                                            @if ($isServerSide)
-                                                <a href="{{ $row->sortByUrl() }}">
-                                            @endif
+                                            
                                             {{ $row->display_name }}
-                                            @if ($isServerSide)
-                                                @if ($row->isCurrentSortField())
-                                                    @if (!isset($_GET['sort_order']) || $_GET['sort_order'] == 'asc')
-                                                        <i class="voyager-angle-up pull-right"></i>
-                                                    @else
-                                                        <i class="voyager-angle-down pull-right"></i>
-                                                    @endif
-                                                @endif
-                                                </a>
-                                            @endif
+                                           
                                         </th>
                                         @endforeach
                                         <th class="actions text-right">{{ __('voyager::generic.actions') }}</th>

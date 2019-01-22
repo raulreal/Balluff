@@ -51,8 +51,16 @@
                 </td>
                 <td>
                   @if ( !empty($registro->desenpeno->id) )
-                        <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
-                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Revisión</span>
+                       <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
+                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar Objetivos</span>
+                        </a>
+                  
+                        <a href="javascript:void(0);" title="Editar" class="btn btn-sm btn-primary edit" disabled>
+                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Revisión 01</span>
+                        </a> 
+                  
+                  <a href="javascript:void(0);" title="Editar" class="btn btn-sm btn-primary edit" disabled>
+                            <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Revisión 02</span>
                         </a>
                    <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
                             <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver Evaluación</span>
