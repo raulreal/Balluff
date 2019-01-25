@@ -63,7 +63,7 @@
 						<form method="POST" action="{{ route('evaluaciones.update',$registros->id) }}"  role="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
-              <div class="panel-heading">Objetivos CSP ó Individuales</div>               
+              <div class="panel-heading">Objetivos CSP ó Individuales <span><strong>{{$registros->peso_oindividuales}} %</strong></span></div>               
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">
@@ -174,7 +174,7 @@
               </div>
               
               
-            <div class="panel-heading">Objetivos Administrativos </div>               
+            <div class="panel-heading">Objetivos Administrativos <span><strong>{{$registros->peso_oadmon}} %</strong></span></div>               
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">
@@ -285,7 +285,7 @@
           </table>
               </div>
               
-                                          <div class="panel-heading">Objetivos Cultura</div>               
+                                          <div class="panel-heading">Objetivos Cultura <span><strong>{{$registros->peso_ocultura}} %</strong></span></div>               
             <div class="table-responsive">
               <table class="table">
               <div class="table-responsive">
