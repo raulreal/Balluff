@@ -41,7 +41,11 @@
               @foreach($registros as $registro)  
               <tr>
                 <td>{{ $registro->name }} {{ $registro->apellido }}</td>
+                @if($registro->departamento)
                 <td>{{ $registro->departamento->nombre }}</td>
+                @else
+                  <td> Sin departamento </td>
+                @endif
                 <td>{{ $registro->puesto }}</td>
                 @if($registro->miJefe)
                   <td> {{ $registro->miJefe->name }} {{ $registro->miJefe->apellido }}</td>
