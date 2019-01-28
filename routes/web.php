@@ -11,7 +11,6 @@
 |
 */
 
-
  Route::get('login', function () {
               return view('vendor/voyager/login');
           })->name('login');

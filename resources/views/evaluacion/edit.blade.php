@@ -32,11 +32,22 @@
                 </div>
                 @endif
             
+            
              <div class="panel panel-bordered">
+               
+                <div class="col-xs-12 col-sm-12 col-md-12 botoneslrg">
+                    <a href="{{route('evaluaciones.edit', [$id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit">
+                        <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Imprimir reporte</span>
+                    </a>
+                  </div>	
+               
                <div class="panel-body">
                  <div class="table-responsive">
-
+                   
                       <div class="panel panel-primary">
+                        
+                      
+                        
                         
                     <div class="row datososc">
                       <div class="col-sm-12"><center><h3>

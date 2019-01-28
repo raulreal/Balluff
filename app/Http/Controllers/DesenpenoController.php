@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Validator;
 use App\User;
 use App\Desenpeno;
+use \Mail;
 
  
 class DesenpenoController extends Controller
@@ -80,11 +81,44 @@ class DesenpenoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
-        $registros = Desenpeno::find($id);
-        return view('evaluacion.edit',compact('registros'));
+      
+        $registros = Desenpeno::find($id); 
+      
+        //Evaluar de que boton viene
+        if($request->descargar_pdf) {
+            $view =  \View::make('evaluacion.editPdf', compact('registros'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('reporte.pdf');
+        }
+        else if($request->enviar_pdf) {
+        	    $estado = 'success';
+        	    $mensaje = 'El reporte se envio correctamete.';
+        	    
+        	    if(true) {
+        	        $correo = "sdsd";
+        	        $pdf = \App::make('dompdf.wrapper');
+            	    $pdf->loadView('evaluacion.editPdf', compact('registros'));
+                    
+                  try {
+                      Mail::raw('Evaluacion de Desempeno', function($message) use($pdf, $correo)
+                      {
+                          $message->from('no-reply@balluff.com', 'Balluff');
+                          $message->to('jose@stetamalo.com')->subject('Evaluacion de Desempeno');
+                          $message->attachData($pdf->output(), "Evaluacion_de_Desempeno.pdf");
+                      });
+                  }
+                  catch ( \Exception $e) {
+                      $estado = 'error';
+                      $mensaje = 'El reporte no se envio.';
+                  }
+        	    }
+              //return back()->with($estado, $mensaje);
+    	    }
+        
+        return view('evaluacion.edit', compact('registros', 'id'));
     }
  
     /**
