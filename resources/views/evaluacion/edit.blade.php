@@ -36,7 +36,7 @@
              <div class="panel panel-bordered">
                
                 <div class="col-xs-12 col-sm-12 col-md-12 botoneslrg">
-                    <a href="{{route('evaluaciones.edit', [$id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit">
+                    <a href="{{route('evaluaciones.edit', [$id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck">
                         <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Imprimir reporte</span>
                     </a>
                   </div>	
