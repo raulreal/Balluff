@@ -105,10 +105,10 @@ class DesenpenoController extends Controller
             	    $pdf->loadView('evaluacion.editPdf', compact('registros'));
                     
                   try {
-                    Mail::raw('Evaluacion de Desempeño', function($message) use($pdf, $correo)
+                    Mail::raw('Evaluación de Desempeño', function($message) use($pdf, $correo)
                       {
                           $message->from('no-reply@balluff.com', 'Balluff');
-                          $message->to($correo)->subject('Evaluacion de Desempeño');
+                          $message->to($correo)->subject('Evaluación de Desempeño');
                           $message->attachData($pdf->output(), "Evaluacion_de_Desempeno.pdf");
                       });
                     
