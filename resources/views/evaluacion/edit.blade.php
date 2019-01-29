@@ -40,6 +40,8 @@
                   <form method="GET" action="{{ route('evaluaciones.edit', $registros->id) }}" class="form-inline" >
                       {{ csrf_field() }}
                       <input type="email" name="email_evalucion" class="form-control input-sm objetivos peso_monto1" required placeholder="ejemplo@balluff.com" style="width:200px; height: 30px !important;" >
+                      <input type="hidden" name="enviar_pdf" value="1" >
+                      
                       <input type="submit"  value="Enviar" class="btn btn-sm btn-primary edit" style="margin-left:-2px;">
                     
                     <a href="{{route('evaluaciones.edit', [$id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck" style="margin-left:20px;">
