@@ -10,7 +10,9 @@ use Carbon\Carbon;
 use Validator;
 use App\User;
 use App\Desenpeno;
-use \Mail;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReporteEvaluacion;
 
  
 class DesenpenoController extends Controller
@@ -97,25 +99,26 @@ class DesenpenoController extends Controller
         	    $estado = 'success';
         	    $mensaje = 'El reporte se envio correctamete.';
         	    
-        	    if(true) {
-        	        $correo = "sdsd";
+        	    if($request->email_evalucion) {
+        	        $correo = $request->email_evalucion;
         	        $pdf = \App::make('dompdf.wrapper');
             	    $pdf->loadView('evaluacion.editPdf', compact('registros'));
                     
                   try {
-                      Mail::raw('Evaluacion de Desempeno', function($message) use($pdf, $correo)
+                    Mail::raw('Evaluacion de Desempeno', function($message) use($pdf, $correo)
                       {
                           $message->from('no-reply@balluff.com', 'Balluff');
-                          $message->to('jose@stetamalo.com')->subject('Evaluacion de Desempeno');
+                          $message->to($correo)->subject('Evaluacion de Desempeño');
                           $message->attachData($pdf->output(), "Evaluacion_de_Desempeno.pdf");
                       });
+                    
                   }
                   catch ( \Exception $e) {
                       $estado = 'error';
                       $mensaje = 'El reporte no se envio.';
                   }
         	    }
-              //return back()->with($estado, $mensaje);
+              return redirect()->route('evaluaciones.edit', $registros->id )->with($estado, $mensaje);
     	    }
         
         return view('evaluacion.edit', compact('registros', 'id'));
