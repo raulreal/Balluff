@@ -86,8 +86,7 @@ class DesenpenoController extends Controller
     public function edit($id, Request $request)
     {
       
-        $registros = Desenpeno::find($id); 
-      
+        $registros = Desenpeno::find($id);
         //Evaluar de que boton viene
         if($request->descargar_pdf) {
             $view =  \View::make('evaluacion.editPdf', compact('registros'))->render();

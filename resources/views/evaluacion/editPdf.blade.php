@@ -115,7 +115,11 @@
                               <td>{{$registros->objetivo1}}</td>
                               <td>{{$registros->meta1}}</td>
                               <td>{{$registros->medida1}}</td>
-                              <td>{{$registros->fecha1}}</td>
+                              <td>
+                                @if($registros->fecha1)
+                                  {{ date('Y-m-d', strtotime($registros->fecha1)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus1}}</td>
                               <td>{{$registros->peso1}}</td>
                               <td>{{$registros->alcanzada1}}</td>  
@@ -125,7 +129,11 @@
                               <td>{{$registros->objetivo2}}</td>
                               <td>{{$registros->meta2}}</td>
                               <td>{{$registros->medida2}}</td>
-                              <td>{{$registros->fecha2}}</td>
+                              <td>
+                                @if($registros->fecha2)
+                                  {{ date('Y-m-d', strtotime($registros->fecha2)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus2}}</td>
                               <td>{{$registros->peso2}}</td>
                               <td>{{$registros->alcanzada2}}</td>  
@@ -135,7 +143,11 @@
                               <td>{{$registros->objetivo3}}</td>
                               <td>{{$registros->meta3}}</td>
                               <td>{{$registros->medida3}}</td>
-                              <td>{{$registros->fecha3}}</td>
+                              <td>
+                                @if($registros->fecha3)
+                                  {{ date('Y-m-d', strtotime($registros->fecha3)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus3}}</td>
                               <td>{{$registros->peso3}}</td>
                               <td>{{$registros->alcanzada3}}</td>  
@@ -145,7 +157,11 @@
                               <td>{{$registros->objetivo4}}</td>
                               <td>{{$registros->meta4}}</td>
                               <td>{{$registros->medida4}}</td>
-                              <td>{{$registros->fecha4}}</td>
+                              <td>
+                                @if($registros->fecha4)
+                                  {{ date('Y-m-d', strtotime($registros->fecha4)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus4}}</td>
                               <td>{{$registros->peso4}}</td>
                               <td>{{$registros->alcanzada4}}</td>  
@@ -155,7 +171,11 @@
                               <td>{{$registros->objetivo5}}</td>
                               <td>{{$registros->meta5}}</td>
                               <td>{{$registros->medida5}}</td>
-                              <td>{{$registros->fecha5}}</td>
+                              <td>
+                                @if($registros->fecha5)
+                                  {{ date('Y-m-d', strtotime($registros->fecha5)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus5}}</td>
                               <td>{{$registros->peso5}}</td>
                               <td>{{$registros->alcanzada5}}</td>  
@@ -195,7 +215,11 @@
                               <td>{{$registros->objetivo6}}</td>
                               <td>{{$registros->meta6}}</td>
                               <td>{{$registros->medida6}}</td>
-                              <td>{{$registros->fecha6}}</td>
+                              <td>
+                                @if($registros->fecha6)
+                                  {{ date('Y-m-d', strtotime($registros->fecha6)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus6}}</td>
                               <td>{{$registros->peso6}}</td>
                               <td>{{$registros->alcanzada6}}</td>  
@@ -206,7 +230,11 @@
                               <td>{{$registros->objetivo7}}</td>
                               <td>{{$registros->meta7}}</td>
                               <td>{{$registros->medida7}}</td>
-                              <td>{{$registros->fecha7}}</td>
+                              <td>
+                                @if($registros->fecha7)
+                                  {{ date('Y-m-d', strtotime($registros->fecha7)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus7}}</td>
                               <td>{{$registros->peso7}}</td>
                               <td>{{$registros->alcanzada7}}</td>  
@@ -217,7 +245,11 @@
                               <td>{{$registros->objetivo8}}</td>
                               <td>{{$registros->meta8}}</td>
                               <td>{{$registros->medida8}}</td>
-                              <td>{{$registros->fecha8}}</td>
+                              <td>
+                                @if($registros->fecha8)
+                                  {{ date('Y-m-d', strtotime($registros->fecha8)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus8}}</td>
                               <td>{{$registros->peso8}}</td>
                               <td>{{$registros->alcanzada8}}</td>  
@@ -228,7 +260,11 @@
                               <td>{{$registros->objetivo9}}</td>
                               <td>{{$registros->meta9}}</td>
                               <td>{{$registros->medida9}}</td>
-                              <td>{{$registros->fecha9}}</td>
+                              <td>
+                                @if($registros->fecha9)
+                                  {{ date('Y-m-d', strtotime($registros->fecha9)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus9}}</td>
                               <td>{{$registros->peso9}}</td>
                               <td>{{$registros->alcanzada9}}</td>  
@@ -239,7 +275,11 @@
                               <td>{{$registros->objetivo10}}</td>
                               <td>{{$registros->meta10}}</td>
                               <td>{{$registros->medida10}}</td>
-                              <td>{{$registros->fecha10}}</td>
+                              <td>
+                                @if($registros->fecha10)
+                                  {{ date('Y-m-d', strtotime($registros->fecha10)) }}
+                                @endif                   
+                              </td>
                               <td>{{$registros->estatus10}}</td>
                               <td>{{$registros->peso10}}</td>
                               <td>{{$registros->alcanzada10}}</td>  
@@ -282,7 +322,11 @@
                                   <td>{{$registros->objetivo11}}</td>
                                   <td>{{$registros->meta11}}</td>
                                   <td>{{$registros->medida11}}</td>
-                                  <td>{{$registros->fecha11}}</td>
+                                  <td>
+                                    @if($registros->fecha11)
+                                      {{ date('Y-m-d', strtotime($registros->fecha11)) }}
+                                    @endif                   
+                                  </td>
                                   <td>{{$registros->estatus11}}</td>
                                   <td>{{$registros->peso11}}</td>
                                   <td>{{$registros->alcanzada11}}</td>  
@@ -292,7 +336,11 @@
                                 <td>{{$registros->objetivo12}}</td>
                                 <td>{{$registros->meta12}}</td>
                                 <td>{{$registros->medida12}}</td>
-                                <td>{{$registros->fecha12}}</td>
+                                <td>
+                                  @if($registros->fecha12)
+                                    {{ date('Y-m-d', strtotime($registros->fecha12)) }}
+                                  @endif                   
+                                </td>
                                 <td>{{$registros->estatus12}}</td>
                                 <td>{{$registros->peso12}}</td>
                                 <td>{{$registros->alcanzada12}}</td>  
@@ -302,7 +350,11 @@
                                 <td>{{$registros->objetivo13}}</td>
                                 <td>{{$registros->meta13}}</td>
                                 <td>{{$registros->medida13}}</td>
-                                <td>{{$registros->fecha13}}</td>
+                                <td>
+                                  @if($registros->fecha13)
+                                    {{ date('Y-m-d', strtotime($registros->fecha13)) }}
+                                  @endif                   
+                                </td>
                                 <td>{{$registros->estatus13}}</td>
                                 <td>{{$registros->peso13}}</td>
                                 <td>{{$registros->alcanzada13}}</td>  
