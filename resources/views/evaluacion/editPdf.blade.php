@@ -385,6 +385,53 @@
          
                 </div>
               </div>
+              
+         @if(isset($resutado))
+              <div class="row datososc" style="margin-top:15px;">
+                  <div class="col-sm-12"><center><h3 style="margin: 4px;">
+                    RESULTADOS
+                    </h3></center>
+                  </div>
+                  <table class="table">
+                     <tr>
+                        <th>Total objetivos individuales</th>
+                        <th>Total objetivos administrativos</th>
+                        <th>Total Objetivos de cultura organizacional</th>
+                        <th>Evaluación Final</th>
+                     </tr>
+                     <tr>
+                        <td>
+                          @if ($registros->e_final)
+                            {{$registros->total1 * ($registros->peso_oindividuales/100) }}
+                          @else
+                            0
+                          @endif
+                       </td>
+                       
+                        <td>
+                          @if ($registros->e_final)  
+                            {{$registros->total2 * ($registros->peso_oadmon/100) }} 
+                          @else
+                            0
+                          @endif
+                        </td>
+                       
+                        <td>
+                            @if ($registros->e_final)  
+                              {{$registros->total3 * ($registros->peso_ocultura/100) }}
+                            @else
+                              0
+                            @endif
+                       </td>
+                       
+                        <td>
+                          {{$registros->e_final}}
+                        </td>
+                     </tr>
+                  </table>
+              </div>
+         @endif
+         
      
             </div>
           </div>

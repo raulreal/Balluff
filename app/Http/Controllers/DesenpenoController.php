@@ -67,14 +67,47 @@ class DesenpenoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $usr = Auth::user();
         $registros = Desenpeno::find($id);
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
+        $resutado = true;
+        //Evaluar de que boton viene
+        if($request->descargar_pdf) {
+            $view =  \View::make('evaluacion.editPdf', compact('registros', 'resutado'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('reporte.pdf');
+        }
+        else if($request->enviar_pdf) {
+        	    $estado = 'success';
+        	    $mensaje = 'El reporte se envio correctamete.';
+        	    
+        	    if($request->email_evalucion) {
+        	        $correo = $request->email_evalucion;
+        	        $pdf = \App::make('dompdf.wrapper');
+            	    $pdf->loadView('evaluacion.editPdf', compact('registros', 'resutado'));
+                    
+                  try {
+                    Mail::raw('Evaluación de Desempeño', function($message) use($pdf, $correo)
+                      {
+                          $message->from('no-reply@balluff.com', 'Balluff');
+                          $message->to($correo)->subject('Evaluación de Desempeño');
+                          $message->attachData($pdf->output(), "Evaluacion_de_Desempeno.pdf");
+                      });
+                    
+                  }
+                  catch ( \Exception $e) {
+                      $estado = 'error';
+                      $mensaje = 'El reporte no se envio.';
+                  }
+        	    }
+              return redirect()->route('evaluaciones.edit', $registros->id )->with($estado, $mensaje);
+    	    }
         
-        return  view('evaluacion.show',compact('registros', 'usr', 'permisoRh'));
+        return  view('evaluacion.show',compact('registros', 'usr', 'permisoRh', 'id'));
     }
  
     /**

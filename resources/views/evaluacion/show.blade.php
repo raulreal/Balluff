@@ -7,10 +7,10 @@
       <i class="voyager-alarm-clock"></i>
       Evaluacion de Desempeño
   </h1>
+  <div class="float-right camino">
+        <img src="{{ asset('storage/settings/camino.png') }}" height="70px">
+  </div>
 @stop
-      <div class="float-right camino">
-                <img src="{{ asset('storage/settings/camino.png') }}" height="70px">
-        </div>
 
 @section('content')
 
@@ -33,6 +33,22 @@
                 @endif
             
              <div class="panel panel-bordered">
+               
+               <div class="col-xs-12 col-sm-12 col-md-12 form-inline">
+                  <form method="GET" action="{{ route('evaluaciones.show', $registros->id) }}" class="form-inline" >
+                      {{ csrf_field() }}
+                      <input type="email" name="email_evalucion" class="form-control input-sm objetivos peso_monto1" required placeholder="ejemplo@balluff.com" style="width:200px; height: 30px !important;" >
+                      <input type="hidden" name="enviar_pdf" value="1" >
+                      
+                      <input type="submit"  value="Enviar" class="btn btn-sm btn-primary edit" style="margin-left:-2px;">
+                    
+                    <a href="{{route('evaluaciones.show', [$id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck" style="margin-left:20px;">
+                         <span class="hidden-xs hidden-sm">Imprimir reporte</span>
+                    </a>
+                  </form>
+               </div>	
+               
+               
                <div class="panel-body">
                  <div class="table-responsive">
 
@@ -389,7 +405,9 @@
                       </div>
                       <div class="col-sm-3"><strong>Evaluación Final</strong><br/><strong>{{$registros->e_final}} </strong></div>
             </div>
-              <div class="firmas">
+              
+            
+            <div class="firmas">
                 
             @if ($registros->f_empleado)
                 <div class="alert alert-success" role="alert">
