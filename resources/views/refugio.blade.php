@@ -66,9 +66,11 @@
                       <div class="col-xs-1 col-sm-1 col-md-1 text-center"> &nbsp;<br/>
                       {!! Form::submit('Reservar Sala',['class'=>'btn btn-primary']) !!}
                         
-                        <a href="admin/events" class="btn btn-primary btn-sm edit">
-                                    <i class="voyager-edit"></i> Editar Reservaciones
-                                </a>
+                        @if( \Auth::user()->role->name == "admin" )  
+                          <a href="/events" class="btn btn-primary btn-sm edit">
+                              <i class="voyager-edit"></i> Editar Reservaciones
+                          </a>
+                      @endif
                       </div>
                     </div>
                    {!! Form::close() !!}

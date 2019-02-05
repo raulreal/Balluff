@@ -29,8 +29,12 @@
                           
                           <input type="hidden" name="id_evento" value="{{ $event->id }}" >
                           
-                          
+                          {!! Form::hidden('id_evento', $event->id) !!}
                           {!! Form::hidden('sala', $event->sala) !!}
+                          
+                          @if($admin) 
+                              {!! Form::hidden('admin', $event->sala) !!}
+                          @endif
 
                           <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">

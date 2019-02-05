@@ -14,7 +14,7 @@ use Calendar;
 class EventController extends Controller
 {
   
-    public function dateValidation($sala2, $startDate2, $endDate2) {
+    public function dateValidation($sala2, $startDate2, $endDate2, $idEvento = false) {
          $sala = $sala2;
          $startDate = $startDate2;
          $endDate = $endDate2;
@@ -22,17 +22,28 @@ class EventController extends Controller
          $response = [$taken, ""];
      
          $events = Event::where('sala', $sala)->where([ ['start_date','<=',$startDate], ['end_date', '>', $startDate] ])
-                     ->with('reservador')->first();
+                     ->with('reservador');
          $events1 = Event::where('sala', $sala)->where([ ['start_date','<',$endDate], ['end_date', '>=', $endDate] ])
-                     ->with('reservador')->first();
+                     ->with('reservador');
          $events2 = Event::where('sala', $sala)
                      ->where('start_date','!=',$endDate)
                      ->whereBetween('start_date', [$startDate, $endDate])
-                     ->with('reservador')->first();
+                     ->with('reservador');
          $events3 = Event::where('sala', $sala)
                      ->where('end_date', '!=', $startDate)
                      ->whereBetween('end_date', [$startDate, $endDate])
-                     ->with('reservador')->first();
+                     ->with('reservador');
+         if($idEvento) {
+           $events =  $events->where('id', '!=', $idEvento);
+           $events1 = $events1->where('id', '!=', $idEvento);
+           $events2 = $events2->where('id', '!=', $idEvento);
+           $events3 = $events3->where('id', '!=', $idEvento);
+         }
+         
+         $events =  $events->first();
+         $events1 = $events1->first();
+         $events2 = $events2->first();
+         $events3 = $events3->first();
       
          if($events && !$taken) {
              $taken = true;
@@ -59,22 +70,9 @@ class EventController extends Controller
       return in_array($sala, $permisoSala);
     }
 
-    public function index(){
-      $events = Event::where('sala', 'juntas')->get();
-    	$event_list = [];
-    	foreach ($events as $key => $event) {
-    		$event_list[] = Calendar::event(
-               
-            $event->event_name,
-                false,
-                new \DateTime($event->start_date),
-                new \DateTime($event->end_date),
-          $event->id
-            );
-    	}
-    	$calendar_details = Calendar::addEvents($event_list); 
- 
-        return view('events', compact('calendar_details') );
+    public function index() {
+      $registros = Event::orderBy('id', 'desc')->paginate(12);
+      return view('eventos.index', compact('registros'));
     }
  
     public function addEvent(Request $request)
@@ -589,23 +587,27 @@ class EventController extends Controller
     }
   
   
-  public function editar($id) {
+  public function editar($id, Request $request) {
+        
         $event = Event::find($id);
-        if($event) {
-          return view('editarEvento', compact('event') );
+        $admin = ( isset($request->admin))? true : false; 
+    
+       if($event) {
+          return view('editarEvento', compact('event', 'admin') );
         }        
   }
   
    public function actualizar(Request $request)
    {
+     
        $this->validate($request, [ 
           'event_name' => 'required',
           'start_date' => 'required',
           'end_date' => 'required'
        ]);
      
-        $validarFecha = $this->dateValidation( $request->sala , $request->start_date, $request->end_date);
-        if($validarFecha[0]){
+        $validarFecha = $this->dateValidation( $request->sala , $request->start_date, $request->end_date, $request->id_evento);
+        if($validarFecha[0]) {
           \Session::flash('warnning', 'La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible.');
           return back()->withInput();
         }
@@ -620,6 +622,11 @@ class EventController extends Controller
             $event->save();
 
             \Session::flash('success','La reservación se actualizó correctamente.');
+            
+            if(isset($request->admin)) {
+              return Redirect::to('events');
+            }
+          
             return Redirect::to($event->sala);  
         }
     }
@@ -633,7 +640,7 @@ class EventController extends Controller
           $evento->delete();
         
           \Session::flash('success','La reservación se eliminó correctamente.');
-          return Redirect::to($retorno);
+          return Redirect::back();
       }
      
      \Session::flash('error','No se encontro la reservación seleccionada.');
