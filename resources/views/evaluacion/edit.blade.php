@@ -45,7 +45,7 @@
                       <input type="submit"  value="Enviar" class="btn btn-sm btn-primary edit" style="margin-left:-2px;">
                     
                     <a href="{{route('evaluaciones.edit', [$id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck" style="margin-left:20px;">
-                         <span class="hidden-xs hidden-sm">Imprimir reporte</span>
+                         <span>Imprimir reporte</span>
                     </a>
                   </form>
                   
@@ -57,9 +57,6 @@
                  <div class="table-responsive">
                    
                       <div class="panel panel-primary">
-                        
-                      
-                        
                         
                     <div class="row datososc">
                       <div class="col-sm-12"><center><h3>
@@ -115,7 +112,7 @@
                   </td>
                   <td><input type="text" name="peso1" id="peso1" class="form-control input-sm objetivos monto" onkeyup="sumar();" value="{{$registros->peso1}}"></td>
                   <td><input type="text" name="alcanzada1" id="alcanzada1" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada1 }}"  readonly></td>  
-                  <td><input type="text" name="comentarios1" id="comentarios1" class="form-control input-sm objetivos" value="{{$registros->comentarios1}}"></td>
+                  <td><textarea type="text" name="comentarios1" id="comentarios1" class="form-control input-sm objetivos" value="{{$registros->comentarios1}}">{{$registros->comentarios1}}</textarea></td>
                </tr>    
                   <tr>
                   <td><textarea type="text" name="objetivo2" id="objetivo2" class="form-control input-sm objetivos" value="{{$registros->objetivo2}}" >{{$registros->objetivo2}}</textarea></td>
@@ -130,7 +127,7 @@
                   </td>
                   <td><input type="text" name="peso2" id="peso2" class="form-control input-sm objetivos monto" onkeyup="sumar();" value="{{$registros->peso2}}"  ></td>
                   <td><input type="text" name="alcanzada2" id="alcanzada2" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada2}}" readonly></td>  
-                  <td><input type="text" name="comentarios2" id="comentarios2" class="form-control input-sm objetivos" value="{{$registros->comentarios2}}"></td>
+                  <td><textarea type="text" name="comentarios2" id="comentarios2" class="form-control input-sm objetivos" value="{{$registros->comentarios2}}">{{$registros->comentarios2}}</textarea></td>
                </tr>
                
                   <tr>
@@ -146,7 +143,7 @@
                   </td>
                   <td><input type="text" name="peso3" id="peso3" class="form-control input-sm objetivos monto" onkeyup="sumar();" value="{{$registros->peso3}}"  ></td>
                   <td><input type="text" name="alcanzada3" id="alcanzada3" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada3}}" readonly></td>  
-                  <td><input type="text" name="comentarios3" id="comentarios3" class="form-control input-sm objetivos" value="{{$registros->comentarios3}}"></td>
+                  <td><textarea type="text" name="comentarios3" id="comentarios3" class="form-control input-sm objetivos" value="{{$registros->comentarios3}}">{{$registros->comentarios3}}</textarea></td>
                </tr>
                
                                <tr>
@@ -162,11 +159,11 @@
                   </td>
                   <td><input type="text" name="peso4" id="peso4" class="form-control input-sm objetivos monto" onkeyup="sumar();" value="{{$registros->peso4}}"  ></td>
                   <td><input type="text" name="alcanzada4" id="alcanzada4" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada4}}" readonly></td>  
-                  <td><input type="text" name="comentarios4" id="comentarios4" class="form-control input-sm objetivos" value="{{$registros->comentarios4}}"></td>
+                  <td><textarea type="text" name="comentarios4" id="comentarios4" class="form-control input-sm objetivos" value="{{$registros->comentarios4}}">{{$registros->comentarios4}}</textarea></td>
                </tr>
                
-                               <tr>
-                                 <td><textarea type="text" name="objetivo5" id="objetivo5" class="form-control input-sm objetivos" value="{{$registros->objetivo5}}" >{{$registros->objetivo5}} </textarea></td>
+                <tr>
+                  <td><textarea type="text" name="objetivo5" id="objetivo5" class="form-control input-sm objetivos" value="{{$registros->objetivo5}}" >{{$registros->objetivo5}} </textarea></td>
                   <td><input type="text" name="meta5" id="meta5" class="form-control input-sm objetivos" value="{{$registros->meta5}}"  ></td>
                   <td><input type="text" name="medida5" id="medida5" class="form-control input-sm objetivos" value="{{$registros->medida5}}"  ></td>
                   <td><input type="text" name="fecha5" id="fecha5" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha5}}" onkeydown='return false', autocomplete='off'></td>
@@ -178,7 +175,7 @@
                   </td>
                   <td><input type="text" name="peso5" id="peso5" class="form-control input-sm objetivos monto" onkeyup="sumar();" value="{{$registros->peso5}}"  ></td>
                   <td><input type="text" name="alcanzada5" id="alcanzada5" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada5}}" readonly></td>  
-                  <td><input type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" value="{{$registros->comentarios5}}"></td>
+                  <td><textarea type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" value="{{$registros->comentarios5}}">{{$registros->comentarios5}}</textarea></td>
                </tr>
 
                    <td></td>
@@ -227,11 +224,11 @@
                   </td>
                   <td><input type="text" name="peso6" id="peso6" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" value="{{$registros->peso6}}"  ></td>
                   <td><input type="text" name="alcanzada6" id="alcanzada6" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada6}}" readonly></td>  
-                  <td><input type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" value="{{$registros->comentarios6}}"></td>
+                  <td><textarea type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" value="{{$registros->comentarios6}}">{{$registros->comentarios6}}</textarea></td>
                </tr>
                
-                               <tr>
-                                 <td><textarea type="text" name="objetivo7" id="objetivo7" class="form-control input-sm objetivos" value="{{$registros->objetivo7}}">{{$registros->objetivo7}}</textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo7" id="objetivo7" class="form-control input-sm objetivos" value="{{$registros->objetivo7}}">{{$registros->objetivo7}}</textarea></td>
                   <td><input type="text" name="meta7" id="meta7" class="form-control input-sm objetivos" value="{{$registros->meta7}}"  ></td>
                   <td><input type="text" name="medida7" id="medida7" class="form-control input-sm objetivos" value="{{$registros->medida7}}"  ></td>
                   <td><input type="text" name="fecha7" id="fecha7" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha7}}" onkeydown='return false', autocomplete='off'></td>
@@ -243,11 +240,11 @@
                   </td>
                   <td><input type="text" name="peso7" id="peso7" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" value="{{$registros->peso7}}"  ></td>
                   <td><input type="text" name="alcanzada7" id="alcanzada7" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada7}}" readonly></td>  
-                  <td><input type="text" name="comentarios7" id="comentarios7" class="form-control input-sm objetivos" value="{{$registros->comentarios7}}"></td>
+                  <td><textarea type="text" name="comentarios7" id="comentarios7" class="form-control input-sm objetivos" value="{{$registros->comentarios7}}">{{$registros->comentarios7}}</textarea></td>
                </tr>
                
-                               <tr>
-                                 <td><textarea type="text" name="objetivo8" id="objetivo8" class="form-control input-sm objetivos" value="{{$registros->objetivo8}}">{{$registros->objetivo8}}</textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo8" id="objetivo8" class="form-control input-sm objetivos" value="{{$registros->objetivo8}}">{{$registros->objetivo8}}</textarea></td>
                   <td><input type="text" name="meta8" id="meta8" class="form-control input-sm objetivos" value="{{$registros->meta8}}"  ></td>
                   <td><input type="text" name="medida8" id="medida8" class="form-control input-sm objetivos" value="{{$registros->medida8}}"  ></td>
                   <td><input type="text" name="fecha8" id="fecha8" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha8}}" onkeydown='return false', autocomplete='off'></td>
@@ -259,11 +256,11 @@
                   </td>
                   <td><input type="text" name="peso8" id="peso8" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" value="{{$registros->peso8}}"  ></td>
                   <td><input type="text" name="alcanzada8" id="alcanzada8" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada8}}" readonly></td>  
-                  <td><input type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" value="{{$registros->comentarios8}}"></td>
+                  <td><textarea type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" value="{{$registros->comentarios8}}">{{$registros->comentarios8}}</textarea></td>
                </tr>
                
-                               <tr>
-                                 <td><textarea type="text" name="objetivo9" id="objetivo9" class="form-control input-sm objetivos" value="{{$registros->objetivo9}}" >{{$registros->objetivo9}} </textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo9" id="objetivo9" class="form-control input-sm objetivos" value="{{$registros->objetivo9}}" >{{$registros->objetivo9}}</textarea></td>
                   <td><input type="text" name="meta9" id="meta9" class="form-control input-sm objetivos" value="{{$registros->meta9}}"  ></td>
                   <td><input type="text" name="medida9" id="medida9" class="form-control input-sm objetivos" value="{{$registros->medida9}}"  ></td>
                   <td><input type="text" name="fecha9" id="fecha9" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha9}}" onkeydown='return false', autocomplete='off'></td>
@@ -275,11 +272,11 @@
                   </td>
                   <td><input type="text" name="peso9" id="peso9" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" value="{{$registros->peso9}}"  ></td>
                   <td><input type="text" name="alcanzada9" id="alcanzada9" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada9}}" readonly></td>  
-                  <td><input type="text" name="comentarios9" id="comentarios9" class="form-control input-sm objetivos" value="{{$registros->comentarios9}}"></td>
+                  <td><textarea type="text" name="comentarios9" id="comentarios9" class="form-control input-sm objetivos" value="{{$registros->comentarios9}}">{{$registros->comentarios9}}</textarea></td>
                </tr>
                
-                               <tr>
-                                 <td><textarea type="text" name="objetivo10" id="objetivo10" class="form-control input-sm objetivos" value="{{$registros->objetivo10}}" >{{$registros->objetivo10}}</textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo10" id="objetivo10" class="form-control input-sm objetivos" value="{{$registros->objetivo10}}" >{{$registros->objetivo10}}</textarea></td>
                   <td><input type="text" name="meta10" id="meta10" class="form-control input-sm objetivos" value="{{$registros->meta10}}"  ></td>
                   <td><input type="text" name="medida10" id="medida10" class="form-control input-sm objetivos" value="{{$registros->medida10}}"  ></td>
                   <td><input type="text" name="fecha10" id="fecha10" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha10}}" onkeydown='return false', autocomplete='off'></td>
@@ -291,7 +288,7 @@
                   </td>
                   <td><input type="text" name="peso10" id="peso10" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" value="{{$registros->peso10}}"  ></td>
                   <td><input type="text" name="alcanzada10" id="alcanzada10" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada10}}" readonly></td>  
-                  <td><input type="text" name="comentarios10" id="comentarios10" class="form-control input-sm objetivos" value="{{$registros->comentarios10}}"></td>
+                  <td><textarea type="text" name="comentarios10" id="comentarios10" class="form-control input-sm objetivos" value="{{$registros->comentarios10}}">{{$registros->comentarios10}}</textarea></td>
                </tr>
 
                    <td></td>
@@ -301,17 +298,15 @@
                    <td><strong>Total  Objetivos Total Objetivos Administrativos: </strong></td>
                    <td><input type="text"  id="spTotal2" value="100" name="total2" class="form-control input-sm objetivos" placeholder="100% " readonly></td>
                    <td></td>
-                    </tbody>
-        
-            </tbody>
-                </div>
+                </tbody>
+              </div>
           </table>
               </div>
               
-                                          <div class="panel-heading">Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="ponderacion3" class="form-control input-sm objetivos peso_monto3" value="{{$registros->peso_ocultura}}" style="display: inline-block; width: 55px;" onkeyup="sumar4();"><span> %</span>  
-                    <div class="float-right">
-                <img src="{{ asset('storage/settings/icono1.png') }}" height="35">
-        </div>
+              <div class="panel-heading">Objetivos Cultura Organizacional | Peso:</span> <input type="text" name="peso_ocultura" id="ponderacion3" class="form-control input-sm objetivos peso_monto3" value="{{$registros->peso_ocultura}}" style="display: inline-block; width: 55px;" onkeyup="sumar4();"><span> %</span>  
+                  <div class="float-right">
+                    <img src="{{ asset('storage/settings/icono1.png') }}" height="35">
+                  </div>
               </div>   
             <div class="table-responsive">
               <table class="table">
@@ -327,8 +322,8 @@
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
              <tbody>
-                                               <tr>
-                                                 <td><textarea type="text" name="objetivo11" id="objetivo11" class="form-control input-sm objetivos" value="{{$registros->objetivo11}}" >{{$registros->objetivo11}}</textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo11" id="objetivo11" class="form-control input-sm objetivos" value="{{$registros->objetivo11}}" >{{$registros->objetivo11}}</textarea></td>
                   <td><input type="text" name="meta11" id="meta11" class="form-control input-sm objetivos" value="{{$registros->meta11}}"  ></td>
                   <td><input type="text" name="medida11" id="medida11" class="form-control input-sm objetivos" value="{{$registros->medida11}}"  ></td>
                   <td><input type="text" name="fecha11" id="fecha11" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha11}}" ></td>
@@ -340,11 +335,11 @@
                   </td>
                   <td><input type="text" name="peso11" id="peso11" class="form-control input-sm objetivos monto3" onkeyup="sumar3();" value="{{$registros->peso11}}"  ></td>
                   <td><input type="text" name="alcanzada11" id="alcanzada11" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada11}}" readonly></td>  
-                  <td><input type="text" name="comentarios11" id="comentarios11" class="form-control input-sm objetivos" value="{{$registros->comentarios11}}"></td>
+                  <td><textarea type="text" name="comentarios11" id="comentarios11" class="form-control input-sm objetivos" value="{{$registros->comentarios11}}">{{$registros->comentarios11}}</textarea></td>
                </tr>
                
-                                              <tr>
-                                                <td><textarea type="text" name="objetivo12" id="objetivo12" class="form-control input-sm objetivos" value="{{$registros->objetivo12}}" >{{$registros->objetivo12}}</textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo12" id="objetivo12" class="form-control input-sm objetivos" value="{{$registros->objetivo12}}" >{{$registros->objetivo12}}</textarea></td>
                   <td><input type="text" name="meta12" id="meta10" class="form-control input-sm objetivos" value="{{$registros->meta12}}"  ></td>
                   <td><input type="text" name="medida12" id="medida10" class="form-control input-sm objetivos" value="{{$registros->medida12}}"  ></td>
                   <td><input type="text" name="fecha12" id="fecha12" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha12}}" onkeydown='return false', autocomplete='off'></td>
@@ -356,11 +351,11 @@
                   </td>
                   <td><input type="text" name="peso12" id="peso12" class="form-control input-sm objetivos monto3" onkeyup="sumar3();" value="{{$registros->peso12}}"  ></td>
                   <td><input type="text" name="alcanzada12" id="alcanzada12" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada12}}" readonly></td>  
-                  <td><input type="text" name="comentarios12" id="comentarios12" class="form-control input-sm objetivos" value="{{$registros->comentarios12}}"></td>
+                  <td><textarea type="text" name="comentarios12" id="comentarios12" class="form-control input-sm objetivos" value="{{$registros->comentarios12}}">{{$registros->comentarios12}}</textarea></td>
                </tr>
                
-                                              <tr>
-                                                <td><textarea type="text" name="objetivo13" id="objetivo13" class="form-control input-sm objetivos" value="{{$registros->objetivo13}}" >{{$registros->objetivo13}}</textarea></td>
+               <tr>
+                  <td><textarea type="text" name="objetivo13" id="objetivo13" class="form-control input-sm objetivos" value="{{$registros->objetivo13}}" >{{$registros->objetivo13}}</textarea></td>
                   <td><input type="text" name="meta13" id="meta13" class="form-control input-sm objetivos" value="{{$registros->meta13}}"  ></td>
                   <td><input type="text" name="medida13" id="medida13" class="form-control input-sm objetivos" value="{{$registros->medida13}}"  ></td>
                   <td><input type="text" name="fecha13" id="fecha13" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha13}}" ></td>
@@ -372,7 +367,7 @@
                   </td>
                   <td><input type="text" name="peso13" id="peso13" class="form-control input-sm objetivos monto3"  onkeyup="sumar3();" value="{{$registros->peso13}}"  ></td>
                   <td><input type="text" name="alcanzada13" id="alcanzada13" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada13}}" readonly></td>  
-                  <td><input type="text" name="comentarios13" id="comentarios13" class="form-control input-sm objetivos" value="{{$registros->comentarios13}}"></td>
+                  <td><textarea type="text" name="comentarios13" id="comentarios13" class="form-control input-sm objetivos">{{$registros->comentarios13}}</textarea></td>
                </tr>
 
                    <td></td>
