@@ -83,8 +83,12 @@
                         </td>
                         <td>{{ $registros->user->puesto }}</td>
                         <td>{{ $registros->created_at->year }}</td>
-                        <td>{{ $registros->user->departamento->nombre }}</td>
-                        <td> {{ $registros->user->fecha_ingreso }}</td>
+                        <td>
+                            @if($registros->user->departamento)
+                              {{ $registros->user->departamento->nombre }}
+                            @endif
+                        </td>
+                       <td> {{ $registros->user->fecha_ingreso }}</td>
                      </tr>
                   </table>
               </div>

@@ -51,7 +51,11 @@
                       </div>
                       <div class="col-sm-2"><strong>Puesto:</strong><br/>         {{$usuario->puesto}}</div>
                       <div class="col-sm-2"><strong>Año: </strong><br/> {{$fecha->year}}</div>
-                      <div class="col-sm-2"><strong>Departamento o área: </strong><br/>        {{$usuario->departamento->nombre}}</div>
+                      <div class="col-sm-2"><strong>Departamento o área: </strong><br/>        
+                        @if($usuario->departamento)
+                            {{$usuario->departamento->nombre}}
+                        @endif
+                      </div>
                       <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $usuario->fecha_ingreso }}</div>
                   </div>
 						<form method="POST" action="{{ route('evaluaciones.store') }}"  role="form" id="form">

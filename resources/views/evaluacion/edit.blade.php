@@ -72,7 +72,11 @@
                       </div>
                       <div class="col-sm-2"><strong>Puesto:</strong><br/>  {{ $registros->user->puesto }}</div>
                       <div class="col-sm-2"><strong>Año: </strong><br/> {{ $registros->created_at->year }}</div>
-                      <div class="col-sm-2"><strong>Departamento o área: </strong><br/> {{ $registros->user->departamento->nombre }}</div>
+                      <div class="col-sm-2"><strong>Departamento o área: </strong><br/>
+                        @if($registros->user->departamento)
+                            {{ $registros->user->departamento->nombre }}
+                        @endif
+                      </div>
                       <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $registros->user->fecha_ingreso }}</div>
                   </div>
                         
