@@ -42,7 +42,7 @@
                 <td>
                   @if($registro->departamento)
                     {{ $registro->departamento->nombre }}
-                  @elseif
+                  @endif
                 </td>
                 <td>{{ $registro->puesto }}</td>
                 <td>{{ $registro->fecha_ingreso }}</td>
