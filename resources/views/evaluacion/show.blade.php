@@ -419,8 +419,7 @@
                   Firmado por {{ $registros->user->name  }} {{ $registros->user->appellido  }}
                 </div> 
              @else
-                
-                   @if ($registros->user->id === $usr->id)
+                  @if ($registros->user->id === $usr->id)
                         <a href="{{ route('evaluacion.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
                             <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
                         </a>
@@ -432,8 +431,7 @@
                   Firmado por {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}
                 </div> 
              @else
-                
-                                  @if ($registros->user->miJefe->id === $usr->id)
+                  @if ($registros->user->miJefe->id === $usr->id)
                         <a href="{{ route('evaluacion.firma1',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
                             <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
                         </a>
