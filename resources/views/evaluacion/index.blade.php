@@ -31,10 +31,12 @@
                <th>Colaborador</th>
                 <th>Departamento o área</th>
                 <th>Puesto</th>
-                 <th>Jefe inmediato</th>
-                 <th>Fecha de Ingreso</th>
+                <th>Jefe inmediato</th>
+                <th>Fecha de Ingreso</th>
+                <th>Firma Empleado</th>
+                <th>Firma Jefe</th>
+                <th>Firma RH</th>
                 <th>Revisar Evaluación</th>
-                <th></th>
              </thead>
              <tbody>
               @if($registros->count())  
@@ -53,6 +55,39 @@
                   <td> Sin jefe </td>
                 @endif
                 <td> {{ $registro->fecha_ingreso }} </td>
+                <td>
+                    @if($registro->desenpeno)
+                        @if($registro->desenpeno->f_empleado)
+                            Si
+                        @else
+                            No
+                        @endif
+                    @else
+                        No
+                    @endif
+                </td>
+                <td>
+                    @if($registro->desenpeno)
+                        @if($registro->desenpeno->f_jefe)
+                            Si
+                        @else
+                            No
+                        @endif
+                    @else
+                        No
+                    @endif
+                </td>
+                <td>
+                    @if($registro->desenpeno)
+                        @if($registro->desenpeno->f_rh)
+                            Si
+                        @else
+                            No
+                        @endif
+                    @else
+                        No
+                    @endif
+                </td>
                 <td>
                   @if ( !empty($registro->desenpeno->id) )
                   
