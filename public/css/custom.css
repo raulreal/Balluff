@@ -447,6 +447,14 @@ a.btn.btn-dark {
     border-radius: 2px;
 }
 
+.row.datososc2 {
+    background: whitesmoke;
+    padding: 25px;
+    color: darkgray;
+    margin: 15px;
+    border-radius: 2px;
+}
+
 .input-sm {
     height: 40px !important;
     padding: 5px 10px !important;
@@ -497,4 +505,197 @@ a.btn.firma {
 
 textarea {
   resize: none;
+}
+
+
+h1.likert-header {
+  padding-left:4.25%;
+  margin:20px 0 0;
+}
+form .statement {
+  display:block;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 30px 0 0 4.25%;
+  margin-bottom:10px;
+}
+form .likert {
+  list-style:none;
+  width:100%;
+  margin:0;
+  padding:0 0 35px;
+  display:block;
+}
+form .likert:last-of-type {border-bottom:0;}
+form .likert:before {
+  content: '';
+  position:relative;
+  top:11px;
+  left:9.5%;
+  display:block;
+  background-color:#efefef;
+  height:4px;
+  width:78%;
+}
+form .likert li {
+  display:inline-block;
+  width:24%;
+  text-align:center;
+  vertical-align: top;
+}
+form .likert li input[type=radio] {
+  display:block;
+  position:relative;
+  top:0;
+  left:50%;
+  margin-left:-6px;
+  
+}
+form .likert li label {width:100%;}
+form .buttons {
+  margin:30px 0;
+  padding:0 5.25%;
+  text-align:right
+} 
+
+.like {
+    margin: 0 90px;
+    border: solid 1px whitesmoke;
+    background: #fbfbfb;
+}
+
+.recomienda {
+    text-align: center;
+    padding: 25px;
+    background: whitesmoke;
+    margin: 0 90px;
+   border: solid 1px lightgray;
+}
+
+
+
+.t_neg {
+    margin-top: 25px;
+    margin-bottom: 0 !important;
+    padding: 10px 0;
+    background:black;
+    color:white;
+  text-align:center;
+  font-weight:600;
+}
+
+.t_gris{
+    background: whitesmoke;
+    color: #666;
+    padding: 10px;
+    text-align:center;
+    border: solid 2px #e3e3e3;
+}
+
+.row.resumen {
+  margin: 0 90px;
+} 
+
+input#test2 {
+    margin-left: 25px;
+}
+
+textarea#mejoras {
+    border: solid 1px #e3e3e3;
+    border-radius: 5px;
+    color: #666;
+    padding: 10px;
+}
+
+.table-responsive {
+    margin: 0 90px;
+}
+
+.li_head {
+    text-align: center;
+    background: #ccc;
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+}
+
+table#tablePreview {
+    max-width: 1050px;
+    margin: 0 auto;
+    margin-bottom: 35px;
+}
+
+.list-group-item {
+  user-select: none;
+}
+
+.list-group input[type="checkbox"] {
+  display: none;
+}
+
+.list-group input[type="checkbox"] + .list-group-item {
+  cursor: pointer;
+}
+
+.list-group input[type="checkbox"] + .list-group-item:before {
+  content: "\2713";
+  color: transparent;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.list-group input[type="checkbox"]:checked + .list-group-item {
+  background-color: #2d3436;
+  color: #FFF;
+}
+
+.list-group input[type="checkbox"]:checked + .list-group-item:before {
+  color: inherit;
+}
+
+label.list-group-item.firma {
+    background: #d33440;
+    color: white;
+}
+
+label.list-group-item.firmado {
+    background: #3498db;
+    color: white;
+}
+
+.responsables {
+    background: whitesmoke;
+    padding: 25px;
+    color: #999;
+}
+
+.li_head {
+    margin-bottom: 10px;
+}
+
+
+label.list-group-item.clase1 {
+    background: #bdc3c7 !important;
+}
+
+.ads button{
+    pointer-events:none;
+}
+
+.container.ads {
+  pointer-events:none;
+}
+
+.ing {
+    background: #d33440;
+    color: white;
+    padding: 3px 13px;
+    border-radius: 5px;
+}
+
+.ing1 {
+    background: #55B559;
+    color: white;
+    padding: 3px 17px;
+    border-radius: 5px;
 }

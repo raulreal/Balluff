@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends \TCG\Voyager\Models\User
 {
     use Notifiable;
-
+  
+  //protected $appends = ['is_admin'];
+  
     /**
      * The attributes that are mass assignable.
      *
@@ -30,6 +32,18 @@ class User extends \TCG\Voyager\Models\User
   public function desenpeno()
     {
         return $this->hasOne('App\Desenpeno');
+    
+    }
+  
+    public function ingreso()
+    {
+        return $this->hasOne('App\Ingreso');
+    
+    }
+  
+   public function viajera()
+    {
+        return $this->hasOne('App\Viajera');
     
     }
   

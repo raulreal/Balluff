@@ -57,6 +57,8 @@ class DesenpenoController extends Controller
     {
         //
         $this->validate($request,[ 'objetivo1'=>'required', 'peso_oindividuales'=>'required','peso_oadmon'=>'required','peso_ocultura'=>'required']);
+      
+      
         Desenpeno::create($request->all());
         return redirect()->route('evaluacion.indexjfe')->with('success','Registro creado satisfactoriamente');
     }

@@ -126,10 +126,28 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('evaluacion/firmar1', 'DesenpenoController@firma1')->name('evaluacion.firma1');
         Route::get('evaluacion/firmar2', 'DesenpenoController@firma2')->name('evaluacion.firma2');
         Route::get('mi-evaluacion', 'DesenpenoController@mievaluacion')->name('desenpeno.mievaluacion');
+  
+   // Evaluacion de Nuevo ingreso
+          
+        Route::resource('ingreso', 'IngresoController');
+        Route::get('firmar', 'IngresoController@firma')->name('ingreso.firma');
+        Route::get('firmar1', 'IngresoController@firma1')->name('ingreso.firma1');
+        Route::get('firmar2', 'IngresoController@firma2')->name('ingreso.firma2');
+        Route::get('mi-ingreso', 'IngresoController@mievaluacion')->name('ingreso.mievaluacion');
+  
+     // Hoja viajera
+          
+        Route::resource('viajera', 'ViajeraController');
+        Route::get('viajera/firmar', 'ViajeraController@firma')->name('viajera.firma');
+        Route::get('viajera/firmar1', 'ViajeraController@firma1')->name('viajera.firma1');
+        Route::get('viajera/firmar2', 'ViajeraController@firma2')->name('viajera.firma2');
+
 
   //tmp
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   
+  //Facturas
+        Route::resource('facturas', 'FacturaController');
 
 });
 

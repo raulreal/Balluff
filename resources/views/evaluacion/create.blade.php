@@ -86,7 +86,7 @@
                       <td><textarea name="objetivo1"  id="objetivo1" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta1" id="meta1" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida1" id="medida1" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha1', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha1', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha1')]) !!}</td>
 
                       <td><input type="text" name="peso1" id="peso1" class="form-control input-sm objetivos  monto"  onkeyup="sumar();"  placeholder="%"></td>
 
@@ -96,7 +96,7 @@
                      <td><textarea  name="objetivo2" id="objetivo2" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta2" id="meta2" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida2" id="medida2" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha2', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha2', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha2')]) !!}</td>
 
                       <td><input type="text" name="peso2" id="peso2" class="form-control input-sm objetivos monto" onkeyup="sumar();" placeholder="%"></td>
 
@@ -106,7 +106,7 @@
                      <td><textarea  name="objetivo3" id="objetivo3" class="form-control input-sm objetivos"></textarea></td>
                     <td><input type="text" name="meta3" id="meta3" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida3" id="medida3" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha3', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha3', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha3')]) !!}</td>
 
                       <td><input type="text" name="peso3" id="peso3" class="form-control input-sm objetivos monto" onkeyup="sumar();"  placeholder="%"></td>
 
@@ -116,7 +116,7 @@
                      <td><textarea  name="objetivo4" id="objetivo4" class="form-control input-sm objetivos suma" ></textarea></td>
                     <td><input type="text" name="meta4" id="meta4" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida4" id="medida4" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha4', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha4', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha4')]) !!}</td>
 
                       <td><input type="text" name="peso4" id="peso4" class="form-control input-sm objetivos monto" onkeyup="sumar();" placeholder="%" ></td>
 
@@ -126,7 +126,7 @@
                      <td><textarea  name="objetivo5" id="objetivo5" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta5" id="meta5" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida5" id="medida5" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha5', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha5', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha5')]) !!}</td>
 
                       <td><input type="text" name="peso5" id="peso5" class="form-control input-sm objetivos monto" onkeyup="sumar();" placeholder="%" ></td>
    
@@ -167,7 +167,7 @@
                       <td><textarea  name="objetivo6" id="objetivo6" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta6" id="meta6" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida6" id="medida6" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha6', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha6', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha6')]) !!}</td>
 
                       <td><input type="text" name="peso6" id="peso6" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" placeholder="%" ></td>
                     <td><input type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" ></td>
@@ -176,7 +176,7 @@
                      <td><textarea  name="objetivo7" id="objetivo7" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta7" id="meta7" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida7" id="medida7" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha7', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha7', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha7')]) !!}</td>
 
                       <td><input type="text" name="peso7" id="peso7" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" placeholder="%"></td>
 
@@ -186,7 +186,7 @@
                      <td><textarea  type="text" name="objetivo8" id="objetivo8" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta8" id="meta8" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida8" id="medida8" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha8', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha8', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha8')]) !!}</td>
 
                       <td><input type="text" name="peso8" id="peso8" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" placeholder="%"></td>
 
@@ -196,7 +196,7 @@
                      <td><textarea  type="text" name="objetivo9" id="objetivo9" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta9" id="meta9" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida9" id="medida9" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha9', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha9', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha9')]) !!}</td>
 
                       <td><input type="text" name="peso9" id="peso9" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" placeholder="%"></td>
 
@@ -206,7 +206,7 @@
                      <td><textarea  type="text" name="objetivo10" id="objetivo10" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta10" id="meta10" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida10" id="medida10" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha10', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha10', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha10')]) !!}</td>
 
                       <td><input type="text" name="peso10" id="peso5" class="form-control input-sm objetivos monto2" onkeyup="sumar2();" placeholder="%">
                         
@@ -249,7 +249,7 @@
                       <td><textarea  type="text" name="objetivo11" id="objetivo11" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta11" id="meta11" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida11" id="medida11" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha11', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha11', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha11')]) !!}</td>
 
                       <td><input type="text" name="peso11" id="peso11" class="form-control input-sm objetivos  monto3" onkeyup="sumar3();"  placeholder=" % "></td>
 
@@ -259,7 +259,7 @@
                      <td><textarea  type="text" name="objetivo12" id="objetivo12" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta12" id="meta12" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida12" id="medida12" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha12', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha12', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha12')]) !!}</td>
 
                       <td><input type="text" name="peso12" id="peso12" class="form-control input-sm objetivos  monto3" onkeyup="sumar3();"   placeholder=" % "></td>
 
@@ -269,7 +269,7 @@
                      <td><textarea  type="text" name="objetivo13" id="objetivo13" class="form-control input-sm objetivos" ></textarea></td>
                     <td><input type="text" name="meta13" id="meta13" class="form-control input-sm objetivos" ></td>
                     <td><input type="text" name="medida13" id="medida13" class="form-control input-sm objetivos" ></td>
-                    <td>{!! Form::text('fecha13', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off']) !!}</td>
+                    <td>{!! Form::text('fecha13', null, ['class' => 'timepicker form-control input-sm', 'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>old('fecha13')]) !!}</td>
 
                       <td><input type="text" name="peso13" id="peso13" class="form-control input-sm objetivos  monto3" onkeyup="sumar3();"  placeholder=" % "></td>
 
@@ -300,16 +300,7 @@
 </form>
               
  <script type="text/javascript">
-  $('.timepicker').each(function () {
-      $('.timepicker').each(function () {
-        $(this).datetimepicker({
-            format: 'YYYY-MM-DD',
-            viewMode: 'months',
-            useCurrent: false,
-            minDate: truncateDate(new Date())
-        });
-     });
-  });
+
   
   function truncateDate(date) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -371,7 +362,23 @@ function sumar() {
 @endsection
          
 @section('javascript')
-  
+       
+ <script type="text/javascript">
+
+        $('.timepicker').each(function () {
+          $('.timepicker').each(function () {
+            $(this).pickadate({
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy-mm-dd 00:00:00',
+             hiddenSuffix: ''
+            })
+         });
+      });
+        
+    </script>
+              
+              
+              
           
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>

@@ -18,6 +18,10 @@
   <style>{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/css/lfm.css')) !!}</style>
   <link rel="stylesheet" href="{{ asset('vendor/laravel-filemanager/css/mfb.css') }}">
   
+  
+    <link rel="stylesheet" href="{{ asset('pickadate/themes/default.css') }}">
+    <link rel="stylesheet" href="{{ asset('pickadate/themes/default.date.css') }}">
+  
       <!-- App CSS -->
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
     @yield('css')
@@ -159,6 +163,11 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
 
     @endif
 </script>
+  <script type="text/javascript" src="{{ asset('pickadate/picker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('pickadate/picker.date.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('pickadate/legacy.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('pickadate/translations/es_ES.js') }}"></script> 
+  
 @yield('javascript')
 
 @if(!empty(config('voyager.additional_js')))<!-- Additional Javascript -->

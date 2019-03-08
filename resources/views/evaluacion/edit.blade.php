@@ -107,7 +107,7 @@
                   <td><textarea type="text" name="objetivo1" id="objetivo1" class="form-control input-sm objetivos" value="{{$registros->objetivo1}}" >{{$registros->objetivo1}}</textarea></td>
                   <td><input type="text" name="meta1" id="meta1" class="form-control input-sm objetivos" value="{{$registros->meta1}}"></td>
                   <td><input type="text" name="medida1" id="medida1" class="form-control input-sm objetivos" value="{{$registros->medida1}}"></td>
-                  <td><input type="text" name="fecha1" id="fecha1" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha1}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha1" id="fecha1" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha1}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status1" id="status1">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -122,7 +122,7 @@
                   <td><textarea type="text" name="objetivo2" id="objetivo2" class="form-control input-sm objetivos" value="{{$registros->objetivo2}}" >{{$registros->objetivo2}}</textarea></td>
                   <td><input type="text" name="meta2" id="meta2" class="form-control input-sm objetivos" value="{{$registros->meta2}}"  ></td>
                   <td><input type="text" name="medida2" id="medida2" class="form-control input-sm objetivos" value="{{$registros->medida2}}"  ></td>
-                  <td><input type="text" name="fecha2" id="fecha2" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha2}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha2" id="fecha2" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha2}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status2" id="status2">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -138,7 +138,7 @@
                   <td><textarea type="text" name="objetivo3" id="objetivo3" class="form-control input-sm objetivos" value="{{$registros->objetivo3}}" >{{$registros->objetivo3}}</textarea></td>
                   <td><input type="text" name="meta3" id="meta3" class="form-control input-sm objetivos" value="{{$registros->meta3}}"  ></td>
                   <td><input type="text" name="medida3" id="medida3" class="form-control input-sm objetivos" value="{{$registros->medida3}}"  ></td>
-                  <td><input type="text" name="fecha3" id="fecha3" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha3}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha3" id="fecha3" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha3}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status3" id="status3">
                           <option>En proceso</option>
                           <option>Postergado</option>
@@ -154,7 +154,7 @@
                   <td><textarea type="text" name="objetivo4" id="objetivo4" class="form-control input-sm objetivos" value="{{$registros->objetivo4}}" >{{$registros->objetivo4}}</textarea></td>
                   <td><input type="text" name="meta4" id="meta4" class="form-control input-sm objetivos" value="{{$registros->meta4}}"  ></td>
                   <td><input type="text" name="medida4" id="medida4" class="form-control input-sm objetivos" value="{{$registros->medida4}}"  ></td>
-                  <td><input type="text" name="fecha4" id="fecha4" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha4}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha4" id="fecha4" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha4}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status4" id="status4">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -170,7 +170,7 @@
                   <td><textarea type="text" name="objetivo5" id="objetivo5" class="form-control input-sm objetivos" value="{{$registros->objetivo5}}" >{{$registros->objetivo5}} </textarea></td>
                   <td><input type="text" name="meta5" id="meta5" class="form-control input-sm objetivos" value="{{$registros->meta5}}"  ></td>
                   <td><input type="text" name="medida5" id="medida5" class="form-control input-sm objetivos" value="{{$registros->medida5}}"  ></td>
-                  <td><input type="text" name="fecha5" id="fecha5" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha5}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha5" id="fecha5" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha5}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status5" id="status5">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -219,7 +219,7 @@
                   <td><textarea type="text" name="objetivo6" id="objetivo6" class="form-control input-sm objetivos" value="{{$registros->objetivo6}}">{{$registros->objetivo6}}</textarea></td>
                   <td><input type="text" name="meta6" id="meta6" class="form-control input-sm objetivos" value="{{$registros->meta6}}"  ></td>
                   <td><input type="text" name="medida6" id="medida6" class="form-control input-sm objetivos" value="{{$registros->medida6}}"  ></td>
-                  <td><input type="text" name="fecha6" id="fecha6" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha6}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha6" id="fecha6" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha6}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status6" id="status6">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -235,7 +235,7 @@
                   <td><textarea type="text" name="objetivo7" id="objetivo7" class="form-control input-sm objetivos" value="{{$registros->objetivo7}}">{{$registros->objetivo7}}</textarea></td>
                   <td><input type="text" name="meta7" id="meta7" class="form-control input-sm objetivos" value="{{$registros->meta7}}"  ></td>
                   <td><input type="text" name="medida7" id="medida7" class="form-control input-sm objetivos" value="{{$registros->medida7}}"  ></td>
-                  <td><input type="text" name="fecha7" id="fecha7" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha7}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha7" id="fecha7" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha7}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status7" id="status7">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -251,7 +251,7 @@
                   <td><textarea type="text" name="objetivo8" id="objetivo8" class="form-control input-sm objetivos" value="{{$registros->objetivo8}}">{{$registros->objetivo8}}</textarea></td>
                   <td><input type="text" name="meta8" id="meta8" class="form-control input-sm objetivos" value="{{$registros->meta8}}"  ></td>
                   <td><input type="text" name="medida8" id="medida8" class="form-control input-sm objetivos" value="{{$registros->medida8}}"  ></td>
-                  <td><input type="text" name="fecha8" id="fecha8" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha8}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha8" id="fecha8" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha8}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status8" id="status8">
                           <option>En proceso</option>
                           <option>Postergado</option>
@@ -267,7 +267,7 @@
                   <td><textarea type="text" name="objetivo9" id="objetivo9" class="form-control input-sm objetivos" value="{{$registros->objetivo9}}" >{{$registros->objetivo9}}</textarea></td>
                   <td><input type="text" name="meta9" id="meta9" class="form-control input-sm objetivos" value="{{$registros->meta9}}"  ></td>
                   <td><input type="text" name="medida9" id="medida9" class="form-control input-sm objetivos" value="{{$registros->medida9}}"  ></td>
-                  <td><input type="text" name="fecha9" id="fecha9" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha9}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha9" id="fecha9" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha9}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status9" id="status9">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -283,7 +283,7 @@
                   <td><textarea type="text" name="objetivo10" id="objetivo10" class="form-control input-sm objetivos" value="{{$registros->objetivo10}}" >{{$registros->objetivo10}}</textarea></td>
                   <td><input type="text" name="meta10" id="meta10" class="form-control input-sm objetivos" value="{{$registros->meta10}}"  ></td>
                   <td><input type="text" name="medida10" id="medida10" class="form-control input-sm objetivos" value="{{$registros->medida10}}"  ></td>
-                  <td><input type="text" name="fecha10" id="fecha10" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha10}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha10" id="fecha10" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha10}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status10" id="status10">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -330,7 +330,7 @@
                   <td><textarea type="text" name="objetivo11" id="objetivo11" class="form-control input-sm objetivos" value="{{$registros->objetivo11}}" >{{$registros->objetivo11}}</textarea></td>
                   <td><input type="text" name="meta11" id="meta11" class="form-control input-sm objetivos" value="{{$registros->meta11}}"  ></td>
                   <td><input type="text" name="medida11" id="medida11" class="form-control input-sm objetivos" value="{{$registros->medida11}}"  ></td>
-                  <td><input type="text" name="fecha11" id="fecha11" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha11}}" ></td>
+                  <td><input type="text" name="fecha11" id="fecha11" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha11}}" ></td>
                   <td><select class="form-control form-control-sm input-sm" name="status10" id="status11">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -346,7 +346,7 @@
                   <td><textarea type="text" name="objetivo12" id="objetivo12" class="form-control input-sm objetivos" value="{{$registros->objetivo12}}" >{{$registros->objetivo12}}</textarea></td>
                   <td><input type="text" name="meta12" id="meta10" class="form-control input-sm objetivos" value="{{$registros->meta12}}"  ></td>
                   <td><input type="text" name="medida12" id="medida10" class="form-control input-sm objetivos" value="{{$registros->medida12}}"  ></td>
-                  <td><input type="text" name="fecha12" id="fecha12" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha12}}" onkeydown='return false', autocomplete='off'></td>
+                  <td><input type="text" name="fecha12" id="fecha12" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha12}}" onkeydown='return false', autocomplete='off'></td>
                   <td><select class="form-control form-control-sm input-sm" name="status12" id="status12">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -362,7 +362,7 @@
                   <td><textarea type="text" name="objetivo13" id="objetivo13" class="form-control input-sm objetivos" value="{{$registros->objetivo13}}" >{{$registros->objetivo13}}</textarea></td>
                   <td><input type="text" name="meta13" id="meta13" class="form-control input-sm objetivos" value="{{$registros->meta13}}"  ></td>
                   <td><input type="text" name="medida13" id="medida13" class="form-control input-sm objetivos" value="{{$registros->medida13}}"  ></td>
-                  <td><input type="text" name="fecha13" id="fecha13" class="timepicker form-control input-sm objetivos" value="{{$registros->fecha13}}" ></td>
+                  <td><input type="text" name="fecha13" id="fecha13" class="timepicker form-control input-sm objetivos" data-value="{{$registros->fecha13}}" ></td>
                   <td><select class="form-control form-control-sm input-sm" name="status13" id="status13">
                         <option>En proceso</option>
                         <option>Postergado</option>
@@ -406,21 +406,6 @@
           </div>
 
  <script type="text/javascript">
-  $('.timepicker').each(function () {
-      $('.timepicker').each(function () {
-        $(this).datetimepicker({
-            format: 'YYYY-MM-DD',
-            viewMode: 'months',
-            useCurrent: false,
-            minDate: truncateDate(new Date())
-        });
-     });
-  });
-   
-  function truncateDate(date) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  }
-  
   
   /* Sumar dos números. */
 function sumar() {
@@ -476,8 +461,33 @@ function sumar() {
 @endsection
 
 @section('javascript')
-              <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+            
+     <script type="text/javascript">
+
+        $('.timepicker').each(function () {
+          $('.timepicker').each(function () {
+            console.log(this);
+            $(this).pickadate({
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy-mm-dd 00:00:00',
+              hiddenSuffix: '',
+              min:true,
+            })
+         });
+      });
+        
+       function truncateDate(date) {
+          return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+       }
+  
+       
+    </script>
+              
+            
+            
+            
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
    <script>
     $(document).ready(function () {
     $('#form').validate({ // initialize the plugin

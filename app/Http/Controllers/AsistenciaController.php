@@ -168,26 +168,26 @@ public function reportes($id) {
      $trabajadas = $datos->sum('trabajadas');
      $cart = array();
       
-foreach ($datos as $dato) {   
-    $sr = $dato->trabajadas;
-    $rr =  $dato->recesos->sum('descanso');
-    $trabajadasok = $sr - $rr;
-    $cart[] = array( $dato->start_date, ($dato->trabajadas - $dato->recesos->sum('descanso'))/60 );
-}     
+     foreach ($datos as $dato) {   
+        $sr = $dato->trabajadas;
+        $rr =  $dato->recesos->sum('descanso');
+        $trabajadasok = $sr - $rr;
+        $cart[] = array( $dato->start_date, ($dato->trabajadas - $dato->recesos->sum('descanso'))/60 );
+     }     
 
-//Grafica asistencia
-      
-$finances = Lava::DataTable();              
-$finances->addDateColumn('Fecha')
-         ->addNumberColumn('Horas Trabajadas')
-         ->addRows($cart);
-      
-Lava::ColumnChart('Finances', $finances, [
-    'title' => 'Horas Trabajadas en el periodo',
-    'colors'=> [ '#b5bcbd', '#d7e8f3','#333333',],
-    'height'            => 400,
-]);
-     
+     //Grafica asistencia
+
+     $finances = Lava::DataTable();              
+     $finances->addDateColumn('Fecha')
+             ->addNumberColumn('Horas Trabajadas')
+             ->addRows($cart);
+
+      Lava::ColumnChart('Finances', $finances, [
+          'title' => 'Horas Trabajadas en el periodo',
+          'colors'=> [ '#b5bcbd', '#d7e8f3','#333333',],
+          'height'            => 400,
+      ]);
+
       
       //Grafica inasistencias
       $asistencia = \Lava::DataTable();
