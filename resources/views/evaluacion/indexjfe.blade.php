@@ -90,10 +90,11 @@
                           </td>
                           <td>
                               @if ( !empty($registro->desenpeno->id) )
-                                 <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
+                            
+                                  <a title="Editar" class="btn btn-sm btn-primary edit"  @if( $registro->desenpeno->f_empleado ) href="javascript:void(0);" disabled @else href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}"  @endif >
                                       <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar Objetivos</span>
                                   </a>
-
+                                
                                   <a href="javascript:void(0);" title="Editar" class="btn btn-sm btn-primary edit" disabled>
                                       <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Revisión 01</span>
                                   </a> 
