@@ -67,6 +67,32 @@ class User extends \TCG\Voyager\Models\User
         return $this->belongsTo('App\User', 'jefe_id');
     }
   
+  /*+++++++++++ Filtros +++++++++++++++*/
+  
+  public function scopeNombre($query, $nombre) {
+    	if(trim($nombre) != "") {
+    		  $query->where('name', 'like', '%'.$nombre.'%');
+      }
+  }
+  
+  public function scopeApellido($query, $apellido) {
+    	if(trim($apellido) != "") {
+    	  	$query->where('apellido', 'like', '%'.$apellido.'%');
+      }
+  }
+    /*
+  public function scopeFechasNoDisponibles($query, $fechaViaje){
+    	if(trim($fechaViaje) != "") {
+    		$query->where(function ($q) use($fechaViaje) {
+                      $q->where([ ['fecha_no_disponible1', '>', $fechaViaje], ['fecha_no_disponible2', '>', $fechaViaje] ])
+    		                ->orWhere([ ['fecha_no_disponible1', '<', $fechaViaje], ['fecha_no_disponible2', '<', $fechaViaje] ]);
+                  });
+        }
+  }
+  */
+  
+  
+  
   
 }
 

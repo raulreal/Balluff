@@ -23,15 +23,24 @@ class DesenpenoController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function index()
+    public function index(Request $request)
     {
-        $registros = User::orderBy('name')->paginate(12);
+        $nombre   = $request->nombre;
+        $apellido = $request->apellido;
+      
+        $registros = User::orderBy('name')
+                         ->nombre($nombre)
+                         ->apellido($apellido)
+                         ->paginate(12)
+                         ->appends($request->all());
+        
         return view('evaluacion.index',compact('registros')); 
     }
   
   public function indexjfe()
     {
         $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->get();
+    
         return view('evaluacion.indexjfe',compact('registros','usuarios'));
     }
  
