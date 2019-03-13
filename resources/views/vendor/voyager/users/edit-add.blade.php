@@ -51,7 +51,10 @@
                                 
                                 $validar = ["puesto", "user_belongsto_role_relationship", "user_belongstomany_role_relationship", "fecha_ingreso", 
                                               "departamento_secundario_id", "user_hasone_user_relationship", "user_hasone_departamento_relationship"];
-                                $editarUsuarios = Voyager::can('edit_users');
+                                //$editarUsuarios = true;//Voyager::can('edit_users');
+                                
+                                $usuarioActivo = \Auth::user();
+                                $usuario = \TCG\Voyager\Models\User::find(1);
                             @endphp
 
                             @foreach($dataTypeRows as $row)
@@ -67,7 +70,7 @@
                                 @else
                                      
                                 @if( in_array( $row->field , $validar) )
-                                    @if($editarUsuarios)
+                                    @if( $usuarioActivo->can('edit', $usuario ) )
                                       <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ isset($display_options->width) ? $display_options->width : 6 }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
                                           {{ $row->slugify }}
                                           <label for="name">{{ $row->display_name }}</label>
@@ -83,7 +86,7 @@
                                           @endforeach
                                       </div>
                                     @endif
-                                @else
+                                 @else
                                     <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ isset($display_options->width) ? $display_options->width : 6 }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
                                         {{ $row->slugify }}
                                         <label for="name">{{ $row->display_name }}</label>
