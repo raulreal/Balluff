@@ -26,6 +26,7 @@ class AsistenciaExport implements FromCollection, WithMapping, WithHeadings
             'Colaborador',
             'Departamento',
             'Puesto',
+            'Días trabajados',
             'Horas trabajadas'
         ];
     }
@@ -39,6 +40,7 @@ class AsistenciaExport implements FromCollection, WithMapping, WithHeadings
             $user->nombreCompleto(),
             ($user->departamento)? $user->departamento->nombre : "",
             $user->puesto,
+            $user->dias,
             $user->trabajadas,
         ];
     }
@@ -56,15 +58,17 @@ class AsistenciaExport implements FromCollection, WithMapping, WithHeadings
             $registros = Asistencia::where('user_id', $usuario->id)
                                    ->whereMonth('created_at', $actual->month);
             
-            $datos= $registros->get();
-            $puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
-            $trabajadas = 1;
+            $datos = $registros->get();
+            $diasTrabajados = $datos->count();
+            //$puntuales = $registros->whereTime('start_date','<=','09:16:00')->get();
+            $trabajadas = 0;
             foreach($datos as $dato) {  
                 $sr = $dato->trabajadas;
                 $rr =  $dato->recesos->sum('descanso');
                 $trabajadas += ($sr - $rr)/60;
             }
             
+            $usuario->dias = $diasTrabajados;
             $usuario->trabajadas = $trabajadas;
         }
         
