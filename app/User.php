@@ -67,6 +67,11 @@ class User extends \TCG\Voyager\Models\User
         return $this->belongsTo('App\User', 'jefe_id');
     }
   
+  public function nombreCompleto() {
+        return $this->name.' '.$this->apellido;
+   }
+
+  
   /*+++++++++++ Filtros +++++++++++++++*/
   
   public function scopeNombre($query, $nombre) {
