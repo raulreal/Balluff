@@ -15,6 +15,10 @@ use App\Receso;
 use App\User;
 use DateTime;
 
+use App\Exports\AsistenciaExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 class AsistenciaController extends Controller
 {
   
@@ -141,14 +145,21 @@ class AsistenciaController extends Controller
     }
   
   
-public function reporte()
+public function reporte(Request $request)
     {
        $permisoRh = $this->permisoReservarSala(Auth::user(), 'rh');
        if(!$permisoRh) {
            return redirect()->back()->with('message', 'No tienes permiso.');
        }
   
-      $registros = User::orderBy('name')->paginate(10);
+  
+        if($request->exportar_pdf) {
+            return Excel::download(new AsistenciaExport(), 'Reporte.xlsx');
+        }
+  
+  
+  
+        $registros = User::orderBy('name')->paginate(10);
         return view('reporte',compact('registros')); 
     }
   
@@ -173,7 +184,7 @@ public function reportes($id) {
         $rr =  $dato->recesos->sum('descanso');
         $trabajadasok = $sr - $rr;
         $cart[] = array( $dato->start_date, ($dato->trabajadas - $dato->recesos->sum('descanso'))/60 );
-     }     
+     }
 
      //Grafica asistencia
 
