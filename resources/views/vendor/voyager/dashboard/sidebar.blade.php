@@ -30,8 +30,9 @@
             </div>
 
         </div>
-
-        {!! menu('admin', 'admin_menu') !!}
+      
+        {!! menu('admin', 'admin') !!}
+        
     </nav>
 </div>
 

@@ -1,40 +1,115 @@
-<ol class="dd-list">
+<ul class="nav navbar-nav">
+
+  <?php 
+        $usuario = Auth::user();
+  
+        $roleId = $usuario->role_id; 
+        $permisosUsuario = $usuario->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+        $permisoJefe = $usuario->misEmpleados->count();
+  ?>
+  
+@php
+    if (Voyager::translatable($items)) {
+        $items = $items->load('translations');
+    }
+@endphp
 
 @foreach ($items as $item)
+    @php
+        $listItemClass = [];
+        $styles = null;
+        $linkAttributes = null;
+        $transItem = $item;
 
-    <li class="dd-item" data-id="{{ $item->id }}">
-        <div class="pull-right item_actions">
-            <div class="btn btn-sm btn-danger pull-right delete" data-id="{{ $item->id }}">
-                <i class="voyager-trash"></i> {{ __('voyager::generic.delete') }}
+        if (Voyager::translatable($item)) {
+            $transItem = $item->translate($options->locale);
+        }
+
+        $href = $item->link();
+
+        // Current page
+        if(url($href) == url()->current()) {
+            array_push($listItemClass, 'active');
+        }
+
+        $permission = '';
+        $hasChildren = false;
+
+        // With Children Attributes
+        if(!$item->children->isEmpty())
+        {
+            foreach($item->children as $child)
+            {
+                $hasChildren = $hasChildren || Auth::user()->can('browse', $child);
+
+                if(url($child->link()) == url()->current())
+                {
+                    array_push($listItemClass, 'active');
+                }
+            }
+            if (!$hasChildren) {
+                continue;
+            }
+
+            $linkAttributes = 'href="#' . $transItem->id .'-dropdown-element" data-toggle="collapse" aria-expanded="'. (in_array('active', $listItemClass) ? 'true' : 'false').'"';
+            array_push($listItemClass, 'dropdown');
+        }
+        else
+        {
+            $linkAttributes =  'href="' . url($href) .'"';
+
+            if(!Auth::user()->can('browse', $item)) {
+                continue;
+            }
+        }
+    @endphp
+    
+@if( $transItem->title != 'Admin' || $roleId == 1 )  
+    <li class="{{ implode(" ", $listItemClass) }}">
+      
+        <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">
+                                                                   
+          <span class="icon lateral {{ $item->icon_class }}"lateral ></span>
+          <span class="title">{{ $transItem->title }}
+          
+          @if($transItem->title == 'Recursos Humanos')
+             @php
+                
+                $menu = array();
+                
+                //Lo ven todos
+                $todos = $item->children->last();
+                
+                //Lo ve solo rh
+                if($permisoRh) {
+                   $menu[] = $item->children->firstWhere('title', "Reporte A.P.");
+                   $menu[] = $item->children->firstWhere('title', 'Reporte de Ev de Desempeño');
+                }
+                
+                //Lo ve solo el que tiene empleados
+                if($permisoJefe){
+                   $menu[] = $item->children->firstWhere('title', 'Evaluaciones de Desempeño');
+                }
+                
+                $menu[] = $todos;
+                $item->children = $menu;
+            @endphp
+            
+          @endif
+      
+      </span>
+        </a>
+        @if($hasChildren)
+            <div id="{{ $transItem->id }}-dropdown-element" class="panel-collapse collapse {{ (in_array('active', $listItemClass) ? 'in' : '') }}">
+                <div class="panel-body">
+                    @include('voyager::menu.admin_menu', ['items' => $item->children, 'options' => $options, 'innerLoop' => true])
+                </div>
             </div>
-            <div class="btn btn-sm btn-primary pull-right edit"
-                data-id="{{ $item->id }}"
-                data-title="{{ $item->title }}"
-                data-url="{{ $item->url }}"
-                data-target="{{ $item->target }}"
-                data-icon_class="{{ $item->icon_class }}"
-                data-color="{{ $item->color }}"
-                data-route="{{ $item->route }}"
-                data-parameters="{{ json_encode($item->parameters) }}"
-            >
-                <i class="voyager-edit"></i> {{ __('voyager::generic.edit') }}
-            </div>
-        </div>
-        <div class="dd-handle">
-            @if($options->isModelTranslatable)
-                @include('voyager::multilingual.input-hidden', [
-                    'isModelTranslatable' => true,
-                    '_field_name'         => 'title'.$item->id,
-                    '_field_trans'        => json_encode($item->getTranslationsOf('title'))
-                ])
-            @endif
-            <span>{{ $item->title }}</span> <small class="url">{{ $item->link() }}</small>
-        </div>
-        @if(!$item->children->isEmpty())
-            @include('voyager::menu.admin', ['items' => $item->children])
         @endif
     </li>
+@endif
 
 @endforeach
 
-</ol>
+</ul>
