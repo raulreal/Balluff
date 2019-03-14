@@ -147,20 +147,32 @@ class AsistenciaController extends Controller
   
 public function reporte(Request $request)
     {
+  
        $permisoRh = $this->permisoReservarSala(Auth::user(), 'rh');
        if(!$permisoRh) {
            return redirect()->back()->with('message', 'No tienes permiso.');
        }
   
-  
         if($request->exportar_pdf) {
-            return Excel::download(new AsistenciaExport(), 'Reporte.xlsx');
+            $this->validate($request,[ 'mes'=>'required']);
+            $meses = ['01' => 'Enero',
+                       '02' => 'Febrero',
+                       '03' => 'Marzo',
+                       '04' => 'Abril',
+                       '05' => 'Mayo',
+                       '06' => 'Junio',
+                       '07' => 'Julio',
+                       '08' => 'Agosto',
+                       '09' => 'Septiembre',
+                       '10' => 'Octubre',
+                       '11' => 'Noviembre',
+                       '12' => 'Diciembre'];
+            $documento = "Reporte ".$meses[$request->mes]."-".date('Y').".xlsx";
+            return Excel::download(new AsistenciaExport( $request->mes ), $documento);
         }
-  
-  
-  
+    
         $registros = User::orderBy('name')->paginate(10);
-        return view('reporte',compact('registros')); 
+        return view('reporte', compact('registros')); 
     }
   
 public function reportes($id) {

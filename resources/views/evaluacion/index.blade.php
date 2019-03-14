@@ -29,13 +29,16 @@
                         <div class="input-group col-md-6">
                             {{ Form::text('apellido', null, ['class'=>'form-control','placeholder'=>'Apellido', 'style'=>'border-left: solid 1px #eee;'])}}
                         </div>
+                        
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="submit">
+                                <i class="voyager-search"></i>
+                            </button>
+                        </span>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-12" style="text-align:right;">
-                            <button type="submit" class="btn btn-sm btn-warning view">
-                                <i class="voyager-search"></i> <span class="hidden-xs hidden-sm">Buscar</span>
-                            </button>
                             
                             @if(count(Request::all()))
                                 <a href="{{ route('evaluaciones.index') }}" title="Borrar" class="btn btn-sm btn-danger delete" data-id="20" id="delete-20">

@@ -13,11 +13,11 @@ use Carbon\Carbon;
 class AsistenciaExport implements FromCollection, WithMapping, WithHeadings
 {
     
-    //private $fecha;
+    private $mes;
     
-    public function __construct()
+    public function __construct($mes)
     {
-        //$this->fecha = $fecha;
+        $this->mes = $mes;
     }
     
     public function headings(): array
@@ -56,7 +56,8 @@ class AsistenciaExport implements FromCollection, WithMapping, WithHeadings
         
         foreach( $usuarios as $usuario ) {
             $registros = Asistencia::where('user_id', $usuario->id)
-                                   ->whereMonth('created_at', $actual->month);
+                                   ->whereMonth('created_at', $this->mes)
+                                   ->whereYear('created_at', $actual->year);
             
             $datos = $registros->get();
             $diasTrabajados = $datos->count();
@@ -69,7 +70,7 @@ class AsistenciaExport implements FromCollection, WithMapping, WithHeadings
             }
             
             $usuario->dias = $diasTrabajados;
-            $usuario->trabajadas = $trabajadas;
+            $usuario->trabajadas = ($trabajadas)? number_format($trabajadas, 2, '.', ',') : $trabajadas;
         }
         
         return $usuarios;
