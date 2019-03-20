@@ -56,6 +56,8 @@ return [
     */
 
     'assets_path' => '/vendor/tcg/voyager/assets',
+    
+    'compass_in_production' => true,
 
     /*
     |--------------------------------------------------------------------------
