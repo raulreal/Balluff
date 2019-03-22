@@ -45,7 +45,7 @@
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
-               <th>Colaborador {{$usr->puesto}}</th>
+               <th>Colaborador</th>
                 <th>Departamento o área</th>
                 <th>Puesto</th>
                 <th>Jefe inmediato</th>

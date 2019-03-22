@@ -24,9 +24,20 @@ class ViajeraController extends Controller
      */
    
     public function index()
-    {
-        $registros = User::orderBy('name')->paginate(12);
-        return view('viajera.index',compact('registros')); 
+     {
+        $usr = Auth::user();
+        $permisosUsuario = $usr->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+            
+         if ($permisoRh) {
+             $registros = User::orderBy('name')->paginate(12);
+             return view('viajera.index',compact('registros','usr')); 
+
+          } else {
+            $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->paginate(12);
+            return view('viajera.index',compact('registros','usr'));
+          }
+
     }
   
    

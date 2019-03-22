@@ -57,13 +57,6 @@
           </div>
         </div>
      
-
-              
-    <div class="container">
-     <div class="li_head">
-          Instrucciones: Registra en los cuadros en blanco aquellas capacitaciones que has recibido. Recuerda que debe ser firmada al finalizar cada bloque.  
-      </div>
-    </div>
               
 <div class="container ads">
       <div class="row-eq-height">

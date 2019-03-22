@@ -56,6 +56,11 @@
                             <h6>{{ Auth::user()->email }}</h6>
                         </div>
                     </li>
+<li class="divider"></li>
+                  <li> <a href="/mi-evaluacion"><i class="voyager-archive"></i> Evaluacion de desempeño</a> </li>
+                  <li> <a href="/mi-ingreso"><i class="voyager-archive"></i> Evaluacion de ingreso </a> </li>
+                  
+                  
                     <li class="divider"></li>
                     <?php $nav_items = config('voyager.dashboard.navbar_items'); ?>
                     @if(is_array($nav_items) && !empty($nav_items))
