@@ -17,29 +17,29 @@ use App\Mail\ReporteEvaluacion;
  
 class ViajeraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   
+       
     public function index()
     {
-        $registros = User::orderBy('name')->paginate(12);
-        return view('ingreso.index',compact('registros')); 
+        $usr = Auth::user();
+        $permisosUsuario = $usr->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+            
+         if ($permisoRh) {
+             $registros = User::orderBy('name')->paginate(12);
+             return view('viajera.index',compact('registros','usr')); 
+
+          } else {
+            $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->paginate(12);
+            return view('viajera.index',compact('registros','usr'));
+          }
+
     }
   
-   
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
-        $usuario = User::find(1); 
+        $usuario = User::find($request->user_id); 
         $fecha = Carbon::now();
-        return view('ingreso.create',compact('fecha','usuario'));
+        return view('viajera.create',compact('fecha','usuario'));
     }
  
     /**
@@ -51,8 +51,8 @@ class ViajeraController extends Controller
     public function store(Request $request)
     {
         //
-        Ingreso::create($request->all());
-        return redirect()->route('ingreso.index')->with('success','Registro creado satisfactoriamente');
+        Viajera::create($request->all());
+        return redirect()->route('viajera.index')->with('success','Registro creado satisfactoriamente');
     }
  
     /**
@@ -64,10 +64,9 @@ class ViajeraController extends Controller
     public function show($id, Request $request)
     {
         $usr = Auth::user();
-        $registros = Ingreso::find($id);
-        $permisosUsuario = $usr->roles->pluck('name')->toArray();
-        $permisoRh = in_array('rh', $permisosUsuario);
-        return  view('ingreso.show',compact('usuario','id','usr','registros','permisoRh'));
+        $registros = Viajera::find($id);
+        $usuario = User::find($registros->user_id);
+        return  view('viajera.show',compact('usuario','id','usr','registros'));
 
     }
  
@@ -81,7 +80,7 @@ class ViajeraController extends Controller
     {
       
         $registros = Desenpeno::find($id);       
-        return view('ingreso.edit', compact('registros', 'id'));
+        return view('viajera.edit', compact('registros', 'id'));
     }
  
     /**
@@ -94,9 +93,9 @@ class ViajeraController extends Controller
     public function update(Request $request, $id)    {
         //
         $this->validate($request,[ 'id'=>'required' ]);
-         Ingreso::find($id)->update($request->all());
+         Viajera::find($id)->update($request->all());
         
-        return redirect()->route('ingreso.index')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('viajera.index')->with('success','Registro actualizado satisfactoriamente');
  
     }
  
@@ -109,36 +108,36 @@ class ViajeraController extends Controller
     public function destroy($id)
     {
         //
-         Ingreso::find($id)->delete();
-        return redirect()->route('ingreso.index')->with('success','Registro eliminado satisfactoriamente');
+         Viajera::find($id)->delete();
+        return redirect()->route('viajera.index')->with('success','Registro eliminado satisfactoriamente');
     }
   
    public function firma(Request $request)
     {
-      $firma = Ingreso::find($request->user_id);
+      $firma = Viajera::find($request->user_id);
           if($firma){
             $firma->f_empleado = 1;
             $firma->save(); 
           }
-       return redirect()->back()->with('success', 'Evaluacion firmada.');
+       return redirect()->back()->with('success', 'Hoja firmada.');
     }
       public function firma1(Request $request)
     {
-      $firma = Ingreso::find($request->user_id);
+      $firma = Viajera::find($request->user_id);
           if($firma){
             $firma->f_jefe= 1;
             $firma->save(); 
           }
-       return redirect()->back()->with('success', 'Evaluacion firmada.');
+       return redirect()->back()->with('success', 'Hoja firmada.');
     }
       public function firma2(Request $request)
     {
-      $firma = Ingreso::find($request->user_id);
+      $firma = Viajera::find($request->user_id);
           if($firma){
             $firma->f_rh = 1;
             $firma->save(); 
           }
-       return redirect()->back()->with('success', 'Evaluacion firmada.');
+       return redirect()->back()->with('success', 'Hoja firmada.');
     }
   
    
