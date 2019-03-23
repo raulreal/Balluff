@@ -31,7 +31,7 @@
 
         </div>
       
-        {!! menu('admin', 'admin') !!}
+        {!! menu('admin', 'admin_menu') !!}
         
     </nav>
 </div>

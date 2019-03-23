@@ -91,6 +91,11 @@
                 if($permisoJefe){
                    $menu[] = $item->children->firstWhere('title', 'Evaluaciones de Desempeño');
                 }
+            
+                if($permisoRh || $permisoJefe) {
+                   $menu[] = $item->children->firstWhere('title', 'Hoja Viajera');
+                   $menu[] = $item->children->firstWhere('title', 'Evaluación de Ingreso');
+                }
                 
                 $menu[] = $todos;
                 $item->children = $menu;
