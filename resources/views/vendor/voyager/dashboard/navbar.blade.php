@@ -33,15 +33,12 @@
         </div>
         <ul class="nav navbar-nav @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
           
-         <li class="profile navicon2">
+         <li class="profile navicon2 strabajo">
            @if (Auth::user()->sesion == 1)
                  <a class="btn btn-dark btngrn" href="/asistencia">Sesión de trabajo iniciada</a>
             @else
                  <a class="btn btn-dark" href="/asistencia">Iniciar sesión de trabajo</a>
             @endif
-          
-
-           
           </li>
           
           <li class="dropdown profile navicon2">
@@ -56,7 +53,14 @@
                             <h6>{{ Auth::user()->email }}</h6>
                         </div>
                     </li>
-<li class="divider"></li>
+                  <li class="divider"></li>
+                           <li class="profile navicon2 strabajo2">
+                   @if (Auth::user()->sesion == 1)
+                         <a class="btn btn-dark btngrn" href="/asistencia">Sesión de trabajo iniciada</a>
+                    @else
+                         <a class="btn btn-dark" href="/asistencia">Iniciar sesión de trabajo</a>
+                    @endif
+                  </li>
                   <li> <a href="/mi-evaluacion"><i class="voyager-archive"></i> Evaluacion de desempeño</a> </li>
                   <li> <a href="/mi-ingreso"><i class="voyager-archive"></i> Evaluacion de ingreso </a> </li>
                   

@@ -138,9 +138,19 @@ Route::group(['middleware' => 'auth'], function () {
      // Hoja viajera
           
         Route::resource('viajera', 'ViajeraController');
-        Route::get('viajera/firmar', 'ViajeraController@firma')->name('viajera.firma');
-        Route::get('viajera/firmar1', 'ViajeraController@firma1')->name('viajera.firma1');
-        Route::get('viajera/firmar2', 'ViajeraController@firma2')->name('viajera.firma2');
+        Route::get('viajera_firmar', 'ViajeraController@firma')->name('viajera.firma');
+        Route::get('viajera_firmar1', 'ViajeraController@firma1')->name('viajera.firma1');
+        Route::get('viajera_firmar2', 'ViajeraController@firma2')->name('viajera.firma2');
+  
+  
+       // Hoja viajera2
+          
+        Route::resource('viajeras', 'ViajerasController');
+        Route::get('viajeras_firmar', 'ViajerasController@firma')->name('viajeras.firma');
+        Route::get('viajeras_firmar1', 'ViajerasController@firma1')->name('viajeras.firma1');
+        Route::get('viajeras_firmar2', 'ViajerasController@firma2')->name('viajeras.firma2');
+
+
 
 
   //tmp

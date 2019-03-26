@@ -121,7 +121,7 @@
                       @if($registro->miJefe)
                                  @if($registro->miJefe->id === $usr->id)
                                        <a href="{{ route('viajera.create',  ['user_id' => $registro->id ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
-                                       <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Hoja Viajera</span></a>
+                                       <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Hoja Viajera1111</span></a>
                                  @else
                                       <div class="alert alert-warning" role="alert">Usuario sin HV</div>
                         @endif

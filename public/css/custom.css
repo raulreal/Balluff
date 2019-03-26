@@ -699,3 +699,21 @@ label.list-group-item.clase1 {
     padding: 3px 17px;
     border-radius: 5px;
 }
+
+@media (max-width: 767px) {                  
+   li.strabajo {
+    display: none !important;
+}
+}
+
+@media (min-width: 767px) {                  
+   li.strabajo2 {
+    display: none !important;
+}
+}
+
+a.btn.btn-dark:hover {
+    background-color: #999 !important;
+}
+
+
