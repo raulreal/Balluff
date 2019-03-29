@@ -330,10 +330,6 @@
               Declaro haber recibido y comprendido los temas arriba mencionados      
             </label>
             
-            <input type="checkbox" name="f_jefe" value="1" id="CheckBox41" />
-            <label class="list-group-item firma" for="CheckBox41">
-              Firma Jefe Inmediato    
-            </label>
      </div>
 
     <div class="col-sm-6"></div>
@@ -382,12 +378,7 @@
             <label class="list-group-item firma" for="CheckBox48">
               Declaro haber recibido y comprendido los temas arriba mencionados      
             </label>
-            
-            <input type="checkbox" name="f_calidad" value="1" id="CheckBox49" />
-            <label class="list-group-item firma" for="CheckBox49">
-              Firma Jefe Inmediato    
-            </label>
-     </div>
+           </div>
     </div>
             <div class="notas">
                   <div class="row">

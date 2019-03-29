@@ -23,17 +23,33 @@ class ViajeraController extends Controller
         $usr = Auth::user();
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
-            
          if ($permisoRh) {
              $registros = User::orderBy('name')->paginate(12);
              return view('viajera.index',compact('registros','usr')); 
-
-          } else {
+          } 
+          elseif ($usr->puesto == 'Líder de Calidad')  {
+            
+            
+            
+            $registros = User::whereHas('viajera', function ($query) {
+                $query->WhereNull('f_calidad');
+            })->paginate(12);
+            
+            
+            
+            
+            
+            return view('viajera.index',compact('registros','usr'));
+            
+            
+            
+            
+            
+          }else{
             $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->paginate(12);
             return view('viajera.index',compact('registros','usr'));
           }
-
-    }
+}
   
     public function create(Request $request)
     {
@@ -65,8 +81,9 @@ class ViajeraController extends Controller
     {
         $usr = Auth::user();
         $registros = Viajera::find($id);
-        $usuario = User::find($registros->user_id);
-        return  view('viajera.show',compact('usuario','id','usr','registros'));
+        $permisosUsuario = $usr->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+        return  view('viajera.show',compact('usuario','id','usr','registros','permisoRh'));
 
     }
  
@@ -108,7 +125,7 @@ class ViajeraController extends Controller
     public function destroy($id)
     {
         //
-         Viajera::find($id)->delete();
+        Viajera::find($id)->delete();
         return redirect()->route('viajera.index')->with('success','Registro eliminado satisfactoriamente');
     }
   
@@ -116,7 +133,7 @@ class ViajeraController extends Controller
     {
       $firma = Viajera::find($request->user_id);
           if($firma){
-            $firma->f_empleado = 1;
+            $firma->f_calidad = 1;
             $firma->save(); 
           }
        return redirect()->back()->with('success', 'Hoja firmada.');
@@ -139,6 +156,18 @@ class ViajeraController extends Controller
           }
        return redirect()->back()->with('success', 'Hoja firmada.');
     }
+  
+   public function mievaluacion()
+    {
+   
+    $usr = Auth::user();
+   
+   if ( !empty($usr->viajera) ) {
+        return redirect()->route('viajera.show', $usr->viajera->id);
+     } else {
+       return redirect()->route('viajera.create',  ['user_id'=>$usr->id]  );
+   }}
+  
   
    
 }

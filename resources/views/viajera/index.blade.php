@@ -39,7 +39,7 @@
             <div class="panel panel-primary">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="pull-left"><h3>Hojas Viajeras Disponibles</h3></div>
+          <div class="pull-left"><h3>Hojas Viajeras Disponibles  {{$usr->puesto}}</h3></div>
           <div class="pull-right"> 
           </div>
           <div class="table-container">
@@ -59,7 +59,7 @@
               @if($registros->count())  
               @foreach($registros as $registro)  
               <tr>
-                <td>{{ $registro->name }} {{ $registro->apellido }}</td>
+                <td>{{ $registro->name }} {{ $registro->apellido }} </td>
                 @if($registro->departamento)
                 <td>{{ $registro->departamento->nombre }}</td>
                 @else
@@ -111,24 +111,12 @@
                             <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver/Firmar HV </span>
                    </a>
                   @else
-                  <p>
-                <!--
-                   <div class="alert alert-warning" role="alert">
-                      Usuario sin evaluación
-                    </div>
-                  -->
-                  </p>
-                      @if($registro->miJefe)
-                                 @if($registro->miJefe->id === $usr->id)
-                                       <a href="{{ route('viajera.create',  ['user_id' => $registro->id ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
-                                       <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Hoja Viajera1111</span></a>
-                                 @else
+                        @if($registro->id === $usr->id)
+                             <a href="{{ route('viajera.create',  ['user_id' => $registro->id ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
+                              <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Hoja Viajera</span></a>
+                        @else
                                       <div class="alert alert-warning" role="alert">Usuario sin HV</div>
                         @endif
-                       @else
-                              <div class="alert alert-warning" role="alert">Usuario sin HV</div>
-                      @endif
-
                   @endif
                 </td>
 

@@ -37,19 +37,19 @@
                       <div class="col-sm-12"><center><h3>
                         DATOS PERSONALES
                         </h3></center></div>
-                      <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/>        {{$usuario->name}}        {{$usuario->apellido}}</div>
+                      <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/>        {{$registros->user->name}}        {{$registros->user->apellido}}</div>
                       <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  
-                        @if($usuario->miJefe)
-                          <td> {{ $usuario->miJefe->name }} {{ $usuario->miJefe->apellido }}</td>
+                        @if($registros->user->miJefe)
+                          <td> {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}</td>
                         @else
                           <td> Sin jefe </td>
                         @endif
                       </div>
-                      <div class="col-sm-2"><strong>Puesto:</strong><br/>         {{$usuario->puesto}}</div>
+                      <div class="col-sm-2"><strong>Puesto:</strong><br/>         {{$registros->user->puesto}}</div>
                       <div class="col-sm-2"><strong>Fecha: </strong><br/> {{ $registros->created_at }}</div>
                       <div class="col-sm-2"><strong>Departamento o área: </strong><br/>        
-                        @if($usuario->departamento)
-                            {{$usuario->departamento->nombre}}
+                        @if($registros->user->departamento)
+                            {{$registros->user->departamento->nombre}}
                         @endif
                       </div>
                    </div>
@@ -145,7 +145,7 @@
           @if ($registros->firma1)
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
               <label class="list-group-item firmado" for="CheckBox14">
-                Firmado por {{$usuario->name}}     {{$usuario->apellido}}
+                Firmado por {{$registros->user->name}}     {{$registros->user->apellido}}
               </label>
               @else
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
@@ -275,7 +275,7 @@
            @if ($registros->firma2)
               <input type="checkbox" name="firma2" value="1" id="CheckBox14" />
               <label class="list-group-item firmado" for="CheckBox14">
-                Firmado por {{$usuario->name}}     {{$usuario->apellido}}
+                Firmado por {{$registros->user->name}}     {{$registros->user->apellido}}
               </label>
               @else
               <input type="checkbox" name="firma2" value="1" id="CheckBox14" />
@@ -330,7 +330,7 @@
            @if ($registros->firma3)
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
               <label class="list-group-item firmado" for="CheckBox14">
-                Firmado por {{$usuario->name}}     {{$usuario->apellido}}
+                Firmado por {{$registros->user->name}}     {{$registros->user->apellido}}
               </label>
               @else
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
@@ -398,7 +398,7 @@
            @if ($registros->firma3)
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
               <label class="list-group-item firmado" for="CheckBox14">
-                Firmado por {{$usuario->name}}     {{$usuario->apellido}}
+                Firmado por {{$registros->user->name}}     {{$registros->user->apellido}}
               </label>
               @else
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
@@ -467,8 +467,55 @@
         </div>
      </div>
 </div>
-              
-              
+ 
+     
+      <div class="firmas">
+                
+            @if ($registros->f_calidad)
+                <div class="alert alert-success" role="alert">
+                  Firmado por Especialista de Calidad
+                </div> 
+             @else
+                  @if ($usr->puesto === 'Líder de Calidad')
+                        <a href="{{ route('viajera.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Especialista de Calidad</span>
+                        </a>
+                  @endif
+              @endif
+                
+              @if ($registros->f_jefe)
+                <div class="alert alert-success" role="alert">
+                  Firmado por {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}
+                </div> 
+             @else
+                   @if ($registros->user->miJefe)
+                      @if ($registros->user->miJefe->id === $usr->id)
+                            <a href="{{ route('viajera.firma1',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
+                            </a>
+                      @endif
+                  @endif
+              @endif
+                
+              @if ($registros->f_rh)
+                <div class="alert alert-success" role="alert">
+                  Firmado por Recursos Humanos
+                </div> 
+             @else           
+                   @if ($permisoRh)
+
+                            <a href="{{ route('viajera.firma2',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
+                            </a>
+                  @endif
+              @endif
+
+
+                <div>
+        </div>
+     </div>
+</div>
+
 @endsection
          
 @section('javascript')
