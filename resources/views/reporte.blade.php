@@ -45,13 +45,17 @@
                         </div>
                         
                         <span class="input-group-btn" style="width: auto; background-color: #f5f5f5; font-weight: bold; height: 34px; border: 1px solid #cccccc;">
-                            <button class="btn btn-info btn-lg" type="submit" style="margin: 0 !important; right: 2px;font-size: 15px; border-right: 1px solid #eee; height: 32px;">
-                                <i class="voyager-cloud-download" style="display:inline-block; transform: none; position: relative; top: 4px;"></i> <span>Descargar reporte</span>
+                            <button class="btn btn-info btn-lg" name="general" value="1" type="submit" style="margin: 0 !important; right: 2px;font-size: 15px; border-right: 1px solid #eee; height: 32px;">
+                                <i class="voyager-cloud-download" style="display:inline-block; transform: none; position: relative; top: 4px;"></i> <span>Descargar reporte general</span>
                             </button>
                         </span>
                         
-                        
-                        
+                      <span class="input-group-btn" style="width: auto; background-color: #f5f5f5; font-weight: bold; height: 34px; border: 1px solid #cccccc; margin-left:5px;">
+                            <button class="btn btn-info btn-lg" name="detalle" value="2" type="submit" style="margin: 0 !important; right: 2px;font-size: 15px; border-right: 1px solid #eee; height: 32px;">
+                                <i class="voyager-cloud-download" style="display:inline-block; transform: none; position: relative; top: 4px;"></i> <span>Descargar reporte detalle</span>
+                            </button>
+                        </span>
+                      
                     </div>
                     
                 {!! Form::close() !!}

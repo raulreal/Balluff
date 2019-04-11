@@ -16,8 +16,8 @@ use App\User;
 use DateTime;
 
 use App\Exports\AsistenciaExport;
+use App\Exports\AsistenciaDetalleExport;
 use Maatwebsite\Excel\Facades\Excel;
-
 
 class AsistenciaController extends Controller
 {
@@ -144,16 +144,18 @@ class AsistenciaController extends Controller
         }
     }
   
-  
-public function reporte(Request $request)
-    {
-  
+  public function reporte(Request $request)
+  {
+      
+      
+ 
        $permisoRh = $this->permisoReservarSala(Auth::user(), 'rh');
        if(!$permisoRh) {
            return redirect()->back()->with('message', 'No tienes permiso.');
        }
   
         if($request->exportar_pdf) {
+          
             $this->validate($request,[ 'mes'=>'required']);
             $meses = ['01' => 'Enero',
                        '02' => 'Febrero',
@@ -167,8 +169,17 @@ public function reporte(Request $request)
                        '10' => 'Octubre',
                        '11' => 'Noviembre',
                        '12' => 'Diciembre'];
-            $documento = "Reporte ".$meses[$request->mes]."-".date('Y').".xlsx";
-            return Excel::download(new AsistenciaExport( $request->mes ), $documento);
+          
+          if($request->has('general')) {
+               $documento = "Reporte general ".$meses[$request->mes]."-".date('Y').".xlsx";
+               return Excel::download(new AsistenciaExport( $request->mes ), $documento);
+          }
+          else if($request->has('detalle')) {
+              $documento = "Reporte detalle ".$meses[$request->mes]."-".date('Y').".xlsx";
+              return Excel::download(new AsistenciaDetalleExport( $request->mes ), $documento);
+          }   
+            
+            
         }
     
         $registros = User::orderBy('name')->paginate(10);
