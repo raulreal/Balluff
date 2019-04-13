@@ -26,9 +26,11 @@
 <div class="col-sm-6">
                           <div class="row marco">
                             <div class="col-sm-12 digitos">
-                              <div class="col-sm-12 dia" id="date" > </div>
+                              <div class="col-sm-12 dia" id="date" > 
+                                
+                              </div>
                               <div class="col-sm-2 alarma"> <i class="voyager-alarm-clock"></i></div>
-                              <div class="col-sm-7 numeros" id="clock">{{ $actual->toTimeString() }}</div>
+                              <div class="col-sm-7 numeros" id="clock"></div>
                               
                             </div>
                             
@@ -91,11 +93,16 @@
        
 @section('javascript')
 <script>
+  /*
   window.onload = function startTime() {
+    
     var today = new Date();
-    var hr = today.getHours();
+    var hr = {{ date('H') }};//today.getHours();
     var min = today.getMinutes();
     var sec = today.getSeconds();
+    
+    console.log(hr, min, sec, );
+    
     ap = (hr < 12) ? "<span>AM</span>" : "<span>PM</span>";
     hr = (hr == 0) ? 12 : hr;
     hr = (hr > 12) ? hr - 12 : hr;
@@ -116,12 +123,69 @@
     
     var time = setTimeout(function(){ startTime() }, 500);
 }
+  function checkTime(i) {
+      if (i < 10) {
+          i = "0" + i;
+      }
+      return i;
+  }
   
-function checkTime(i) {
-    if (i < 10) {
-        i = "0" + i;
+  
+  function showTime() {
+    var date = new Date();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var session = "AM";
+    
+    if(h == 0){
+        h = 12;
     }
-    return i;
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = h + ":" + m + ":" + s + " " + session;
+    document.getElementById("clock").innerText = time;
+    //document.getElementById("date").textContent = time;
+    
+    setTimeout(showTime(20), 1000);
+    
 }
+  */
+  
+  var anio = {{ date('y') }} ;
+  var mes =  {{ date('m') }} ;
+  var dia =  {{ date('d') }} ;
+  var hora = {{ date("H", (strtotime ("+6 Hours"))) }} ;
+  var minuto = {{ date("i", (strtotime ("-23 minute"))) }} ;
+  var segundos = {{ date("s") }} ;
+  
+  var d = new Date( Date.UTC( anio,  mes ,  dia , hora, minuto , segundos ) );
+  
+  console.log( "hora servidor",  "{{date('Y-m-d G-i-s')}}" );
+  
+    var months = ['Enenro', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    var days = ['Domigo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    var curWeekDay = days[d.getDay()];
+    var curDay = d.getDate();
+    var curMonth = months[d.getMonth()];
+    var curYear = d.getFullYear();
+    var date = curWeekDay+", "+curDay+" "+curMonth+" "+curYear;
+    document.getElementById("date").innerHTML = date;
+  
+  setInterval(function() {
+      d.setSeconds( d.getSeconds() + 1 );
+      $('#clock').text((d.getHours() +':' + d.getMinutes() + ':' + d.getSeconds() ));
+  }, 1000);
+  
+  
+  
 </script>       
 @endsection
