@@ -163,7 +163,7 @@
   var anio = {{ date('y') }} ;
   var mes =  {{ date('m') }} ;
   var dia =  {{ date('d') }} ;
-  var hora = {{ date("H", (strtotime ("+5 Hours"))) }} ;
+  var hora = {{ date("H", (strtotime ("+7 Hours"))) }} ;
   var minuto = {{ date("i", (strtotime ("-23 minute"))) }} ;
   var segundos = {{ date("s") }} ;
   
