@@ -160,12 +160,14 @@
 }
   */
   
-  var anio = {{ date('y') }} ;
-  var mes =  {{ date('m') }} ;
+  var anio = {{ date('Y') }} ;
+  var mes =  {{ date('n') - 1 }} ;
   var dia =  {{ date('d') }} ;
-  var hora = {{ date("H", (strtotime ("+7 Hours"))) }} ;
-  var minuto = {{ date("i", (strtotime ("-23 minute"))) }} ;
+  var hora = {{ date("G", (strtotime ("+6 Hours")) ) }} ; //, (strtotime ("+7 Hours"))
+  var minuto = {{ date("i") }} ;// , (strtotime ("-23 minute"))
   var segundos = {{ date("s") }} ;
+  
+  console.log(anio,  mes ,  dia , hora, minuto , segundos);
   
   var d = new Date( Date.UTC( anio,  mes ,  dia , hora, minuto , segundos ) );
   
