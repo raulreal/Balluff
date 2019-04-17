@@ -41,7 +41,7 @@ class AsistenciaDetalleExport implements FromCollection, WithMapping, WithHeadin
             $asistencia->user->nombreCompleto(),
             $asistencia->start_date,
             $asistencia->end_date,
-            0,
+            $this->recesos($asistencia->recesos),
         ];
     }
     
@@ -78,8 +78,17 @@ class AsistenciaDetalleExport implements FromCollection, WithMapping, WithHeadin
                              ->with('recesos', 'user')
                              ->orderBy('user_id', 'desc')
                              ->get();
-      
+        
         return $registros;
     }
+  
+  public function recesos($recesos) {
+      $respuesta = "";
+      foreach($recesos as $index => $receso ) {
+          $respuesta = $respuesta."(".($index+1).") ".$receso->start_date."<->".$receso->end_date. ", ";
+      }
+      return $respuesta;
+  }
+  
   
 }
