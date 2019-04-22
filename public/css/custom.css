@@ -716,4 +716,74 @@ a.btn.btn-dark:hover {
     background-color: #999 !important;
 }
 
+td.titulo_tb {
+    background: #333;
+    color: white;
+    text-align: center;
+}
 
+
+#ck-button {
+    background-color:#EFEFEF;
+    border-radius:4px;
+    overflow:auto;
+}
+
+#ck-button label {
+    float:left;
+    width:100%;
+}
+
+#ck-button label span {
+    text-align:center;
+    padding: 10px 30px;
+    display:block;
+}
+
+#ck-button label input {
+    position:absolute;
+    top:-200px;
+}
+
+#ck-button input:checked + span {
+    background-color:black;
+    color:#fff;
+}
+.solicitante{text-align:center;}
+
+td.filetit {
+    background: #2f3640;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+}
+
+td.filetit2 {
+    background: #718093;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+}
+
+.fullup {
+    background: whitesmoke;
+    text-align: center;
+}
+input[type="file"] {
+    background: whitesmoke !important;
+    padding: 10% !important;
+}
+
+td.estado1 {
+    background: #55B559;
+    text-align: center;
+    color: whitesmoke;
+    font-size: .9em;
+}
+
+td.estado0 {
+    background: #e73345;
+    text-align: center;
+    color: whitesmoke;
+    font-size: .9em;
+}

@@ -143,14 +143,38 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('viajera_firmar2', 'ViajeraController@firma2')->name('viajera.firma2');
         Route::get('mi-viajera', 'ViajeraController@mievaluacion')->name('viajera.mievaluacion');
   
+     // Formato de requsicion
+          
+        Route::resource('requisicion', 'RequisicionController');
+        Route::get('firmarr', 'RequisicionController@firma')->name('requisicion.firma');
+        Route::get('firmarr1', 'RequisicionController@firma1')->name('requisicion.firma1');
+        Route::get('firmarr2', 'RequisicionoController@firma2')->name('requisicion.firma2');
+        Route::get('mi-requisicion', 'RequisicionController@mievaluacion')->name('requisicion.mievaluacion');
   
+  
+  
+       // Contratos
+          
+        Route::resource('contratos', 'ContratoController');
+        Route::get('firmarc', 'ContratoController@firma')->name('contrato.firma');
+        Route::get('firmarc1', 'ContratoController@firma1')->name('contrato.firma1');
+        Route::get('firmarc2', 'ContratoController@firma2')->name('contrato.firma2');
+        Route::get('mis-contratos', 'ContratoController@mievaluacion')->name('contrato.mievaluacion');
 
   //tmp
         Route::get('graficas', 'GraficaController@index')->name('grafica.index');
   
   //Facturas
         Route::resource('facturas', 'FacturaController');
-
+  
+  //Vacaciones
+        Route::resource('vacaciones', 'VacacionesController');
+        Route::get('vacaciones-usuarios', 'VacacionesController@index2')->name('vacaciones.index2');
+        Route::get('vacaciones-firmar', 'VacacionesController@firma')->name('vacaciones.firma');
+        Route::get('vacaciones-firmar1', 'VacacionesController@firma1')->name('vacaciones.firma1');
+        Route::get('vacaciones-firmar2', 'VacacionesController@firma2')->name('vacaciones.firma2');
+        Route::get('mis-vacaciones', 'VacacionesController@misVacaciones')->name('vacaciones.misvacaciones');
+        
 });
 
 

@@ -47,11 +47,21 @@ class User extends \TCG\Voyager\Models\User
     
     }
   
+    public function requisiciones()
+    {
+        return $this->hasMany('App\Requisicion');
+    } 
+  
+  
+      public function contratos()
+    {
+        return $this->hasMany('App\Contrato');
+    } 
+  
   public function asistencias()
     {
         return $this->hasMany('App\Asistencia');
     }
-
    public function departamento()
     {
         return $this->belongsTo('App\Departamento');
@@ -60,6 +70,11 @@ class User extends \TCG\Voyager\Models\User
   public function misEmpleados()
     {
         return $this->hasMany('App\User', 'jefe_id');
+    }
+  
+  public function misVacaciones()
+    {
+        return $this->hasMany('App\Vacacion');
     }
   
   public function miJefe()
