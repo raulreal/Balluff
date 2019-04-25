@@ -25,6 +25,7 @@ class AsistenciaDetalleExport implements FromCollection, WithMapping, WithHeadin
     {
         return [
             'Usuario',
+            'Jefe Directo',
             'Entrada',
             'Salida',
             'Descansos'
@@ -39,6 +40,7 @@ class AsistenciaDetalleExport implements FromCollection, WithMapping, WithHeadin
     {
         return [
             $asistencia->user->nombreCompleto(),
+            ($asistencia->user->miJefe)? $asistencia->user->miJefe->nombreCompleto() : '',
             $asistencia->start_date,
             $asistencia->end_date,
             $this->recesos($asistencia->recesos),
