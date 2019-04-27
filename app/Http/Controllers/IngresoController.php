@@ -19,21 +19,29 @@ class IngresoController extends Controller
 {
 
    
-    public function index()
+    public function index(Request $request)
     {
         $usr = Auth::user();
+        $registros = null;
+        $nombre    = $request->nombre;
+        $apellido  = $request->apellido;
+        $empleados = ($request->empleados == "mios")? $usr->id : "";
+        $ocultarJefe = true;
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
             
-         if ($permisoRh) {
-             $registros = User::orderBy('name')->paginate(12);
-             return view('ingreso.index',compact('registros','usr')); 
+       if ($permisoRh)
+           $registros = User::whereNotNull('id');
+       else
+           $registros = User::where('jefe_id', Auth::user()->id);
 
-          } else {
-            $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->paginate(12);
-            return view('ingreso.index',compact('registros','usr'));
-          }
-
+       $registros = $registros->nombre($nombre)
+                              ->apellido($apellido)
+                              ->misEmpleados($empleados)
+                              ->orderBy('name')
+                              ->paginate(12);
+       
+       return view('ingreso.index',compact('registros', 'usr', 'ocultarJefe')); 
     }
   
 

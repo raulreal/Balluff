@@ -100,6 +100,13 @@ class User extends \TCG\Voyager\Models\User
     	  	$query->where('apellido', 'like', '%'.$apellido.'%');
       }
   }
+  
+  public function scopeMisEmpleados($query, $idJefe) {
+    	if(trim($idJefe) != "") {
+    	  	$query->where('jefe_id', $idJefe);
+      }
+  }
+  
     /*
   public function scopeFechasNoDisponibles($query, $fechaViaje){
     	if(trim($fechaViaje) != "") {

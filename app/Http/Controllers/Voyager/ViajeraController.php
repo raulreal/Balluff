@@ -18,38 +18,35 @@ use App\Mail\ReporteEvaluacion;
 class ViajeraController extends Controller
 {
        
-    public function index()
+    public function index(Request $request)
     {
+        $registros = null;
         $usr = Auth::user();
+        $nombre    = $request->nombre;
+        $apellido  = $request->apellido;
+        $empleados = ($request->empleados == "mios")? $usr->id : "";
+        $ocultarJefe = true;
+        
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
-         if ($permisoRh) {
-             $registros = User::orderBy('name')->paginate(12);
-             return view('viajera.index',compact('registros','usr')); 
-          } 
-          elseif ($usr->puesto == 'Líder de Calidad')  {
-            
-            
-            
-            $registros = User::whereHas('viajera', function ($query) {
-                $query->WhereNull('f_calidad');
-            })->paginate(12);
-            
-            
-            
-            
-            
-            return view('viajera.index',compact('registros','usr'));
-            
-            
-            
-            
-            
-          }else{
-            $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->paginate(12);
-            return view('viajera.index',compact('registros','usr'));
-          }
-}
+        
+        if ($permisoRh)
+             $registros = User::whereNotNull('id');
+        else if($usr->puesto == 'Líder de Calidad')
+            $registros = User::whereHas('viajera', function ($query) { $query->WhereNull('f_calidad'); });
+        else {
+            $ocultarJefe = false;
+            $registros = User::where('jefe_id', Auth::user()->id);
+        }
+      
+        $registros = $registros->nombre($nombre)
+                               ->apellido($apellido)
+                               ->misEmpleados($empleados)
+                               ->orderBy('name')
+                               ->paginate(12);
+      
+        return view('viajera.index',compact('registros', 'usr', 'ocultarJefe'));
+    }
   
     public function create(Request $request)
     {

@@ -18,18 +18,35 @@
             <div class="table-responsive">
                 <div class="panel panel-primary">
                     
-                    <form method="get" class="form-search">
-                        <div id="search-input">
-                            <div class="input-group col-md-4">
-                                <input type="text" class="form-control" placeholder="Buscar" name="s" value="">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info btn-lg" type="submit">
-                                        <i class="voyager-search"></i>
-                                    </button>
-                                </span>
+                    {{ Form::model(Request::all(), array('route' => 'evaluacion.indexjfe','method'=>'GET', 'class'=>'form-search' )) }}    
+                    
+                        <div id="search-input" style="    margin-bottom: 5px;">
+                            <div class="input-group col-md-6">
+                                {{ Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre'])}}
+                            </div>
+                          
+                            <div class="input-group col-md-6">
+                                {{ Form::text('apellido', null, ['class'=>'form-control','placeholder'=>'Apellido', 'style'=>'border-left: solid 1px #eee;'])}}
+                            </div>
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="submit">
+                                    <i class="voyager-search"></i>
+                                </button>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:right;">
+
+                                @if(count(Request::all()))
+                                    <a href="{{ route('evaluacion.indexjfe') }}" title="Borrar" class="btn btn-sm btn-danger delete" data-id="20" id="delete-20">
+                                        <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Borrar filtro</span>
+                                    </a>
+                                @endif
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                     
                     <div class="panel panel-default">
                         <div class="panel-heading">

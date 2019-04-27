@@ -37,11 +37,18 @@ class DesenpenoController extends Controller
         return view('evaluacion.index',compact('registros')); 
     }
   
-  public function indexjfe()
+  public function indexjfe(Request $request)
     {
-        $registros = User::orderBy('name')->where('jefe_id', Auth::user()->id)->get();
-    
-        return view('evaluacion.indexjfe',compact('registros','usuarios'));
+        $nombre   = $request->nombre;
+        $apellido = $request->apellido;
+        
+        $registros = User::nombre($nombre)
+                         ->apellido($apellido)
+                         ->where('jefe_id', Auth::user()->id)
+                         ->orderBy('name')
+                         ->get();
+        
+        return view('evaluacion.indexjfe',compact('registros'));
     }
  
     /**
