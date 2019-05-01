@@ -12,7 +12,6 @@ use App\User;
 use App\Ingreso;
 
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ReporteEvaluacion;
 
  
 class IngresoController extends Controller
@@ -60,7 +59,6 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        
         $ingreso = Ingreso::create($request->all());
         
         return redirect()->route('ingreso.index')->with('success','Registro creado satisfactoriamente');
@@ -78,6 +76,39 @@ class IngresoController extends Controller
         $registros = Ingreso::find($id);
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
+        
+        if($request->descargar_pdf) {
+            $view =  \View::make('ingreso.showPdf', compact('registros', 'resutado'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('reporte-viaje.pdf');
+        }
+        else if($request->enviar_pdf) {
+        	    $estado = 'success';
+        	    $mensaje = 'El reporte se envio correctamete.';
+        	    
+        	    if($request->email_evalucion) {
+        	        $correo = $request->email_evalucion;
+        	        $pdf = \App::make('dompdf.wrapper');
+            	    $pdf->loadView('ingreso.showPdf', compact('registros', 'resutado'));
+                    
+                  try {
+                    Mail::raw('Evaluación de nuevo ingreso', function($message) use($pdf, $correo)
+                      {
+                          $message->from('no-reply@balluff.com', 'Balluff');
+                          $message->to($correo)->subject('Evaluación de nuevo ingreso');
+                          $message->attachData($pdf->output(), "Evaluacin_nuevo_ingreso.pdf");
+                      });
+                    
+                  }
+                  catch ( \Exception $e) {
+                      $estado = 'error';
+                      $mensaje = 'El reporte no se envio.';
+                  }
+        	    }
+              return redirect()->route('ingreso.show', $registros->id )->with($estado, $mensaje);
+    	    }
+      
         return  view('ingreso.show',compact('usuario','id','usr','registros','permisoRh'));
 
     }
