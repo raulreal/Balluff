@@ -112,7 +112,7 @@ class ViajeraController extends Controller
                       $mensaje = 'El reporte no se envio.';
                   }
         	    }
-              return redirect()->route('evaluaciones.edit', $registros->id )->with($estado, $mensaje);
+              return redirect()->route('viajera.show', $registros->id )->with($estado, $mensaje);
     	    }
       
         //return view( 'viajera.showPdf', compact('registros', 'resutado') );
