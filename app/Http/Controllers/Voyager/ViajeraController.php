@@ -80,6 +80,42 @@ class ViajeraController extends Controller
         $registros = Viajera::find($id);
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
+        $resutado = true;
+        
+        //Evaluar de que boton viene
+        if($request->descargar_pdf) {
+            $view =  \View::make('viajera.showPdf', compact('registros', 'resutado'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('reporte-viaje.pdf');
+        }
+        else if($request->enviar_pdf) {
+        	    $estado = 'success';
+        	    $mensaje = 'El reporte se envio correctamete.';
+        	    
+        	    if($request->email_evalucion) {
+        	        $correo = $request->email_evalucion;
+        	        $pdf = \App::make('dompdf.wrapper');
+            	    $pdf->loadView('viajera.showPdf', compact('registros', 'resutado'));
+                    
+                  try {
+                    Mail::raw('Hoja viajera', function($message) use($pdf, $correo)
+                      {
+                          $message->from('no-reply@balluff.com', 'Balluff');
+                          $message->to($correo)->subject('Hoja viajera');
+                          $message->attachData($pdf->output(), "Hoja_viajera.pdf");
+                      });
+                    
+                  }
+                  catch ( \Exception $e) {
+                      $estado = 'error';
+                      $mensaje = 'El reporte no se envio.';
+                  }
+        	    }
+              return redirect()->route('evaluaciones.edit', $registros->id )->with($estado, $mensaje);
+    	    }
+      
+        //return view( 'viajera.showPdf', compact('registros', 'resutado') );
         return  view('viajera.show',compact('usuario','id','usr','registros','permisoRh'));
 
     }
