@@ -11,25 +11,25 @@
 
 @section('content')
 
-<div class="col-md-12">
-  			@if (count($errors) > 0)
-			<div class="alert alert-danger">
-				<strong>Error!</strong> Revise los campos obligatorios.<br><br>
-				<ul>
-					@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-			@endif
-			@if(Session::has('success'))
-			<div class="alert alert-info">
-				{{Session::get('success')}}
-			</div>
-			@endif
-</div>
-
    <div class="panel panel-bordered">
+     
+     <div class="col-md-12">
+            @if (count($errors) > 0)
+          <div class="alert alert-danger">
+            <strong>Error!</strong> Revise los campos obligatorios.<br><br>
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+          @if(Session::has('success'))
+          <div class="alert alert-info">
+            {{Session::get('success')}}
+          </div>
+          @endif
+    </div>
      
      <div class="col-xs-12 col-sm-12 col-md-12 form-inline">
         <form method="GET" action="{{ route('viajera.show', $registros->id) }}" class="form-inline" >
