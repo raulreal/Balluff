@@ -89,6 +89,7 @@
                 <th>Firma Empleado</th>
                 <th>Firma Jefe</th>
                 <th>Firma RH</th>
+                <th>Firma Calidad</th>
                 <th>Revisar Evaluación</th>
              </thead>
              <tbody>
@@ -108,9 +109,10 @@
                   <td> Sin jefe </td>
                 @endif
                 <td> {{ $registro->fecha_ingreso }} </td>
+                
                 <td>
                     @if($registro->viajera)
-                        @if($registro->viajera->f_empleado)
+                        @if($registro->viajera->firma1 || $registro->viajera->firma2 || $registro->viajera->firma3 || $registro->viajera->firma4)
                             <span id="status" class='ing{{$registro->viajera->f_empleado}}'>  Si </span>
                         @else
                             <span id="status" class='ing{{$registro->viajera->f_empleado}}'>  No </span>
@@ -119,6 +121,7 @@
                              <span id="status" class='ing{{$registro->viajera}}'>  No </span>
                     @endif
                 </td>
+                
                 <td>
                     @if($registro->viajera)
                         @if($registro->viajera->f_jefe)
@@ -130,6 +133,7 @@
                       <span id="status" class='ing{{$registro->viajera}}'>  No</span>
                     @endif
                 </td>
+                  
                 <td>
                     @if($registro->viajera)
                         @if($registro->viajera->f_rh)
@@ -141,6 +145,20 @@
                       <span id="status" class='ing{{$registro->rh}}'>  No</span>
                     @endif
                 </td>
+                
+                <td>
+                    @if($registro->viajera)
+                        @if($registro->viajera->f_calidad)
+                           <span id="status" class='ing{{$registro->viajera->f_calidad}}'>  Si</span>
+                        @else
+                           <span id="status" class='ing{{$registro->viajera->f_calidad}}'>  No</span>
+                        @endif
+                    @else
+                      <span id="status" class='ing{{$registro->rh}}'>  No</span>
+                    @endif
+                </td>
+                
+                
                 <td>
                   @if ( !empty($registro->viajera->id) )
                    <a href="{{action('ViajeraController@show', $registro->viajera->id)}}" title="Editar" class="btn btn-sm btn-primary edit">

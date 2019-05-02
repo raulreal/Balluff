@@ -12,7 +12,6 @@ use App\User;
 use App\Viajera;
 
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ReporteEvaluacion;
 
  
 class ViajeraController extends Controller
