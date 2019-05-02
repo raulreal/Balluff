@@ -113,12 +113,12 @@
                 <td>
                     @if($registro->viajera)
                         @if($registro->viajera->firma1 || $registro->viajera->firma2 || $registro->viajera->firma3 || $registro->viajera->firma4)
-                            <span id="status" class='ing{{$registro->viajera->f_empleado}}'>  Si </span>
+                            <span id="status" class='ing1'>  Si </span>
                         @else
-                            <span id="status" class='ing{{$registro->viajera->f_empleado}}'>  No </span>
+                            <span id="status" class='ing'>  No </span>
                         @endif
                     @else
-                             <span id="status" class='ing{{$registro->viajera}}'>  No </span>
+                             <span id="status" class='ing'>  No </span>
                     @endif
                 </td>
                 
