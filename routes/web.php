@@ -122,6 +122,10 @@ Route::group(['middleware' => 'auth'], function () {
           
         Route::resource('evaluaciones', 'DesenpenoController');
         Route::get('evaluacion', 'DesenpenoController@indexjfe')->name('evaluacion.indexjfe');
+  
+        Route::get('efirma/{id}', 'DesenpenoController@show2')->name('evaluacion.show2');
+        Route::get('objetivos/{id}', 'DesenpenoController@editob')->name('evaluacion.editob');
+  
         Route::get('evaluacion/firmar', 'DesenpenoController@firma')->name('evaluacion.firma');
         Route::get('evaluacion/firmar1', 'DesenpenoController@firma1')->name('evaluacion.firma1');
         Route::get('evaluacion/firmar2', 'DesenpenoController@firma2')->name('evaluacion.firma2');
@@ -135,6 +139,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('firmar2', 'IngresoController@firma2')->name('ingreso.firma2');
         Route::get('mi-ingreso', 'IngresoController@mievaluacion')->name('ingreso.mievaluacion');
   
+  
+     // Evaluacion de Nuevo ingreso
+          
+        Route::resource('revision', 'RevisionController');
+          Route::get('revision_firmar', 'RevisionController@firma')->name('revision.firma');
+        Route::get('revision_firmar1', 'RevisionController@firma1')->name('revision.firma1');
+        Route::get('revision_firmar2', 'RevisionController@firma2')->name('revision.firma2');
+      
+  
+
      // Hoja viajera
           
         Route::resource('viajera', 'ViajeraController');

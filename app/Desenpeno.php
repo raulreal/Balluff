@@ -14,4 +14,14 @@ class Desenpeno extends Model
     {
         return $this->belongsTo('App\User');
     }
+  
+    public function revision()
+    {
+        return $this->hasMany('App\Revision');
+    }
+  
+    public function revisiones()
+    {
+        return $this->hasMany('App\Revision');
+    }
 }

@@ -94,10 +94,7 @@
                 <th style="width: 10%">Meta</th>
                 <th style="width: 10%">Unidad de Medida</th>
                 <th style="width: 10%">Fecha de ejecución</th>
-                <th style="width: 10%">Estatus</th>
                 <th style="width: 5%">Peso</th>
-                <th style="width: 5%">Meta alcanzada</th>
-               <th style="width: 10%">Ponderación</th>
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
              <tbody>
@@ -106,15 +103,7 @@
                   <td><input type="text" name="meta1" id="meta1" class="form-control input-sm objetivos" value="{{$registros->meta1}}" ></td>
                   <td><input type="text" name="medida1" id="medida1" class="form-control input-sm objetivos" value="{{$registros->medida1}}" ></td>
                   <td><input type="text" name="fecha1" id="fecha1" class="form-control input-sm objetivos" value="{{$registros->fecha1}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status1" id="status1">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso1" id="peso1" class="form-control input-sm objetivos" value="{{$registros->peso1}}" ></td>
-                  <td><input type="text" name="alcanzada1" id="alcanzada1" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada1}}" ></td>  
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion1   }}" ></td>
                   <td><textarea type="text" name="comentarios1" id="comentarios1" class="form-control input-sm objetivos" >{{$registros->comentarios1}}</textarea></td>
                </tr>
                <tr>
@@ -122,15 +111,7 @@
                   <td><input type="text" name="meta2" id="meta2" class="form-control input-sm objetivos" value="{{$registros->meta2}}" ></td>
                   <td><input type="text" name="medida2" id="medida2" class="form-control input-sm objetivos" value="{{$registros->medida2}}" ></td>
                   <td><input type="text" name="fecha2" id="fecha2" class="form-control input-sm objetivos" value="{{$registros->fecha2}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status2" id="status2" >
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso2" id="peso2" class="form-control input-sm objetivos" value="{{$registros->peso2}}" ></td>
-                  <td><input type="text" name="alcanzada2" id="alcanzada2" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada2}}" ></td>  
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion2   }}" ></td>
                   <td><textarea type="text" name="comentarios2" id="comentarios2" class="form-control input-sm objetivos" >{{$registros->comentarios2}}</textarea></td>
                </tr>
                
@@ -139,15 +120,7 @@
                   <td><input type="text" name="meta3" id="meta3" class="form-control input-sm objetivos" value="{{$registros->meta3}}" ></td>
                   <td><input type="text" name="medida3" id="medida3" class="form-control input-sm objetivos" value="{{$registros->medida3}}" ></td>
                   <td><input type="text" name="fecha3" id="fecha3" class="form-control input-sm objetivos" value="{{$registros->fecha3}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status3" id="status3" >
-                          <option>En proceso</option>
-                          <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso3" id="peso3" class="form-control input-sm objetivos" value="{{$registros->peso3}}" ></td>
-                  <td><input type="text" name="alcanzada3" id="alcanzada3" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada3}}" ></td> 
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion3   }}" ></td>
                   <td><textarea type="text" name="comentarios3" id="comentarios3" class="form-control input-sm objetivos" >{{$registros->comentarios3}}</textarea></td>
                </tr>
                
@@ -156,15 +129,8 @@
                   <td><input type="text" name="meta4" id="meta4" class="form-control input-sm objetivos" value="{{$registros->meta4}}" ></td>
                   <td><input type="text" name="medida4" id="medida4" class="form-control input-sm objetivos" value="{{$registros->medida4}}" ></td>
                   <td><input type="text" name="fecha4" id="fecha4" class="form-control input-sm objetivos" value="{{$registros->fecha4}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status4" id="status4">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
-                  <td><input type="text" name="peso1" id="peso4" class="form-control input-sm objetivos" value="{{$registros->peso4}}" ></td>
-                  <td><input type="text" name="alcanzada1" id="alcanzada4" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada4}}" ></td>  
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion4   }}" ></td>
+
+                  <td><input type="text" name="peso1" id="peso4" class="form-control input-sm objetivos" value="{{$registros->peso4}}" ></td> 
                   <td><textarea type="text" name="comentarios1" id="comentarios4" class="form-control input-sm objetivos" >{{$registros->comentarios4}}</textarea></td>
                </tr>
                
@@ -173,22 +139,8 @@
                   <td><input type="text" name="meta5" id="meta5" class="form-control input-sm objetivos" value="{{$registros->meta5}}" ></td>
                   <td><input type="text" name="medida5" id="medida5" class="form-control input-sm objetivos" value="{{$registros->medida5}}" ></td>
                   <td><input type="text" name="fecha5" id="fecha5" class="form-control input-sm objetivos" value="{{$registros->fecha5}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status5" id="status5">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
-                  <td><input type="text" name="peso5" id="peso5" class="form-control input-sm objetivos" value="{{$registros->peso5}}" ></td>
-                  <td><input type="text" name="alcanzada5" id="alcanzada5" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada5}}" ></td>  
-                   <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion5   }}" ></td>
+                  <td><input type="text" name="peso5" id="peso5" class="form-control input-sm objetivos" value="{{$registros->peso5}}" ></td> 
                   <td><textarea type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" >{{$registros->comentarios5}}</textarea></td>
-               </tr>
-               
-               <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos individuales:    </td>
-                 <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$registros->total1}}"  ></td>
-                 <td></td>
                </tr>
         
             </tbody>
@@ -206,10 +158,7 @@
                 <th style="width: 10%">Meta</th>
                 <th style="width: 10%">Unidad de Medida</th>
                 <th style="width: 10%">Fecha de ejecución</th>
-                <th style="width: 10%">Estatus</th>
                 <th style="width: 5%">Peso</th>
-                <th style="width: 5%">Meta alcanzada</th>
-               <th style="width: 10%">Ponderación</th>
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
              <tbody>
@@ -218,15 +167,7 @@
                   <td><input type="text" name="meta6" id="meta6" class="form-control input-sm objetivos" value="{{$registros->meta6}}" ></td>
                   <td><input type="text" name="medida6" id="medida6" class="form-control input-sm objetivos" value="{{$registros->medida6}}" ></td>
                   <td><input type="text" name="fecha6" id="fecha6" class="form-control input-sm objetivos" value="{{$registros->fecha6}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status6" id="status6">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
-                  <td><input type="text" name="peso6" id="peso6" class="form-control input-sm objetivos" value="{{$registros->peso6}}" ></td>
-                  <td><input type="text" name="alcanzada6" id="alcanzada6" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada6}}" ></td>  
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion6   }}" ></td>
+                  <td><input type="text" name="peso6" id="peso6" class="form-control input-sm objetivos" value="{{$registros->peso6}}" ></td> 
                   <td><textarea type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" >{{$registros->comentarios6}}</textarea></td>
                </tr>
                
@@ -235,15 +176,7 @@
                   <td><input type="text" name="meta7" id="meta7" class="form-control input-sm objetivos" value="{{$registros->meta7}}" ></td>
                   <td><input type="text" name="medida7" id="medida7" class="form-control input-sm objetivos" value="{{$registros->medida7}}" ></td>
                   <td><input type="text" name="fecha7" id="fecha7" class="form-control input-sm objetivos" value="{{$registros->fecha7}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status7" id="status7">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso2" id="peso7" class="form-control input-sm objetivos" value="{{$registros->peso7}}" ></td>
-                  <td><input type="text" name="alcanzada7" id="alcanzada7" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada7}}" ></td> 
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion7   }}" ></td>
                   <td><textarea type="text" name="comentarios7" id="comentarios7" class="form-control input-sm objetivos" >{{$registros->comentarios7}}</textarea></td>
                </tr>
                
@@ -252,15 +185,7 @@
                   <td><input type="text" name="meta8" id="meta8" class="form-control input-sm objetivos" value="{{$registros->meta8}}" ></td>
                   <td><input type="text" name="medida8" id="medida8" class="form-control input-sm objetivos" value="{{$registros->medida8}}" ></td>
                   <td><input type="text" name="fecha8" id="fecha8" class="form-control input-sm objetivos" value="{{$registros->fecha8}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status8" id="status8">
-                          <option>En proceso</option>
-                          <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso3" id="peso8" class="form-control input-sm objetivos" value="{{$registros->peso8}}" ></td>
-                  <td><input type="text" name="alcanzada8" id="alcanzada8" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada8}}" ></td>  
-                                 <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion8   }}" ></td>
                   <td><textarea type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" >{{$registros->comentarios8}}</textarea></td>
                </tr>
                
@@ -269,15 +194,7 @@
                   <td><input type="text" name="meta9" id="meta9" class="form-control input-sm objetivos" value="{{$registros->meta9}}" ></td>
                   <td><input type="text" name="medida9" id="medida9" class="form-control input-sm objetivos" value="{{$registros->medida9}}" ></td>
                   <td><input type="text" name="fecha9" id="fecha9" class="form-control input-sm objetivos" value="{{$registros->fecha9}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status4" id="status9">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso1" id="peso9" class="form-control input-sm objetivos" value="{{$registros->peso9}}" ></td>
-                  <td><input type="text" name="alcanzada9" id="alcanzada9" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada9}}" ></td> 
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion9   }}" ></td>
                   <td><textarea type="text" name="comentarios9" id="comentarios9" class="form-control input-sm objetivos" >{{$registros->comentarios9}}</textarea></td>
                </tr>
                
@@ -286,22 +203,8 @@
                   <td><input type="text" name="meta10" id="meta10" class="form-control input-sm objetivos" value="{{$registros->meta10}}" ></td>
                   <td><input type="text" name="medida10" id="medida10" class="form-control input-sm objetivos" value="{{$registros->medida10}}" ></td>
                   <td><input type="text" name="fecha10" id="fecha10" class="form-control input-sm objetivos" value="{{$registros->fecha10}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status10" id="status10">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso10" id="peso10" class="form-control input-sm objetivos" value="{{$registros->peso10}}" ></td>
-                  <td><input type="text" name="alcanzada10" id="alcanzada10" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada10}}" ></td>  
-                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion10  }}" ></td>
                   <td><textarea type="text" name="comentarios10" id="comentarios10" class="form-control input-sm objetivos" >{{$registros->comentarios10}}</textarea></td>
-               </tr>
-               
-               <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos  administrativos:    </td>
-                 <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$registros->total2}}"  ></td>
-                 <td></td>
                </tr>
             </tbody>
                 </div>
@@ -317,9 +220,7 @@
                 <th style="width: 10%">Meta</th>
                 <th style="width: 10%">Unidad de Medida</th>
                 <th style="width: 10%">Fecha de ejecución</th>
-                <th style="width: 10%">Estatus</th>
                 <th style="width: 5%">Peso</th>
-                <th style="width: 5%">Meta alcanzada</th>
                <th style="width: 10%">Ponderación</th>
                 <th style="width: 20%">Comentarios adicionales</th>
              </thead>
@@ -329,14 +230,7 @@
                   <td><input type="text" name="meta11" id="meta11" class="form-control input-sm objetivos" value="{{$registros->meta11}}" ></td>
                   <td><input type="text" name="medida11" id="medida11" class="form-control input-sm objetivos" value="{{$registros->medida11}}" ></td>
                   <td><input type="text" name="fecha11" id="fecha11" class="form-control input-sm objetivos" value="{{$registros->fecha11}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status10" id="status11">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso11" id="peso11" class="form-control input-sm objetivos" value="{{$registros->peso11}}" ></td>
-                  <td><input type="text" name="alcanzada11" id="alcanzada11" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada11}}" ></td> 
                   <td><input type="text" class="form-control input-sm objetivos" value="{{ $registros->ponderacion11 }}" ></td>
                   <td><textarea type="text" name="comentarios11" id="comentarios11" class="form-control input-sm objetivos" >{{$registros->comentarios11}}</textarea></td>
                </tr>
@@ -346,15 +240,8 @@
                   <td><input type="text" name="meta12" id="meta10" class="form-control input-sm objetivos" value="{{$registros->meta12}}" ></td>
                   <td><input type="text" name="medida12" id="medida10" class="form-control input-sm objetivos" value="{{$registros->medida12}}" ></td>
                   <td><input type="text" name="fecha12" id="fecha12" class="form-control input-sm objetivos" value="{{$registros->fecha12}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status12" id="status12">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso12" id="peso12" class="form-control input-sm objetivos" value="{{$registros->peso12}}" ></td>
-                  <td><input type="text" name="alcanzada12" id="alcanzada12" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada12}}" ></td>  
-                                                <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion12  }}" ></td>
+                  <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion12  }}" ></td>
                   <td><textarea type="text" name="comentarios12" id="comentarios12" class="form-control input-sm objetivos" >{{$registros->comentarios12}}</textarea></td>
                </tr>
                
@@ -363,21 +250,9 @@
                   <td><input type="text" name="meta13" id="meta13" class="form-control input-sm objetivos" value="{{$registros->meta13}}" ></td>
                   <td><input type="text" name="medida13" id="medida13" class="form-control input-sm objetivos" value="{{$registros->medida13}}" ></td>
                   <td><input type="text" name="fecha13" id="fecha13" class="form-control input-sm objetivos" value="{{$registros->fecha13}}" ></td>
-                  <td><select class="form-control form-control-sm input-sm" name="status13" id="status13">
-                        <option>En proceso</option>
-                        <option>Postergado</option>
-                        <option>Completado</option>
-                      </select>
-                  </td>
                   <td><input type="text" name="peso13" id="peso10" class="form-control input-sm objetivos" value="{{$registros->peso13}}" ></td>
-                  <td><input type="text" name="alcanzada13" id="alcanzada13" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->alcanzada13}}" ></td>  
                   <td><input type="text" class="form-control input-sm objetivos" value="{{  $registros->ponderacion13 }}" ></td>
                   <td><textarea type="text" name="comentarios13" id="comentarios13" class="form-control input-sm objetivos" >{{$registros->comentarios13}}</textarea></td>
-               </tr>
-                               <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos de cultura organizacional:    </td>
-                 <td><input type="text" name="total3" id="total3" class="form-control input-sm objetivos" value="{{$registros->total3}}"  ></td>
-                 <td></td>
                </tr>
             </tbody>
                 </div>

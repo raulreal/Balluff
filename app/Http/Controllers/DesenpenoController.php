@@ -37,20 +37,24 @@ class DesenpenoController extends Controller
         return view('evaluacion.index',compact('registros')); 
     }
   
-  public function indexjfe(Request $request)
+    public function indexjfe(Request $request)
     {
+        $usr = Auth::user();
+        $permisosUsuario = $usr->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+      
         $nombre   = $request->nombre;
         $apellido = $request->apellido;
-        
+
         $registros = User::nombre($nombre)
                          ->apellido($apellido)
                          ->where('jefe_id', Auth::user()->id)
                          ->orderBy('name')
                          ->get();
-        
-        return view('evaluacion.indexjfe',compact('registros'));
+
+        return view('evaluacion.indexjfe', compact('registros', 'permisoRh'));
     }
- 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -58,8 +62,9 @@ class DesenpenoController extends Controller
      */
     public function create(Request $request)
     {
-      $usuario = User::find($request->user_id); 
-      $fecha = Carbon::now();
+        $usuario = User::find($request->user_id); 
+        $fecha = Carbon::now();
+        
         return view('evaluacion.create',compact('usuario','fecha'));
     }
  
@@ -71,12 +76,17 @@ class DesenpenoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $this->validate($request,[ 'objetivo1'=>'required', 'peso_oindividuales'=>'required','peso_oadmon'=>'required','peso_ocultura'=>'required']);
-      
-      
+        $this->validate($request, [
+            'objetivo1'=>'required', 
+            'peso_oindividuales'=>'required',
+            'peso_oadmon'=>'required',
+            'peso_ocultura'=>'required'
+        ]);
+        
         Desenpeno::create($request->all());
-        return redirect()->route('evaluacion.indexjfe')->with('success','Registro creado satisfactoriamente');
+        
+        return redirect()->route('evaluacion.indexjfe')
+                         ->with('success','Registro creado satisfactoriamente');
     }
  
     /**
@@ -127,7 +137,7 @@ class DesenpenoController extends Controller
         
         return  view('evaluacion.show',compact('registros', 'usr', 'permisoRh', 'id'));
     }
- 
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -173,6 +183,46 @@ class DesenpenoController extends Controller
         
         return view('evaluacion.edit', compact('registros', 'id'));
     }
+  
+    public function editob($id, Request $request)
+    {
+      
+        $registros = Desenpeno::find($id);
+        //Evaluar de que boton viene
+        if($request->descargar_pdf) {
+            $view =  \View::make('evaluacion.editPdf', compact('registros'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('reporte.pdf');
+        }
+        else if($request->enviar_pdf) {
+        	    $estado = 'success';
+        	    $mensaje = 'El reporte se envio correctamete.';
+        	    
+        	    if($request->email_evalucion) {
+        	        $correo = $request->email_evalucion;
+        	        $pdf = \App::make('dompdf.wrapper');
+            	    $pdf->loadView('evaluacion.editPdf', compact('registros'));
+                    
+                  try {
+                    Mail::raw('Evaluación de Desempeño', function($message) use($pdf, $correo)
+                      {
+                          $message->from('no-reply@balluff.com', 'Balluff');
+                          $message->to($correo)->subject('Evaluación de Desempeño');
+                          $message->attachData($pdf->output(), "Evaluacion_de_Desempeno.pdf");
+                      });
+                    
+                  }
+                  catch ( \Exception $e) {
+                      $estado = 'error';
+                      $mensaje = 'El reporte no se envio.';
+                  }
+        	    }
+              return redirect()->route('evaluaciones.objetivos', $registros->id )->with($estado, $mensaje);
+    	    }
+        
+        return view('evaluacion.objetivos', compact('registros', 'id'));
+    }
  
     /**
      * Update the specified resource in storage.
@@ -187,7 +237,7 @@ class DesenpenoController extends Controller
          Desenpeno::find($id)->update($request->all());
         $ponderacion = Desenpeno::find($id);
       
-          if($ponderacion){
+          if($ponderacion) {
             $ponderacion->ponderacion1 = $request->alcanzada1 * ($ponderacion->peso1 / 100);
             $ponderacion->ponderacion2 = $request->alcanzada2 * ($ponderacion->peso2 / 100);
             $ponderacion->ponderacion3 = $request->alcanzada3 * ($ponderacion->peso3 / 100);
