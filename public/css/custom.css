@@ -686,6 +686,11 @@ label.list-group-item.clase1 {
   pointer-events:none;
 }
 
+.contenedor-firmas {
+    display: flex;
+    padding: 0px 10px;
+}
+
 .ing {
     background: #d33440;
     color: white;
@@ -699,6 +704,13 @@ label.list-group-item.clase1 {
     padding: 3px 17px;
     border-radius: 5px;
 }
+
+.contenedor-firmas span {
+    padding: 3px 6px;
+    margin: 2px 1px;
+    font-size: 12px;
+}
+
 
 @media (max-width: 767px) {                  
    li.strabajo {
@@ -786,4 +798,98 @@ td.estado0 {
     text-align: center;
     color: whitesmoke;
     font-size: .9em;
+}
+
+.mixed {
+    background: whitesmoke;
+    font-size: 13px;
+}
+
+.aanex {
+    background: lightgray;
+    padding: 20px;
+    font-weight: bold;
+    color: #666;
+}
+
+label {
+    margin-left: 10px;
+}
+
+td.red {
+    background: #f22613;
+    border-radius: 2px;
+    color: white;
+    text-align: center;
+}
+
+td.yellow {
+    background: #f39c12;
+    border-radius: 2px;
+    color: white;
+    text-align: center;
+}
+
+td.green {
+    background: #16a085;
+    border-radius: 2px;
+    color: white;
+    text-align: center;
+}
+
+.filetit h5 {
+    font-weight: 500;
+    color: #ddd;
+    padding-top: 5%;
+}
+
+td.filetit {
+    background-image: url(https://balluff-rrrogero643043.codeanyapp.com/storage/settings/icoarchivo.png);
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.filetit2 h5 {
+    font-weight: 500;
+    color: #ddd;
+    padding-top: 5%;
+}
+
+td.filetit2 {
+    background-image: url(https://balluff-rrrogero643043.codeanyapp.com/storage/settings/icoarchivo.png);
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+td.separador {
+    height: 5px;
+    background: #ccc;
+}
+
+span.green {
+    background: #16a085;
+    padding: 1px 5px;
+    border-radius: 25px;
+    margin-right: 5px;
+    color: #16a085;
+}
+
+span.yellow {
+    background: #f39c12;
+    padding: 1px 5px;
+    border-radius: 25px;
+    margin-right: 5px;
+    color: #f39c12;
+}
+
+span.red {
+    background: #f22613;
+    padding: 1px 5px;
+    border-radius: 25px;
+    margin-right: 5px;
+    color: #f22613;
 }

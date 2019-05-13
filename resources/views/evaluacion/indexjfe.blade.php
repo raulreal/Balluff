@@ -67,7 +67,22 @@
                                      </thead>
                                      <tbody>
                                       @if($registros->count())  
-                                          @foreach($registros as $registro)  
+                                          @foreach($registros as $registro)
+                                                
+                                                @php
+                                                  $revision1 = null;
+                                                  $revision2 = null;
+                                                @endphp
+                                                
+                                                @if ( !empty($registro->desenpeno->id) )
+                                                  @php
+                                                      $revision1 = $registro->desenpeno->revisiones()->where('tipo', 1)->first();
+                                                      $revision2 = $registro->desenpeno->revisiones()->where('tipo', 2)->first();
+                                                  @endphp
+                                                @endif
+                                                
+                                              
+                                              
                                                <tr>
                                                   <td>{{ $registro->name }} {{ $registro->apellido }}</td>
                                                   <td>
@@ -76,38 +91,63 @@
                                                       @endif
                                                   </td>
                                                   <td>{{ $registro->puesto }}</td>
+                                                 
                                                   <td>
-                                                      @if($registro->desenpeno)
-                                                          @if($registro->desenpeno->f_empleado)
-                                                              Si
-                                                          @else
-                                                              No
+                                                      <div class="contenedor-firmas">
+                                                          @if($registro->desenpeno)
+                                                            <span class='ing{{$registro->desenpeno->f_empleado}}'>OB</span>
+
+                                                            @if($revision1)
+                                                                <span class='ing{{$revision1->f_empleado}}'>R1</span>
+                                                            @else
+                                                                <span class='ing'>R1</span>
+                                                            @endif
+
+                                                            @if($revision2)
+                                                                <span class='ing{{$revision2->f_empleado}}'>R2</span>
+                                                            @else
+                                                                <span class='ing'>R2</span>
+                                                            @endif
                                                           @endif
-                                                      @else
-                                                          No
-                                                      @endif
+                                                      </div>
                                                   </td>
                                                   <td>
-                                                      @if($registro->desenpeno)
-                                                          @if($registro->desenpeno->f_jefe)
-                                                              Si
-                                                          @else
-                                                              No
+                                                      <div class="contenedor-firmas">
+                                                          @if($registro->desenpeno)
+                                                            <span class='ing{{$registro->desenpeno->f_jefe}}'>OB</span>
+
+                                                            @if($revision1)
+                                                                <span class='ing{{$revision1->f_jefe}}'>R1</span>
+                                                            @else
+                                                                <span class='ing'>R1</span>
+                                                            @endif
+
+                                                            @if($revision2)
+                                                                <span class='ing{{$revision2->f_jefe}}'>R2</span>
+                                                            @else
+                                                                <span class='ing'>R2</span>
+                                                            @endif
                                                           @endif
-                                                      @else
-                                                          No
-                                                      @endif
+                                                      </div>
                                                   </td>
                                                   <td>
-                                                      @if($registro->desenpeno)
-                                                          @if($registro->desenpeno->f_rh)
-                                                              Si
-                                                          @else
-                                                              No
+                                                      <div class="contenedor-firmas">
+                                                          @if($registro->desenpeno)
+                                                            <span class='ing{{$registro->desenpeno->f_rh}}'>OB</span>
+
+                                                            @if($revision1)
+                                                                <span class='ing{{$revision1->f_rh}}'>R1</span>
+                                                            @else
+                                                                <span class='ing'>R1</span>
+                                                            @endif
+
+                                                            @if($revision2)
+                                                                <span class='ing{{$revision2->f_rh}}'>R2</span>
+                                                            @else
+                                                                <span class='ing'>R2</span>
+                                                            @endif
                                                           @endif
-                                                      @else
-                                                          No
-                                                      @endif
+                                                      </div>
                                                   </td>
                                                   
                                                     @if ( !empty($registro->desenpeno->id) )
@@ -132,11 +172,6 @@
                                                         <td>
                                                             @if($permisoRh)
                                                             
-                                                                @php
-                                                                    $revision1 = $registro->desenpeno->revisiones()->where('tipo', 1)->first();
-                                                                    $revision2 = $registro->desenpeno->revisiones()->where('tipo', 2)->first();
-                                                                @endphp
-
                                                                 @if($revision1)
                                                                     @if(!$revision1->f_empleado)
                                                                         <a href="{{action('RevisionController@edit', $revision1->id)}}" title="Editar" class="btn btn-sm btn-primary edit" >

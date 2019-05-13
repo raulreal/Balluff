@@ -12,536 +12,457 @@
 @stop
 
 @section('content')
+            
+    <div class="panel-body">
+        <div class="table-responsive">
+            
+            <div class="row">
+                <div class="col-sm-12 form-inline">
+                    <form method="GET" action="{{ route('revision.show', $revision->id) }}" class="form-inline" >
+                        {{ csrf_field() }}
+                        <input type="email" name="email_evalucion" class="form-control input-sm objetivos peso_monto1" required placeholder="ejemplo@balluff.com" style="width:200px; height: 30px !important;" >
+                        <input type="hidden" name="enviar_pdf" value="1" >
 
-<div class="col-md-12">
-  			@if (count($errors) > 0)
-			<div class="alert alert-danger">
-				<strong>Error!</strong> Revise los campos obligatorios.<br><br>
-				<ul>
-					@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-			@endif
-			@if(Session::has('success'))
-			<div class="alert alert-info">
-				{{Session::get('success')}}
-			</div>
-			@endif
-</div>
+                        <input type="submit"  value="Enviar" class="btn btn-sm btn-primary edit" style="margin-left:-2px;">
 
-              <input name="desenpeno_id" type="hidden" value="{{$registros->id}}">
-               
-               <div class="panel-body">
-                 <div class="table-responsive">
-
-                      <div class="panel panel-primary">
-                        
-                    <div class="row datososc">
-                      <div class="col-sm-12"><center><h3>
-                        DATOS PERSONALES
-                        </h3></center></div>
-                      <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/> {{ $registros->desenpeno->user->name }} {{ $registros->desenpeno->user->apellido }}</div>
-                      <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  
-                        @if($registros->desenpeno->user->miJefe)
-                          <td> {{ $registros->desenpeno->user->miJefe->name }} {{ $registros->desenpeno->user->miJefe->apellido }}</td>
+                        <a href="{{route('revision.show', [$revision->id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck" style="margin-left:20px;">
+                            <span>Imprimir reporte</span>
+                        </a>
+                    </form>
+                </div>	
+            </div>
+            
+            <div class="panel panel-primary">
+                
+            
+                
+                <div class="row datososc">
+                    <div class="col-sm-12">
+                        <center><h3>DATOS PERSONALES</h3></center>
+                    </div>
+                    <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/> {{ $registros->user->name }} {{ $registros->user->apellido }}</div>
+                    <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  
+                        @if($registros->user->miJefe)
+                          <td> {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}</td>
                         @else
                           <td> Sin jefe </td>
                         @endif
-                      </div>
-                      <div class="col-sm-2"><strong>Puesto:</strong><br/>  {{ $registros->desenpeno->user->puesto }} <h1>
-
-                        </h1></div>
-                      <div class="col-sm-2"><strong>Año: </strong><br/> 2019</div>
-                      <div class="col-sm-2"><strong>Departamento o área: </strong><br/>
-                        @if($registros->desenpeno->user->departamento)
-                            {{ $registros->desenpeno->user->departamento->nombre }}
+                    </div>
+                    <div class="col-sm-2"><strong>Puesto:</strong><br/>  {{ $registros->user->puesto }}</div>
+                    <div class="col-sm-2"><strong>Año: </strong><br/> 2019</div>
+                    <div class="col-sm-2"><strong>Departamento o área: </strong><br/>
+                        @if($registros->user->departamento)
+                            {{ $registros->user->departamento->nombre }}
                         @endif
-                      </div>
-                      <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $registros->desenpeno->user->fecha_ingreso }}</div>
-                  </div>
-                        
-        <div class="panel-body">					
-					<div class="table-container">
-           
-  <form method="POST" action="{{ route('revision.store') }}"  role="form">
-							{{ csrf_field() }}
-      <input name="desenpeno_id" type="hidden" value="{{$registros->id}}">
-              <div class="panel-heading">Objetivos CSP ó Individuales <span><strong>{{$registros->desenpeno->peso_oindividuales}} %</strong></span></div>               
-            <div class="table-responsive">
-              <table class="table mixed">
-              <div class="table-responsive">
-             <thead>
-               <th style="width: 20%">Objetivos</th>
-                <th style="width: 10%">Meta</th>
-                <th style="width: 10%">Unidad de Medida</th>
-                <th style="width: 10%">Fecha de ejecución</th>
-                <th style="width: 10%">Estatus</th>
-                <th style="width: 5%">Peso</th>
-                <th style="width: 5%">Meta alcanzada</th>
-               <th style="width: 10%">Ponderación</th>
-                <th style="width: 20%">Comentarios adicionales</th>
-             </thead>
-             <tbody>
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo1}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta1}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida1}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha1}}</p></td>
-                  <td><p>{{$registros->status1}}</p></td>
-                  <td>{{$registros->desenpeno->peso1}}</td>  
-                  <td>{{$registros->alcanzada1}}</td>  
-                  <td>{{$registros->ponderacion1}}</td>
-                  <td>{{$registros->comentarios1}}</td>
-               </tr>
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo2}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta2}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida2}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha2}}</p></td>
-                  <td><p>{{$registros->status1}}</p></td>
-                  <td>{{$registros->desenpeno->peso2}}</td>  
-                  <td>{{$registros->alcanzada2}}</td>  
-                  <td>{{$registros->ponderacion2}}</td>
-                  <td>{{$registros->comentarios2}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo3}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta3}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida3}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha3}}</p></td>
-                  <td><p>{{$registros->status1}}</p></td>
-                  <td>{{$registros->desenpeno->peso3}}</td>  
-                  <td>{{$registros->alcanzada3}}</td>  
-                  <td>{{$registros->ponderacion3}}</td>
-                  <td>{{$registros->comentarios3}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo4}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta4}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida4}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha4}}</p></td>
-                  <td><p>{{$registros->status4}}</p></td>
-                  <td>{{$registros->desenpeno->peso4}}</td>  
-                  <td>{{$registros->alcanzada4}}</td>  
-                  <td>{{$registros->ponderacion4}}</td>
-                  <td>{{$registros->comentarios4}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo5}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta5}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida5}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha5}}</p></td>
-                  <td><p>{{$registros->status5}}</p></td>
-                  <td>{{$registros->desenpeno->peso5}}</td>  
-                  <td>{{$registros->alcanzada5}}</td>  
-                  <td>{{$registros->ponderacion5}}</td>
-                  <td>{{$registros->comentarios5}}</td>
-               </tr>
-               
-               <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos individuales:    </td>
-                 <td>{{$registros->total1}}</td>
-                 <td></td>
-               </tr>
-        
-            </tbody>
+                    </div>
+                    <div class="col-sm-2"><strong>Fecha de ingreso: </strong><br/> {{ $registros->user->fecha_ingreso }}</div>
                 </div>
-          </table>
-              </div>
-              
-              
-            <div class="panel-heading">Objetivos Administrativos <span><strong>{{$registros->peso_oadmon}} %</strong></span></div>               
-            <div class="table-responsive">
-              <table class="table">
-              <div class="table-responsive">
-             <thead>
-               <th style="width: 20%">Objetivos</th>
-                <th style="width: 10%">Meta</th>
-                <th style="width: 10%">Unidad de Medida</th>
-                <th style="width: 10%">Fecha de ejecución</th>
-                <th style="width: 10%">Estatus</th>
-                <th style="width: 5%">Peso</th>
-                <th style="width: 5%">Meta alcanzada</th>
-               <th style="width: 10%">Ponderación</th>
-                <th style="width: 20%">Comentarios adicionales</th>
-             </thead>
-             <tbody>
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo6}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta6}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida6}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha6}}</p></td>
-                  <td><p>{{$registros->status6}}</p></td>
-                  <td>{{$registros->desenpeno->peso6}}</td>  
-                  <td>{{$registros->alcanzada6}}</td>  
-                  <td>{{$registros->ponderacion6}}</td>
-                  <td>{{$registros->comentarios6}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo7}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta7}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida7}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha7}}</p></td>
-                  <td><p>{{$registros->status7}}</p></td>
-                  <td>{{$registros->desenpeno->peso7}}</td>  
-                  <td>{{$registros->alcanzada7}}</td>  
-                  <td>{{$registros->ponderacion7}}</td>
-                  <td>{{$registros->comentarios7}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo8}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta8}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida8}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha8}}</p></td>
-                  <td><p>{{$registros->status8}}</p></td>
-                  <td>{{$registros->desenpeno->peso8}}</td>  
-                  <td>{{$registros->alcanzada8}}</td>  
-                  <td>{{$registros->ponderacion8}}</td>
-                  <td>{{$registros->comentarios8}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo9}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta9}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida9}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha9}}</p></td>
-                  <td><p>{{$registros->status9}}</p></td>
-                  <td>{{$registros->desenpeno->peso9}}</td>  
-                  <td>{{$registros->alcanzada9}}</td>  
-                  <td>{{$registros->ponderacion9}}</td>
-                  <td>{{$registros->comentarios9}}</td>
-               </tr>
-               
-               <tr>
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo10}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta10}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida10}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha10}}</p></td>
-                  <td><p>{{$registros->status10}}</p></td>
-                  <td>{{$registros->desenpeno->peso10}}</td>  
-                  <td>{{$registros->alcanzada10}}</td>  
-                  <td>{{$registros->ponderacion10}}</td>
-                  <td>{{$registros->comentarios10}}</td>
-               </tr>
-               
-               <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos  administrativos:    </td>
-                 <td>{{$registros->total2}}</td>
-                 <td></td>
-               </tr>
-            </tbody>
-                </div>
-          </table>
-              </div>
-              
-           <div class="panel-heading">Objetivos Cultura <span><strong>{{$registros->peso_ocultura}} %</strong></span></div>               
-            <div class="table-responsive">
-              <table class="table">
-              <div class="table-responsive">
-             <thead>
-               <th style="width: 20%">Objetivos</th>
-                <th style="width: 10%">Meta</th>
-                <th style="width: 10%">Unidad de Medida</th>
-                <th style="width: 10%">Fecha de ejecución</th>
-                <th style="width: 10%">Estatus</th>
-                <th style="width: 5%">Peso</th>
-                <th style="width: 5%">Meta alcanzada</th>
-               <th style="width: 10%">Ponderación</th>
-                <th style="width: 20%">Comentarios adicionales</th>
-             </thead>
-             <tbody>
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo11}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta11}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida11}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha11}}</p></td>
-                  <td><p>{{$registros->status10}}</p></td>
-                  <td>{{$registros->desenpeno->peso11}}</td>  
-                  <td>{{$registros->alcanzada11}}</td>  
-                  <td>{{$registros->ponderacion11}}</td>
-                  <td>{{$registros->comentarios11}}</td>
-               </tr>
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo12}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta12}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida12}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha12}}</p></td>
-                  <td><p>{{$registros->status12}}</p></td>
-                  <td>{{$registros->desenpeno->peso12}}</td>  
-                  <td>{{$registros->alcanzada12}}</td>  
-                  <td>{{$registros->ponderacion12}}</td>
-                  <td>{{$registros->comentarios12}}</td>
-               </tr>
-               
+                
+                <div class="panel-body">					
+                    <div class="table-container">
+                        <div>
+                            
+                            <div class="panel-heading">Objetivos CSP ó Individuales <span><strong>{{$registros->peso_oindividuales}} %</strong></span></div>
+                            <div class="table-responsive">
+                                <table class="table mixed">
+                                    <div class="table-responsive">
+                                        <thead>
+                                            <th style="width: 20%">Objetivos</th>
+                                            <th style="width: 10%">Meta</th>
+                                            <th style="width: 10%">Unidad de Medida</th>
+                                            <th style="width: 10%">Fecha de ejecución</th>
+                                            <th style="width: 10%">Estatus</th>
+                                            <th style="width: 5%">Peso</th>
+                                            <th style="width: 5%">Meta alcanzada</th>
+                                            <th style="width: 10%">Ponderación</th>
+                                            <th style="width: 20%">Comentarios adicionales</th>
+                                        </thead>
+                                        <tbody>
 
-               
-                <tr>
-                  <td><p>{{$registros->desenpeno->objetivo13}}</p></td>
-                  <td><p>{{$registros->desenpeno->meta13}}</p></td>
-                  <td><p>{{$registros->desenpeno->medida13}}</p></td>
-                  <td><p>{{$registros->desenpeno->fecha13}}</p></td>
-                  <td><p>{{$registros->status13}}</p></td>
-                  <td>{{$registros->desenpeno->peso13}}</td>  
-                  <td>{{$registros->alcanzada13}}</td>  
-                  <td>{{$registros->ponderacion13}}</td>
-                  <td>{{$registros->comentarios13}}</td>
-               </tr>
-                 <tr>
-                 <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos de cultura organizacional:    </td>
-                 <td>{{$registros->total3}}</td>
-                 <td></td>
-               </tr>
-  
-            </tbody>
-                </div>
-          </table>
-    
-							</div>
-						</form>
-          </div>
+                                            <tr>
+                                                <td><p>{{$registros->objetivo1}}</p></td>
+                                                <td><p>{{$registros->meta1}}</p></td>
+                                                <td><p>{{$registros->medida1}}</p></td>
+                                                <td><p>{{$registros->fecha1}}</p></td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status1" id="status1">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso1" id="peso1" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso1}}" oninput="calculate(1)" readonly></td>  
+                                                <td><input type="text" name="alcanzada1" id="alcanzada1" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada1}}" oninput="calculate(1);calculateTotal(1)" ></td>  
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion1}}" id="ponderacion1" name="ponderacion1" readonly></td>
+                                                <td><textarea type="text" name="comentarios1" id="comentarios1" class="form-control input-sm objetivos">{{$revision->comentarios1}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><p>{{$registros->objetivo2}}</p> </td>
+                                                <td>{{$registros->meta2}}</td>
+                                                <td>{{$registros->medida2}}</td>
+                                                <td>{{$registros->fecha2}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status2" id="status2" >
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso2" id="peso2" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso2}}" oninput="calculate(2)" readonly></td>  
+                                                <td><input type="text" name="alcanzada2" id="alcanzada2" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada2}}" oninput="calculate(2);calculateTotal(1)" ></td>   
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion2}}" id="ponderacion2"  name="ponderacion2" readonly></td>
+                                                <td><textarea type="text" name="comentarios2" id="comentarios2" class="form-control input-sm objetivos" >{{$revision->comentarios2}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo3}}</td>
+                                                <td>{{$registros->meta3}}</td>
+                                                <td>{{$registros->medida3}}</td>
+                                                <td>{{$registros->fecha3}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status3" id="status3" >
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso3" id="peso3" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso3}}" oninput="calculate(3)" readonly></td>  
+                                                <td><input type="text" name="alcanzada3" id="alcanzada3" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada3}}" oninput="calculate(3);calculateTotal(1)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion3}}" id="ponderacion3" name="ponderacion3" readonly></td>
+                                                <td><textarea type="text" name="comentarios3" id="comentarios3" class="form-control input-sm objetivos" >{{$revision->comentarios3}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo4}}</td>
+                                                <td>{{$registros->meta4}}</td>
+                                                <td>{{$registros->medida4}}</td>
+                                                <td>{{$registros->fecha4}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status4" id="status4">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso4" id="peso4" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso4}}" oninput="calculate(4)" readonly></td>  
+                                                <td><input type="text" name="alcanzada4" id="alcanzada4" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada4}}" oninput="calculate(4);calculateTotal(1)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion4}}" id="ponderacion4" name="ponderacion4" readonly></td>
+                                                <td><textarea type="text" name="comentarios4" id="comentarios4" class="form-control input-sm objetivos" >{{$revision->comentarios4}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo5}}</td>
+                                                <td>{{$registros->meta5}}</td>
+                                                <td>{{$registros->medida5}}</td>
+                                                <td>{{$registros->fecha5}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status5" id="status5">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso5" id="peso5" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso5}}" oninput="calculate(5)" readonly></td>  
+                                                <td><input type="text" name="alcanzada5" id="alcanzada5" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada5}}" oninput="calculate(5);calculateTotal(1)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion5}}" id="ponderacion5" name="ponderacion5" readonly></td>
+                                                <td><textarea type="text" name="comentarios5" id="comentarios5" class="form-control input-sm objetivos" >{{$revision->comentarios5}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos individuales:    </td>
+                                                <td><input type="text" name="total1" id="total1" class="form-control input-sm objetivos" value="{{$revision->total1}}"></td>
+                                                <td></td>
+                                            </tr>
+                                            
+                                            <tr class="total-objetivos">
+                                                <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom">
+                                                    <font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos CSP ó Individuales:</font>
+                                                </td>
+                                                <td bgcolor="gray"  align="left" vertical-align="bottom">
+                                                    <font color="#fff" style="line-height:30px; padding-right:5px;">
+                                                        <span id="totalCSP">{{($revision->total1 * $registros->peso_oindividuales)/100}} %</span>
+                                                    </font>
+                                                </td>
+                                                <td bgcolor="gray"></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </div>
+                                </table>
+                            </div>
+                     
+              
+                            <div class="panel-heading">Objetivos Administrativos <span><strong>{{$registros->peso_oadmon}} %</strong></span></div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <div class="table-responsive">
+                                        <thead>
+                                            <th style="width: 20%">Objetivos</th>
+                                            <th style="width: 10%">Meta</th>
+                                            <th style="width: 10%">Unidad de Medida</th>
+                                            <th style="width: 10%">Fecha de ejecución</th>
+                                            <th style="width: 10%">Estatus</th>
+                                            <th style="width: 5%">Peso</th>
+                                            <th style="width: 5%">Meta alcanzada</th>
+                                            <th style="width: 10%">Ponderación</th>
+                                            <th style="width: 20%">Comentarios adicionales</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{$registros->objetivo6}}</td>
+                                                <td>{{$registros->meta6}}</td>
+                                                <td>{{$registros->medida6}}</td>
+                                                <td>{{$registros->fecha6}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status6" id="status6">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso6" id="peso6" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso6}}" oninput="calculate(6)" readonly></td>  
+                                                <td><input type="text" name="alcanzada6" id="alcanzada6" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada6}}" oninput="calculate(6);calculateTotal(2)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion6}}" id="ponderacion6" name="ponderacion6" readonly></td>
+                                                <td><textarea type="text" name="comentarios6" id="comentarios6" class="form-control input-sm objetivos" >{{$revision->comentarios6}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo7}}</td>
+                                                <td>{{$registros->meta7}}</td>
+                                                <td>{{$registros->medida7}}</td>
+                                                <td>{{$registros->fecha7}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status7" id="status7">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso7" id="peso7" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso7}}" oninput="calculate(7)" readonly></td>  
+                                                <td><input type="text" name="alcanzada7" id="alcanzada7" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada7}}" oninput="calculate(7);calculateTotal(2)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion7}}" id="ponderacion7" name="ponderacion7" readonly></td>
+                                                <td><textarea type="text" name="comentarios7" id="comentarios7" class="form-control input-sm objetivos" >{{$revision->comentarios7}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo8}}</td>
+                                                <td>{{$registros->meta8}}</td>
+                                                <td>{{$registros->medida8}}</td>
+                                                <td>{{$registros->fecha8}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status8" id="status8">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso8" id="peso8" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso8}}" oninput="calculate(8)" readonly></td>  
+                                                <td><input type="text" name="alcanzada8" id="alcanzada8" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada8}}" oninput="calculate(8);calculateTotal(2)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion8}}" id="ponderacion8" name="ponderacion8" readonly></td>
+                                                <td><textarea type="text" name="comentarios8" id="comentarios8" class="form-control input-sm objetivos" >{{$revision->comentarios8}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo9}}</td>
+                                                <td>{{$registros->meta9}}</td>
+                                                <td>{{$registros->medida9}}</td>
+                                                <td>{{$registros->fecha9}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status4" id="status9">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso9" id="peso9" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso9}}" oninput="calculate(9)" readonly></td>  
+                                                <td><input type="text" name="alcanzada9" id="alcanzada9" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada9}}" oninput="calculate(9);calculateTotal(2)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion9}}" id="ponderacion9" name="ponderacion9" readonly></td>
+                                                <td><textarea type="text" name="comentarios9" id="comentarios9" class="form-control input-sm objetivos" >{{$revision->comentarios9}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo10}}</td>
+                                                <td>{{$registros->meta10}}</td>
+                                                <td>{{$registros->medida10}}</td>
+                                                <td>{{$registros->fecha10}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status10" id="status10">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso10" id="peso10" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso10}}" oninput="calculate(10)" readonly></td>  
+                                                <td><input type="text" name="alcanzada10" id="alcanzada10" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada10}}" oninput="calculate(10);calculateTotal(2)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion10}}" id="ponderacion10" name="ponderacion10" readonly></td>
+                                                <td><textarea type="text" name="comentarios10" id="comentarios10" class="form-control input-sm objetivos" >{{$revision->comentarios10}}</textarea></td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total objetivos  administrativos:    </td>
+                                                <td><input type="text" name="total2" id="total2" class="form-control input-sm objetivos" value="{{$revision->total2}}"  ></td>
+                                                <td></td>
+                                            </tr>
+                                            
+                                            <tr class="total-objetivos">
+                                                <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom">
+                                                    <font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos Administrativos:</font>
+                                                </td>
+                                                <td bgcolor="gray"  align="left" vertical-align="bottom">
+                                                    <font color="#fff" style="line-height:30px; padding-right:5px;">
+                                                        <span id="totalAdmon">{{($revision->total2 * $registros->peso_oadmon)/100}} %</span>
+                                                    </font>
+                                                </td>
+                                                <td bgcolor="gray"></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </div>
+                                </table>
+                            </div>
+
+
+                            <div class="panel-heading">Objetivos Cultura <span><strong>{{$registros->peso_ocultura}} %</strong></span></div>               
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <div class="table-responsive">
+                                        <thead>
+                                            <th style="width: 20%">Objetivos</th>
+                                            <th style="width: 10%">Meta</th>
+                                            <th style="width: 10%">Unidad de Medida</th>
+                                            <th style="width: 10%">Fecha de ejecución</th>
+                                            <th style="width: 10%">Estatus</th>
+                                            <th style="width: 5%">Peso</th>
+                                            <th style="width: 5%">Meta alcanzada</th>
+                                            <th style="width: 10%">Ponderación</th>
+                                            <th style="width: 20%">Comentarios adicionales</th>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo11}}</td>
+                                                <td>{{$registros->meta11}}</td>
+                                                <td>{{$registros->medida11}}</td>
+                                                <td>{{$registros->fecha11}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status11" id="status11">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso11" id="peso11" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso11}}" oninput="calculate(11)" readonly></td>  
+                                                <td><input type="text" name="alcanzada11" id="alcanzada11" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada11}}" oninput="calculate(11);calculateTotal(3)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion11}}" id="ponderacion11" name="ponderacion11" readonly></td>
+                                                <td><textarea type="text" name="comentarios11" id="comentarios11" class="form-control input-sm objetivos" >{{$revision->comentarios11}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo12}}</td>
+                                                <td>{{$registros->meta12}}</td>
+                                                <td>{{$registros->medida12}}</td>
+                                                <td>{{$registros->fecha12}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status12" id="status12">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso12" id="peso12" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso12}}" oninput="calculate(12)" readonly></td>  
+                                                <td><input type="text" name="alcanzada12" id="alcanzada12" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada12}}" oninput="calculate(12);calculateTotal(3)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion12}}" id="ponderacion12" name="ponderacion12" readonly></td>
+                                                <td><textarea type="text" name="comentarios12" id="comentarios12" class="form-control input-sm objetivos" >{{$revision->comentarios12}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{$registros->objetivo13}}</td>
+                                                <td>{{$registros->meta13}}</td>
+                                                <td>{{$registros->medida13}}</td>
+                                                <td>{{$registros->fecha13}}</td>
+                                                <td>
+                                                    <select class="form-control form-control-sm input-sm" name="status13" id="status13">
+                                                        <option>En proceso</option>
+                                                        <option>Postergado</option>
+                                                        <option>Completado</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="peso13" id="peso13" class="form-control input-sm objetivos" placeholder="%" value="{{$registros->peso13}}" oninput="calculate(13);calculateTotal(3)" readonly></td>  
+                                                <td><input type="text" name="alcanzada13" id="alcanzada13" class="form-control input-sm objetivos" placeholder="%" value="{{$revision->alcanzada13}}" oninput="calculate(13);calculateTotal(3)" ></td> 
+                                                <td><input type="text" class="form-control input-sm objetivos" value="{{$revision->ponderacion13}}" id="ponderacion13" name="ponderacion13" readonly></td>
+                                                <td><textarea type="text" name="comentarios13" id="comentarios13" class="form-control input-sm objetivos" >{{$revision->comentarios13}}</textarea></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom"><font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos de cultura organizacional:    </td>
+                                                <td><input type="text" name="total3" id="total3" class="form-control input-sm objetivos" value="{{$revision->total3}}"  ></td>
+                                                <td></td>
+                                            </tr>
+                                            
+                                            <tr class="total-objetivos">
+                                                <td bgcolor="gray" colspan="7" align="right" vertical-align="bottom">
+                                                    <font color="#fff" style="line-height:30px; padding-right:5px;">Total Objetivos Cultura:</font>
+                                                </td>
+                                                <td bgcolor="gray"  align="left" vertical-align="bottom">
+                                                    <font color="#fff" style="line-height:30px; padding-right:5px;">
+                                                        <span id="totalAdmon">{{($revision->total3 * $registros->peso_ocultura)/100}} %</span>
+                                                    </font>
+                                                </td>
+                                                <td bgcolor="gray"></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </div>
+                                </table>
+                            </div>
+
                         </div>
                    </div>
-                   
-                <div class="col-xs-12 col-sm-12 col-md-12">
-									<a href="{{ route('revision.index') }}" class="btn btn-info btn-block" >Atrás</a>
-								</div>	
-            
-                 </div>
-</div>
-            <div class="firmas">
-                
-            @if ($registros->f_empleado)
-                <div class="alert alert-success" role="alert">
-                  Firmado por {{ $registros->user->name  }} {{ $registros->user->appellido  }}
-                </div> 
-             @else
-                  @if ($registros->desenpeno->user->id === $usr->id)
-                        <a href="{{ route('revision.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
-                        </a>
-                  @endif
-              @endif
-                
-              @if ($registros->f_jefe)
-                <div class="alert alert-success" role="alert">
-                  Firmado por {{ $registros->desenpeno->user->miJefe->name }} {{ $registros->desenpeno->user->miJefe->apellido }}
-                </div> 
-             @else
-                  @if ($registros->desenpeno->user->miJefe->id === $usr->id)
-                        <a href="{{ route('revision.firma1',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
-                        </a>
-                  @endif
-              @endif
-                
-              @if ($registros->f_rh)
-                <div class="alert alert-success" role="alert">
-                  Firmado por Recursos Humanos
-                </div> 
-             @else           
-                   @if ($permisoRh)
+                    
+                    <div class="firmas">
+                        @if ($revision->f_empleado)
+                            <div class="alert alert-success" role="alert">
+                                Firmado por {{ $revision->user->name  }} {{ $revision->user->appellido  }}
+                            </div> 
+                        @else
+                            @if ($registros->user->id === $usr->id)
+                                <a href="{{ route('revision.firma',['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                    <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
+                                </a>
+                            @endif
+                        @endif
 
-                            <a href="{{ route('revision.firma2',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
-                            </a>
-                  @endif
-              @endif
+                        @if ($revision->f_jefe)
+                            <div class="alert alert-success" role="alert">
+                                Firmado por {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}
+                            </div> 
+                        @else
+                            @if ($registros->user->miJefe->id === $usr->id)
+                                <a href="{{ route('revision.firma1',['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                    <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
+                                </a>
+                            @endif
+                        @endif
 
+                        @if ($revision->f_rh)
+                            <div class="alert alert-success" role="alert">
+                                Firmado por Recursos Humanos
+                            </div> 
+                        @else
+                            @if ($permisoRh)
+                                <a href="{{ route('revision.firma2',['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                    <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
+                                </a>
+                            @endif
+                        @endif
+                    </div>
+                    
+               </div>
+           </div>
+       </div>
+   </div>
 
-                
-              </div>
-              
+    
+
 @endsection
-         
-@section('javascript')
-            
- <script>     
-  function calculate() {
-		var myBox1 = document.getElementById('peso1').value;	
-		var myBox2 = document.getElementById('alcanzada1').value;
-		var ponderacion1 = document.getElementById('ponderacion1');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}       
-     function calculate2() {
-		var myBox1 = document.getElementById('peso2').value;	
-		var myBox2 = document.getElementById('alcanzada2').value;
-		var ponderacion1 = document.getElementById('ponderacion2');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-     function calculate3() {
-		var myBox1 = document.getElementById('peso3').value;	
-		var myBox2 = document.getElementById('alcanzada3').value;
-		var ponderacion1 = document.getElementById('ponderacion3');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}       
-     function calculate4() {
-		var myBox1 = document.getElementById('peso4').value;	
-		var myBox2 = document.getElementById('alcanzada4').value;
-		var ponderacion1 = document.getElementById('ponderacion4');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-     function calculate5() {
-		var myBox1 = document.getElementById('peso5').value;	
-		var myBox2 = document.getElementById('alcanzada5').value;
-		var ponderacion1 = document.getElementById('ponderacion5');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}       
-     function calculate6() {
-		var myBox1 = document.getElementById('peso6').value;	
-		var myBox2 = document.getElementById('alcanzada6').value;
-		var ponderacion1 = document.getElementById('ponderacion6');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-     function calculate7() {
-		var myBox1 = document.getElementById('peso7').value;	
-		var myBox2 = document.getElementById('alcanzada7').value;
-		var ponderacion1 = document.getElementById('ponderacion7');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}       
-     function calculate8() {
-		var myBox1 = document.getElementById('peso8').value;	
-		var myBox2 = document.getElementById('alcanzada8').value;
-		var ponderacion1 = document.getElementById('ponderacion8');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-        function calculate9() {
-		var myBox1 = document.getElementById('peso9').value;	
-		var myBox2 = document.getElementById('alcanzada9').value;
-		var ponderacion1 = document.getElementById('ponderacion9');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-        function calculate10() {
-		var myBox1 = document.getElementById('peso10').value;	
-		var myBox2 = document.getElementById('alcanzada10').value;
-		var ponderacion1 = document.getElementById('ponderacion10');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-        function calculate11() {
-		var myBox1 = document.getElementById('peso11').value;	
-		var myBox2 = document.getElementById('alcanzada11').value;
-		var ponderacion1 = document.getElementById('ponderacion11');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-        function calculate12() {
-		var myBox1 = document.getElementById('peso12').value;	
-		var myBox2 = document.getElementById('alcanzada12').value;
-		var ponderacion1 = document.getElementById('ponderacion12');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-        function calculate13() {
-		var myBox1 = document.getElementById('peso13').value;	
-		var myBox2 = document.getElementById('alcanzada13').value;
-		var ponderacion1 = document.getElementById('ponderacion13');	
-		var myResult = (myBox1 * myBox2)/100;
-		 ponderacion1.value = myResult;
-	}  
-   
-     function calculatet1() {
-		var myBox1 = document.getElementById('ponderacion1').value;	
-    var myBox2 = document.getElementById('ponderacion2').value;	
-    var myBox3 = document.getElementById('ponderacion3').value;	
-    var myBox4 = document.getElementById('ponderacion4').value;	
-    var myBox5 = document.getElementById('ponderacion5').value;	
-		var ponderacion1 = document.getElementById('total1');	
-		var myResult = parseInt(myBox1) + parseInt(myBox2) + parseInt(myBox3) + parseInt(myBox4) + parseInt(myBox5) ;
-		 ponderacion1.value = myResult;
-	}  
-   
-        function calculatet2() {
-		var myBox1 = document.getElementById('ponderacion6').value;	
-    var myBox2 = document.getElementById('ponderacion7').value;	
-    var myBox3 = document.getElementById('ponderacion8').value;	
-    var myBox4 = document.getElementById('ponderacion9').value;	
-    var myBox5 = document.getElementById('ponderacion10').value;	
-		var ponderacion1 = document.getElementById('total2');	
-		var myResult = parseInt(myBox1) + parseInt(myBox2) + parseInt(myBox3) + parseInt(myBox4) + parseInt(myBox5) ;
-		 ponderacion1.value = myResult;
-	}  
-   
-        function calculatet3() {
-		var myBox1 = document.getElementById('ponderacion11').value;	
-    var myBox2 = document.getElementById('ponderacion12').value;	
-    var myBox3 = document.getElementById('ponderacion13').value;	
-		var ponderacion1 = document.getElementById('total3');	
-		var myResult = parseInt(myBox1) + parseInt(myBox2) + parseInt(myBox3) ;
-		 ponderacion1.value = myResult;
-	}  
-    </script> 
-          
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-   <script>
-    $(document).ready(function () {
-    $('#form').validate({ // initialize the plugin
-        rules: {
-          integrado: {
-                required: true
-                     },
-          retos: {
-                required: true
-                     },
-          equipo: {
-                required: true
-                     },
-          conocimiento: {
-                required: true
-                     },
-          responsabilidades: {
-                required: true
-                     },
-          habilidades: {
-                required: true
-                     },
-          lider: {
-                required: true
-                     },
-          recomienda: {
-                required: true
-                     },
-          fortalezas: {
-                required: true
-                     },
-          mejoras: {
-                required: true
-                     }, 
-          
-        },
-                   messages: {
-                  integrado: "Campo obligatorio",
-                  retos: "Campo obligatorio",
-                  equipo: "Campo obligatorio",
-                  retos: "Campo obligatorio",
-                  conocimiento: "Campo obligatorio",
-                  responsabilidades: "Campo obligatorio",
-                     habilidades: "Campo obligatorio",
-                     lider: "Campo obligatorio",
-                     recomienda: "Campo obligatorio",
-                     fortalezas: "Campo obligatorio",
-                     mejoras: "Campo obligatorio",
-                }
-        });
-    });
-  </script> 
-              
-@endsection     

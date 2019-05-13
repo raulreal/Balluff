@@ -119,21 +119,19 @@
                                                 </td>
                                                 <td>
                                                   @if ( !empty($registro->desenpeno->id) )
-
-                                                   <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
-                                                            <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver Evaluación 1111</span>
+                                                        <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
+                                                            <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver Evaluación</span>
                                                         </a>
-                                                  
-                                                     <a href="{{action('DesenpenoController@show2', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
+                                                        
+                                                        <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
                                                             <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Firmar Evaluación</span>
                                                         </a>
-
                                                   @else
-                                                  <p>
-                                                   <div class="alert alert-warning" role="alert">
-                                                      Usuario sin evaluación
-                                                    </div>
-                                                  </p>
+                                                        <p>
+                                                            <div class="alert alert-warning" role="alert">
+                                                                Usuario sin evaluación
+                                                            </div>
+                                                        </p>
                                                   @endif
                                                 </td>
 

@@ -59,12 +59,45 @@ class RevisionController extends Controller
     public function show($id, Request $request)
     {
         $usr = Auth::user();
-        $registros = Revision::find($id);
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
         $resutado = true;
+        $revision = Revision::find($id);
+        $registros = $revision->desenpeno;
         
-        return  view('revision.show',compact('registros', 'usr', 'permisoRh', 'id'));
+        if($request->descargar_pdf) {
+            $view =  \View::make('revision.showPdf', compact('registros', 'revision', 'usr', 'permisoRh', 'id'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('Reporte_revisión.pdf');
+        }
+        else if($request->enviar_pdf) {
+        	    $estado = 'success';
+        	    $mensaje = 'El reporte se envio correctamete.';
+        	    
+        	    if($request->email_evalucion) {
+        	        $correo = $request->email_evalucion;
+        	        $pdf = \App::make('dompdf.wrapper');
+            	    $pdf->loadView('revision.showPdf', compact('registros', 'revision', 'usr', 'permisoRh', 'id'));
+                    
+                  try {
+                    Mail::raw('Revisión de Evaluación de Desempeño', function($message) use($pdf, $correo)
+                      {
+                          $message->from('no-reply@balluff.com', 'Balluff');
+                          $message->to($correo)->subject('Revisión de Evaluación de Desempeño');
+                          $message->attachData($pdf->output(), "Revision_Evaluacion_de_Desempeno.pdf");
+                      });
+                    
+                  }
+                  catch ( \Exception $e) {
+                      $estado = 'error';
+                      $mensaje = 'El reporte no se envio.';
+                  }
+        	    }
+              return redirect()->route('evaluaciones.edit', $registros->id )->with($estado, $mensaje);
+    	    }
+      
+        return  view('revision.show',compact('registros', 'revision', 'usr', 'permisoRh', 'id'));
     }
     
     /**
