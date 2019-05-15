@@ -306,11 +306,14 @@ class EventController extends Controller
         \Session::flash('success','Sala reservada exitosamente.');
         return Redirect::to('molina');
     }
-      public function indexro(){
+  
+  
+     public function indexro() {
         $usuario = Auth::user()->id;
-    	  $events = Event::where('sala', 'rolf')->get();
-        $permisoReserva = $this->permisoReservarSala(Auth::user(), 'rolf');
-    	  $event_list = [];
+    	$events = Event::where('sala', 'rolf')->get();
+        //Se solicito quitar la validación
+        $permisoReserva = true; //$this->permisoReservarSala(Auth::user(), 'rolf');
+    	$event_list = [];
         foreach ($events as $key => $event) {
           $event_list[] = Calendar::event(
 
@@ -321,10 +324,11 @@ class EventController extends Controller
             $event->id
               );
         }
+        
         $calendar_details = Calendar::addEvents($event_list); 
-               $meventos=$events->where('usuario', $usuario )->all();
-       $hoy = Carbon::now();
- 
+        $meventos=$events->where('usuario', $usuario )->all();
+        $hoy = Carbon::now();
+    
         return view('/rolf', compact('calendar_details','meventos','hoy', 'permisoReserva') );
     }
   
@@ -340,6 +344,7 @@ class EventController extends Controller
         	\Session::flash('warnning','Revisa la informacíon');
             return Redirect::to('/rolf')->withInput()->withErrors($validator);
         }
+     
         $validarFecha = $this->dateValidation('rolf', $request->start_date, $request->end_date);
         if($validarFecha[0]){
           \Session::flash('warnning','La sala ya esta ocupada, fue reservada por '.$validarFecha[1].' '.$validarFecha[2].'. Por favor ingresa una fecha y hora disponible');
