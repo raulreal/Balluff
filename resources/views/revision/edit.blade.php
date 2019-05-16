@@ -133,7 +133,7 @@
                                                 </td>
                                                 <td bgcolor="gray"  align="left" vertical-align="bottom">
                                                     <font color="#fff" style="line-height:30px; padding-right:5px;">
-                                                        <span id="totalCSP">{{($revision->total1 * $registros->peso_oindividuales)/100}}</span> %
+                                                        <span id="totalCSP">{{$revision->totalCSP}}</span> %
                                                     </font>
                                                 </td>
                                                 <td bgcolor="gray"></td>
@@ -212,7 +212,7 @@
                                                 </td>
                                                 <td bgcolor="gray"  align="left" vertical-align="bottom">
                                                     <font color="#fff" style="line-height:30px; padding-right:5px;">
-                                                        <span id="totalAdmon">{{($revision->total2 * $registros->peso_oadmon)/100}}</span> %
+                                                        <span id="totalAdmon">{{$revision->totalAdmon}}</span> %
                                                     </font>
                                                 </td>
                                                 <td bgcolor="gray"></td>
@@ -291,7 +291,7 @@
                                                 </td>
                                                 <td bgcolor="gray"  align="left" vertical-align="bottom">
                                                     <font color="#fff" style="line-height:30px; padding-right:5px;">
-                                                        <span id="totalCultura">{{($revision->total3 * $registros->peso_ocultura)/100}}</span> %
+                                                        <span id="totalCultura">{{$revision->totalCultura}}</span> %
                                                     </font>
                                                 </td>
                                                 <td bgcolor="gray"></td>

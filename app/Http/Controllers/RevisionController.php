@@ -65,6 +65,11 @@ class RevisionController extends Controller
         $revision = Revision::find($id);
         $registros = $revision->desenpeno;
         
+        $revision->totalCSP = ($revision->total1 * $registros->peso_oindividuales)/100;
+        $revision->totalAdmon = ($revision->total2 * $registros->peso_oadmon)/100;
+        $revision->totalCultura = ($revision->total3 * $registros->peso_ocultura)/100;
+        $revision->total = $revision->totalCSP + $revision->totalAdmon + $revision->totalCultura;
+        
         if($request->descargar_pdf) {
             $view =  \View::make('revision.showPdf', compact('registros', 'revision', 'usr', 'permisoRh', 'id'))->render();
             $pdf = \App::make('dompdf.wrapper');
@@ -110,6 +115,12 @@ class RevisionController extends Controller
     {
         $revision = Revision::find($id);
         $registros = $revision->desenpeno;
+      
+        $revision->totalCSP = ($revision->total1 * $registros->peso_oindividuales)/100;
+        $revision->totalAdmon = ($revision->total2 * $registros->peso_oadmon)/100;
+        $revision->totalCultura = ($revision->total3 * $registros->peso_ocultura)/100;
+        $revision->total = $revision->totalCSP + $revision->totalAdmon + $revision->totalCultura;
+      
         return view('revision.edit', compact('registros', 'revision', 'id'));
     }
     

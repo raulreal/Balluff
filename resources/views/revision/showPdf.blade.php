@@ -147,7 +147,7 @@
                                                 </td>
                                                 <td bgcolor="gray"  align="left" vertical-align="bottom">
                                                     <font color="#fff" style="line-height:30px; padding-right:5px;">
-                                                        <span id="totalCSP">{{($revision->total1 * $registros->peso_oindividuales)/100}} %</span>
+                                                        <span id="totalCSP">{{$revision->totalCSP}} %</span>
                                                     </font>
                                                 </td>
                                                 <td bgcolor="gray"></td>
@@ -203,7 +203,7 @@
                                                 </td>
                                                 <td bgcolor="gray"  align="left" vertical-align="bottom">
                                                     <font color="#fff" style="line-height:30px; padding-right:5px;">
-                                                        <span id="totalAdmon">{{($revision->total2 * $registros->peso_oadmon)/100}} %</span>
+                                                        <span id="totalAdmon">{{$revision->totalAdmon}} %</span>
                                                     </font>
                                                 </td>
                                                 <td bgcolor="gray"></td>
@@ -259,7 +259,7 @@
                                                 </td>
                                                 <td bgcolor="gray"  align="left" vertical-align="bottom">
                                                     <font color="#fff" style="line-height:30px; padding-right:5px;">
-                                                        <span id="totalAdmon">{{($revision->total3 * $registros->peso_ocultura)/100}} %</span>
+                                                        <span id="totalAdmon">{{$revision->totalCultura}} %</span>
                                                     </font>
                                                 </td>
                                                 <td bgcolor="gray"></td>
@@ -274,6 +274,37 @@
                                 </div>
                            </div>
                        </div>
+          
+                        <div class="row datososc" style="margin-top:15px;">
+                            <div class="col-sm-12"><center>
+                                <h3 style="margin: 4px;">RESULTADOS</h3></center>
+                            </div>
+                            <table class="table">
+                                <tr>
+                                    <th>Total objetivos individuales</th>
+                                    <th>Total objetivos administrativos</th>
+                                    <th>Total Objetivos de cultura organizacional</th>
+                                    <th>Evaluación Final</th>
+                                </tr>
+                                <tr style="text-align:center;">
+                                    <td>
+                                        {{$revision->totalCSP}} %
+                                    </td>
+
+                                    <td>
+                                        {{$revision->totalAdmon}} %
+                                    </td>
+
+                                    <td>
+                                        {{$revision->totalCultura}} %
+                                    </td>
+
+                                    <td>
+                                        {{ $revision->total }} %
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                         
                         <div class="firmas">
                             @if ($revision->f_empleado)
