@@ -300,11 +300,42 @@
                                         </tbody>
                                     </div>
                                 </table>
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <input type="submit"  value="Guardar" class="btn btn-success btn-block">
-                                    <a href="{{ route('revision.index') }}" class="btn btn-info btn-block" >Atrás</a>
+                            </div>
+                          
+                            <div class="row datososc" style="margin-top:15px;">
+                                <div class="col-sm-12"><center>
+                                    <h3 style="margin: 4px;">RESULTADOS</h3></center>
                                 </div>
+                                <table class="table">
+                                    <tr>
+                                        <th>Total objetivos individuales</th>
+                                        <th>Total objetivos administrativos</th>
+                                        <th>Total Objetivos de cultura organizacional</th>
+                                        <th>Evaluación Final</th>
+                                    </tr>
+                                    <tr style="text-align:center;">
+                                        <td>
+                                            <span id="totalCSP2">{{$revision->totalCSP}}</span> %
+                                        </td>
+
+                                        <td>
+                                            <span id="totalAdmon2">{{$revision->totalAdmon}}</span> %
+                                        </td>
+
+                                        <td >
+                                            <span id="totalCultura2">{{$revision->totalCultura}}</span> %
+                                        </td>
+
+                                        <td>
+                                            <span id="totalGeneral">{{$revision->total}}</span> %
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input type="submit"  value="Guardar" class="btn btn-success btn-block">
+                                <a href="{{ route('revision.index') }}" class="btn btn-info btn-block" >Atrás</a>
                             </div>
 
                         </form>
@@ -364,13 +395,24 @@
             var myResult = parseInt(myBox1) + parseInt(myBox2) + parseInt(myBox3) + parseInt(myBox4) + parseInt(myBox5);
             ponderacion1.value = myResult;
             
-            if(campoId == 1)
+            if(campoId == 1) {
                 document.getElementById('totalCSP').textContent = (parseFloat(pesoCSP) * myResult)/100;
-            else if(campoId == 2)
+                document.getElementById('totalCSP2').textContent = (parseFloat(pesoCSP) * myResult)/100;
+            }
+            else if(campoId == 2) {
                 document.getElementById('totalAdmon').textContent = (parseFloat(pesoAdmon) * myResult)/100;
-            else if(campoId == 3)
+                document.getElementById('totalAdmon2').textContent = (parseFloat(pesoAdmon) * myResult)/100;
+            }
+            else if(campoId == 3) {
                 document.getElementById('totalCultura').textContent = (parseFloat(pesoCultura) * myResult)/100;
+                document.getElementById('totalCultura2').textContent = (parseFloat(pesoCultura) * myResult)/100;
+            }
             
+            var a = document.getElementById('totalCSP').textContent || 0;
+            var b = document.getElementById('totalAdmon').textContent || 0;
+            var c = document.getElementById('totalCultura').textContent || 0;
+            console.log(a,b,c);
+            document.getElementById('totalGeneral').textContent = parseFloat(a) + parseFloat(b) + parseFloat(c);
         }
     </script> 
           
