@@ -14,6 +14,10 @@ use App\Desenpeno;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReporteEvaluacion;
 
+use App\Exports\RevisionExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
  
 class DesenpenoController extends Controller
 {
@@ -39,6 +43,12 @@ class DesenpenoController extends Controller
   
     public function indexjfe(Request $request)
     {
+        
+        if($request->exportar_excel) {
+            $documento = "Revision.xlsx";
+            return Excel::download(new RevisionExport( $request->revision ), $documento);
+        }
+        
         $usr = Auth::user();
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);

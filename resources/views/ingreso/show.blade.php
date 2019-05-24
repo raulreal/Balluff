@@ -272,48 +272,49 @@
                     </tfoot>
                 </table>
             </div>
+  
+                <div class="firmas">
+                    @if ($registros->f_empleado)
+                        <div class="alert alert-success" role="alert">
+                          Firmado por {{ $registros->user->name  }} {{ $registros->user->appellido  }} el {{ $registros->fechafirma_e}}
+                        </div> 
+                     @else
+                          @if ($registros->user->id === $usr->id)
+                                <a href="{{ route('ingreso.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                    <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
+                                </a>
+                          @endif
+                    @endif
+
+                    @if ($registros->f_jefe)
+                        <div class="alert alert-success" role="alert">
+                          Firmado por {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }} el {{ $registros->fechafirma_j}}
+                        </div> 
+                    @else
+                       @if ($registros->user->miJefe)
+                          @if ($registros->user->miJefe->id === $usr->id)
+                                <a href="{{ route('ingreso.firma1',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                    <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
+                                </a>
+                          @endif
+                      @endif
+                    @endif
+
+                    @if ($registros->f_rh)
+                        <div class="alert alert-success" role="alert">
+                          Firmado por Recursos Humanos el {{ $registros->fechafirma_rh}}
+                        </div> 
+                    @else           
+                        @if ($permisoRh)
+                            <a href="{{ route('ingreso.firma2',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
+                            </a>
+                        @endif
+                    @endif
+                    <div><hr/></div>
+                </div>
+  
         </div>
-    </div>
-
-    <div class="firmas">
-        @if ($registros->f_empleado)
-            <div class="alert alert-success" role="alert">
-              Firmado por {{ $registros->user->name  }} {{ $registros->user->appellido  }} el {{ $registros->fechafirma_e}}
-            </div> 
-         @else
-              @if ($registros->user->id === $usr->id)
-                    <a href="{{ route('ingreso.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                        <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
-                    </a>
-              @endif
-        @endif
-
-        @if ($registros->f_jefe)
-            <div class="alert alert-success" role="alert">
-              Firmado por {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }} el {{ $registros->fechafirma_j}}
-            </div> 
-        @else
-           @if ($registros->user->miJefe)
-              @if ($registros->user->miJefe->id === $usr->id)
-                    <a href="{{ route('ingreso.firma1',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                        <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
-                    </a>
-              @endif
-          @endif
-        @endif
-
-        @if ($registros->f_rh)
-            <div class="alert alert-success" role="alert">
-              Firmado por Recursos Humanos el {{ $registros->fechafirma_rh}}
-            </div> 
-        @else           
-            @if ($permisoRh)
-                <a href="{{ route('ingreso.firma2',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                    <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
-                </a>
-            @endif
-        @endif
-        <div><hr/></div>
     </div>
 
               

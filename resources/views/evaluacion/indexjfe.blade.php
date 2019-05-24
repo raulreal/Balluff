@@ -5,7 +5,7 @@
 
   <h1 class="page-title">
       <i class="voyager-dashboard"></i>
-      Evaluacion de Desempeño
+      Evaluación de Desempeño
   </h1>
 @stop
 
@@ -18,9 +18,11 @@
             <div class="table-responsive">
                 <div class="panel panel-primary">
                     
+                    
+                    
                     {{ Form::model(Request::all(), array('route' => 'evaluacion.indexjfe','method'=>'GET', 'class'=>'form-search' )) }}    
                     
-                        <div id="search-input" style="    margin-bottom: 5px;">
+                        <div id="search-input" style="margin-bottom: 5px;">
                             <div class="input-group col-md-6">
                                 {{ Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre'])}}
                             </div>
@@ -37,7 +39,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12" style="text-align:right;">
+                            <div class="col-md-12" style="text-align:right; margin-bottom: 5px;">
 
                                 @if(count(Request::all()))
                                     <a href="{{ route('evaluacion.indexjfe') }}" title="Borrar" class="btn btn-sm btn-danger delete" data-id="20" id="delete-20">
@@ -46,7 +48,30 @@
                                 @endif
                             </div>
                         </div>
+                    
                     {!! Form::close() !!}
+                    
+                    {{ Form::open(array('route' => 'evaluacion.indexjfe', 'method'=>'GET', 'class'=>'form-search' )) }}
+                        <div id="search-input" style="margin-bottom: 25px;">
+                            <input type="hidden" name="exportar_excel" value="1">
+
+                            <div class="input-group col-md-6">
+                                {{ Form::select('revision', 
+                                    ['1' => 'Revisión 1',
+                                     '2' => 'Revisión 2',
+                                     '3' => 'Revisión 1 y 2'],
+                                     null,
+                                   ['placeholder' => 'Seleccionar revisión',
+                                    'class' => 'form-control', 'required'])}}
+                            </div>
+
+                            <span class="input-group-btn" style="width: auto; background-color: #f5f5f5; font-weight: bold; height: 34px; border: 1px solid #cccccc;">
+                                <button class="btn btn-info btn-lg" name="general" value="1" type="submit" style="margin: 0 !important; right: 2px;font-size: 15px; border-right: 1px solid #eee; height: 32px;">
+                                    <i class="voyager-cloud-download" style="display:inline-block; transform: none; position: relative; top: 4px;"></i> <span>Descargar reporte revisoines</span>
+                                </button>
+                            </span>
+                        </div> 
+                    {{ Form::close() }}
                     
                     <div class="panel panel-default">
                         <div class="panel-heading">

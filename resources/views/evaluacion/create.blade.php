@@ -5,7 +5,7 @@
 
   <h1 class="page-title">
       <i class="voyager-dashboard"></i>
-      Evaluacion de Desempeño
+      Evaluación de Desempeño
   </h1>
       <div class="float-right camino">
                 <img src="{{ asset('storage/settings/camino.png') }}" height="70px">

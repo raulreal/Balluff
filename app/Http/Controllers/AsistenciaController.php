@@ -146,9 +146,6 @@ class AsistenciaController extends Controller
   
   public function reporte(Request $request)
   {
-      
-      
- 
        $permisoRh = $this->permisoReservarSala(Auth::user(), 'rh');
        if(!$permisoRh) {
            return redirect()->back()->with('message', 'No tienes permiso.');

@@ -41,17 +41,14 @@
   
   $("document").ready(function(){
     if ($("#balluff").hasClass('expanded') ) {
-        console.log("logo grande");
       $("#my_image").attr("src","{{ voyager::image(setting('admin.logo')) }}");
     }   
     else {
-        console.log("logo pequeño");
        $("#my_image").attr("src","{{ voyager::image(setting('site.logosm')) }}");
-
     }      
-});
-
-$( "#balluff" ).click(function() {            
+  });
+/*
+  $( "#balluff" ).click(function() {            
     if ($(this).hasClass('expanded') ) {
         console.log("logo grande");
       $("#my_image").attr("src","{{ voyager::image(setting('admin.logo')) }}");
@@ -60,7 +57,6 @@ $( "#balluff" ).click(function() {
         console.log("logo pequeño");
        $("#my_image").attr("src","{{ voyager::image(setting('site.logosm')) }}");
     }      
-});
- 
-  
+  });
+*/
 </script>

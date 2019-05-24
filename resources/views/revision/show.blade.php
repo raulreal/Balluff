@@ -28,10 +28,6 @@
                         <a href="{{route('revision.show', [$revision->id, 'descargar_pdf'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck" style="margin-left:20px;">
                             <span>Imprimir reporte (PDF)</span>
                         </a>
-                      
-                        <a href="{{route('revision.show', [$revision->id, 'descargar_excel'=>1])}}" title="Imprimir" class="btn btn-sm btn-primary edit" target="_blanck" style="margin-left:20px;">
-                            <span>Descargar reporte (Excel)</span>
-                        </a>
                     </form>
                 </div>	
             </div>

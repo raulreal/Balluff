@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateEventsTable extends Migration
 {
-inc    /**
+   /**
      * Run the migrations.
      *
      * @return void

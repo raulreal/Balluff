@@ -40,7 +40,7 @@
  <div class="col-md-12"> 
   <div style="width:50%; display:inline-block;"> 
       <h2 class="page-title">
-          Evaluacion de Desempeño
+          Evaluación de Desempeño
       </h2>
       <h3 class="page-title">
           Definición de Objetivos

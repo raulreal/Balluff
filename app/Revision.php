@@ -26,9 +26,16 @@ class Revision extends Model
         return $this->totalCSP + $this->totalAdmon + $this->totalCultura;
     }
   
-  public function desenpeno()
+    public function desenpeno()
     {
         return $this->belongsTo('App\Desenpeno');
     }
+  
+    public function scopeTipo($query, $tipo) {
+        if($tipo == 1 || $tipo == 2) {
+            $query->where('tipo', $tipo);
+        }
+    }
+  
     
 }

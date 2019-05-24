@@ -13,8 +13,6 @@ use App\Desenpeno;
 use App\Revision;
 
 use Illuminate\Support\Facades\Mail;
-use App\Exports\RevisionExport;
-use Maatwebsite\Excel\Facades\Excel;
  
 class RevisionController extends Controller
 {
@@ -97,11 +95,7 @@ class RevisionController extends Controller
         	    }
               return redirect()->route('evaluaciones.edit', $registros->id )->with($estado, $mensaje);
     	    }
-        else if($request->descargar_excel) {
-            $documento = "Revision ".$revision->tipo." de ".$nombreRevisado.".xlsx";
-            return Excel::download(new RevisionExport( $revision->id ), $documento);
-        }  
-      
+        
         return  view('revision.show',compact('registros', 'revision', 'usr', 'permisoRh', 'id'));
     }
     

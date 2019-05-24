@@ -13,11 +13,11 @@ use Carbon\Carbon;
 class RevisionExport implements FromCollection, WithMapping, WithHeadings
 {
     
-    private $revisionId;
+    private $tipo;
     
-    public function __construct($revisionId)
+    public function __construct($tipo)
     {
-        $this->revisionId = $revisionId;
+        $this->tipo = intval($tipo);
     }
     
 
@@ -56,7 +56,14 @@ class RevisionExport implements FromCollection, WithMapping, WithHeadings
     */
     public function collection()
     {
-        $registros = Revision::where('id',  $this->revisionId)->get();
+        $registros = null;
+        
+        
+        $registros = Revision::whereYear('created_at', date('Y'))
+                             ->tipo($this->tipo)
+                             ->orderBy('tipo', 'ASC')
+                             ->get();
+      
         return $registros;
     }
   
