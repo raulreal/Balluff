@@ -178,9 +178,10 @@ if (starts_with(Auth::user()->avatar, 'http://') || starts_with(Auth::user()->av
   
  <script>
   $(function() {
-    $('#calendar').fullCalendar({
-      locale: 'es'
-    });
+      // hacer algo aquí si el elemento existe
+      $('#calendar').fullCalendar({
+          locale: 'es'
+      });     
   });
 </script>
 

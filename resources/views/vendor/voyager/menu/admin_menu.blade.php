@@ -85,6 +85,8 @@
                 if($permisoRh) {
                    $menu[] = $item->children->firstWhere('title', "Reporte A.P.");
                    $menu[] = $item->children->firstWhere('title', 'Reporte de Ev de Desempeño');
+                   $menu[] = $item->children->firstWhere('title', 'Vacaciones');
+                   $menu[] = $item->children->firstWhere('title', 'Vacaciones por usuario');
                 }
                 
                 //Lo ve solo el que tiene empleados
