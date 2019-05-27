@@ -44,13 +44,31 @@ class VacacionesController extends Controller
     }
     
     
-    public function index2()
+    public function index2(Request $request)
     {
+        $usr = Auth::user();
+        $permisosUsuario = $usr->roles->pluck('name')->toArray();
+        $permisoRh = in_array('rh', $permisosUsuario);
+        
+        $nombre = $request->nombre;
+        $apellido = $request->apellido;
+        $empleados = '';
+        
+        if($permisoRh)
+            $empleados = ($request->empleados == "mios")? $usr->id : "";
+        else
+            $empleados =  $usr->id;
+        
         $fecha = Carbon::now();
         $anioAnterior = $fecha->subYears(1);
-        $usuarios = User::where('fecha_ingreso', '<=', $anioAnterior)->get();
+        $usuarios = User::where('fecha_ingreso', '<=', $anioAnterior)
+                        ->nombre($nombre)
+                        ->apellido($apellido)
+                        ->misEmpleados($empleados)
+                        ->paginate(10)
+                        ->appends($request->all());
         
-        return view('vacaciones.index2', compact('usuarios') );
+        return view('vacaciones.index2', compact('usuarios', 'permisoRh') );
     }
 
     /**

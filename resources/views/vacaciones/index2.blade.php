@@ -16,6 +16,40 @@
     <div class="panel panel-bordered">
         <div class="panel-body">
             <div class="table-responsive">
+                
+                {{ Form::model(Request::all(), array('route' => 'vacaciones.index2','method'=>'GET', 'class'=>'form-search' )) }}
+                    <div id="search-input" style="margin-bottom: 5px;">
+                        @if($permisoRh)
+                            <div class="input-group col-md-6">
+                                {{ Form::select('empleados',['' => 'Todos los usuarios', 'mios'=>'Mis colaboradores'], null, ['class'=>'form-control', 'style'=>"border: 1px solid #f1f1f1;"])  }}
+                            </div>
+                        @endif
+                        <div class="input-group col-md-6">
+                            {{ Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre'])}}
+                        </div>
+
+                        <div class="input-group col-md-6">
+                            {{ Form::text('apellido', null, ['class'=>'form-control','placeholder'=>'Apellido', 'style'=>'border-left: solid 1px #eee;'])}}
+                        </div>
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="submit">
+                                <i class="voyager-search"></i>
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:right;">
+                            @if(count(Request::all()))
+                                <a href="{{ route('vacaciones.index2') }}" title="Borrar" class="btn btn-sm btn-danger delete" data-id="20" id="delete-20">
+                                    <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Borrar filtro</span>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+              
                 <div class="panel panel-primary">
                     
                     <div class="panel panel-default">
@@ -105,6 +139,7 @@
                     </div>
                  
                 </div>
+              {{ $usuarios->links() }}
             </div>
         </div>
     </div>      
