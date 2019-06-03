@@ -19,22 +19,29 @@ class ContratoController extends Controller
 {
 
    
-    public function index()
+    public function index(Request $request)
     {
         $usr = Auth::user();
-        $registros = Contrato::orderBy('id')->paginate(12);
+        $registros = Contrato::status($request->status)
+                             ->categoria($request->categoria) 
+                             ->nombre($request->nombre)
+                             ->orderBy('id')
+                             ->paginate(12)
+                             ->appends($request->all());
+      
+      
+      foreach ($registros as $p) {
+      $perro = $p->id;
+      }
 
-             return view('contratos.index',compact('registros','usr')); 
+             return view('contratos.index',compact('registros','usr','perro')); 
     }
   
     public function create()
     {
         $usuario = Auth::user();
         $fecha = Carbon::now();
-        $firmantes = User::whereHas('roles', function($q){
-            $q->where('name', '=', 'gerencia');
-        })->get(); 
-        return view('contratos.create',compact('fecha','usuario','firmantes'));
+        return view('contratos.create',compact('fecha','usuario'));
       
     }
  

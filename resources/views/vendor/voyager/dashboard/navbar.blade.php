@@ -62,6 +62,7 @@
                     @endif
                   </li>
                   <li> <a href="/mi-evaluacion"><i class="voyager-archive"></i>  Evaluacion de desempeño</a> </li>
+                  <li> <a href="/mis-vacaciones"><i class="voyager-archive"></i>  Solicitud de vacaciones</a> </li>
                   <li> <a href="/mi-ingreso"><i class="voyager-archive"></i>  Evaluacion de ingreso </a> </li>
                   <li> <a href="/mi-viajera"><i class="voyager-archive"></i>  Hoja viajera</a> </li>
                   
