@@ -108,31 +108,31 @@
             <input type="checkbox" name="codigo" value="1" id="CheckBox6" />
             <label class="list-group-item" for="CheckBox6">
               Código de Conducta
-              <span class="pull-right"> ERYS</span>
+              <span class="pull-right"> AP</span>
             </label>
 
             <input type="checkbox" name="principales" value="1" id="CheckBox7" />
             <label class="list-group-item" for="CheckBox7">
               Principales aspectos del contrato individual
-              <span class="pull-right"> ERYS</span>
+              <span class="pull-right"> AP</span>
             </label>
 
             <input type="checkbox" name="prestaciones" value="1" id="CheckBox8" />
             <label class="list-group-item" for="CheckBox8">
               Prestaciones
-              <span class="pull-right"> ERYS</span>
+              <span class="pull-right"> AP</span>
             </label>
 
             <input type="checkbox" name="formas" value="1" id="CheckBox9" />
             <label class="list-group-item" for="CheckBox9">
               Formas de pago
-              <span class="pull-right"> ERYS</span>
+              <span class="pull-right"> AP</span>
             </label>
 
             <input type="checkbox" name="politica" value="1" id="CheckBox10" />
             <label class="list-group-item" for="CheckBox10">
               Política de gastos
-              <span class="pull-right"> ERYS</span>
+              <span class="pull-right"> FICO</span>
             </label>
 
             <input type="checkbox" name="contactos" value="1" id="CheckBox11" />
@@ -188,7 +188,7 @@
             <input type="checkbox" name="proceso4" value="1" id="CheckBox18" />
             <label class="list-group-item" for="CheckBox18">
               Proceso de Almacén
-              <span class="pull-right"> JA</span>
+              <span class="pull-right"> MP</span>
             </label>
 
             <input type="checkbox" name="proceso5" value="1" id="CheckBox19" />
@@ -199,7 +199,7 @@
 
             <input type="checkbox" name="proceso6" value="1" id="CheckBox20" />
             <label class="list-group-item" for="CheckBox20">
-              Proceso de Ventas
+              Proceso de Ventas / Servicios y Sistemas
               <span class="pull-right"> AV</span>
             </label>
 
@@ -224,59 +224,62 @@
             <input type="checkbox" name="proceso10" value="1" id="CheckBox24" />
             <label class="list-group-item" for="CheckBox24">
               Proceso de Reclutamiento y Selección 
-              <span class="pull-right"> ERYS</span>
-            </label>
-
-            <input type="checkbox" name="proceso11" value="1" id="CheckBox25" />
-            <label class="list-group-item" for="CheckBox25">
-              Proceso de Desarrollo Organizacional 
               <span class="pull-right"> DO</span>
             </label>
 
+
             <input type="checkbox" name="proceso12" value="1" id="CheckBox26" />
             <label class="list-group-item" for="CheckBox26">
-              Proceso de Compras Indirectas 
-              <span class="pull-right"> AGG</span>
+              Proceso de Capacitación
+              <span class="pull-right"> DO</span>
             </label>
 
             <input type="checkbox" name="proceso13" value="1" id="CheckBox27" />
             <label class="list-group-item" for="CheckBox27">
-              Proceso de Egresos y Pagos Operacionales
-              <span class="pull-right"> CF</span>
+              Proceso de TI
+              <span class="pull-right"> TI</span>
             </label>
             
             <input type="checkbox" name="proceso14" value="1" id="CheckBox28" />
             <label class="list-group-item" for="CheckBox28">
-              Proceso de Crédito y Cobranza
-              <span class="pull-right"> CC</span>
+              Proceso de Data Protection
+              <span class="pull-right"> TI</span>
             </label>
             
             <input type="checkbox" name="proceso15" value="1" id="CheckBox29" />
             <label class="list-group-item" for="CheckBox29">
-              Proceso de Soporte Técnico
-              <span class="pull-right"> ST</span>
+              Proceso de Egresos y Pagos Operacionales
+              <span class="pull-right"> CF</span>
             </label>
             
              <input type="checkbox" name="proceso16" value="1" id="CheckBox30" />
             <label class="list-group-item" for="CheckBox30">
-              Proceso de Didáctica
-              <span class="pull-right"> ID</span>
+               Proceso de Crédito y Cobranza
+              <span class="pull-right"> CC</span>
             </label>
             
              <input type="checkbox" name="proceso17" value="1" id="CheckBox31" />
             <label class="list-group-item" for="CheckBox31">
-              Proceso de Servicios y Sistemas
+              Proceso de Soporte Técnico
               <span class="pull-right"> ST</span>
             </label>
             
-            <input type="checkbox" name="proceso18" value="1" id="CheckBox32" />
-            <label class="list-group-item" for="CheckBox32">
-              Proceso de AIM y CRM 
-              <span class="pull-right"> AYM</span>
+
+           <input type="checkbox" name="proceso18" value="1" id="CheckBox32" />
+            <label class="list-group-item "  for="CheckBox32">
+              Proceso de Didáctica
+              <span class="pull-right"> ID</span>
+            </label>
+            
+           <input type="checkbox" name="proceso11" value="1" id="CheckBox25" />
+            <label class="list-group-item" for="CheckBox25">
+              Proceso de Industry Manager
+              <span class="pull-right"> IM</span>
             </label>
 
-
-
+            
+            
+            
             <input type="checkbox" name="firma2" value="1" id="CheckBox33" />
             <label class="list-group-item firma" for="CheckBox33">
               Declaro haber recibido y comprendido los temas arriba mencionados      
@@ -322,6 +325,12 @@
             <input type="checkbox" name="presentacion" value="1" id="CheckBox39" />
             <label class="list-group-item" for="CheckBox39">
               Presentación al área
+              <span class="pull-right"> Jefe inmediato </span>
+            </label>
+            
+          <input type="checkbox" name="crm" value="1" id="CheckBox49" />
+            <label class="list-group-item" for="CheckBox49">
+              CRM
               <span class="pull-right"> Jefe inmediato </span>
             </label>
 
@@ -418,6 +427,7 @@
                   <div class="col-sm-3">
                     <ul>
                        <li>IM = Especialista  de Industria Automotriz</li>
+                      <li>DIST = Soporte de Distribución</li>
                        <li> AC = Asesor de Calidad</li>
                        <li> ERYS= Especialista de Reclutamiento y Selección</li>
                     </ul> 
