@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+
 use Auth;
-use Carbon\Carbon;
 use Validator;
+use Carbon\Carbon;
 use App\User;
 use App\Desenpeno;
-
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ReporteEvaluacion;
+use App\Opcion;
 
 use App\Exports\RevisionExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -26,12 +26,60 @@ class DesenpenoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function fechaRestriccion($fecha) {
+        
+        if($fecha && $fecha->valor) {
+            $fechaTexto = date('Y').'-'.$fecha->valor.' 00:00:00';
+            return Carbon::createFromFormat('Y-m-d H:i:s', $fechaTexto);
+        }
+        
+        return null;
+    }
+    
+    public function opcionesRestrccion() {
+        $fechaRestriccion = [
+            'objetivos' => true,
+            'revision1' => true,
+            'revision2' => true
+        ];
+        
+        $objetivoInicio  = $this->fechaRestriccion( Opcion::where('nombre', 'objetivos_inicio' )->first() );
+        $objetivoFin     = $this->fechaRestriccion( Opcion::where('nombre', 'objetivos_fin' )->first() );
+        $revision1Inicio = $this->fechaRestriccion( Opcion::where('nombre', 'revision_1_incio' )->first() );
+        $revision1Fin    = $this->fechaRestriccion( Opcion::where('nombre', 'revision_1_fin' )->first() );
+        $revision2Inicio = $this->fechaRestriccion( Opcion::where('nombre', 'revision_2_incio' )->first() );
+        $revision2Fin    = $this->fechaRestriccion( Opcion::where('nombre', 'revision_2_fin' )->first() );
+        
+        if($objetivoInicio && date('Y-m-d H:i:s') < $objetivoInicio)
+            $fechaRestriccion['objetivos'] = false;
+        if($objetivoFin && date('Y-m-d H:i:s') > $objetivoFin )
+            $fechaRestriccion['objetivos'] = false;
+        
+        if($revision1Inicio && date('Y-m-d H:i:s') < $revision1Inicio)
+            $fechaRestriccion['revision1'] = false;
+        if($revision1Fin && date('Y-m-d H:i:s') > $revision1Fin)
+            $fechaRestriccion['revision1'] = false;
+        
+        if($revision2Inicio && date('Y-m-d H:i:s') < $revision2Inicio)
+            $fechaRestriccion['revision2'] = false;
+        if($revision2Fin && date('Y-m-d H:i:s') > $revision2Fin)
+            $fechaRestriccion['revision2'] = false;
+        
+        return $fechaRestriccion;
+    }
    
+    
     public function index(Request $request)
     {
+		
+		    if($request->exportar_excel) {
+            $documento = "Revisiones.xlsx";
+            return Excel::download(new RevisionExport( $request->revision ), $documento);
+        }
+		
         $nombre   = $request->nombre;
         $apellido = $request->apellido;
-      
+        
         $registros = User::orderBy('name')
                          ->nombre($nombre)
                          ->apellido($apellido)
@@ -43,26 +91,22 @@ class DesenpenoController extends Controller
   
     public function indexjfe(Request $request)
     {
-        
-        if($request->exportar_excel) {
-            $documento = "Revision.xlsx";
-            return Excel::download(new RevisionExport( $request->revision ), $documento);
-        }
-        
         $usr = Auth::user();
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
-      
+        
         $nombre   = $request->nombre;
         $apellido = $request->apellido;
-
+        
+        $fechaRestriccion = $this->opcionesRestrccion();
+        
         $registros = User::nombre($nombre)
                          ->apellido($apellido)
                          ->where('jefe_id', Auth::user()->id)
                          ->orderBy('name')
                          ->get();
 
-        return view('evaluacion.indexjfe', compact('registros', 'permisoRh'));
+        return view('evaluacion.indexjfe', compact('registros', 'permisoRh', 'fechaRestriccion'));
     }
     
     /**
@@ -294,8 +338,20 @@ class DesenpenoController extends Controller
     }
     
     public function mievaluacion() {
+		//Si el usuario ya tiene una evaluación se verifica si tiene reviciones y se muestra la mas reciente, si no tiene se muestra la evaluación(definición de objetivos)
         $usr = Auth::user();
-        if ( !empty($usr->desenpeno) ) {
+		$evaluacionActual = $usr->desenpeno;
+        if($evaluacionActual) {
+			
+			$revision1 = $evaluacionActual->revisiones()->where('tipo', 1)->first();
+			$revision2 = $evaluacionActual->revisiones()->where('tipo', 2)->first();
+			
+			if($revision2) 
+				return redirect()->route('revision.show', $revision2->id);
+			
+			elseif($revision1)
+				return redirect()->route('revision.show', $revision1->id);
+			
             return redirect()->route('evaluaciones.show', $usr->desenpeno->id);
         }
         else {

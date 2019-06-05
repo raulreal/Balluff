@@ -188,6 +188,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('vacaciones-firmar1', 'VacacionesController@firma1')->name('vacaciones.firma1');
         Route::get('vacaciones-firmar2', 'VacacionesController@firma2')->name('vacaciones.firma2');
         Route::get('mis-vacaciones', 'VacacionesController@misVacaciones')->name('vacaciones.misvacaciones');
+  
+  //Opciones
+        Route::get('opciones-generales', 'OpcionController@edit')->name('opciones.edit');
+        Route::put('opciones-generales', 'OpcionController@update')->name('opciones.update');
+        Route::patch('opciones-generales', 'OpcionController@update')->name('opciones.update');
         
 });
 

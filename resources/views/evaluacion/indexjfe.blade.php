@@ -49,31 +49,7 @@
                             </div>
                         </div>
                     
-                    {!! Form::close() !!}
-                    
-                    @if($permisoRh)
-                        {{ Form::open(array('route' => 'evaluacion.indexjfe', 'method'=>'GET', 'class'=>'form-search' )) }}
-                            <div id="search-input" style="margin-bottom: 25px;">
-                                <input type="hidden" name="exportar_excel" value="1">
-
-                                <div class="input-group col-md-6">
-                                    {{ Form::select('revision', 
-                                        ['1' => 'Revisión 1',
-                                         '2' => 'Revisión 2',
-                                         '3' => 'Revisión 1 y 2'],
-                                         null,
-                                       ['placeholder' => 'Seleccionar revisión',
-                                        'class' => 'form-control', 'required'])}}
-                                </div>
-
-                                <span class="input-group-btn" style="width: auto; background-color: #f5f5f5; font-weight: bold; height: 34px; border: 1px solid #cccccc;">
-                                    <button class="btn btn-info btn-lg" name="general" value="1" type="submit" style="margin: 0 !important; right: 2px;font-size: 15px; border-right: 1px solid #eee; height: 32px;">
-                                        <i class="voyager-cloud-download" style="display:inline-block; transform: none; position: relative; top: 4px;"></i> <span>Descargar reporte revisoines</span>
-                                    </button>
-                                </span>
-                            </div> 
-                        {{ Form::close() }}
-                    @endif
+                    {{ Form::close() }}
                     
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -108,8 +84,6 @@
                                                   @endphp
                                                 @endif
                                                 
-                                              
-                                              
                                                <tr>
                                                   <td>{{ $registro->name }} {{ $registro->apellido }}</td>
                                                   <td>
@@ -179,59 +153,59 @@
                                                   
                                                     @if ( !empty($registro->desenpeno->id) )
                                                         <td>
-                                                            @if(!$registro->desenpeno->f_empleado)
-                                                                <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit" >
-                                                                    <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
-                                                                </a>
+                                                            @if($fechaRestriccion['objetivos'])
+                                                                @if(!$registro->desenpeno->f_empleado)
+                                                                    <a href="{{action('DesenpenoController@edit', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit" >
+                                                                        <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
+                                                                    </a>
+                                                                @endif
+
+                                                                @if(!$registro->desenpeno->f_rh || !$registro->desenpeno->f_jefe )
+                                                                    <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
+                                                                        <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
+                                                                    </a>
+                                                                @endif
                                                             @endif
-                                                            
-                                                            @if(!$registro->desenpeno->f_rh || !$registro->desenpeno->f_jefe )
-                                                                <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
-                                                                    <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
-                                                                </a>
-                                                            @endif
-                                                            
                                                             <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
                                                                 <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
                                                             </a>
                                                         </td>
                                                                                                                      
                                                         <td>
-                                                            @if($permisoRh)
-                                                            
-                                                                @if($revision1)
+                                                            @if($revision1)
+                                                                @if( $fechaRestriccion['revision1'] )
                                                                     @if(!$revision1->f_empleado)
                                                                         <a href="{{action('RevisionController@edit', $revision1->id)}}" title="Editar" class="btn btn-sm btn-primary edit" >
                                                                             <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
                                                                         </a>
                                                                     @endif
-                                                                        
+
                                                                     <a href="{{action('RevisionController@show', $revision1->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
                                                                         <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
                                                                     </a>
-
-                                                                    <a href="{{action('RevisionController@show', $revision1->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
-                                                                        <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
-                                                                    </a>
-                                                                @else
+                                                                @endif
+                                                                <a href="{{action('RevisionController@show', $revision1->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
+                                                                    <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
+                                                                </a>
+                                                            @else
+                                                                @if( $fechaRestriccion['revision1'] )
                                                                     <a href="{{ route('revision.create', ['id'=>$registro->desenpeno->id, 'revision'=>1]) }}" title="Firma" class="btn btn-sm btn-primary edit" >
                                                                         <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Añadir</span>
                                                                     </a>
                                                                 @endif
-                                                            
                                                             @endif
+                                                            
                                                         </td>
                                                         
                                                         <td>
-                                                            @if($permisoRh)
-                                                            
-                                                                @if($revision2)
+                                                            @if($revision2)
+                                                                @if( $fechaRestriccion['revision2'] )
                                                                     @if(!$revision2->f_empleado)
                                                                         <a href="{{action('RevisionController@edit', $revision2->id)}}" title="Editar" class="btn btn-sm btn-primary edit" >
                                                                             <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
                                                                         </a>
                                                                     @endif
-                                                                    
+
                                                                     <a href="{{action('RevisionController@show', $revision2->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
                                                                         <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
                                                                     </a>
@@ -239,12 +213,13 @@
                                                                     <a href="{{action('RevisionController@show', $revision2->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
                                                                         <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
                                                                     </a>
-                                                                @else
+                                                                @endif
+                                                            @else
+                                                                @if( $fechaRestriccion['revision2'] )
                                                                     <a href="{{ route('revision.create', ['id'=>$registro->desenpeno->id, 'revision'=>2]) }}" title="Firma" class="btn btn-sm btn-primary edit" >
                                                                         <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Añadir</span>
                                                                     </a>
                                                                 @endif
-                                                            
                                                             @endif
                                                         </td>
                                                     @else

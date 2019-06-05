@@ -6,7 +6,7 @@
 
   <h1 class="page-title">
       <i class="voyager-thumbs-up"></i>
-      Revision {{$registros->tipo}} de Evaluación
+      Revision {{$revision->tipo}} de Evaluación
   </h1>
 
 @stop
@@ -63,9 +63,8 @@
                         <div>
                             
                             <div class="panel-heading">Objetivos CSP ó Individuales <span><strong>{{$registros->peso_oindividuales}} %</strong></span></div>
-                            <div class="table-responsive">
+                            <div class="table-responsive-md">
                                 <table class="table mixed">
-                                    <div class="table-responsive">
                                         <thead>
                                             <th style="width: 20%">Objetivos</th>
                                             <th style="width: 10%">Meta</th>
@@ -188,15 +187,13 @@
                                             </tr>
                                             
                                         </tbody>
-                                    </div>
                                 </table>
                             </div>
                      
               
                             <div class="panel-heading">Objetivos Administrativos <span><strong>{{$registros->peso_oadmon}} %</strong></span></div>
-                            <div class="table-responsive">
+                            <div class="table-responsive-md">
                                 <table class="table">
-                                    <div class="table-responsive">
                                         <thead>
                                             <th style="width: 20%">Objetivos</th>
                                             <th style="width: 10%">Meta</th>
@@ -324,9 +321,8 @@
 
 
                             <div class="panel-heading">Objetivos Cultura <span><strong>{{$registros->peso_ocultura}} %</strong></span></div>               
-                            <div class="table-responsive">
+                            <div class="table-responsive-md">
                                 <table class="table">
-                                    <div class="table-responsive">
                                         <thead>
                                             <th style="width: 20%">Objetivos</th>
                                             <th style="width: 10%">Meta</th>
@@ -454,11 +450,11 @@
                     <div class="firmas">
                         @if ($revision->f_empleado)
                             <div class="alert alert-success" role="alert">
-                                Firmado por {{ $revision->user->name  }} {{ $revision->user->appellido  }}
+                                Firmado por {{ $registros->user->nombreCompleto() }}
                             </div> 
                         @else
                             @if ($registros->user->id === $usr->id)
-                                <a href="{{ route('revision.firma',['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                <a href="{{ route('revision.firma', ['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
                                     <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
                                 </a>
                             @endif
@@ -470,7 +466,7 @@
                             </div> 
                         @else
                             @if ($registros->user->miJefe->id === $usr->id)
-                                <a href="{{ route('revision.firma1',['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                <a href="{{ route('revision.firma1', ['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
                                     <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
                                 </a>
                             @endif
@@ -482,7 +478,7 @@
                             </div> 
                         @else
                             @if ($permisoRh)
-                                <a href="{{ route('revision.firma2',['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
+                                <a href="{{ route('revision.firma2', ['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
                                     <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
                                 </a>
                             @endif

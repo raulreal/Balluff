@@ -64,6 +64,7 @@ class RevisionController extends Controller
         $revision = Revision::find($id);
         $registros = $revision->desenpeno;
         $nombreRevisado = $revision->desenpeno->user->nombreCompleto();
+      
         if($request->descargar_pdf) {
             $view =  \View::make('revision.showPdf', compact('registros', 'revision', 'usr', 'permisoRh', 'id'))->render();
             $pdf = \App::make('dompdf.wrapper');
@@ -152,7 +153,7 @@ class RevisionController extends Controller
             $firma->f_empleado = 1;
             $firma->save(); 
           }
-       return redirect()->route('evaluacion.indexjfe')->with('success', 'Evaluacion firmada.');
+       return redirect()->back()->with('success', 'Evaluacion firmada.');
     }
     
     public function firma1(Request $request)
@@ -162,7 +163,7 @@ class RevisionController extends Controller
             $firma->f_jefe= 1;
             $firma->save(); 
         }
-       return redirect()->route('evaluacion.indexjfe')->with('success', 'Evaluacion firmada.');
+       return redirect()->back()->with('success', 'Evaluacion firmada.');
     }
     
     public function firma2(Request $request)
@@ -172,7 +173,7 @@ class RevisionController extends Controller
             $firma->f_rh = 1;
             $firma->save(); 
         }
-        return redirect()->route('evaluacion.indexjfe')->with('success', 'Evaluacion firmada.');
+        return redirect()->back()->with('success', 'Evaluacion firmada.');
     }
     
 }
