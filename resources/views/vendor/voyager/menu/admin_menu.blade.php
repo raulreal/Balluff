@@ -65,7 +65,7 @@
             }
         @endphp
         
-        @if( $transItem->title != 'Admin' && $transItem->title != 'Admin RRHH' )
+        @if( $transItem->title != 'Admin' && $transItem->title != 'Admin RRHH' && $transItem->title != 'Legal' )
             <li class="{{ implode(" ", $listItemClass) }}">
                 <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">     
                     <span class="icon lateral {{ $item->icon_class }}"lateral ></span>
@@ -136,9 +136,7 @@
                     </div>
                 @endif
             </li>
-
-
- @elseif($transItem->title == 'Legal' && $permisoLg)
+        @elseif($transItem->title == 'Legal' && $permisoLg)
             <li class="{{ implode(" ", $listItemClass) }}">
                 <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">     
                     <span class="icon lateral {{ $item->icon_class }}"lateral ></span>
