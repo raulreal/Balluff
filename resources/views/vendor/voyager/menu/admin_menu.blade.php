@@ -5,6 +5,7 @@
         $roleId = $usuario->role_id; 
         $permisosUsuario = $usuario->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
+        $permisoLg = in_array('legal', $permisosUsuario);
         $permisoJefe = $usuario->misEmpleados->count();
     ?>
     
@@ -122,6 +123,22 @@
                 @endif
             </li>
         @elseif($transItem->title == 'Admin RRHH' && $permisoRh)
+            <li class="{{ implode(" ", $listItemClass) }}">
+                <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">     
+                    <span class="icon lateral {{ $item->icon_class }}"lateral ></span>
+                    <span class="title">{{ $transItem->title }}</span>
+                </a>
+                @if($hasChildren)
+                    <div id="{{ $transItem->id }}-dropdown-element" class="panel-collapse collapse {{ (in_array('active', $listItemClass) ? 'in' : '') }}">
+                        <div class="panel-body">
+                            @include('voyager::menu.admin_menu', ['items' => $item->children, 'options' => $options, 'innerLoop' => true])
+                        </div>
+                    </div>
+                @endif
+            </li>
+        @endif
+
+ @elseif($transItem->title == 'Legal' && $permisoLg)
             <li class="{{ implode(" ", $listItemClass) }}">
                 <a {!! $linkAttributes !!} target="{{ $item->target }}" }}">     
                     <span class="icon lateral {{ $item->icon_class }}"lateral ></span>
