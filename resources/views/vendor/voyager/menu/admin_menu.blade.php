@@ -136,7 +136,7 @@
                     </div>
                 @endif
             </li>
-        @endif
+
 
  @elseif($transItem->title == 'Legal' && $permisoLg)
             <li class="{{ implode(" ", $listItemClass) }}">
