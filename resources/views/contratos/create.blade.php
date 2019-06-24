@@ -103,6 +103,8 @@
                       <option>Recursos Humanos</option>
                       <option>Servicio Técnico</option>
                       <option>Servicio al Cliente</option>
+                   <option>Planeación de Materiales</option>
+
                       </select>
                   </td>
                  
@@ -239,10 +241,14 @@
           </table>
 
                <div class="col-xs-12 col-sm-12 col-md-12 botoneslrg">
-                <input type="submit"  value="Guardar" class="btn btn-success btn-block">
-                <a href="{{ route('ingreso.index') }}" class="btn btn-info btn-block" >Atrás</a>
-                
+                        <div class="col-sm-6"><input type="submit"  value="Guardar" class="btn btn-success btn-block"></div>
+                        <div class="col-sm-6"><a href="{{ route('ingreso.index') }}" class="btn btn-info btn-block" >Atrás</a></div>
+                        <div class="col-sm-2"></div>
                 </div>	
+
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
           </div>
         </div>
 
@@ -264,7 +270,7 @@
                 format: 'yyyy-mm-dd',
                 formatSubmit: 'yyyy-mm-dd 00:00:00',
                 hiddenSuffix: '',
-                min:true,
+                min:false,
             })
          });
       }); 
