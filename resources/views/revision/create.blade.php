@@ -111,8 +111,8 @@
                                                                    placeholder="%" value="{{$registros['peso'.$i]}}" oninput="calculate({{$i}})" readonly>
                                                         </td>  
                                                         <td>
-                                                            <input type="text" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" 
-                                                                   placeholder="%"  oninput="calculate({{$i}});calculateTotal(1)" >
+                                                            <input type="number" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" step="any"
+                                                                   min="0" max="100" placeholder="%"  oninput="calculate({{$i}});calculateTotal(1)" >
                                                         </td> 
                                                         <td>
                                                             <input type="text" name="ponderacion{{$i}}" id="ponderacion{{$i}}" class="form-control input-sm objetivos" readonly>
@@ -188,8 +188,8 @@
                                                                placeholder="%" value="{{$registros['peso'.$i]}}" oninput="calculate({{$i}})" readonly>
                                                     </td>  
                                                     <td>
-                                                        <input type="text" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" 
-                                                               placeholder="%" oninput="calculate({{$i}});calculateTotal(2)" >
+                                                        <input type="number" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" step="any"
+                                                               min="0" max="100" placeholder="%" oninput="calculate({{$i}});calculateTotal(2)" >
                                                     </td> 
                                                     <td>
                                                         <input type="text" name="ponderacion{{$i}}" id="ponderacion{{$i}}" class="form-control input-sm objetivos" readonly>
@@ -264,8 +264,8 @@
                                                                    placeholder="%" value="{{$registros['peso'.$i]}}" oninput="calculate({{$i}})" readonly>
                                                         </td>  
                                                         <td>
-                                                            <input type="text" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" 
-                                                                   placeholder="%" oninput="calculate({{$i}});calculateTotal(3)" >
+                                                            <input type="number" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" step="any"
+                                                                   min="0" max="100" placeholder="%" oninput="calculate({{$i}});calculateTotal(3)" >
                                                         </td> 
                                                         <td>
                                                             <input type="text" name="ponderacion{{$i}}" id="ponderacion{{$i}}" class="form-control input-sm objetivos" readonly>

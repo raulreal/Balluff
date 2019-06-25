@@ -108,8 +108,8 @@
                                                                placeholder="%" value="{{$registros['peso'.$i]}}" oninput="calculate({{$i}})" readonly>
                                                     </td>  
                                                     <td>
-                                                        <input type="text" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" 
-                                                               placeholder="%" value="{{$revision['alcanzada'.$i]}}" oninput="calculate({{$i}});calculateTotal(1)" >
+                                                        <input type="number" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" step="any"
+                                                               min="0" max="100" placeholder="%" value="{{$revision['alcanzada'.$i]}}" oninput="calculate({{$i}});calculateTotal(1)" >
                                                     </td> 
                                                     <td>
                                                         <input type="text" name="ponderacion{{$i}}" id="ponderacion{{$i}}" class="form-control input-sm objetivos" 
@@ -187,8 +187,8 @@
                                                                placeholder="%" value="{{$registros['peso'.$i]}}" oninput="calculate({{$i}})" readonly>
                                                     </td>  
                                                     <td>
-                                                        <input type="text" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" 
-                                                               placeholder="%" value="{{$revision['alcanzada'.$i]}}" oninput="calculate({{$i}});calculateTotal(2)" >
+                                                        <input type="number" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" step="any"
+                                                               min="0" max="100" placeholder="%" value="{{$revision['alcanzada'.$i]}}" oninput="calculate({{$i}});calculateTotal(2)" >
                                                     </td> 
                                                     <td>
                                                         <input type="text" name="ponderacion{{$i}}" id="ponderacion{{$i}}" class="form-control input-sm objetivos" 
@@ -266,8 +266,8 @@
                                                                placeholder="%" value="{{$registros['peso'.$i]}}" oninput="calculate({{$i}})" readonly>
                                                     </td>  
                                                     <td>
-                                                        <input type="text" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" 
-                                                               placeholder="%" value="{{$revision['alcanzada'.$i]}}" oninput="calculate({{$i}});calculateTotal(3)" >
+                                                        <input type="number" name="alcanzada{{$i}}" id="alcanzada{{$i}}" class="form-control input-sm objetivos" step="any"
+                                                               min="0" max="100" placeholder="%" value="{{$revision['alcanzada'.$i]}}" oninput="calculate({{$i}});calculateTotal(3)" >
                                                     </td> 
                                                     <td>
                                                         <input type="text" name="ponderacion{{$i}}" id="ponderacion{{$i}}" class="form-control input-sm objetivos" 
@@ -415,59 +415,6 @@
             document.getElementById('totalGeneral').textContent = parseFloat(a) + parseFloat(b) + parseFloat(c);
         }
     </script> 
-          
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#form').validate({ // initialize the plugin
-                rules: {
-                  integrado: {
-                        required: true
-                             },
-                  retos: {
-                        required: true
-                             },
-                  equipo: {
-                        required: true
-                             },
-                  conocimiento: {
-                        required: true
-                             },
-                  responsabilidades: {
-                        required: true
-                             },
-                  habilidades: {
-                        required: true
-                             },
-                  lider: {
-                        required: true
-                             },
-                  recomienda: {
-                        required: true
-                             },
-                  fortalezas: {
-                        required: true
-                             },
-                  mejoras: {
-                        required: true
-                             },
-            },
-              messages: {
-              integrado: "Campo obligatorio",
-              retos: "Campo obligatorio",
-              equipo: "Campo obligatorio",
-              retos: "Campo obligatorio",
-              conocimiento: "Campo obligatorio",
-              responsabilidades: "Campo obligatorio",
-                 habilidades: "Campo obligatorio",
-                 lider: "Campo obligatorio",
-                 recomienda: "Campo obligatorio",
-                 fortalezas: "Campo obligatorio",
-                 mejoras: "Campo obligatorio",
-              }
-            });
-        });
-    </script> 
+
               
 @endsection     
