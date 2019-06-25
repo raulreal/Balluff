@@ -41,8 +41,8 @@ class RevisionExport implements FromCollection, WithMapping, WithHeadings
     public function map($revision): array
     {
         return [
-            $revision->desenpeno->user->nombreCompleto(),
-            ($revision->desenpeno->user->miJefe)? $revision->desenpeno->user->miJefe->nombreCompleto() : '',
+            ($revision->desenpeno->user)? $revision->desenpeno->user->nombreCompleto() : '',
+            ($revision->desenpeno->user && $revision->desenpeno->user->miJefe)? $revision->desenpeno->user->miJefe->nombreCompleto() : '',
             $revision->tipo,
             $revision->totalCSP,
             $revision->totalAdmon,
