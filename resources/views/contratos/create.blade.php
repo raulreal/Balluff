@@ -36,7 +36,7 @@
                <div class="panel panel-primary">
                     <div class="row datososc">
                       <div class="col-sm-12"><center><h3>
-                        DATOS DEL PERSONALES
+                        DATOS PERSONALES
                         </h3></center></div>
                       <div class="col-sm-2"><strong>Nombre del Colaborador:</strong><br/>        {{$usuario->name}}        {{$usuario->apellido}}</div>
                       <div class="col-sm-2"><strong>Nombre del Jefe inmediato:</strong><br/>  
