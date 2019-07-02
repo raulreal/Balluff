@@ -310,37 +310,19 @@
                             @if ($revision->f_empleado)
                                 <div class="alert alert-success" role="alert">
                                     Firmado por {{ $registros->user->nombreCompleto() }}
-                                </div> 
-                            @else
-                                @if ($registros->user->id === $usr->id)
-                                    <a href="{{ route('revision.firma', ['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                                        <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
-                                    </a>
-                                @endif
+                                </div>
                             @endif
 
                             @if ($revision->f_jefe)
                                 <div class="alert alert-success" role="alert">
                                     Firmado por {{ $registros->user->miJefe->name }} {{ $registros->user->miJefe->apellido }}
-                                </div> 
-                            @else
-                                @if ($registros->user->miJefe->id === $usr->id)
-                                    <a href="{{ route('revision.firma1', ['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                                        <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
-                                    </a>
-                                @endif
+                                </div>
                             @endif
 
                             @if ($revision->f_rh)
                                 <div class="alert alert-success" role="alert">
                                     Firmado por Recursos Humanos
-                                </div> 
-                            @else
-                                @if ($permisoRh)
-                                    <a href="{{ route('revision.firma2', ['user_id' => $revision->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                                        <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
-                                    </a>
-                                @endif
+                                </div>
                             @endif
                         </div>
             
