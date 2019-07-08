@@ -80,93 +80,158 @@
                             <div class="table-container">
                                 <table id="mytable" class="table table-bordred table-striped">
                                      <thead>
-                                        <th>Colaborador</th>
-                                        <th>Departamento o área</th>
-                                        <th>Puesto</th>
-                                        <th>Jefe inmediato</th>
-                                        <th>Fecha de Ingreso</th>
-                                        <th>Firma Empleado</th>
-                                        <th>Firma Jefe</th>
-                                        <th>Firma RH</th>
-                                        <th>Revisar Evaluación</th>
+                                       <th>Colaborador</th>
+                                       <th>Departamento o área</th>
+                                       <th>Puesto</th>
+                                       <th>Firma Empleado</th>
+                                       <th>Firma Jefe</th>
+                                       <th>Firma RH</th>
+                                       <th>Definición de Objetivos</th>
+                                       <th>Revisión 1</th>
+                                       <th>Revisión 2</th>
                                      </thead>
                                      <tbody>
                                       @if($registros->count())  
-                                          @foreach($registros as $registro)  
-                                              <tr>
-                                                <td>{{ $registro->name }} {{ $registro->apellido }}</td>
-                                                @if($registro->departamento)
-                                                <td>{{ $registro->departamento->nombre }}</td>
-                                                @else
-                                                  <td> Sin departamento </td>
+                                          @foreach($registros as $registro)
+                                                
+                                                @php
+                                                  $revision1 = null;
+                                                  $revision2 = null;
+                                                @endphp
+                                                
+                                                @if ( !empty($registro->desenpeno->id) )
+                                                  @php
+                                                      $revision1 = $registro->desenpeno->revisiones()->where('tipo', 1)->first();
+                                                      $revision2 = $registro->desenpeno->revisiones()->where('tipo', 2)->first();
+                                                  @endphp
                                                 @endif
-                                                <td>{{ $registro->puesto }}</td>
-                                                @if($registro->miJefe)
-                                                  <td> {{ $registro->miJefe->name }} {{ $registro->miJefe->apellido }}</td>
-                                                @else
-                                                  <td> Sin jefe </td>
-                                                @endif
-                                                <td> {{ $registro->fecha_ingreso }} </td>
-                                                <td>
-                                                    @if($registro->desenpeno)
-                                                        @if($registro->desenpeno->f_empleado)
-                                                            Si
-                                                        @else
-                                                            No
-                                                        @endif
-                                                    @else
-                                                        No
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if($registro->desenpeno)
-                                                        @if($registro->desenpeno->f_jefe)
-                                                            Si
-                                                        @else
-                                                            No
-                                                        @endif
-                                                    @else
-                                                        No
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if($registro->desenpeno)
-                                                        @if($registro->desenpeno->f_rh)
-                                                            Si
-                                                        @else
-                                                            No
-                                                        @endif
-                                                    @else
-                                                        No
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                  @if ( !empty($registro->desenpeno->id) )
-                                                        <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
-                                                            <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver Evaluación</span>
-                                                        </a>
+                                                
+                                               <tr>
+                                                  <td>{{ $registro->name }} {{ $registro->apellido }}</td>
+                                                  <td>
+                                                      @if($registro->departamento)
+                                                        {{ $registro->departamento->nombre }}
+                                                      @endif
+                                                  </td>
+                                                  <td>{{ $registro->puesto }}</td>
+                                                 
+                                                  <td>
+                                                      <div class="contenedor-firmas">
+                                                          @if($registro->desenpeno)
+                                                            <span class='ing{{$registro->desenpeno->f_empleado}}'>OB</span>
+
+                                                            @if($revision1)
+                                                                <span class='ing{{$revision1->f_empleado}}'>R1</span>
+                                                            @else
+                                                                <span class='ing'>R1</span>
+                                                            @endif
+
+                                                            @if($revision2)
+                                                                <span class='ing{{$revision2->f_empleado}}'>R2</span>
+                                                            @else
+                                                                <span class='ing'>R2</span>
+                                                            @endif
+                                                          @endif
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                      <div class="contenedor-firmas">
+                                                          @if($registro->desenpeno)
+                                                            <span class='ing{{$registro->desenpeno->f_jefe}}'>OB</span>
+
+                                                            @if($revision1)
+                                                                <span class='ing{{$revision1->f_jefe}}'>R1</span>
+                                                            @else
+                                                                <span class='ing'>R1</span>
+                                                            @endif
+
+                                                            @if($revision2)
+                                                                <span class='ing{{$revision2->f_jefe}}'>R2</span>
+                                                            @else
+                                                                <span class='ing'>R2</span>
+                                                            @endif
+                                                          @endif
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                      <div class="contenedor-firmas">
+                                                          @if($registro->desenpeno)
+                                                            <span class='ing{{$registro->desenpeno->f_rh}}'>OB</span>
+
+                                                            @if($revision1)
+                                                                <span class='ing{{$revision1->f_rh}}'>R1</span>
+                                                            @else
+                                                                <span class='ing'>R1</span>
+                                                            @endif
+
+                                                            @if($revision2)
+                                                                <span class='ing{{$revision2->f_rh}}'>R2</span>
+                                                            @else
+                                                                <span class='ing'>R2</span>
+                                                            @endif
+                                                          @endif
+                                                      </div>
+                                                  </td>
+                                                  
+                                                    @if ( !empty($registro->desenpeno->id) )
+                                                        <td>
+                                                            @if($fechaRestriccion['objetivos'])
+                                                                @if(!$registro->desenpeno->f_rh || !$registro->desenpeno->f_jefe )
+                                                                    <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
+                                                                        <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
+                                                                    </a>
+                                                                @endif
+                                                            @endif
+                                                            <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
+                                                                <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
+                                                            </a>
+                                                        </td>
+                                                                                                                     
+                                                        <td>
+                                                            @if($revision1)
+                                                                @if( $fechaRestriccion['revision1'] )
+                                                                    <a href="{{action('RevisionController@show', $revision1->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
+                                                                        <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
+                                                                    </a>
+                                                                @endif
+                                                                <a href="{{action('RevisionController@show', $revision1->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
+                                                                    <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
+                                                                </a>
+                                                            @endif
+                                                            
+                                                        </td>
                                                         
-                                                        <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Editar" class="btn btn-sm btn-primary edit">
-                                                            <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Firmar Evaluación</span>
-                                                        </a>
-                                                  @else
-                                                        <p>
+                                                        <td>
+                                                            @if($revision2)
+                                                                @if( $fechaRestriccion['revision2'] )
+                                                                    <a href="{{action('RevisionController@show', $revision2->id)}}" title="Firmar" class="btn btn-sm btn-primary edit">
+                                                                        <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
+                                                                    </a>
+                                                                @endif
+                                                                <a href="{{action('RevisionController@show', $revision2->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
+                                                                    <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
+                                                                </a>
+                                                            @endif
+                                                        </td>
+                                                    @else
+                                                        <td colspan="3" style="text-align:center">
                                                             <div class="alert alert-warning" role="alert">
                                                                 Usuario sin evaluación
                                                             </div>
-                                                        </p>
-                                                  @endif
-                                                </td>
-
-                                               </tr>
-                                           @endforeach 
+                                                        </td>
+                                                    @endif
+                                                   
+                                                  <td></td>
+                                                  <td></td>
+                                               </tr>  
+                                           @endforeach
                                        @else
                                            <tr>
-                                                <td colspan="8">No hay registro !!</td>
+                                              <td colspan="8">No hay registro !!</td>
                                            </tr>
                                       @endif
                                     </tbody>
-                                </table>
+                                  </table>
                             </div>
                         </div>
                     </div>

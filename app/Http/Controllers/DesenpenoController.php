@@ -80,20 +80,19 @@ class DesenpenoController extends Controller
         $nombre   = $request->nombre;
         $apellido = $request->apellido;
         
+        $fechaRestriccion = $this->opcionesRestrccion();
+      
         $registros = User::orderBy('name')
                          ->nombre($nombre)
                          ->apellido($apellido)
                          ->paginate(12)
                          ->appends($request->all());
         
-        return view('evaluacion.index',compact('registros')); 
+        return view('evaluacion.index',compact('registros', 'fechaRestriccion')); 
     }
   
     public function indexjfe(Request $request)
     {
-        $usr = Auth::user();
-        $permisosUsuario = $usr->roles->pluck('name')->toArray();
-        $permisoRh = in_array('rh', $permisosUsuario);
         
         $nombre   = $request->nombre;
         $apellido = $request->apellido;
@@ -104,9 +103,10 @@ class DesenpenoController extends Controller
                          ->apellido($apellido)
                          ->where('jefe_id', Auth::user()->id)
                          ->orderBy('name')
-                         ->get();
+                         ->paginate(12)
+                         ->appends($request->all());
 
-        return view('evaluacion.indexjfe', compact('registros', 'permisoRh', 'fechaRestriccion'));
+        return view('evaluacion.indexjfe', compact('registros', 'fechaRestriccion'));
     }
     
     /**

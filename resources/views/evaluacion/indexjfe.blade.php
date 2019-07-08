@@ -240,13 +240,12 @@
                                            </tr>
                                       @endif
                                     </tbody>
-
                                   </table>
                               </div>
                         </div>
                     </div>
-                 
                 </div>
+                {{ $registros->links() }}
             </div>
         </div>
     </div>      
