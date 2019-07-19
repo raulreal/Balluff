@@ -496,12 +496,12 @@
                 
             @if ($registros->f_calidad)
                 <div class="alert alert-success" role="alert">
-                  Firmado por Especialista de Calidad
+                  Firmado por Líder de Calidad
                 </div> 
              @else
                   @if ($usr->puesto === 'Líder de Calidad')
                         <a href="{{ route('viajera.firma',['user_id' => $registros->id ] ) }}" title="Firmar" class="btn btn-primary firma">
-                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Especialista de Calidad</span>
+                            <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Líder de Calidad</span>
                         </a>
                   @endif
               @endif

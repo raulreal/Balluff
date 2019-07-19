@@ -89,8 +89,11 @@
                                    $menu[] = $item->children->firstWhere('title', 'Evaluaciones de Desempeño');
                                 }
 
-                                if($permisoRh || $permisoJefe) {
+                                if($permisoRh || $permisoJefe || $usuario->puesto == 'Líder de Calidad' ) {
                                    $menu[] = $item->children->firstWhere('title', 'Hoja Viajera');
+                                }
+                      
+                                if($permisoRh || $permisoJefe) {
                                    $menu[] = $item->children->firstWhere('title', 'Evaluación de Ingreso');
                                 }
 
