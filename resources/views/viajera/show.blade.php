@@ -429,15 +429,15 @@
               </label>
            @endif
             
-            @if ($registros->f_jefe)
+            @if ($registros->f_calidad)
               <input type="checkbox" name="firma3" value="1" id="CheckBox14" />
               <label class="list-group-item firmado" for="CheckBox14">
-                Firmado por Jefe inmediato  
+                Firmado por Líder de calidad  
               </label>
               @else
               <input type="checkbox" name="firma1" value="1" id="CheckBox14" />
               <label class="list-group-item firma" for="CheckBox14">
-                Sin firma de Jefe inmediato 
+                Sin firma de Líder de calidad 
               </label>
            @endif
      </div>
