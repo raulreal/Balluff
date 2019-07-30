@@ -308,21 +308,22 @@ class EventController extends Controller
     }
   
   
-     public function indexro() {
-        $usuario = Auth::user()->id;
-    	$events = Event::where('sala', 'rolf')->get();
-        //Se solicito quitar la validación
-        $permisoReserva = true; //$this->permisoReservarSala(Auth::user(), 'rolf');
-    	$event_list = [];
-        foreach ($events as $key => $event) {
-          $event_list[] = Calendar::event(
-
-              $event->event_name,
-                  false,
-                  new \DateTime($event->start_date),
-                  new \DateTime($event->end_date),
-            $event->id
-              );
+   public function indexro() {
+     
+       $usuario = Auth::user()->id;
+    	 $events = Event::where('sala', 'rolf')->get();
+       
+       $permisoReserva = $this->permisoReservarSala(Auth::user(), 'rolf');
+    	 $event_list = [];
+      
+       foreach ($events as $key => $event) {
+           $event_list[] = Calendar::event(
+               $event->event_name,
+               false,
+               new \DateTime($event->start_date),
+               new \DateTime($event->end_date),
+               $event->id
+           );
         }
         
         $calendar_details = Calendar::addEvents($event_list); 
