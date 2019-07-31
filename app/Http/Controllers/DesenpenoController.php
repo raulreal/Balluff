@@ -305,7 +305,7 @@ class DesenpenoController extends Controller
         $desempeno = Desenpeno::find($id);
         $desempeno->revisiones()->delete();
         $desempeno->delete();
-        return redirect()->route('evaluacion.index')
+        return redirect()->route('evaluaciones.index')
                          ->with('success','Registro eliminado satisfactoriamente');
     }
   
