@@ -185,6 +185,9 @@
                                                             <a href="{{action('DesenpenoController@show', $registro->desenpeno->id)}}" title="Ver" class="btn btn-sm btn-primary edit">
                                                                 <i class="voyager-eye"></i> <span class="hidden-xs hidden-sm">Ver</span>
                                                             </a>
+                                                            <a href="javascript:;" title="Borrar" class="btn btn-sm btn-danger delete" data-id="{{$registro->desenpeno->id}}" id="delete-{{$registro->desenpeno->id}}">
+                                                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Borrar</span>
+                                                            </a>
                                                         </td>
                                                                                                                      
                                                         <td>
@@ -215,7 +218,7 @@
                                                         </td>
                                                     @else
                                                         <td colspan="3" style="text-align:center">
-                                                            <div class="alert alert-warning" role="alert">
+                                                            <div class="alert alert-warning" style="display:inline-block" role="alert">
                                                                 Usuario sin evaluación
                                                             </div>
                                                         </td>
@@ -233,6 +236,27 @@
                                     </tbody>
                                   </table>
                             </div>
+                            
+                            <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span
+                                                      aria-hidden="true">&times;</span></button>
+                                          <h4 class="modal-title"><i class="voyager-trash"></i> ¿Estás seguro que quieres eliminar este registro?</h4>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <form action="#" id="delete_form" method="POST">
+                                              {{ method_field("DELETE") }}
+                                              {{ csrf_field() }}
+                                              <input type="submit" class="btn btn-danger pull-right delete-confirm" value="{{ __('voyager::generic.delete_confirm') }}">
+                                          </form>
+                                          <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                                      </div>
+                                  </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                          </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -242,5 +266,12 @@
     </div>
 </div>
 
+<script type="text/javascript">
+  var deleteFormAction;
+    $('td').on('click', '.delete', function (e) {
+        $('#delete_form')[0].action = '{{ route('evaluaciones.destroy', ['id' => '__id']) }}'.replace('__id', $(this).data('id'));
+        $('#delete_modal').modal('show');
+    });
+</script>
 
 @endsection

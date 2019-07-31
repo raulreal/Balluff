@@ -302,9 +302,11 @@ class DesenpenoController extends Controller
      */
     public function destroy($id)
     {
-        //
-         Desempeno::find($id)->delete();
-        return redirect()->route('evaluacion.indexjfe')->with('success','Registro eliminado satisfactoriamente');
+        $desempeno = Desenpeno::find($id);
+        $desempeno->revisiones()->delete();
+        $desempeno->delete();
+        return redirect()->route('evaluacion.index')
+                         ->with('success','Registro eliminado satisfactoriamente');
     }
   
     public function firma(Request $request)
