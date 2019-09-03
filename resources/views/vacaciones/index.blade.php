@@ -64,7 +64,7 @@
                                        <th>Firma Empleado</th>
                                        <th>Firma Jefe</th>
                                        <th>Firma RH</th>
-                                       <th>Añadir/Edita</th>
+                                       <th>Firmar/Edita</th>
                                      </thead>
                                      <tbody>
                                       @if($vacaciones->count())  
@@ -100,8 +100,12 @@
                                                       @endif
                                                   </td>
                                                   <td>
+                                                      <a title="Firmar" class="btn btn-sm btn-primary edit" href="{{ route('vacaciones.show', $registro->id ) }}" >
+                                                          <i class="voyager-check"></i> <span class="hidden-xs hidden-sm">Firmar</span>
+                                                      </a>
+                                                    
                                                       <a title="Editar" class="btn btn-sm btn-primary edit" href="{{ route('vacaciones.edit', $registro->id ) }}" >
-                                                          <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar Solicitud</span>
+                                                          <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar</span>
                                                       </a>
                                                   </td>
                                                </tr>

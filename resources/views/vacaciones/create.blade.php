@@ -99,7 +99,8 @@
                                               <td>Días pendientes del aniversario anterior</td>
                                               <td>
                                                 <input type="text" value="{{ $diasPendientes }}" name="dias_pendientes" id="dias_pendientes" 
-                                                       class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif >
+                                                       class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif 
+                                                       onkeyup="calcularDias()">
                                               </td>
                                            </tr>
                                            <tr>
@@ -122,7 +123,7 @@
                                               <td>Días solicitados</td>
                                               <td>
                                                 <input type="number" name="dias_solicitados" id="dias_solicitados" 
-                                                       onkeyup="calcularDias(this.value)" class="form-control input-sm objetivos" min="1" max="{{$saldo}}">
+                                                       onkeyup="calcularDias()" class="form-control input-sm objetivos" min="1" max="{{$saldo}}">
                                              </td>
                                            </tr>
                                            
@@ -202,11 +203,13 @@
       });
           
       
-      function calcularDias(valor) {
-          var saldo = document.getElementById('diasPorDisfrutar').value;
-          document.getElementById('saldo').value = saldo - valor;
+      function calcularDias() {
+          var diasPendientes =  parseInt(document.getElementById('dias_pendientes').value) || 0;
+          var diasPorDisfrutar = parseInt(document.getElementById('diasPorDisfrutar').value);
+          var diasSolicitados =  parseInt(document.getElementById('dias_solicitados').value) || 0;
+          document.getElementById('saldo').value = (diasPendientes + diasPorDisfrutar) - diasSolicitados;
       }
-          
+
       /*
       $(document).ready(function(){
             var $input = $('input[name="fecha"]').pickadate();

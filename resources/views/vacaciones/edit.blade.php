@@ -90,8 +90,9 @@
                                                 <tr>
                                                   <td>Días pendientes del aniversario anterior</td>
                                                   <td>
-                                                    <input type="text" value="{{ $vacacion->dias_pendientes }}" name="dias_pendientes" id="dias_pendientes" 
-                                                           class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif >
+                                                    <input type="text" value="{{ $diasPendientesAnteriores }}" name="dias_pendientes" id="dias_pendientes" 
+                                                           class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif 
+                                                           onkeyup="calcularDias()">
                                                   </td>
                                                </tr>
                                                
@@ -106,7 +107,7 @@
                                                <tr>
                                                   <td>Total de días por disfrutar</td>
                                                   <td>
-                                                    <input type="text" value="{{ ($diasVacaciones + $vacacion->dias_pendientes) - $diasDisfrutados }}"
+                                                    <input type="text" value="{{ $diasVacaciones - $diasDisfrutados }}"
                                                            class="form-control input-sm objetivos" id="diasPorDisfrutar" readonly >
                                                   </td>
                                                </tr>
@@ -115,7 +116,7 @@
                                                   <td>Días solicitados</td>
                                                   <td>
                                                     <input type="number" name="dias_solicitados" id="dias_solicitados"  value="{{ $vacacion->dias_solicitados }}"
-                                                           onkeyup="calcularDias(this.value)" class="form-control input-sm objetivos" min="1" max="{{$vacacion->saldo}}">
+                                                           onkeyup="calcularDias()" class="form-control input-sm objetivos" min="1" max="{{$vacacion->saldo}}">
                                                  </td>
                                                </tr>
                                            
@@ -131,7 +132,7 @@
                                                   <td>Fecha inicio</td>
                                                   <td>
                                                     {!! Form::text('fecha_inicio', null, ['class' => 'timepicker form-control input-sm', 'id'=>'fecha_inicio',
-                                                                    'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>"{{ $vacacion->fecha_inicio }}" ]) !!}
+                                                                    'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=> $vacacion->fecha_inicio ]) !!}
                                                  </td>
                                                </tr>
                                            
@@ -139,7 +140,7 @@
                                                   <td>Fecha fin</td>
                                                   <td>
                                                     {!! Form::text('fecha_fin', null, ['class' => 'timepicker form-control input-sm', 'id'=>'fecha_fin',
-                                                                    'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>"{{ $vacacion->fecha_fin }}" ]) !!}
+                                                                    'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=> $vacacion->fecha_fin ]) !!}
                                                  </td>
                                                </tr>
                                            
@@ -147,7 +148,7 @@
                                                   <td>Fecha laborar</td>
                                                   <td>
                                                     {!! Form::text('fecha_laborar', null, ['class' => 'timepicker form-control input-sm', 'id'=>'fecha_laborar',
-                                                                    'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>"{{ $vacacion->fecha_laborar }}" ]) !!}
+                                                                    'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=> $vacacion->fecha_laborar ]) !!}
                                                  </td>
                                                </tr>
                                           </tbody>
@@ -156,7 +157,7 @@
                                     
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-12 botoneslrg">
-                                        <input type="submit"  value="Actualizar" class="btn btn-success btn-block">
+                                        <input type="submit"  value="Actualizar" class="btn btn-info btn-block">
                                     </div>
                                     
                                 </div>
@@ -194,9 +195,11 @@
       });
           
       
-      function calcularDias(valor) {
-          var saldo = document.getElementById('diasPorDisfrutar').value;
-          document.getElementById('saldo').value = saldo - valor;
+      function calcularDias() {
+          var diasPendientes =  parseInt(document.getElementById('dias_pendientes').value) || 0;
+          var diasPorDisfrutar = parseInt(document.getElementById('diasPorDisfrutar').value);
+          var diasSolicitados =  parseInt(document.getElementById('dias_solicitados').value) || 0;
+          document.getElementById('saldo').value = (diasPendientes + diasPorDisfrutar) - diasSolicitados;
       }
           
       /*

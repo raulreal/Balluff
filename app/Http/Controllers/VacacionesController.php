@@ -109,7 +109,8 @@ class VacacionesController extends Controller
             
             $ultimaVacacion = $vacaciones->last();
             if($ultimaVacacion->anios_trabajados != $aniosTrabajados) {
-                //Si los años trabajados no son iguales, supone que es de un año anterior y toma el saldo anterior como dias que se le deben al trabajador
+                //Si los años trabajados no son iguales, supone que es de un año anterior y 
+                //toma el saldo anterior como dias que se le deben al trabajador
                 $diasPendientes = $ultimaVacacion->saldo;
                 $saldo = $diasPendientes + $diasVacaciones;
             }
@@ -225,9 +226,21 @@ class VacacionesController extends Controller
         $permisoRh = in_array('rh', $permisosUsuario);
         
         $diasVacaciones = $this->diasPorAnio[$vacacion->anios_trabajados];
-        $diasDisfrutados = $usuario->misVacaciones()->where('anios_trabajados', $vacacion->anios_trabajados)->sum('dias_solicitados');
+        $diasDisfrutados = $usuario->misVacaciones()
+                                   ->where([ ['anios_trabajados', $vacacion->anios_trabajados], ['fecha_fin', '<=', date('Y-m-d')] ])
+                                   ->sum('dias_solicitados');
         
-        return view('vacaciones.show', compact('vacacion', 'diasVacaciones', 'diasDisfrutados', 'usuario', 'fecha', 'permisoRh') );
+        $diasPendientesAnteriores = $vacacion->dias_pendientes;
+        if($diasPendientesAnteriores >= $diasDisfrutados) {
+            $diasPendientesAnteriores -= $diasDisfrutados;
+            $diasDisfrutados = 0;
+        }
+        else {
+            $diasDisfrutados -= $diasPendientesAnteriores;
+            $diasPendientesAnteriores = 0;
+        }
+        
+        return view('vacaciones.show', compact('vacacion', 'diasPendientesAnteriores', 'diasVacaciones', 'diasDisfrutados', 'usuario', 'fecha', 'permisoRh') );
     }
 
     /**
@@ -247,9 +260,21 @@ class VacacionesController extends Controller
         $permisoRh = in_array('rh', $permisosUsuario);
         
         $diasVacaciones = $this->diasPorAnio[$vacacion->anios_trabajados];
-        $diasDisfrutados = $usuario->misVacaciones()->where('anios_trabajados', $vacacion->anios_trabajados)->sum('dias_solicitados');
+        $diasDisfrutados = $usuario->misVacaciones()
+                                   ->where([ ['anios_trabajados', $vacacion->anios_trabajados], ['fecha_fin', '<=', date('Y-m-d')] ])
+                                   ->sum('dias_solicitados');
         
-        return view('vacaciones.edit', compact('vacacion', 'diasVacaciones', 'diasDisfrutados', 'usuario', 'fecha', 'permisoRh') );
+        $diasPendientesAnteriores = $vacacion->dias_pendientes;
+        if($diasPendientesAnteriores >= $diasDisfrutados) {
+            $diasPendientesAnteriores -= $diasDisfrutados;
+            $diasDisfrutados = 0;
+        }
+        else {
+            $diasDisfrutados -= $diasPendientesAnteriores;
+            $diasPendientesAnteriores = 0;
+        }
+        
+        return view('vacaciones.edit', compact('vacacion', 'diasPendientesAnteriores', 'diasVacaciones', 'diasDisfrutados', 'usuario', 'fecha', 'permisoRh') );
     }
 
     /**

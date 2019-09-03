@@ -87,7 +87,7 @@
                                             <tr>
                                               <td>Días pendientes del aniversario anterior</td>
                                               <td>
-                                                <input type="text" value="{{ $vacacion->dias_pendientes }}" name="dias_pendientes" id="dias_pendientes" 
+                                                <input type="text" value="{{ $diasPendientesAnteriores }}" name="dias_pendientes" id="dias_pendientes" 
                                                        class="form-control input-sm objetivos" disabled >
                                               </td>
                                            </tr>
@@ -102,7 +102,7 @@
                                            <tr>
                                               <td>Total de días por disfrutar</td>
                                               <td>
-                                                <input type="text" value="{{ ($diasVacaciones + $vacacion->dias_pendientes) - $diasDisfrutados }}"
+                                                <input type="text" value="{{ $diasVacaciones - $diasDisfrutados }}"
                                                        class="form-control input-sm objetivos" id="diasPorDisfrutar" disabled >
                                               </td>
                                            </tr>
@@ -129,7 +129,7 @@
                                               <td>Fecha inicio</td>
                                               <td>
                                                 {!! Form::text('fecha_inicio', null, ['class' => 'timepicker form-control input-sm', 'id'=>'fecha_inicio', 'disabled',
-                                                                'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>"{{ $vacacion->fecha_inicio }}" ]) !!}
+                                                                'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value' => $vacacion->fecha_inicio ]) !!}
                                              </td>
                                            </tr>
                                            
@@ -137,7 +137,7 @@
                                               <td>Fecha fin</td>
                                               <td>
                                                 {!! Form::text('fecha_fin', null, ['class' => 'timepicker form-control input-sm', 'id'=>'fecha_fin', 'disabled',
-                                                                'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>"{{ $vacacion->fecha_fin }}" ]) !!}
+                                                                'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value' => $vacacion->fecha_fin ]) !!}
                                              </td>
                                            </tr>
                                            
@@ -145,7 +145,7 @@
                                               <td>Fecha laborar</td>
                                               <td>
                                                 {!! Form::text('fecha_laborar', null, ['class' => 'timepicker form-control input-sm', 'id'=>'fecha_laborar', 'disabled',
-                                                                'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value'=>"{{ $vacacion->fecha_laborar }}" ]) !!}
+                                                                'onkeydown'=>'return false', 'autocomplete'=>'off', 'data-value' => $vacacion->fecha_laborar ]) !!}
                                              </td>
                                            </tr>
                                             
@@ -159,7 +159,7 @@
                                         </div> 
                                      @else
                                             <a href="javascript:void(0);" title="Firmar" class="btn btn-primary firma">
-                                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Empleado</span>
+                                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar vacaciones Empleado</span>
                                             </a>
                                       @endif
 
@@ -169,7 +169,7 @@
                                         </div> 
                                      @else
                                           <a href="javascript:void(0);" title="Firmar" class="btn btn-primary firma">
-                                              <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación Jefe</span>
+                                              <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar vacaciones Jefe</span>
                                           </a>
                                       @endif
 
@@ -179,7 +179,7 @@
                                         </div> 
                                      @else           
                                             <a href="javascript:void(0);" title="Firmar" class="btn btn-primary firma">
-                                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar evaluación RH</span>
+                                                <i class="voyager-pen"></i> <span class="hidden-xs hidden-sm"> Firmar vacaciones RH</span>
                                             </a>
                                       @endif
                                   </div>

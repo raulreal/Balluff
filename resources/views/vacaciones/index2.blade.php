@@ -115,9 +115,11 @@
                                                   </td>
                                                   <td>
                                                       @if ( $registro->misVacaciones->first() )
-                                                          <a title="Editar" class="btn btn-sm btn-primary edit" href="{{ route('vacaciones.show', $registro->misVacaciones->first()->id ) }}" >
-                                                              <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar Solicitud</span>
-                                                          </a>
+                                                          @if( $registro->misVacaciones->count() === 1 )
+                                                              <a title="Editar" class="btn btn-sm btn-primary edit" href="{{ route('vacaciones.edit', $registro->misVacaciones->first()->id  ) }}" >
+                                                                  <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar Solicitud</span>
+                                                              </a>
+                                                          @endif
                                                       @else
                                                           <a href="{{ route('vacaciones.create',  ['user_id' => $registro->id, 'firmas' => 'todos' ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
                                                               <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Solicitud</span>
