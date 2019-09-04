@@ -114,15 +114,13 @@
                                                       @endif
                                                   </td>
                                                   <td>
-                                                      @if ( $registro->misVacaciones->first() )
-                                                          @if( $registro->misVacaciones->count() === 1 )
-                                                              <a title="Editar" class="btn btn-sm btn-primary edit" href="{{ route('vacaciones.edit', $registro->misVacaciones->first()->id  ) }}" >
-                                                                  <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">Editar Solicitud</span>
-                                                              </a>
-                                                          @endif
+                                                      @if( $registro->misVacaciones->count() )
+                                                          <a title="Añadir otra" class="btn btn-sm btn-primary edit" href="{{ route('vacaciones.create',  ['user_id' => $registro->id, 'firmas' => 'todos' ] ) }}" >
+                                                              <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Agregar Otra</span>
+                                                          </a>
                                                       @else
                                                           <a href="{{ route('vacaciones.create',  ['user_id' => $registro->id, 'firmas' => 'todos' ] ) }}" title="Ver" class="btn btn-sm btn-warning view">
-                                                              <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Añadir Solicitud</span>
+                                                              <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Crear Primera Solicitud</span>
                                                           </a>
                                                       @endif
                                                    </td>

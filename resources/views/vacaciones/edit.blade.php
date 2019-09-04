@@ -63,7 +63,7 @@
                        
 						<form method="POST" action="{{ route('vacaciones.update', $vacacion->id ) }}"  role="form" id="form">
                             <input name="_method" type="hidden" value="PUT">
-							{{ csrf_field() }}
+							      {{ csrf_field() }}
                             
                             <div class="col-md-12 objetivos_tab">
 
@@ -86,14 +86,19 @@
                                                              class="form-control input-sm objetivos" readonly >
                                                     </td>
                                                 </tr>
-                                                
+                                               
                                                 <tr>
                                                   <td>Días pendientes del aniversario anterior</td>
                                                   <td>
-                                                    <input type="text" value="{{ $diasPendientesAnteriores }}" name="dias_pendientes" id="dias_pendientes" 
+                                                    <input type="text" value="{{ $diasPendientesAnteriores }}" id="dias_pendientes" 
                                                            class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif 
                                                            onkeyup="calcularDias()">
                                                   </td>
+                                                  
+                                                  <input type="hidden" value="{{ $diasPendientesOriginal }}" name="dias_pendientes" 
+                                                         @if(!$permisoRh) readonly @endif >
+                                                  
+                                                  
                                                </tr>
                                                
                                                <tr>
@@ -116,7 +121,7 @@
                                                   <td>Días solicitados</td>
                                                   <td>
                                                     <input type="number" name="dias_solicitados" id="dias_solicitados"  value="{{ $vacacion->dias_solicitados }}"
-                                                           onkeyup="calcularDias()" class="form-control input-sm objetivos" min="1" max="{{$vacacion->saldo}}">
+                                                           onkeyup="calcularDias()" class="form-control input-sm objetivos" min="1" max="{{$diasVacaciones - $diasDisfrutados}}">
                                                  </td>
                                                </tr>
                                            

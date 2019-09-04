@@ -37,6 +37,7 @@ class VacacionesController extends Controller
         $vacaciones = Vacacion::nombre($nombre)
                               ->apellido($apellido)
                               ->misEmpleados($empleados)
+                              ->orderBy('id', 'DESC')
                               ->paginate(10)
                               ->appends($request->all());
         
@@ -65,6 +66,7 @@ class VacacionesController extends Controller
                         ->nombre($nombre)
                         ->apellido($apellido)
                         ->misEmpleados($empleados)
+                        ->orderBy('name', 'ASC')
                         ->paginate(10)
                         ->appends($request->all());
         
@@ -119,6 +121,17 @@ class VacacionesController extends Controller
                 $diasPendientes = $ultimaVacacion->dias_pendientes;
                 $saldo = $ultimaVacacion->saldo;
             }
+          
+            $diasPendientesOriginal = $diasPendientes;
+            if($diasPendientes >= $diasDisfrutados) {
+                $diasPendientes -= $diasDisfrutados;
+                $diasDisfrutados = 0;
+            }
+            else {
+                $diasDisfrutados -= $diasPendientes;
+                $diasPendientes = 0;
+            }
+          
         }
         
         if($saldo < 1)
@@ -129,7 +142,8 @@ class VacacionesController extends Controller
             $firmas = true;
         
         return view('vacaciones.create', compact('usuario','fecha', 'diasPendientes', 'diasDisfrutados', 'usuarioId', 'firmas',
-                                                 'saldo', 'diasVacaciones', 'aniosTrabajados', 'aniosTrabajados', 'permisoRh'));
+                                                 'saldo', 'diasVacaciones', 'aniosTrabajados', 'aniosTrabajados', 'permisoRh',
+                                                'diasPendientesOriginal'));
     }
 
     /**
@@ -166,7 +180,7 @@ class VacacionesController extends Controller
         $vacacion->user_id          = $request->user_id;
         
         $vacacion->saldo            = $request->saldo;
-        $vacacion->dias_pendientes  = ($request->saldo > $request->dias_vacaciones)? $request->saldo - $request->dias_vacaciones : 0;
+        $vacacion->dias_pendientes  = $request->dias_pendientes;//($request->saldo > $request->dias_vacaciones)? $request->saldo - $request->dias_vacaciones : 0;
         
         $vacacion->dias_solicitados = $request->dias_solicitados;
         $vacacion->fecha_inicio     = $request->fecha_inicio;
@@ -312,7 +326,9 @@ class VacacionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vacacion = Vacacion::find($id);
+        $vacacion->delete();
+        return back()->with('success','Registro eliminado satisfactoriamente');
     }
     
     
