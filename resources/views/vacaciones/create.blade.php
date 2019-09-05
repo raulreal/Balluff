@@ -95,6 +95,7 @@
                                                          class="form-control input-sm objetivos" readonly >
                                                 </td>
                                             </tr>
+                                           
                                             <tr>
                                               <td>Días pendientes del aniversario anterior</td>
                                               <td>
@@ -103,8 +104,17 @@
                                                        onkeyup="calculosDiasPendientes()">
                                               </td>
                                            </tr>
+                                           
                                            <tr>
-                                              <td>Días disfrutados en el periodo actual</td>
+                                              <td>Días disfrutados del aniversario anterior</td>
+                                              <td>
+                                                <input type="text" value="{{ $diasPendientesDisfrutados }}" id="dias_disfrutados_anteriores" 
+                                                       class="form-control input-sm objetivos" readonly >
+                                              </td>
+                                           </tr>
+                                           
+                                           <tr>
+                                              <td>Días disfrutados del periodo actual</td>
                                               <td>
                                                 <input type="text" value="{{ $diasDisfrutados }}" name="dias_disfrutados" id="dias_disfrutados" 
                                                        class="form-control input-sm objetivos" readonly >
@@ -114,7 +124,7 @@
                                            <tr>
                                               <td>Total de días por disfrutar</td>
                                               <td>
-                                                <input type="text" value="{{ ($diasVacaciones + $diasPendientes) - $diasDisfrutados }}"
+                                                <input type="text" value="{{ ($diasVacaciones + $diasPendientes) - ($diasDisfrutados + $diasPendientesDisfrutados) }}"
                                                        class="form-control input-sm objetivos" id="dias_por_disfrutar" readonly name="dias_por_disfrutar">
                                               </td>
                                            </tr>
