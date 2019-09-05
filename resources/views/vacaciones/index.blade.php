@@ -80,23 +80,23 @@
                                                   <td>{{ $registro->user->fecha_ingreso }}</td>
                                                   <td>
                                                       @if($registro->f_empleado)
-                                                          Si
+                                                          <span class='ing1'> Si</span>
                                                       @else
-                                                          No
+                                                          <span class='ing'> No</span>
                                                       @endif
                                                   </td>
                                                   <td>
                                                       @if($registro->f_jefe)
-                                                          Si
+                                                          <span class='ing1'> Si</span>
                                                       @else
-                                                          No
+                                                          <span class='ing'> No</span>
                                                       @endif
                                                   </td>
                                                   <td>
                                                       @if($registro->f_rh)
-                                                          Si
+                                                          <span class='ing1'> Si</span>
                                                       @else
-                                                          No
+                                                          <span class='ing'> No</span>
                                                       @endif
                                                   </td>
                                                   <td>

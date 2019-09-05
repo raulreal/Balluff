@@ -44,7 +44,6 @@ class VacacionesController extends Controller
         return view('vacaciones.index', compact('vacaciones', 'permisoRh') );
     }
     
-    
     public function index2(Request $request)
     {
         $usr = Auth::user();
@@ -92,14 +91,16 @@ class VacacionesController extends Controller
         $usr = Auth::user();
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
+        $firmas = $request->firmas && $permisoRh;
         
         $aniosTrabajados = $fecha->diffInYears( $usuario->fecha_ingreso );
         
         if($aniosTrabajados < 1)
             return back()->with('No tienes permiso para vacaciones');
         
-        $diasVacaciones =  $this->diasPorAnio[$aniosTrabajados];
+        $diasVacaciones = $this->diasPorAnio[$aniosTrabajados];
         $diasPendientes = 0;
+        $diasPendientesOriginal = 0;
         $diasDisfrutados = 0;
         $saldo = $diasVacaciones;
         
@@ -121,25 +122,10 @@ class VacacionesController extends Controller
                 $diasPendientes = $ultimaVacacion->dias_pendientes;
                 $saldo = $ultimaVacacion->saldo;
             }
-          
-            $diasPendientesOriginal = $diasPendientes;
-            if($diasPendientes >= $diasDisfrutados) {
-                $diasPendientes -= $diasDisfrutados;
-                $diasDisfrutados = 0;
-            }
-            else {
-                $diasDisfrutados -= $diasPendientes;
-                $diasPendientes = 0;
-            }
-          
         }
         
-        if($saldo < 1)
+        if($saldo < 1) 
             return back()->with('No tienes días disponibles para vacaciones');
-        
-        $firmas = false;
-        if($request->firmas && $permisoRh)
-            $firmas = true;
         
         return view('vacaciones.create', compact('usuario','fecha', 'diasPendientes', 'diasDisfrutados', 'usuarioId', 'firmas',
                                                  'saldo', 'diasVacaciones', 'aniosTrabajados', 'aniosTrabajados', 'permisoRh',
@@ -204,7 +190,6 @@ class VacacionesController extends Controller
         
     }
   
-    
     public function misVacaciones() {
         $usuario = Auth::user();
         $fecha = Carbon::now();
@@ -222,7 +207,6 @@ class VacacionesController extends Controller
             
     }
     
-
     /**
      * Display the specified resource.
      *
@@ -245,6 +229,7 @@ class VacacionesController extends Controller
                                    ->sum('dias_solicitados');
         
         $diasPendientesAnteriores = $vacacion->dias_pendientes;
+        /*
         if($diasPendientesAnteriores >= $diasDisfrutados) {
             $diasPendientesAnteriores -= $diasDisfrutados;
             $diasDisfrutados = 0;
@@ -253,7 +238,7 @@ class VacacionesController extends Controller
             $diasDisfrutados -= $diasPendientesAnteriores;
             $diasPendientesAnteriores = 0;
         }
-        
+        */
         return view('vacaciones.show', compact('vacacion', 'diasPendientesAnteriores', 'diasVacaciones', 'diasDisfrutados', 'usuario', 'fecha', 'permisoRh') );
     }
 
@@ -265,13 +250,13 @@ class VacacionesController extends Controller
      */
     public function edit($id)
     {
-        $vacacion = Vacacion::find($id);
-        $usuario = $vacacion->user;
-        $fecha = Carbon::now();
-        
         $usr = Auth::user();
         $permisosUsuario = $usr->roles->pluck('name')->toArray();
         $permisoRh = in_array('rh', $permisosUsuario);
+        
+        $vacacion = Vacacion::find($id);
+        $usuario = $vacacion->user;
+        $fecha = Carbon::now();
         
         $diasVacaciones = $this->diasPorAnio[$vacacion->anios_trabajados];
         $diasDisfrutados = $usuario->misVacaciones()
@@ -279,14 +264,7 @@ class VacacionesController extends Controller
                                    ->sum('dias_solicitados');
         
         $diasPendientesAnteriores = $vacacion->dias_pendientes;
-        if($diasPendientesAnteriores >= $diasDisfrutados) {
-            $diasPendientesAnteriores -= $diasDisfrutados;
-            $diasDisfrutados = 0;
-        }
-        else {
-            $diasDisfrutados -= $diasPendientesAnteriores;
-            $diasPendientesAnteriores = 0;
-        }
+        
         
         return view('vacaciones.edit', compact('vacacion', 'diasPendientesAnteriores', 'diasVacaciones', 'diasDisfrutados', 'usuario', 'fecha', 'permisoRh') );
     }

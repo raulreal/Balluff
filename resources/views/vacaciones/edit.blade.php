@@ -62,8 +62,8 @@
                           </div>
                        
 						<form method="POST" action="{{ route('vacaciones.update', $vacacion->id ) }}"  role="form" id="form">
-                            <input name="_method" type="hidden" value="PUT">
-							      {{ csrf_field() }}
+                <input name="_method" type="hidden" value="PUT">
+							  {{ csrf_field() }}
                             
                             <div class="col-md-12 objetivos_tab">
 
@@ -92,12 +92,8 @@
                                                   <td>
                                                     <input type="text" value="{{ $diasPendientesAnteriores }}" id="dias_pendientes" 
                                                            class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif 
-                                                           onkeyup="calcularDias()">
+                                                           name="dias_pendientes" onkeyup="calculosDiasPendientes()">
                                                   </td>
-                                                  
-                                                  <input type="hidden" value="{{ $diasPendientesOriginal }}" name="dias_pendientes" 
-                                                         @if(!$permisoRh) readonly @endif >
-                                                  
                                                   
                                                </tr>
                                                
@@ -112,8 +108,8 @@
                                                <tr>
                                                   <td>Total de días por disfrutar</td>
                                                   <td>
-                                                    <input type="text" value="{{ $diasVacaciones - $diasDisfrutados }}"
-                                                           class="form-control input-sm objetivos" id="diasPorDisfrutar" readonly >
+                                                    <input type="text" value="{{ ($diasVacaciones + $diasPendientesAnteriores) - $diasDisfrutados }}"
+                                                           class="form-control input-sm objetivos" id="dias_por_disfrutar" readonly >
                                                   </td>
                                                </tr>
                                            
@@ -121,7 +117,7 @@
                                                   <td>Días solicitados</td>
                                                   <td>
                                                     <input type="number" name="dias_solicitados" id="dias_solicitados"  value="{{ $vacacion->dias_solicitados }}"
-                                                           onkeyup="calcularDias()" class="form-control input-sm objetivos" min="1" max="{{$diasVacaciones - $diasDisfrutados}}">
+                                                           onkeyup="calcularDias()" class="form-control input-sm objetivos" min="1" >
                                                  </td>
                                                </tr>
                                            
@@ -176,7 +172,27 @@
 @endsection
          
 @section('javascript')
-      <script type="text/javascript">
+    <script type="text/javascript">
+      
+      function calculosDiasPendientes() {
+        diasPorDisfrutar();
+        calcularDias() ;
+      }
+      
+      function diasPorDisfrutar() {
+        var diasVacaciones  =  parseInt(document.getElementById('dias_vacaciones').value);
+        var diasPendientes  =  parseInt(document.getElementById('dias_pendientes').value) || 0;
+        var diasDisfrutados =  parseInt(document.getElementById('dias_disfrutados').value);
+        document.getElementById('dias_por_disfrutar').value = (diasVacaciones + diasPendientes) - diasDisfrutados;
+        document.getElementById('dias_solicitados').max = (diasVacaciones + diasPendientes) - diasDisfrutados;
+        
+      }
+      
+      function calcularDias() {
+          var diasPorDisfrutar = parseInt(document.getElementById('dias_por_disfrutar').value);
+          var diasSolicitados =  parseInt(document.getElementById('dias_solicitados').value) || 0;
+          document.getElementById('saldo').value = diasPorDisfrutar - diasSolicitados;
+      }
        
       $('#fecha_inicio').pickadate({
         format: 'yyyy-mm-dd',
@@ -197,30 +213,7 @@
           formatSubmit: 'yyyy-mm-dd 00:00:00',
           hiddenSuffix: '',
           disable: [6,7],
-      });
-          
-      
-      function calcularDias() {
-          var diasPendientes =  parseInt(document.getElementById('dias_pendientes').value) || 0;
-          var diasPorDisfrutar = parseInt(document.getElementById('diasPorDisfrutar').value);
-          var diasSolicitados =  parseInt(document.getElementById('dias_solicitados').value) || 0;
-          document.getElementById('saldo').value = (diasPendientes + diasPorDisfrutar) - diasSolicitados;
-      }
-          
-      /*
-      $(document).ready(function(){
-            var $input = $('input[name="fecha"]').pickadate();
-            var picker = $input.pickadate('picker');
-            picker.set('select', '{{ date("Y-m-d") }}', { format: 'yyyy-mm-dd' });
-            $('input[name="fecha"]').removeClass('invalid');
-            
-            var $input2 = $('input#fecha2').pickadate();
-            var picker2 = $input2.pickadate('picker');
-            picker2.set('select', '{{ date("Y-m-d") }}', { format: 'yyyy-mm-dd' });
-            $('input#fecha2').removeClass('invalid');
-        });
-      */ 
-        
+      }); 
     </script>
 @endsection                   
                         

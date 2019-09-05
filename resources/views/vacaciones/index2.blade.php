@@ -63,9 +63,7 @@
                                        <th>Departamento o área</th>
                                        <th>Puesto</th>
                                        <th>Fecha de Ingreso</th>
-                                       <th>Firma Empleado</th>
-                                       <th>Firma Jefe</th>
-                                       <th>Firma RH</th>
+                                       <th>Numero de Solicitudes</th>
                                        <th>Añadir/Edita</th>
                                      </thead>
                                      <tbody>
@@ -81,37 +79,7 @@
                                                   <td>{{ $registro->puesto }}</td>
                                                   <td>{{ $registro->fecha_ingreso }}</td>
                                                   <td>
-                                                      @if($registro->misVacaciones->first())
-                                                          @if($registro->misVacaciones->first()->f_empleado)
-                                                              Si
-                                                          @else
-                                                              No
-                                                          @endif
-                                                      @else
-                                                          No
-                                                      @endif
-                                                  </td>
-                                                  <td>
-                                                      @if($registro->misVacaciones->first())
-                                                          @if($registro->misVacaciones->first()->f_jefe)
-                                                              Si
-                                                          @else
-                                                              No
-                                                          @endif
-                                                      @else
-                                                          No
-                                                      @endif
-                                                  </td>
-                                                  <td>
-                                                      @if($registro->misVacaciones->first())
-                                                          @if($registro->misVacaciones->first()->f_rh)
-                                                              Si
-                                                          @else
-                                                              No
-                                                          @endif
-                                                      @else
-                                                          No
-                                                      @endif
+                                                      {{ $registro->misVacaciones->count() }}
                                                   </td>
                                                   <td>
                                                       @if( $registro->misVacaciones->count() )
