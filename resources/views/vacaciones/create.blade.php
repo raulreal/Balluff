@@ -100,15 +100,15 @@
                                               <td>Días pendientes del aniversario anterior</td>
                                               <td>
                                                 <input type="text" value="{{ $diasPendientes }}" id="dias_pendientes" name="dias_pendientes"
-                                                       class="form-control input-sm objetivos" @if(!$permisoRh) readonly @endif 
-                                                       onkeyup="calculosDiasPendientes()">
+                                                       class="form-control input-sm objetivos" onkeyup="calculosDiasPendientes()"
+                                                       @if(!$permisoRh || $usuario->misVacaciones->count() ) readonly @endif >
                                               </td>
                                            </tr>
                                            
                                            <tr>
-                                              <td>Días disfrutados del aniversario anterior</td>
+                                              <td>Días restantes del aniversario anterior</td>
                                               <td>
-                                                <input type="text" value="{{ $diasPendientesDisfrutados }}" id="dias_disfrutados_anteriores" 
+                                                <input type="text" value="{{ $diasRestatntesAnteriores }}" id="dias_restantes_anteriores" 
                                                        class="form-control input-sm objetivos" readonly >
                                               </td>
                                            </tr>

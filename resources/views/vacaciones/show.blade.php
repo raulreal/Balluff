@@ -94,10 +94,10 @@
                                            </tr>
                                            
                                            <tr>
-                                              <td>Días disfrutados del aniversario anterior</td>
+                                              <td>Días restantes del aniversario anterior</td>
                                               <td>
-                                                <input type="text" value="{{ $diasPendientesDisfrutados }}" id="dias_disfrutados_anteriores" 
-                                                       class="form-control input-sm objetivos" readonly >
+                                                <input type="text" value="{{ $diasRestatntesAnteriores }}" id="dias_disfrutados_anteriores" 
+                                                       class="form-control input-sm objetivos" disabled >
                                               </td>
                                            </tr>
                                            
