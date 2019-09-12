@@ -32,15 +32,14 @@ class AsistenciaDetalleExport implements FromCollection, WithMapping, WithHeadin
         ];
     }
 
-  
     /**
     * @var Invoice $invoice
     */
     public function map($asistencia): array
     {
         return [
-            $asistencia->user->nombreCompleto(),
-            ($asistencia->user->miJefe)? $asistencia->user->miJefe->nombreCompleto() : '',
+            $asistencia->user ? $asistencia->user->nombreCompleto(): '',
+            ($asistencia->user && $asistencia->user->miJefe)? $asistencia->user->miJefe->nombreCompleto() : '',
             $asistencia->start_date,
             $asistencia->end_date,
             $this->recesos($asistencia->recesos),
